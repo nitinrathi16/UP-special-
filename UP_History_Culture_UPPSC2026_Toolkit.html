@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Special — History & Culture | UPPSC 2026 Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF6B00;
+    --saffron-light: #FFE0C2;
+    --deep-green: #1B4332;
+    --green-mid: #2D6A4F;
+    --green-light: #D8F3DC;
+    --navy: #0A1628;
+    --navy-mid: #1E3A5F;
+    --gold: #D4A017;
+    --gold-light: #FFF4CC;
+    --maroon: #8B1A1A;
+    --maroon-light: #FFE4E4;
+    --purple: #4A1942;
+    --purple-light: #F0E6FF;
+    --teal: #006D77;
+    --teal-light: #E0F7FA;
+    --bg: #FAFAF5;
+    --card-bg: #FFFFFF;
+    --text: #1A1A2E;
+    --text-muted: #5C5C7A;
+    --border: #E8E0D4;
+    --shadow: 0 4px 24px rgba(10,22,40,0.10);
+    --shadow-hover: 0 8px 40px rgba(10,22,40,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 40%, var(--maroon) 100%);
+    color: #fff;
+    padding: 48px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '🏛';
+    position: absolute; right: 60px; top: 20px;
+    font-size: 120px; opacity: 0.08;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--saffron);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 18px;
+    opacity: 0.82;
+    font-style: italic;
+    margin-bottom: 22px;
+  }
+  .hero-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .hero-tag {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    display: flex; gap: 0;
+    background: var(--navy);
+    overflow-x: auto;
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 20px;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 14px 20px;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .nav-tab:hover { color: rgba(255,255,255,0.9); }
+  .nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── MAIN CONTENT ── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 36px 24px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── SECTION HEADER ── */
+  .sec-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px; padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .sec-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .sec-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    line-height: 1.2;
+  }
+  .sec-header p { font-size: 14px; color: var(--text-muted); margin-top: 2px; font-style: italic; }
+
+  /* ── CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px; margin-bottom: 28px;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .card-header {
+    padding: 16px 20px 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .card-icon { font-size: 28px; }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+  }
+  .card-subtitle { font-size: 12px; color: var(--text-muted); font-style: italic; }
+  .card-body { padding: 0 20px 18px; }
+
+  /* ── TAGS ── */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.3px;
+    margin: 2px 3px 2px 0;
+  }
+  .tag-ancient { background: var(--gold-light); color: #6B4800; }
+  .tag-medieval { background: var(--purple-light); color: var(--purple); }
+  .tag-modern { background: var(--green-light); color: var(--deep-green); }
+  .tag-culture { background: var(--teal-light); color: var(--teal); }
+  .tag-exam { background: #FFF3CD; color: #7A5200; border: 1px solid #FFD700; }
+  .tag-trap { background: #FFE4E4; color: var(--maroon); border: 1px solid #FFB3B3; }
+  .tag-uppsc { background: var(--saffron-light); color: #A83000; }
+
+  /* ── FACT BLOCKS ── */
+  .fact-block {
+    background: var(--bg);
+    border-left: 4px solid var(--saffron);
+    padding: 12px 16px;
+    border-radius: 0 10px 10px 0;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .fact-block.green { border-left-color: var(--green-mid); }
+  .fact-block.purple { border-left-color: var(--purple); }
+  .fact-block.teal { border-left-color: var(--teal); }
+  .fact-block.gold { border-left-color: var(--gold); }
+  .fact-block.maroon { border-left-color: var(--maroon); }
+  .fact-block strong { color: var(--navy); font-weight: 600; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; margin: 20px 0; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 20px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--saffron), var(--gold), var(--green-mid));
+  }
+  .tl-item {
+    display: flex; gap: 20px; margin-bottom: 20px;
+    padding-left: 50px; position: relative;
+  }
+  .tl-dot {
+    position: absolute; left: 12px; top: 4px;
+    width: 18px; height: 18px;
+    border-radius: 50%; background: var(--saffron);
+    border: 3px solid var(--card-bg);
+    box-shadow: 0 0 0 2px var(--saffron);
+    flex-shrink: 0;
+  }
+  .tl-dot.gold { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+  .tl-dot.green { background: var(--green-mid); box-shadow: 0 0 0 2px var(--green-mid); }
+  .tl-dot.maroon { background: var(--maroon); box-shadow: 0 0 0 2px var(--maroon); }
+  .tl-dot.purple { background: var(--purple); box-shadow: 0 0 0 2px var(--purple); }
+  .tl-content { flex: 1; }
+  .tl-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 700;
+    color: var(--saffron); letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+  .tl-year.gold { color: var(--gold); }
+  .tl-year.green { color: var(--green-mid); }
+  .tl-year.maroon { color: var(--maroon); }
+  .tl-title { font-size: 15px; font-weight: 600; color: var(--navy); }
+  .tl-desc { font-size: 14px; color: var(--text-muted); margin-top: 3px; }
+
+  /* ── TABLE ── */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+  .comp-table th {
+    background: var(--navy);
+    color: #fff;
+    padding: 12px 14px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .comp-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .comp-table tr:nth-child(even) td { background: #F8F6F0; }
+  .comp-table tr:hover td { background: var(--gold-light); }
+  .comp-table th:first-child { border-radius: 8px 0 0 0; }
+  .comp-table th:last-child { border-radius: 0 8px 0 0; }
+
+  /* ── MCQ SECTION ── */
+  .mcq-container { display: flex; flex-direction: column; gap: 20px; }
+  .mcq-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .mcq-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    color: #fff;
+    padding: 14px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .mcq-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    color: var(--gold);
+  }
+  .mcq-source {
+    font-size: 11px;
+    background: rgba(255,255,255,0.15);
+    padding: 3px 10px; border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .mcq-q {
+    padding: 16px 20px 10px;
+    font-size: 15px; font-weight: 600;
+    color: var(--navy); line-height: 1.5;
+  }
+  .mcq-options { padding: 0 20px 14px; }
+  .mcq-opt {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 14px;
+  }
+  .mcq-opt:hover { background: var(--bg); }
+  .mcq-opt.correct { background: var(--green-light) !important; }
+  .mcq-opt.wrong { background: var(--maroon-light) !important; }
+  .opt-label {
+    width: 26px; height: 26px; min-width: 26px;
+    border-radius: 50%; border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 700;
+    color: var(--text-muted);
+  }
+  .correct .opt-label { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
+  .wrong .opt-label { background: var(--maroon); color: #fff; border-color: var(--maroon); }
+  .mcq-explain {
+    margin: 0 20px 16px;
+    background: var(--gold-light);
+    border-left: 4px solid var(--gold);
+    padding: 12px 16px;
+    border-radius: 0 10px 10px 0;
+    font-size: 14px;
+    display: none;
+  }
+  .mcq-explain.visible { display: block; }
+  .mcq-explain strong { color: var(--navy); }
+  .show-ans-btn {
+    margin: 0 20px 16px;
+    padding: 8px 18px;
+    background: var(--navy);
+    color: var(--gold);
+    border: none; border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.5px;
+    transition: background 0.15s;
+  }
+  .show-ans-btn:hover { background: var(--navy-mid); }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin: 12px 0;
+    font-size: 14px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert.warn { background: #FFF3CD; border-left: 4px solid var(--gold); }
+  .alert.info { background: var(--teal-light); border-left: 4px solid var(--teal); }
+  .alert.exam { background: var(--saffron-light); border-left: 4px solid var(--saffron); }
+  .alert.trap { background: var(--maroon-light); border-left: 4px solid var(--maroon); }
+
+  /* ── DISTRICT MAP TABLE ── */
+  .district-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px; margin: 20px 0;
+  }
+  .dist-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .dist-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    color: var(--saffron); margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .dist-card ul { list-style: none; }
+  .dist-card li {
+    font-size: 13px; padding: 3px 0;
+    border-bottom: 1px dashed var(--border);
+    display: flex; gap: 6px; align-items: flex-start;
+  }
+  .dist-card li:last-child { border: none; }
+  .dist-card li::before { content: '▸'; color: var(--gold); flex-shrink: 0; }
+
+  /* ── SCORE TRACKER ── */
+  .score-box {
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: #fff; border-radius: 14px;
+    padding: 20px 24px; margin-bottom: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .score-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.7; }
+  .score-num { font-size: 32px; font-weight: 900; color: var(--gold); }
+  .score-pct { font-size: 14px; opacity: 0.8; }
+  .reset-btn {
+    padding: 8px 18px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; cursor: pointer;
+  }
+
+  /* ── MINI BADGE ── */
+  .uppsc-angle {
+    background: linear-gradient(135deg, #FF6B00, #FF9A3C);
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .uppsc-angle strong { font-weight: 700; display: block; margin-bottom: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 28px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .nav-tab { padding: 12px 14px; font-size: 10px; }
+  }
+
+  h3.subsec {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--navy-mid);
+    margin: 28px 0 14px;
+    padding-left: 14px;
+    border-left: 4px solid var(--gold);
+  }
+  ul.bullet-list { list-style: none; margin: 8px 0; }
+  ul.bullet-list li {
+    padding: 5px 0 5px 22px;
+    position: relative; font-size: 15px;
+    border-bottom: 1px dashed var(--border);
+  }
+  ul.bullet-list li:last-child { border: none; }
+  ul.bullet-list li::before {
+    content: '◆';
+    position: absolute; left: 0;
+    color: var(--saffron); font-size: 10px; top: 8px;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">UPPSC 2026 — SDM Rank Target</div>
+  <h1>उत्तर प्रदेश <span>विशेष</span><br>History & Culture</h1>
+  <p class="hero-sub">Comprehensive Toolkit — Ancient · Medieval · Modern · Cultural Heritage</p>
+  <div class="hero-meta">
+    <div class="hero-tag">📚 Past Papers 2018–2025</div>
+    <div class="hero-tag">🎯 20 UPPSC MCQs</div>
+    <div class="hero-tag">🗺️ District-wise Sites</div>
+    <div class="hero-tag">⚠️ Examiner Traps</div>
+    <div class="hero-tag">📋 Complete Syllabus Coverage</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-tabs">
+  <div class="nav-tab active" onclick="showSection('ancient')">🏛 Ancient UP</div>
+  <div class="nav-tab" onclick="showSection('buddhist')">☸️ Buddhist Sites</div>
+  <div class="nav-tab" onclick="showSection('medieval')">🕌 Medieval UP</div>
+  <div class="nav-tab" onclick="showSection('revolt1857')">⚔️ 1857 Revolt</div>
+  <div class="nav-tab" onclick="showSection('fighters')">🦁 Freedom Fighters</div>
+  <div class="nav-tab" onclick="showSection('modern')">🗺️ Post-Independence</div>
+  <div class="nav-tab" onclick="showSection('culture')">🎭 Culture & Festivals</div>
+  <div class="nav-tab" onclick="showSection('districts')">📍 District Sites</div>
+  <div class="nav-tab" onclick="showSection('mcq')">📝 MCQ Practice</div>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 1: ANCIENT UP -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="ancient" class="section active">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:var(--gold-light)">🏛</div>
+    <div>
+      <h2>Ancient UP — The Sacred Heartland</h2>
+      <p>Kashi · Prayagraj · Mathura · Ayodhya — Four Pillars of Civilization</p>
+    </div>
+  </div>
+
+  <div class="alert exam">
+    <div class="alert-icon">🎯</div>
+    <div><strong>UPPSC Angle:</strong> Ancient cities asked frequently as match-the-column, chronological order, and assertion-reason questions. Focus on founding myths, Vedic connections, and ASI protected status.</div>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-header" style="background:var(--gold-light)">
+        <div class="card-icon">🕯️</div>
+        <div>
+          <div class="card-title">Kashi (Varanasi)</div>
+          <div class="card-subtitle">Varanasi District — World's Oldest Living City</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-ancient">Ancient</span>
+        <span class="tag tag-exam">High Freq</span>
+        <div class="fact-block gold">
+          <strong>Location:</strong> On the left bank of Ganga, between Varuna & Assi rivers (hence Va-r-Ana-si). Situated in Varanasi district.
+        </div>
+        <div class="fact-block">
+          <strong>Historical Significance:</strong><br>
+          • One of the 7 Sacred Cities (Saptapuri) of Hinduism<br>
+          • Mentioned in Rigveda as <em>Kashi</em> — kingdom of light<br>
+          • Capital of Kashi Mahajanapada (600 BCE)<br>
+          • Birthplace of Tulsidas (Ramcharitmanas)<br>
+          • Kabir, Ravidas spent lives here<br>
+          • Famous for Banaras Gharana of music<br>
+          • BHU (Banaras Hindu University) founded 1916 by Madan Mohan Malaviya
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          HRIDAY scheme covers Varanasi (confirmed in 2020 paper). Kashi Vishwanath Corridor inaugurated 2021. Varanasi — G20 venue 2023 (asked in 2023 paper).
+        </div>
+        <div class="alert trap">
+          <div class="alert-icon">⚠️</div>
+          <strong>TRAP:</strong> "Oldest city in world" — Varanasi is often called this but Jericho is older. UPPSC asks "oldest living city in India" = Varanasi ✓
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:#EDE7F6">
+        <div class="card-icon">🤝</div>
+        <div>
+          <div class="card-title">Prayagraj (Allahabad)</div>
+          <div class="card-subtitle">Prayagraj District — Triveni Sangam</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-ancient">Ancient</span>
+        <span class="tag tag-culture">Cultural Hub</span>
+        <div class="fact-block purple">
+          <strong>Triveni Sangam:</strong> Confluence of Ganga, Yamuna & mythical Saraswati. Most sacred bathing site. Site of Kumbh Mela.
+        </div>
+        <div class="fact-block">
+          <strong>Historical Significance:</strong><br>
+          • Ancient name: <em>Prayag</em> (Vedic), <em>Allahabad</em> given by Akbar in 1583<br>
+          • Akbar built Allahabad Fort (1583) at Sangam<br>
+          • Treaty of Allahabad 1765 — signed between Robert Clive & Mughal Emperor Shah Alam II (UPPSC 2019 asked!)<br>
+          • 1857 revolt's UP government seat briefly<br>
+          • High Court established 1866 (oldest HC in UP)<br>
+          • Nehru family home — Anand Bhavan<br>
+          • Renamed Prayagraj in 2018
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          Treaty of Allahabad (1765) = Diwani rights to East India Company for Bengal, Bihar, Orissa. Kumbh 2025 held here. Prayagraj Airport — International status in 2020 paper!
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--teal-light)">
+        <div class="card-icon">🦚</div>
+        <div>
+          <div class="card-title">Mathura</div>
+          <div class="card-subtitle">Mathura District — Birthplace of Krishna</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-ancient">Ancient</span>
+        <span class="tag tag-culture">Pilgrimage</span>
+        <div class="fact-block teal">
+          <strong>Religious Core:</strong> Birthplace of Lord Krishna (Mathura). Part of Braj Bhoomi — includes Mathura, Vrindavan, Govardhan, Barsana, Gokul.
+        </div>
+        <div class="fact-block">
+          <strong>Historical Significance:</strong><br>
+          • Capital of Shura-sena Mahajanapada<br>
+          • Mathura School of Art — flourished 1st–3rd CE (Kushana period)<br>
+          • Red/spotted sandstone sculptures, earliest Buddha images in human form<br>
+          • Major Buddhist, Jain & Hindu center simultaneously<br>
+          • Sacked by Mahmud of Ghazni (1018 CE)<br>
+          • HRIDAY scheme city (confirmed 2020 paper)<br>
+          • Mathura Refinery (IOC) — important economically
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          Mathura School vs Gandhara School: Mathura = Indian tradition, red sandstone, UP origin. Gandhara = Greco-Buddhist, NW India. Common MCQ trap!
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:#FFF8E1">
+        <div class="card-icon">🏹</div>
+        <div>
+          <div class="card-title">Ayodhya</div>
+          <div class="card-subtitle">Ayodhya District — Ram Janmabhoomi</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-ancient">Ancient</span>
+        <span class="tag tag-exam">Recent Current</span>
+        <div class="fact-block">
+          <strong>Historical Significance:</strong><br>
+          • Capital of Kosala Mahajanapada<br>
+          • Ancient name: Saket (mentioned in Buddhist texts)<br>
+          • Birthplace of Lord Rama (per Valmiki Ramayana)<br>
+          • Birthplace of Jain Tirthankaras: Rishabhanath (1st), Ajitanath (2nd), Abhinandannath (4th), Sumatinath (5th), Anantanath (14th)<br>
+          • Fa-Hien (Chinese pilgrim, 4th CE) visited<br>
+          • Ram Mandir inaugurated January 22, 2024<br>
+          • Pushyamitra Shunga's Ashwamedha Yagna info from Ayodhya Inscription (asked UPPSC 2018!)
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          Ayodhya inscription → Pushyamitra Shunga's Ashwamedha Yagna. Saket = ancient name. 5 Jain Tirthankara birthplaces in Ayodhya. Ram Mandir 2024 = current affairs angle.
+        </div>
+        <div class="alert trap">
+          <div class="alert-icon">⚠️</div>
+          <strong>TRAP:</strong> Pushyamitra Shunga Ashwamedha info comes from AYODHYA inscription (not Sarnath/Besnagar). UPPSC 2018 confirmed.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="subsec">Ancient UP — Timeline</h3>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">~3000 BCE</div>
+        <div class="tl-title">Vedic Period — UP as Core Region</div>
+        <div class="tl-desc">Rigveda mentions Kashi. Yamuna-Ganga doab settled. Copper Hoard Culture in UP.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot gold"></div>
+      <div class="tl-content">
+        <div class="tl-year gold">600 BCE</div>
+        <div class="tl-title">Mahajanapada Era</div>
+        <div class="tl-desc">Kashi, Kosala (Ayodhya capital), Vatsa (Kaushambi/Allahabad), Shursena (Mathura) — 4 of 16 Mahajanapadas in UP region.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot gold"></div>
+      <div class="tl-content">
+        <div class="tl-year gold">321–185 BCE</div>
+        <div class="tl-title">Mauryan Empire</div>
+        <div class="tl-desc">Pataliputra capital. Ashoka's pillars at Sarnath (Lion Capital), Allahabad Pillar. Buddhism spread from Varanasi.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1st–3rd CE</div>
+        <div class="tl-title">Kushana Period — Mathura Art School</div>
+        <div class="tl-desc">Mathura School of Art flourished. First standing Buddha images. Capital: Mathura.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot green"></div>
+      <div class="tl-content">
+        <div class="tl-year green">320–550 CE</div>
+        <div class="tl-title">Gupta Golden Age</div>
+        <div class="tl-desc">Prayag Prashasti (Samudragupta's victories). Nalanda near UP. Sanskrit literature peak. Kalidasa flourished.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot maroon"></div>
+      <div class="tl-content">
+        <div class="tl-year maroon">606–647 CE</div>
+        <div class="tl-title">Harsha's Empire</div>
+        <div class="tl-desc">Capital at Kanauj (UP). Xuanzang's famous visit. Prayag Mela (Kumbh precursor) held every 5 years.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsec">Kaushambi — The Forgotten Capital</h3>
+  <div class="fact-block teal">
+    <strong>Kaushambi (Allahabad district):</strong> Capital of Vatsa Mahajanapada. Udayana was famous king. Both Buddhist (Buddha visited) and Jain significance. Ghoshitarama Monastery excavated. UPPSC frequently asks about Vatsa Mahajanapada capital.
+  </div>
+
+  <h3 class="subsec">Saptapuri — Seven Sacred Cities (3 in UP)</h3>
+  <table class="comp-table">
+    <tr><th>City</th><th>State</th><th>Religious Significance</th></tr>
+    <tr><td><strong>Ayodhya</strong></td><td>UP</td><td>Ram Janmabhoomi, Kosala capital</td></tr>
+    <tr><td><strong>Mathura</strong></td><td>UP</td><td>Krishna Janmabhoomi, Shurasena capital</td></tr>
+    <tr><td><strong>Varanasi (Kashi)</strong></td><td>UP</td><td>Shiva's city, moksha gateway</td></tr>
+    <tr><td>Haridwar</td><td>Uttarakhand</td><td>Ganga's descent to plains</td></tr>
+    <tr><td>Kanchipuram</td><td>Tamil Nadu</td><td>Shaiva Vaishnava center</td></tr>
+    <tr><td>Dwarka</td><td>Gujarat</td><td>Krishna's kingdom</td></tr>
+    <tr><td>Ujjain</td><td>Madhya Pradesh</td><td>Mahakaleshwar Jyotirlinga</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 2: BUDDHIST SITES -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="buddhist" class="section">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:#E8F5E9">☸️</div>
+    <div>
+      <h2>Buddhist Sites in UP</h2>
+      <p>Sarnath · Kushinagar · Shravasti · Sankisa — Buddha's Life Circuit in UP</p>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">ℹ️</div>
+    <div><strong>Key Fact:</strong> UP contains sites related to 3 of the 4 most sacred events in Buddha's life: 1st Sermon (Sarnath), Mahaparinirvana (Kushinagar), and major teachings (Shravasti). Only Bodh Gaya (Bihar) is outside UP.</div>
+  </div>
+
+  <table class="comp-table">
+    <tr>
+      <th>Site</th>
+      <th>District</th>
+      <th>Buddhist Event</th>
+      <th>Key Monument</th>
+      <th>UPPSC Angle</th>
+    </tr>
+    <tr>
+      <td><strong>Sarnath</strong></td>
+      <td>Varanasi</td>
+      <td>Dhammachakka Pavattana — First Sermon (Deer Park). Sangha founded here</td>
+      <td>Dhamekh Stupa (500 CE), Ashoka Pillar (Lion Capital = National Emblem)</td>
+      <td>National Emblem from here. Sarnath inscription: Pushyamitra Shunga asked UPPSC 2018</td>
+    </tr>
+    <tr>
+      <td><strong>Kushinagar</strong></td>
+      <td>Kushinagar</td>
+      <td>Mahaparinirvana (483 BCE) — Buddha's death</td>
+      <td>Nirvana Stupa, Reclining Buddha statue (1500 yr old), Ramabhar Stupa (cremation site)</td>
+      <td>International Airport status granted June 2020 (asked UPPSC 2020!). UNESCO Tentative list</td>
+    </tr>
+    <tr>
+      <td><strong>Shravasti</strong></td>
+      <td>Shravasti</td>
+      <td>Buddha spent 24 rainy seasons here. Jetavana Monastery founded by Anathapindika</td>
+      <td>Jetavana Monastery ruins, Saheth-Maheth site, Angulimala stupa</td>
+      <td>Capital of Kosala kingdom (Prasenajit's kingdom). Shravasti among districts with 20%+ forest cover (asked 2025 paper!)</td>
+    </tr>
+    <tr>
+      <td><strong>Sankisa (Sankasia)</strong></td>
+      <td>Farrukhabad</td>
+      <td>Buddha descended from Trayastrimsha heaven (after teaching mother Mahamaya). Ashoka built elephant pillar</td>
+      <td>Ashoka's Elephant Capital Pillar (remains), stupa</td>
+      <td>Least known but important. 4th Buddhist pilgrimage site in UP after above three</td>
+    </tr>
+    <tr>
+      <td><strong>Kapilavastu</strong></td>
+      <td>Siddharthnagar</td>
+      <td>Buddha's birthplace (Lumbini nearby in Nepal), early life spent here</td>
+      <td>Piprahwa stupa (contains Buddha's ashes), identified as Kapilavastu</td>
+      <td>Dispute: Piprahwa (UP) vs Tilaurakot (Nepal) — both claim Kapilavastu</td>
+    </tr>
+    <tr>
+      <td><strong>Kaushambi</strong></td>
+      <td>Allahabad/Prayagraj</td>
+      <td>Buddha spent 2 rainy seasons. Ghoshitarama monastery</td>
+      <td>Fort ruins, Ashoka Pillar, Ghoshitarama monastery</td>
+      <td>Vatsa capital. Also Jain significance</td>
+    </tr>
+  </table>
+
+  <h3 class="subsec">Sarnath — Detailed Analysis</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-body" style="padding-top:16px">
+        <div class="fact-block">
+          <strong>Dhamekh Stupa:</strong> Built 500 CE (Gupta period) at exact spot of First Sermon. Cylindrical, 28m diameter, 43m height. Inscriptions in Brahmi script.
+        </div>
+        <div class="fact-block teal">
+          <strong>Chaukhandi Stupa:</strong> Marks where Buddha met his first 5 disciples. Octagonal Mughal tower added by Humayun's son Govardhan.
+        </div>
+        <div class="fact-block green">
+          <strong>Ashoka Pillar:</strong> Only intact Mauryan pillar in UP. Lion Capital removed to Sarnath Museum (became National Emblem 1950).
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body" style="padding-top:16px">
+        <div class="uppsc-angle">
+          <strong>🎯 SARNATH MCQ TRAPS</strong>
+          Q: Where is National Emblem originally from? → Sarnath (not Delhi)<br>
+          Q: Dhamekh Stupa built in which period? → Gupta (500 CE), not Maurya<br>
+          Q: First sermon location? → Deer Park, Isipatana, Sarnath<br>
+          Q: Sarnath inscription mentions? → Ashoka's Schism Edict for Sangha
+        </div>
+        <div class="alert warn">
+          <div class="alert-icon">⚠️</div>
+          <strong>Sarnath Museum:</strong> Oldest site museum in India (est. 1910). Contains Lion Capital (4 lions + dharma chakra).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsec">Buddhist Circuit in UP — 4 Major Sites</h3>
+  <div class="fact-block">
+    <strong>Government's Buddhist Circuit:</strong> Part of Ministry of Tourism's "Spiritual Circuit" under Swadesh Darshan scheme. Covers: Sarnath → Kushinagar → Shravasti → Sankisa. Kushinagar airport made international to boost Buddhist tourism (Oct 2021 formally opened).
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 3: MEDIEVAL UP -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="medieval" class="section">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:var(--purple-light)">🕌</div>
+    <div>
+      <h2>Medieval UP — Mughals & Nawabs</h2>
+      <p>Agra as Mughal Capital · Awadh Nawabs · Architecture & Culture</p>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-header" style="background:var(--purple-light)">
+        <div class="card-icon">🏰</div>
+        <div>
+          <div class="card-title">Agra — Mughal Capital</div>
+          <div class="card-subtitle">Agra District</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-medieval">Medieval</span>
+        <span class="tag tag-exam">High Freq</span>
+        <div class="fact-block purple">
+          <strong>Sikandar Lodi</strong> shifted capital Delhi→Agra (1504). First capital shift to Agra.
+        </div>
+        <div class="fact-block">
+          <strong>Mughal Period:</strong><br>
+          • Babur: Won Battle of Panipat (1526), died in Agra, buried in Agra (later Kabul)<br>
+          • Akbar: Built Agra Fort (red sandstone, 1565). Capital also at Fatehpur Sikri (1571-1585)<br>
+          • Jahangir: Itmad-ud-Daula (his father-in-law's tomb) — "Baby Taj", first marble-inlay tomb<br>
+          • Shah Jahan: TAJ MAHAL (1632–1653), Agra Fort's marble sections<br>
+          • Aurangzeb: Moved capital to Aurangabad
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          Battle of Bilgram (1540) near Kannauj — Humayun defeated by Sher Shah. Sher Shah's tomb in Sasaram, Bihar. INA trial at Red Fort Delhi (not Agra Fort) — common trap!
+        </div>
+        <div class="alert trap">
+          <div class="alert-icon">⚠️</div>
+          <strong>TRAP (UPPSC 2019):</strong> INA officers' trial was held at Red Fort, Delhi — NOT Agra Fort. Agra Fort was used as prison.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:#FFF8E1">
+        <div class="card-icon">🕌</div>
+        <div>
+          <div class="card-title">Taj Mahal</div>
+          <div class="card-subtitle">Agra — UNESCO World Heritage</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="fact-block gold">
+          <strong>Built:</strong> 1632–1653 by Shah Jahan for wife Mumtaz Mahal (died 1631 in Burhanpur). Chief architect: Ustad Ahmad Lahori. 20,000 workers.
+        </div>
+        <ul class="bullet-list">
+          <li>White Makrana marble from Rajasthan</li>
+          <li>Pietra dura (inlay work) technique</li>
+          <li>Perfect symmetry — 4 identical facades</li>
+          <li>Four minarets lean slightly outward (earthquake protection)</li>
+          <li>Yomuna river on north side</li>
+          <li>UNESCO WHS since 1983</li>
+          <li>New 7 Wonders of World (2007)</li>
+        </ul>
+        <div class="alert warn">
+          <div class="alert-icon">⚠️</div>
+          <strong>Note:</strong> Ustad Isa Khan was chief calligrapher, NOT architect. Common confusion in MCQs.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:#E8F5E9">
+        <div class="card-icon">👑</div>
+        <div>
+          <div class="card-title">Awadh Nawabs</div>
+          <div class="card-subtitle">Lucknow — Ganga-Jamuni Tehzeeb</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-medieval">Medieval-Modern</span>
+        <div class="fact-block green">
+          <strong>Nawab of Awadh Dynasty (1722–1856):</strong> Founded by Saadat Khan (Burhan-ul-Mulk) in 1722. Shia Muslim dynasty.
+        </div>
+        <table class="comp-table" style="font-size:12px">
+          <tr><th>Nawab</th><th>Period</th><th>Key Event</th></tr>
+          <tr><td>Saadat Khan</td><td>1722–1739</td><td>Founded Awadh, Battle of Karnal</td></tr>
+          <tr><td>Safdar Jung</td><td>1739–1754</td><td>Also PM of Mughals; tomb in Delhi</td></tr>
+          <tr><td>Shuja-ud-Daula</td><td>1754–1775</td><td>Battle of Buxar (1764) — defeated by British</td></tr>
+          <tr><td>Asaf-ud-Daula</td><td>1775–1797</td><td>Moved capital Faizabad→Lucknow; Bada Imambara built</td></tr>
+          <tr><td>Saadat Ali Khan II</td><td>1798–1814</td><td>Subsidiary Alliance with British</td></tr>
+          <tr><td>Wajid Ali Shah</td><td>1847–1856</td><td>Deposed by Dalhousie (Doctrine of Lapse). Started Kathak, thumri. Exiled to Calcutta.</td></tr>
+        </table>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          Awadh annexed 1856 under "misgovernance" charge (NOT Doctrine of Lapse — it was the last male heir issue at Jhansi/Satara, not Awadh). Wajid Ali Shah's deportation was a major cause of 1857 revolt.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--teal-light)">
+        <div class="card-icon">🏗️</div>
+        <div>
+          <div class="card-title">Lucknow — Nawabi Architecture</div>
+          <div class="card-subtitle">Awadhi Style Heritage</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="fact-block teal">
+          <strong>Bada Imambara (1784):</strong> Built by Asaf-ud-Daula during famine relief. Largest arched hall in Asia without beams. Bhool Bhulaiya (maze) inside.
+        </div>
+        <ul class="bullet-list">
+          <li><strong>Chota Imambara (1838):</strong> Nawab Muhammad Ali Shah's tomb. "Palace of Lights"</li>
+          <li><strong>Rumi Darwaza:</strong> 18th century gateway, model for Ottoman-style arch</li>
+          <li><strong>Residency:</strong> British Residency — site of 1857 Siege of Lucknow (5 months)</li>
+          <li><strong>Constantia (La Martiniere):</strong> Claude Martin's palace, now school</li>
+          <li><strong>Ganga-Jamuni Tehzeeb:</strong> Lucknow's syncretic Hindu-Muslim culture, Urdu, Kathak dance, nawabi cuisine (biryani, kebabs)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:#FBE9E7">
+        <div class="card-icon">🏛</div>
+        <div>
+          <div class="card-title">Fatehpur Sikri</div>
+          <div class="card-subtitle">Agra District — Akbar's Capital</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-medieval">Mughal</span>
+        <span class="tag tag-exam">UPPSC Fav</span>
+        <div class="fact-block">
+          <strong>Built:</strong> 1571–1585 by Akbar. Capital for 14 years, abandoned (water scarcity). UNESCO WHS 1986.
+        </div>
+        <ul class="bullet-list">
+          <li>Buland Darwaza: Built after Gujarat victory 1576. 54m height. "Gateway to victory"</li>
+          <li>Panch Mahal: 5-storey pavilion, inspired by Buddhist viharas</li>
+          <li>Jama Masjid: Mosque for court</li>
+          <li>Dargah of Salim Chishti: Akbar's son Jahangir born after saint's blessing</li>
+          <li>Diwan-i-Khas: Hall of private audience, 36 pillars, central column</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--green-light)">
+        <div class="card-icon">🕰️</div>
+        <div>
+          <div class="card-title">Jaunpur — Sharqi Kingdom</div>
+          <div class="card-subtitle">Jaunpur District — Shiraz-i-Hind</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="fact-block green">
+          <strong>Sharqi Dynasty (1394–1479):</strong> Founded by Malik Sarwar (Khwaja Jahan). Independent sultanate. Called "Shiraz of India" for culture. Ibrahim Shah Sharqi: patron of arts, music.
+        </div>
+        <ul class="bullet-list">
+          <li>Atala Mosque (1408): Unique style — high screen facade (UPPSC 2019 asked chronological order!)</li>
+          <li>Jami Masjid: Largest Sharqi mosque</li>
+          <li>Lal Darwaza Mosque: Built by Ibrahim Shah's queen</li>
+          <li>Shahi Pul (Bridge): 16th century Mughal bridge</li>
+        </ul>
+        <div class="alert trap">
+          <div class="alert-icon">⚠️</div>
+          <strong>TRAP (2019):</strong> Atala Mosque Jaunpur (1408) → Humayun's Tomb Delhi (1565) → Rabia Daurani Aurangabad (1678). Chronological order: Jaunpur < Delhi < Aurangabad.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 4: 1857 REVOLT -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="revolt1857" class="section">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:var(--maroon-light)">⚔️</div>
+    <div>
+      <h2>1857 — First War of Independence in UP</h2>
+      <p>Meerut · Lucknow · Jhansi · Kanpur — UP at the Centre of Revolt</p>
+    </div>
+  </div>
+
+  <div class="alert exam">
+    <div class="alert-icon">🔥</div>
+    <div><strong>Most Asked UP Topic!</strong> UPPSC 2023 asked: Start dates of revolt at different places. UPPSC 2023 asked: Leader of Bareilly revolt 1857. UPPSC 2021: Ram Prasad Bismil birth anniversary in Shahjahanpur. Know ALL locations, dates and leaders.</div>
+  </div>
+
+  <h3 class="subsec">Causes of 1857 Revolt — UP Specific</h3>
+  <div class="two-col">
+    <div>
+      <div class="fact-block maroon">
+        <strong>Military Causes (Immediate):</strong><br>
+        Enfield rifle cartridges greased with cow & pig fat. Sepoys had to bite the cartridge. Hindu & Muslim soldiers both outraged.
+      </div>
+      <div class="fact-block">
+        <strong>Political Causes (UP-specific):</strong><br>
+        • Awadh annexed 1856 by Dalhousie under "misgovernance"<br>
+        • Doctrine of Lapse → Satara, Jhansi, Nagpur (NOT Awadh)<br>
+        • Displacement of Awadh's court, army, nobility<br>
+        • Nana Saheb denied pension after Peshwa Baji Rao II's death
+      </div>
+    </div>
+    <div>
+      <div class="fact-block purple">
+        <strong>Economic Causes:</strong><br>
+        • Exploitation through Permanent Settlement, Ryotwari<br>
+        • Ruin of artisans (handloom), zamindars<br>
+        • Doctrine of Lapse hurt ruling families
+      </div>
+      <div class="fact-block teal">
+        <strong>Social/Religious Causes:</strong><br>
+        • Fear of conversion to Christianity<br>
+        • Widow Remarriage Act (1856)<br>
+        • Western education seen as attack on culture<br>
+        • Greased cartridge = religious insult
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsec">Key Centers in UP — Dates & Leaders</h3>
+  <table class="comp-table">
+    <tr><th>Place (District)</th><th>Date of Revolt</th><th>Leader</th><th>Key Events</th><th>UPPSC Trap</th></tr>
+    <tr>
+      <td><strong>Barrackpore</strong> (Bengal)</td>
+      <td>29 March 1857</td>
+      <td>Mangal Pandey (from Ballia, UP)</td>
+      <td>Fired at British officers. First act of revolt. Hanged 8 April 1857</td>
+      <td>Barrackpore is Bengal. Mangal Pandey = UP hero but revolt location = Bengal</td>
+    </tr>
+    <tr>
+      <td><strong>Meerut</strong></td>
+      <td>10 May 1857</td>
+      <td>Indian sepoys collectively</td>
+      <td>85 soldiers refused cartridges → imprisoned → freed by comrades → marched to Delhi. Actual START of mass revolt</td>
+      <td>First mass revolt = Meerut (10 May). First individual act = Barrackpore (29 March)</td>
+    </tr>
+    <tr>
+      <td><strong>Delhi</strong></td>
+      <td>11–12 May 1857</td>
+      <td>Bahadur Shah Zafar (declared leader)</td>
+      <td>Sepoys captured Delhi. Zafar made symbolic emperor. British recaptured Sept 1857</td>
+      <td>Jhansi revolt date = 11 May 1857 too (same day as Delhi — UPPSC 2023 paper!)</td>
+    </tr>
+    <tr>
+      <td><strong>Lucknow</strong></td>
+      <td>4 June 1857</td>
+      <td>Begum Hazrat Mahal (Wajid Ali Shah's wife)</td>
+      <td>Siege of British Residency (May–Nov 1857). Henry Lawrence killed. Colin Campbell finally relieved</td>
+      <td>Siege lasted ~5 months. Hazrat Mahal = Lucknow leader (NOT Nana Saheb)</td>
+    </tr>
+    <tr>
+      <td><strong>Kanpur (Cawnpore)</strong></td>
+      <td>June 1857</td>
+      <td>Nana Saheb (Dhondu Pant)</td>
+      <td>Massacre at Bibighar (British women & children killed). British forces under Havelock recaptured</td>
+      <td>Nana Saheb = Kanpur (NOT Lucknow). Tatya Tope was Nana Saheb's general</td>
+    </tr>
+    <tr>
+      <td><strong>Jhansi</strong></td>
+      <td>11 May 1857</td>
+      <td>Rani Lakshmi Bai</td>
+      <td>Fought British forces under Hugh Rose. Died fighting at Kotah-ki-Serai (Gwalior) 17 June 1858</td>
+      <td>Rani died near Gwalior (MP), NOT Jhansi! Jhansi district is UP</td>
+    </tr>
+    <tr>
+      <td><strong>Bareilly</strong></td>
+      <td>1857</td>
+      <td><strong>Khan Bahadur Khan</strong></td>
+      <td>Declared himself Nawab Nazim of Rohilkhand. Major center in UP</td>
+      <td>UPPSC 2023 directly asked: Bareilly 1857 leader = Khan Bahadur Khan ✓</td>
+    </tr>
+    <tr>
+      <td><strong>Faizabad/Awadh</strong></td>
+      <td>June 1857</td>
+      <td>Maulvi Ahmadullah Shah</td>
+      <td>"Maulvi of Faizabad" — fierce fighter. Had predicted revolt. Killed 1858 for reward money</td>
+      <td>Maulvi Ahmadullah = Faizabad (Awadh region), NOT Lucknow center</td>
+    </tr>
+  </table>
+
+  <h3 class="subsec">Why 1857 Revolt Failed — Key Reasons</h3>
+  <div class="two-col">
+    <div class="fact-block">
+      <strong>Military Failure:</strong><br>
+      • No unified command structure<br>
+      • Bombay & Madras armies largely stayed loyal<br>
+      • Better British weapons (Enfield rifles used by British forces)<br>
+      • Sikh soldiers & Gurkhas fought FOR British
+    </div>
+    <div class="fact-block maroon">
+      <strong>Political Failure:</strong><br>
+      • No common leader<br>
+      • Regional character — not pan-India<br>
+      • Educated middle class, merchants didn't join<br>
+      • Feudal nature of movement (zamindars, nawabs)
+    </div>
+  </div>
+
+  <div class="alert trap">
+    <div class="alert-icon">⚠️</div>
+    <strong>KEY TRAPS in 1857 MCQs:</strong><br>
+    1. Doctrine of Lapse ≠ cause for Awadh annexation (Awadh = "misgovernance")<br>
+    2. Mangal Pandey's revolt = Barrackpore (Bengal), not UP<br>
+    3. Rani Lakshmi Bai died at Gwalior (Kotah-ki-Serai), not Jhansi<br>
+    4. Lucknow leader = Hazrat Mahal (not Nana Saheb who was Kanpur)<br>
+    5. Bareilly leader = Khan Bahadur Khan (UPPSC 2023 confirmed)
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 5: FREEDOM FIGHTERS -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="fighters" class="section">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:var(--green-light)">🦁</div>
+    <div>
+      <h2>UP Freedom Fighters</h2>
+      <p>Mangal Pandey · Rani Lakshmi Bai · Chandra Shekhar Azad · Ram Prasad Bismil</p>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-header" style="background:var(--saffron-light)">
+        <div class="card-icon">🔫</div>
+        <div>
+          <div class="card-title">Mangal Pandey</div>
+          <div class="card-subtitle">Born: Nagwa, Ballia — UP</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-modern">1857 Hero</span>
+        <div class="fact-block">
+          <strong>Born:</strong> 19 July 1827, Nagwa village, Ballia district, UP<br>
+          <strong>Regiment:</strong> 34th Bengal Native Infantry, Barrackpore<br>
+          <strong>Act:</strong> 29 March 1857 — attacked British officers (Lt. Baugh & Sgt. Major Hewson)<br>
+          <strong>Executed:</strong> 8 April 1857, Barrackpore
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          Birthplace = Ballia (UP). Act of revolt = Barrackpore (Bengal). Called "Shaheed" — first martyr of 1857. Film "Mangal Pandey: The Rising" (2005). India Post stamp issued.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--maroon-light)">
+        <div class="card-icon">⚔️</div>
+        <div>
+          <div class="card-title">Rani Lakshmi Bai</div>
+          <div class="card-subtitle">Born: Varanasi — Died: Gwalior</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-modern">1857 Hero</span>
+        <span class="tag tag-exam">High Freq</span>
+        <div class="fact-block maroon">
+          <strong>Born:</strong> 19 November 1828, Varanasi (UP)<br>
+          <strong>Real name:</strong> Manikarnika Tambe. Childhood name: Manu.<br>
+          <strong>Father:</strong> Moropant Tambe (served Peshwa Baji Rao II)<br>
+          <strong>Married:</strong> Raja Gangadhar Rao of Jhansi (1842)<br>
+          <strong>Widowed:</strong> 1853. Son adopted = Damodar Rao. Dalhousie refused to recognize adoption → Doctrine of Lapse applied to Jhansi.<br>
+          <strong>Died:</strong> 17 June 1858, Kotah-ki-Serai, Gwalior
+        </div>
+        <div class="fact-block">
+          British General Sir Hugh Rose said: "She was the bravest and best military leader of the rebels."
+        </div>
+        <div class="alert trap">
+          <div class="alert-icon">⚠️</div>
+          Birth = Varanasi (UP). Fought = Jhansi (UP). Died = near Gwalior (MP). All three different locations!
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--green-light)">
+        <div class="card-icon">💣</div>
+        <div>
+          <div class="card-title">Chandra Shekhar Azad</div>
+          <div class="card-subtitle">Born: Bhabhra (MP) — Active: Allahabad</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-modern">Revolutionary</span>
+        <div class="fact-block green">
+          <strong>Born:</strong> 23 July 1906, Bhabhra village, Alirajpur (now MP)<br>
+          <strong>Original name:</strong> Chandrashekhar Tiwari<br>
+          <strong>Nickname:</strong> "Azad" — when magistrate asked name in Non-Cooperation movement, said "Azad" (free), father's name "Swatantrata" (freedom), home "Jail"<br>
+          <strong>Arrested age 15:</strong> Given 15 lashes — smiled throughout<br>
+          <strong>Organizations:</strong> Hindustan Republican Association (HRA) → Hindustan Socialist Republican Association (HSRA) with Bhagat Singh<br>
+          <strong>Key events:</strong> Kakori Conspiracy (1925), Saunders assassination (1928, Lahore), Viceroy's train bombing attempt<br>
+          <strong>Death:</strong> 27 Feb 1931 — Alfred Park, Allahabad (Prayagraj). Shot himself rather than surrender. "Azad hoon, Azad rahunga"
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          Martyr site = Alfred Park, Allahabad (now Chandrashekhar Azad Park). Kakori Conspiracy Train robbery = 9 Aug 1925, Kakori (Lucknow district). HSRA founded 1928.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:#FFF4CC">
+        <div class="card-icon">🎵</div>
+        <div>
+          <div class="card-title">Ram Prasad Bismil</div>
+          <div class="card-subtitle">Born: Shahjahanpur — UP</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-modern">Revolutionary</span>
+        <span class="tag tag-exam">UPPSC 2021</span>
+        <div class="fact-block gold">
+          <strong>Born:</strong> 11 June 1897, Shahjahanpur (UP)<br>
+          <strong>Hanged:</strong> 19 December 1927, Gorakhpur jail<br>
+          <strong>Pen names:</strong> Bismil (pain), Ram, Aryavar (in Urdu)<br>
+          <strong>Organizations:</strong> Arya Samaj → Hindustan Republican Association (HRA)<br>
+          <strong>Kakori Conspiracy (1925):</strong> Led train robbery at Kakori. Arrested, tried, hanged along with Ashfaqullah Khan, Rajendra Lahiri, Roshan Singh.<br>
+          <strong>Famous poem:</strong> "Sarfaroshi ki tamanna ab hamare dil mein hai" — originally written by Bismil Azimabadi, popularized by Bismil<br>
+          <strong>Works:</strong> Autobiographies, revolutionary poetry in Hindi & Urdu
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE (2021 Paper)</strong>
+          Ministry of Culture celebrated Bismil's birth anniversary in June 2021 at SHAHJAHANPUR (not Gorakhpur where he died, not Lucknow). Answer = Shahjahanpur ✓
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--teal-light)">
+        <div class="card-icon">✍️</div>
+        <div>
+          <div class="card-title">Other Key UP Freedom Fighters</div>
+          <div class="card-subtitle">Madan Mohan Malaviya · Motilal Nehru · Jawaharlal Nehru</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="fact-block teal">
+          <strong>Madan Mohan Malaviya (Prayagraj, 1861–1946):</strong> Founded BHU 1916 Varanasi. "Mahamana" title. President of INC 4 times. Led Ganga rescue movement. Bharat Ratna 2015 (posthumously).
+        </div>
+        <div class="fact-block">
+          <strong>Baba Ramchandra:</strong> Founded United Provinces Kisan Sabha 1918 (UPPSC 2023 asked). Led peasant movements in Awadh.
+        </div>
+        <div class="fact-block green">
+          <strong>Ashfaqullah Khan (Shahjahanpur):</strong> Hanged with Bismil for Kakori. Hindu-Muslim unity symbol. Only Muslim in Kakori case who was hanged.
+        </div>
+        <div class="fact-block purple">
+          <strong>Sukhdev (Lucknow connection), Bhagat Singh (visited):</strong> HSRA network active in UP. Lahore Conspiracy Case had UP connections.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 6: POST-INDEPENDENCE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="modern" class="section">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:var(--green-light)">🗺️</div>
+    <div>
+      <h2>UP After Independence</h2>
+      <p>Formation · Reorganization · States Reorganization Act 1956</p>
+    </div>
+  </div>
+
+  <h3 class="subsec">Formation & Reorganization Timeline</h3>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1902</div>
+        <div class="tl-title">United Provinces of Agra and Oudh</div>
+        <div class="tl-desc">Created by British by merging NW Provinces & Oudh. Lucknow made capital. Called "United Provinces" (UP).</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot gold"></div>
+      <div class="tl-content">
+        <div class="tl-year gold">26 Jan 1950</div>
+        <div class="tl-title">Renamed "Uttar Pradesh"</div>
+        <div class="tl-desc">When India became Republic, United Provinces renamed Uttar Pradesh. Govind Ballabh Pant was first Chief Minister (1950).</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot green"></div>
+      <div class="tl-content">
+        <div class="tl-year green">1956</div>
+        <div class="tl-title">States Reorganization Act</div>
+        <div class="tl-desc">UP boundaries largely retained on linguistic basis. Hindi-speaking belt unified under UP.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot maroon"></div>
+      <div class="tl-content">
+        <div class="tl-year maroon">9 Nov 2000</div>
+        <div class="tl-title">Uttarakhand (Uttaranchal) Carved Out</div>
+        <div class="tl-desc">13 hill districts of UP formed new state Uttaranchal (renamed Uttarakhand 2007). 27th state of India.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsec">Key Facts — UP Today</h3>
+  <table class="comp-table">
+    <tr><th>Parameter</th><th>Data</th><th>UPPSC Angle</th></tr>
+    <tr><td>Area</td><td>2,40,928 sq km (4th largest state)</td><td>After Rajasthan, MP, Maharashtra</td></tr>
+    <tr><td>Population</td><td>~24 crore (most populous state, Census 2011)</td><td>UP = ~16% of India's population</td></tr>
+    <tr><td>Districts</td><td>75 districts</td><td>Largest number of districts after MP</td></tr>
+    <tr><td>Capital</td><td>Lucknow (executive), Prayagraj (High Court)</td><td>Both cities important for UP polity</td></tr>
+    <tr><td>Language</td><td>Hindi (official), Urdu (2nd official)</td><td>Urdu = 2nd official language since 1989</td></tr>
+    <tr><td>Rajya Sabha seats</td><td>31 (highest in India)</td><td>Due to highest population</td></tr>
+    <tr><td>Lok Sabha seats</td><td>80 (highest in India)</td><td>Critical for national politics</td></tr>
+    <tr><td>High Court</td><td>Allahabad HC (largest HC in India)</td><td>Est. 1866; Bench at Lucknow</td></tr>
+  </table>
+
+  <h3 class="subsec">UP's contribution to National Politics</h3>
+  <div class="fact-block teal">
+    <strong>PMs from UP:</strong> Jawaharlal Nehru (Allahabad), Lal Bahadur Shastri (Varanasi), Indira Gandhi (Allahabad, born Prayagraj), Chandra Shekhar (Ballia), V.P. Singh (Allahabad), Atal Bihari Vajpayee (Gwalior — but MP constituency Lucknow), Narendra Modi (Varanasi constituency).
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 7: CULTURE & FESTIVALS -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="culture" class="section">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:var(--teal-light)">🎭</div>
+    <div>
+      <h2>Cultural Heritage of UP</h2>
+      <p>Kumbh Mela · Ramleela · Mathura-Vrindavan · Music · Dance · Cuisine</p>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-header" style="background:var(--gold-light)">
+        <div class="card-icon">🏊</div>
+        <div>
+          <div class="card-title">Kumbh Mela</div>
+          <div class="card-subtitle">Prayagraj — World's Largest Gathering</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-culture">UNESCO ICH</span>
+        <span class="tag tag-exam">Current Affairs 2025</span>
+        <div class="fact-block gold">
+          <strong>UNESCO Status:</strong> Inscribed on Representative List of Intangible Cultural Heritage of Humanity — November 2017.
+        </div>
+        <table class="comp-table" style="font-size:13px">
+          <tr><th>Type</th><th>Frequency</th><th>Location</th></tr>
+          <tr><td>Ardh Kumbh</td><td>Every 6 years</td><td>Prayagraj only</td></tr>
+          <tr><td>Kumbh</td><td>Every 12 years</td><td>Prayagraj, Haridwar, Nashik, Ujjain</td></tr>
+          <tr><td>Maha Kumbh</td><td>Every 144 years (12×12)</td><td>Prayagraj only</td></tr>
+          <tr><td>Magh Mela</td><td>Annual</td><td>Prayagraj (smaller)</td></tr>
+        </table>
+        <div class="fact-block">
+          <strong>Kumbh 2025:</strong> Maha Kumbh at Prayagraj (13 Jan – 26 Feb 2025). After 144 years. Largest human gathering ever. Estimated 40–45 crore visitors.
+        </div>
+        <div class="alert trap">
+          <div class="alert-icon">⚠️</div>
+          <strong>TRAP:</strong> Kumbh held at 4 places (Prayagraj, Haridwar, Nashik, Ujjain) based on rotation where Amrit/nectar drops fell during Samudra Manthan. Nashik is on Godavari (not Ganga).
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--maroon-light)">
+        <div class="card-icon">🎭</div>
+        <div>
+          <div class="card-title">Ramleela of Ramnagar</div>
+          <div class="card-subtitle">Varanasi — UNESCO ICH</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-culture">UNESCO ICH 2008</span>
+        <div class="fact-block maroon">
+          <strong>UNESCO:</strong> Inscribed 2008 on Representative List of ICH. One of the first ICH listings from India.
+        </div>
+        <div class="fact-block">
+          <strong>Ramnagar Ramleela:</strong><br>
+          • 200+ year old tradition in Ramnagar (Varanasi)<br>
+          • Patronized by Maharaja of Banaras (Kashi Naresh)<br>
+          • Spans 31 days during Ashwin/Kartik<br>
+          • Entire town of Ramnagar as stage — different locations for different episodes<br>
+          • No microphone, electric lights — traditional lamps<br>
+          • Ancient Sanskrit texts (Ramcharitmanas) recited
+        </div>
+        <div class="uppsc-angle">
+          <strong>🎯 UPPSC ANGLE</strong>
+          TWO UNESCO ICH from UP: Kumbh Mela (2017) + Ramleela of Ramnagar (2008). Remember both for MCQs. Ramleela across India = ICH 2008.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--teal-light)">
+        <div class="card-icon">🦚</div>
+        <div>
+          <div class="card-title">Mathura-Vrindavan — Braj Culture</div>
+          <div class="card-subtitle">Mathura District</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-culture">Cultural Heritage</span>
+        <div class="fact-block teal">
+          <strong>Braj Mandal:</strong> 84-Kos Parikrama region — includes Mathura, Vrindavan, Govardhan, Barsana, Nandgaon, Gokul.
+        </div>
+        <ul class="bullet-list">
+          <li><strong>Holi of Barsana:</strong> Lathmar Holi — women beat men with sticks. Unique tradition</li>
+          <li><strong>Janmashtami:</strong> Krishna's birth night celebrated grandly in Mathura & Vrindavan</li>
+          <li><strong>Brij Utsav:</strong> Annual cultural festival</li>
+          <li><strong>Raslila:</strong> Traditional dance drama on Krishna's life in Vrindavan</li>
+          <li><strong>Banke Bihari Temple:</strong> Most visited in Vrindavan</li>
+          <li><strong>ISKCON Temple:</strong> Major global pilgrimage center in Vrindavan</li>
+          <li><strong>Govardhan Puja:</strong> Day after Diwali — community celebrates Govardhan hill</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:#E8EAF6">
+        <div class="card-icon">💃</div>
+        <div>
+          <div class="card-title">Kathak Dance</div>
+          <div class="card-subtitle">Classical Dance — UP Origin</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-culture">Classical Art</span>
+        <div class="fact-block purple">
+          <strong>Origin:</strong> "Katha" (story) + "kathakas" (storytellers). Temple dancers of North India → Mughal court → refined as Kathak. Two main gharanas from UP:
+        </div>
+        <ul class="bullet-list">
+          <li><strong>Lucknow Gharana:</strong> Nawab Wajid Ali Shah patronized. Soft, lyrical, sensuous. Emphasis on bhava (expression). Bindadin Maharaj lineage.</li>
+          <li><strong>Jaipur Gharana:</strong> More vigorous, emphasis on taal, tandav. (Note: Jaipur is Rajasthan but historically linked)</li>
+          <li>Birju Maharaj (Lucknow Gharana): Greatest Kathak maestro of 20th century</li>
+        </ul>
+        <div class="fact-block">
+          <strong>Other UP Classical Arts:</strong><br>
+          • <strong>Thumri:</strong> Semi-classical vocal — Varanasi & Lucknow centers<br>
+          • <strong>Tappa:</strong> Refined by Miya Shori in Muhammad Shah's court (asked UPPSC 2023!)<br>
+          • <strong>Dadra, Chaiti, Kajri:</strong> Folk-classical forms of UP
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--green-light)">
+        <div class="card-icon">🎨</div>
+        <div>
+          <div class="card-title">UP Handicrafts & GI Tags</div>
+          <div class="card-subtitle">Cultural & Economic Heritage</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="comp-table" style="font-size:13px">
+          <tr><th>Craft</th><th>City</th><th>Speciality</th></tr>
+          <tr><td>Chikankari</td><td>Lucknow</td><td>Intricate white thread embroidery on muslin. GI Tag.</td></tr>
+          <tr><td>Zardozi</td><td>Lucknow, Varanasi</td><td>Gold/silver metallic embroidery</td></tr>
+          <tr><td>Banarasi Silk</td><td>Varanasi</td><td>UNESCO ICH (2010). GI Tag. Brocade weaving.</td></tr>
+          <tr><td>Carpet Weaving</td><td>Mirzapur, Bhadohi</td><td>"Carpet City" — largest carpet export hub</td></tr>
+          <tr><td>Brass/Metal work</td><td>Moradabad</td><td>"Pital Nagri" — Brass handicrafts export</td></tr>
+          <tr><td>Ivory/Wood carving</td><td>Saharanpur</td><td>Wood carving, furniture</td></tr>
+          <tr><td>Glass bangles</td><td>Firozabad</td><td>"Suhag Nagri" — glass industry</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background:var(--saffron-light)">
+        <div class="card-icon">📜</div>
+        <div>
+          <div class="card-title">Literary Heritage of UP</div>
+          <div class="card-subtitle">Bhakti, Sufi & Modern Literature</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="bullet-list">
+          <li><strong>Tulsidas (Varanasi):</strong> Ramcharitmanas (1574). Greatest Hindi literary work. Awadhi dialect.</li>
+          <li><strong>Kabir (Varanasi/Magahar):</strong> 15th cent. Sant-poet. Dohas (couplets). Died Magahar (Gorakhpur).</li>
+          <li><strong>Surdas (Mathura):</strong> Sursagar — Krishna devotional poetry. Blind poet. Ashtachap group of Vallabha sect.</li>
+          <li><strong>Mirabai (Vrindavan):</strong> Though born Rajasthan, spent later life Vrindavan. Krishna bhakti.</li>
+          <li><strong>Premchand (Lamhi, Varanasi):</strong> "Upanyas Samrat." Godan, Nirmala, Gaban. Modern Hindi/Urdu literature.</li>
+          <li><strong>Harivansh Rai Bachchan (Prayagraj):</strong> Madhushala. Father of Amitabh Bachchan.</li>
+          <li><strong>Mahadevi Verma (Farrukhabad):</strong> "Modern Meera." Chhayavad poet. Sahitya Akademi, Padma Vibhushan.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 8: DISTRICT-WISE SITES -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="districts" class="section">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:var(--teal-light)">📍</div>
+    <div>
+      <h2>District-wise Historical Places</h2>
+      <p>Important heritage sites organized by UP districts</p>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">📌</div>
+    <div>UPPSC frequently asks "which place is in which district" — memorize the district-site mapping carefully. Specially Kushinagar airport (2020), Shravasti forest cover (2025), Kanpur-Lucknow census data (2020) were asked.</div>
+  </div>
+
+  <div class="district-grid">
+    <div class="dist-card">
+      <h4>🏛 Varanasi</h4>
+      <ul>
+        <li>Kashi Vishwanath Temple (Jyotirlinga)</li>
+        <li>Sarnath (Buddhist — Dhamekh Stupa, Lion Capital)</li>
+        <li>Ganga Ghats (84 ghats)</li>
+        <li>BHU (est. 1916 by Malaviya)</li>
+        <li>Ramnagar Fort (Maharaja's palace, Ramleela)</li>
+        <li>Kabir Math (Lahartara)</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>🤝 Prayagraj</h4>
+      <ul>
+        <li>Triveni Sangam (Kumbh Mela)</li>
+        <li>Allahabad Fort (Akbar, 1583)</li>
+        <li>Ashoka Pillar (inside Fort)</li>
+        <li>Anand Bhavan (Nehru family)</li>
+        <li>Allahabad Museum</li>
+        <li>Chandrashekhar Azad Park (Alfred Park)</li>
+        <li>Kaushambi ruins (nearby)</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>🦚 Mathura</h4>
+      <ul>
+        <li>Krishna Janmabhoomi Temple</li>
+        <li>Mathura Museum (Kushana sculptures)</li>
+        <li>Vrindavan (Banke Bihari, ISKCON)</li>
+        <li>Govardhan Hill</li>
+        <li>Barsana (Lathmar Holi)</li>
+        <li>Gokul</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>🏹 Ayodhya</h4>
+      <ul>
+        <li>Ram Mandir (inaugurated 2024)</li>
+        <li>Hanuman Garhi</li>
+        <li>Kanak Bhavan</li>
+        <li>Saryu Ghats</li>
+        <li>5 Jain Tirthankaras birthplaces</li>
+        <li>Nageshwarnath Temple</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>🏰 Agra</h4>
+      <ul>
+        <li>Taj Mahal (UNESCO WHS 1983)</li>
+        <li>Agra Fort (UNESCO WHS 1983)</li>
+        <li>Fatehpur Sikri (UNESCO WHS 1986)</li>
+        <li>Itmad-ud-Daula Tomb (Baby Taj)</li>
+        <li>Akbar's Tomb (Sikandra)</li>
+        <li>Mehtab Bagh (opposite Taj)</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>👑 Lucknow</h4>
+      <ul>
+        <li>Bada Imambara (1784)</li>
+        <li>Chota Imambara (1838)</li>
+        <li>Rumi Darwaza (18th cent)</li>
+        <li>British Residency (1857 siege)</li>
+        <li>La Martiniere College (Constantia)</li>
+        <li>Dilkusha Palace ruins</li>
+        <li>Gomti Riverfront</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>☸️ Kushinagar</h4>
+      <ul>
+        <li>Mahaparinirvana Temple (Reclining Buddha)</li>
+        <li>Nirvana Stupa</li>
+        <li>Ramabhar Stupa (cremation site)</li>
+        <li>Kushinagar Museum</li>
+        <li>International Buddhist Airport (2020/2021)</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>☸️ Shravasti</h4>
+      <ul>
+        <li>Jetavana Monastery (Anathapindika's)</li>
+        <li>Saheth-Maheth excavation site</li>
+        <li>Angulimala Stupa</li>
+        <li>Chinese, Japanese, Korean Buddhist temples</li>
+        <li>Forest cover 20%+ district (2025 paper)</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>🕌 Jaunpur</h4>
+      <ul>
+        <li>Atala Mosque (1408 CE, Sharqi)</li>
+        <li>Jami Masjid (largest Sharqi)</li>
+        <li>Lal Darwaza Mosque</li>
+        <li>Shahi Pul (stone bridge, Mughal)</li>
+        <li>Fort ruins (Sharqi period)</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>🏛 Kannauj</h4>
+      <ul>
+        <li>Capital of Harsha (606-647 CE)</li>
+        <li>Ancient city — Gurjara-Pratihara capital too</li>
+        <li>Perfume (Attar) industry — famous historically</li>
+        <li>Battle of Kannauj (1540) — Humayun defeated by Sher Shah</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>⚔️ Jhansi</h4>
+      <ul>
+        <li>Jhansi Fort (Orchha rulers, later Rani Lakshmi Bai)</li>
+        <li>Rani Lakshmi Bai connection (though died Gwalior)</li>
+        <li>Parichha Dam (Betwa river)</li>
+        <li>Chandela temple ruins in region</li>
+      </ul>
+    </div>
+    <div class="dist-card">
+      <h4>📿 Siddharthnagar</h4>
+      <ul>
+        <li>Piprahwa Stupa (Buddha's ashes — Kapilavastu claim)</li>
+        <li>Sohgaura Inscription (near Gorakhpur district)</li>
+        <li>Nepal border — Lumbini nearby</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="subsec">UNESCO World Heritage Sites in UP</h3>
+  <table class="comp-table">
+    <tr><th>Site</th><th>District</th><th>Year</th><th>Category</th></tr>
+    <tr><td><strong>Taj Mahal</strong></td><td>Agra</td><td>1983</td><td>Cultural</td></tr>
+    <tr><td><strong>Agra Fort</strong></td><td>Agra</td><td>1983</td><td>Cultural</td></tr>
+    <tr><td><strong>Fatehpur Sikri</strong></td><td>Agra</td><td>1986</td><td>Cultural</td></tr>
+  </table>
+
+  <div class="fact-block teal">
+    <strong>Note:</strong> All 3 UNESCO World Heritage Sites in UP are in Agra district. Varanasi and Sarnath are on UNESCO Tentative List. Ramleela (2008) and Kumbh Mela (2017) are UNESCO Intangible Cultural Heritage — different from World Heritage Sites.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 9: MCQ PRACTICE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="mcq" class="section">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:var(--saffron-light)">📝</div>
+    <div>
+      <h2>MCQ Practice — 20 Questions</h2>
+      <p>Past Paper Style · UP Special Focus · Detailed Explanations</p>
+    </div>
+  </div>
+
+  <div class="score-box">
+    <div>
+      <div class="score-label">SCORE</div>
+      <div><span class="score-num" id="scoreNum">0</span> / <span id="totalNum">20</span></div>
+    </div>
+    <div>
+      <div class="score-label">ACCURACY</div>
+      <div class="score-pct" id="scorePct">0%</div>
+    </div>
+    <div>
+      <div class="score-label">ATTEMPTED</div>
+      <div class="score-pct" id="scoreAttempted">0</div>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">↺ RESET</button>
+  </div>
+
+  <div class="mcq-container" id="mcqContainer"></div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ── Tab Navigation ──
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  const map = {ancient:0,buddhist:1,medieval:2,revolt1857:3,fighters:4,modern:5,culture:6,districts:7,mcq:8};
+  tabs[map[id]].classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── MCQ Data ──
+const mcqs = [
+  {
+    q: "Which of the following inscriptions gives information about two Ashwamedha Yajnas performed by King Pushyamitra Shunga?",
+    opts: ["Sarnath inscription", "Besnagar inscription", "Ayodhya inscription", "Hathigumpha inscription"],
+    ans: 2,
+    src: "UPPSC 2018",
+    exp: "<strong>Correct: Ayodhya inscription.</strong> The Ayodhya inscription mentions two Ashwamedha Yajnas of Pushyamitra Shunga. Hathigumpha = Kharavela of Kalinga. Besnagar = Vasudeva temple by Heliodoros. Sarnath = Ashoka's Schism Edict."
+  },
+  {
+    q: "Kushinagar Airport in Uttar Pradesh was granted International Status by Union Cabinet in June 2020. Kushinagar is famous as the site of:",
+    opts: ["Buddha's first sermon", "Buddha's Mahaparinirvana", "Buddha's Enlightenment", "Buddha's descent from Trayastrimsha heaven"],
+    ans: 1,
+    src: "UPPSC 2020 Based",
+    exp: "<strong>Correct: Mahaparinirvana (death/passing away of Buddha, 483 BCE).</strong> First sermon = Sarnath. Enlightenment = Bodh Gaya (Bihar). Descent from heaven = Sankisa (Farrukhabad, UP). The airport was granted international status to boost Buddhist tourism circuit."
+  },
+  {
+    q: "Which cities of Uttar Pradesh are covered under Heritage City Development and Augmentation Yojana (HRIDAY)?",
+    opts: ["Varanasi only", "Varanasi and Mathura only", "Varanasi, Mathura, Prayagraj and Ayodhya", "Only Agra"],
+    ans: 1,
+    src: "UPPSC 2020",
+    exp: "<strong>Correct: Varanasi and Mathura (Option b).</strong> HRIDAY scheme had 12 cities pan-India. From UP: Varanasi and Mathura were included. Amritsar, Ajmer, Gaya, Dwarka, Puri, Vellankanni, Badami, Kanchipuram, Warangal, Mathura, Varanasi were the 12 HRIDAY cities."
+  },
+  {
+    q: "Who was the leader of rebellion in Bareilly, Uttar Pradesh during 1857?",
+    opts: ["Hazarat Mahal", "Khan Bahadur Khan", "Kunwar Singh", "Nana Saheb"],
+    ans: 1,
+    src: "UPPSC 2023",
+    exp: "<strong>Correct: Khan Bahadur Khan.</strong> He led the 1857 revolt in Bareilly and declared himself Nawab Nazim of Rohilkhand. Hazarat Mahal = Lucknow. Kunwar Singh = Bihar (Arrah). Nana Saheb = Kanpur."
+  },
+  {
+    q: "Which one of the following (Place of revolt of 1857 — Start of rebellion) is NOT correctly matched?",
+    opts: ["Barrackpur — 29 March 1857", "Meerut — 10 May 1857", "Lucknow — 4 June 1857", "Jhansi — 11 May 1857"],
+    ans: 2,
+    src: "UPPSC 2023",
+    exp: "<strong>All are correct as given.</strong> Wait — Jhansi revolt date was 11 May 1857, same day as Delhi sepoys reached. Lucknow = 4 June 1857 ✓. The question asks which is NOT correctly matched — if any option shows wrong date, that's the trap. All 4 dates given are historically accurate. This tests precise date memorization."
+  },
+  {
+    q: "Ministry of Culture, Government of India celebrated the birth anniversary of Shaheed Ram Prasad Bismil in June 2021 at which place in Uttar Pradesh?",
+    opts: ["Chauri Chaura", "Shahjahanpur", "Rampur", "Ballia"],
+    ans: 1,
+    src: "UPPSC 2021",
+    exp: "<strong>Correct: Shahjahanpur.</strong> Ram Prasad Bismil was BORN in Shahjahanpur on 11 June 1897. He was HANGED in Gorakhpur (1927). Ministry of Culture celebrated his birth anniversary at his birthplace Shahjahanpur. Ballia = Mangal Pandey's birthplace."
+  },
+  {
+    q: "Kumbh Mela of Prayagraj was inscribed on UNESCO's Representative List of Intangible Cultural Heritage in:",
+    opts: ["2003", "2008", "2016", "2017"],
+    ans: 3,
+    src: "General Knowledge",
+    exp: "<strong>Correct: 2017.</strong> Kumbh Mela was inscribed by UNESCO in November 2017. Ramleela of Ramnagar (Varanasi) was inscribed in 2008. Banarasi weaving/silk was inscribed in 2010 (though as 'Traditional Craftsmanship of Weavers of Varanasi')."
+  },
+  {
+    q: "Which among the following is the correct match for Indus Valley Civilization sites in Uttar Pradesh?",
+    opts: ["Kalibanga and Lothal", "Alamgirpur and Hulas", "Manda and Lothal", "Dholavira and Rangpur"],
+    ans: 1,
+    src: "UPPSC 2018",
+    exp: "<strong>Correct: Alamgirpur (Hapur) and Hulas (Saharanpur).</strong> Both are Harappan sites in UP. Kalibanga = Rajasthan. Lothal = Gujarat. Manda = J&K. Dholavira = Gujarat. Rangpur = Gujarat. UP's Harappan sites: Alamgirpur (easternmost Harappan site), Hulas, Mandi, Saipai."
+  },
+  {
+    q: "Tappa style of music was refined and developed in which Mughal Emperor's court?",
+    opts: ["Akbar", "Jahangir", "Shahjahan", "Muhammad Shah"],
+    ans: 3,
+    src: "UPPSC 2023",
+    exp: "<strong>Correct: Muhammad Shah (Rangeela).</strong> Miya Shori refined Tappa in Muhammad Shah's court in the 18th century. Akbar's court had Tansen (Dhrupad). Jahangir patronized painting. Shahjahan patronized architecture and khayal singing. Muhammad Shah's period saw development of Khayal and Tappa."
+  },
+  {
+    q: "The United Provinces Kisan Sabha was formed in 1918 by which of the following?",
+    opts: ["Baba Ramchandra", "Indra Narayan Dwivedi", "Swami Sahjanand Saraswati", "Pt. Jawaharlal Nehru"],
+    ans: 0,
+    src: "UPPSC 2023",
+    exp: "<strong>Correct: Baba Ramchandra.</strong> In 1918, Baba Ramchandra formed the United Provinces Kisan Sabha to organize peasant movements in Awadh. He launched protests against high rents and illegal levies by landlords. Nehru joined later in 1920."
+  },
+  {
+    q: "Rani Lakshmi Bai, the hero of 1857, was BORN in which city of Uttar Pradesh?",
+    opts: ["Jhansi", "Kanpur", "Varanasi", "Agra"],
+    ans: 2,
+    src: "UPPSC Pattern",
+    exp: "<strong>Correct: Varanasi.</strong> Rani Lakshmi Bai (Manikarnika Tambe) was born on 19 November 1828 in Varanasi (Kashi). She FOUGHT in Jhansi (UP). She DIED at Kotah-ki-Serai near Gwalior (MP). These three different locations are a classic UPPSC trap."
+  },
+  {
+    q: "Chandrashekhar Azad laid down his life at:",
+    opts: ["Kanpur", "Alfred Park, Allahabad", "Kakori", "Lahore"],
+    ans: 1,
+    src: "UPPSC Pattern",
+    exp: "<strong>Correct: Alfred Park, Allahabad (now Chandrashekhar Azad Park).</strong> On 27 February 1931, surrounded by police, Azad shot himself to fulfill his vow 'I will never be caught alive.' Kakori = train robbery (1925). Lahore = Bhagat Singh, Sukhdev, Rajguru hanged."
+  },
+  {
+    q: "The Bada Imambara in Lucknow was built by Nawab Asaf-ud-Daula primarily as:",
+    opts: ["A mosque for Shia Muslims", "A famine relief work project", "A mausoleum for himself", "A military fort"],
+    ans: 1,
+    src: "UPPSC Pattern",
+    exp: "<strong>Correct: Famine relief work project (1784).</strong> During the great famine, Asaf-ud-Daula began construction so poor people could get wages. To ensure dignity of nobles who worked at night (so no one saw them working), the walls were demolished by day and rebuilt by workers at night. Clever historical fact!"
+  },
+  {
+    q: "Fatehpur Sikri was the capital of Mughal Emperor Akbar for approximately how many years?",
+    opts: ["5 years", "10 years", "14 years", "25 years"],
+    ans: 2,
+    src: "General Knowledge",
+    exp: "<strong>Correct: 14 years (1571–1585).</strong> Akbar built Fatehpur Sikri in 1571 (after the birth of his son Salim/Jahangir blessed by Salim Chishti). Abandoned ~1585 due to water scarcity and moved court to Lahore. UNESCO World Heritage Site since 1986."
+  },
+  {
+    q: "Which of the following is the correct chronological order of monuments?",
+    opts: ["Atala Mosque → Humayun's Tomb → Taj Mahal → Rabia Daurani Tomb", "Humayun's Tomb → Atala Mosque → Taj Mahal → Rabia Daurani Tomb", "Rabia Daurani → Taj Mahal → Atala Mosque → Humayun's Tomb", "Taj Mahal → Atala Mosque → Humayun's Tomb → Rabia Daurani"],
+    ans: 0,
+    src: "UPPSC 2019 Based",
+    exp: "<strong>Correct: Atala Mosque (1408) → Humayun's Tomb (1565) → Taj Mahal (1653) → Rabia Daurani Aurangabad (1678).</strong> This was the type of question asked in UPPSC 2019. Atala Mosque = Sharqi dynasty, Jaunpur (UP). Humayun's Tomb = Delhi (1565). Taj = Agra (1653). Rabia Daurani = 'Bibi ka Maqbara' by Aurangzeb for his wife."
+  },
+  {
+    q: "Mathura School of Art is famous for sculptures made of which material?",
+    opts: ["White marble from Makrana", "Black basalt from Deccan", "Spotted red sandstone", "Stucco (plaster)"],
+    ans: 2,
+    src: "General Knowledge",
+    exp: "<strong>Correct: Spotted red sandstone (local Mathura stone).</strong> Mathura School used red/spotted sandstone typical of Mathura region. Gandhara School (NW) used grey schist/stucco and showed Greco-Roman influence. Mathura School = Indian tradition, shown Buddha in Indian style with thin robe. Flourished 1st–3rd CE during Kushana period."
+  },
+  {
+    q: "Uttar Pradesh was carved out of which province by the British?",
+    opts: ["Bengal Presidency", "Bombay Presidency", "United Provinces of Agra and Oudh", "Central Provinces"],
+    ans: 2,
+    src: "UPPSC Pattern",
+    exp: "<strong>Correct: United Provinces of Agra and Oudh.</strong> In 1902, British merged North-West Provinces (Agra) and Oudh into 'United Provinces.' After independence (26 Jan 1950), it was renamed Uttar Pradesh. Uttaranchal (Uttarakhand) was carved from UP in 2000."
+  },
+  {
+    q: "The Treaty of Allahabad (1765) was significant because:",
+    opts: ["It ended the First Maratha War", "The East India Company acquired Diwani rights of Bengal, Bihar and Orissa", "The British gained control of Awadh", "It ended the Carnatic Wars"],
+    ans: 1,
+    src: "UPPSC 2019 Based",
+    exp: "<strong>Correct: EIC got Diwani rights of Bengal, Bihar, Orissa from Mughal Emperor Shah Alam II.</strong> After Battle of Buxar (1764), Robert Clive signed Treaty of Allahabad at Allahabad (Prayagraj). This gave EIC the right to collect revenue (Diwani) from three provinces — beginning of British territorial control."
+  },
+  {
+    q: "Sarnath's Lion Capital (National Emblem of India) is currently housed in:",
+    opts: ["National Museum, New Delhi", "Sarnath Museum, Varanasi", "Lucknow State Museum", "Patna Museum"],
+    ans: 1,
+    src: "General Knowledge",
+    exp: "<strong>Correct: Sarnath Museum, Varanasi.</strong> The original Lion Capital (Ashoka's Pillar capital from Sarnath) is preserved in Sarnath Museum — the oldest site museum in India, established 1910. India adopted the capital as National Emblem on 26 Jan 1950. Note: replicas are at many museums, but original = Sarnath Museum."
+  },
+  {
+    q: "Which UP district produces the maximum carpet exports and is known as 'Carpet City'?",
+    opts: ["Varanasi", "Mirzapur-Bhadohi", "Moradabad", "Firozabad"],
+    ans: 1,
+    src: "UPPSC Pattern",
+    exp: "<strong>Correct: Mirzapur-Bhadohi (Sant Ravidas Nagar).</strong> Bhadohi-Mirzapur belt is called 'Carpet City of the World' — largest carpet manufacturing and export hub in India. Varanasi = Banarasi silk (Zari). Moradabad = 'Pital Nagri' (Brass). Firozabad = 'Suhag Nagri' (Glass bangles)."
+  }
+];
+
+let score = 0;
+let attempted = 0;
+let answered = new Array(mcqs.length).fill(false);
+
+function buildMCQs() {
+  const container = document.getElementById('mcqContainer');
+  mcqs.forEach((mcq, i) => {
+    const el = document.createElement('div');
+    el.className = 'mcq-card';
+    el.innerHTML = `
+      <div class="mcq-header">
+        <div class="mcq-num">Q${i+1}</div>
+        <div class="mcq-source">${mcq.src}</div>
+      </div>
+      <div class="mcq-q">${mcq.q}</div>
+      <div class="mcq-options" id="opts-${i}">
+        ${mcq.opts.map((o,j) => `
+          <div class="mcq-opt" id="opt-${i}-${j}" onclick="selectOpt(${i},${j})">
+            <div class="opt-label">${'ABCD'[j]}</div>
+            <div>${o}</div>
+          </div>
+        `).join('')}
+      </div>
+      <button class="show-ans-btn" id="btn-${i}" onclick="showAnswer(${i})">Show Answer & Explanation</button>
+      <div class="mcq-explain" id="exp-${i}"><strong>💡 Explanation:</strong> ${mcq.exp}</div>
+    `;
+    container.appendChild(el);
+  });
+}
+
+function selectOpt(qIdx, optIdx) {
+  if (answered[qIdx]) return;
+  answered[qIdx] = true;
+  attempted++;
+  const correct = mcqs[qIdx].ans;
+  document.getElementById(`opt-${qIdx}-${optIdx}`).classList.add(optIdx === correct ? 'correct' : 'wrong');
+  if (optIdx === correct) {
+    score++;
+  } else {
+    document.getElementById(`opt-${qIdx}-${correct}`).classList.add('correct');
+  }
+  document.getElementById(`exp-${qIdx}`).classList.add('visible');
+  updateScore();
+}
+
+function showAnswer(qIdx) {
+  if (answered[qIdx]) return;
+  answered[qIdx] = true;
+  attempted++;
+  const correct = mcqs[qIdx].ans;
+  document.getElementById(`opt-${qIdx}-${correct}`).classList.add('correct');
+  document.getElementById(`exp-${qIdx}`).classList.add('visible');
+  updateScore();
+}
+
+function updateScore() {
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('scoreAttempted').textContent = attempted;
+  document.getElementById('scorePct').textContent = attempted > 0 ? Math.round((score/attempted)*100) + '%' : '0%';
+}
+
+function resetAll() {
+  score = 0; attempted = 0;
+  answered = new Array(mcqs.length).fill(false);
+  document.querySelectorAll('.mcq-opt').forEach(el => { el.classList.remove('correct','wrong'); });
+  document.querySelectorAll('.mcq-explain').forEach(el => el.classList.remove('visible'));
+  updateScore();
+}
+
+buildMCQs();
+</script>
+</body>
+</html>
