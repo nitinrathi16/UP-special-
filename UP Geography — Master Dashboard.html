@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 — UP Geography Toolkit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #f5f3ee;
+    --bg2: #ffffff;
+    --bg3: #eeeae2;
+    --bg4: #e4dfd5;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.14);
+    --text: #2c2820;
+    --text2: #5a5044;
+    --text3: #9a9080;
+    --gold: #b5620a;
+    --gold2: #c97a1e;
+    --gold-dim: #fef3e2;
+    --teal: #0e7a60;
+    --teal-dim: #e0f5ef;
+    --red: #c0392b;
+    --red-dim: #fdecea;
+    --blue: #1a5fa8;
+    --blue-dim: #e5eef9;
+    --purple: #6b46c1;
+    --purple-dim: #ede9fb;
+    --orange: #c05621;
+    --orange-dim: #fef0e6;
+    --green: #276749;
+    --green-dim: #e6f4ed;
+    --r: 8px;
+    --r2: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT ── */
+  .shell { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background: #eef4fb;
+    border-right: 1px solid #ccddf0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-logo {
+    padding: 24px 20px 16px;
+    border-bottom: 1px solid #ccddf0;
+  }
+  .sidebar-logo .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #b5620a;
+    background: #fef3e2;
+    border: 1px solid #f5d9a8;
+    border-radius: 4px;
+    padding: 2px 7px;
+    margin-bottom: 8px;
+  }
+  .sidebar-logo h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .sidebar-logo p {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+
+  .nav-section {
+    padding: 8px 12px 4px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    text-transform: uppercase;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    margin: 1px 8px;
+    border-radius: var(--r);
+    cursor: pointer;
+    font-size: 13.5px;
+    color: var(--text2);
+    transition: all 0.15s;
+    text-decoration: none;
+    border: none;
+    background: none;
+    width: calc(100% - 16px);
+    text-align: left;
+  }
+  .nav-item:hover { background: var(--bg3); color: var(--text); }
+  .nav-item.active { background: #fef3e2; color: #b5620a; border: 1px solid #f5d9a8; }
+  .nav-item .icon { width: 18px; text-align: center; font-size: 15px; }
+  .nav-item .count {
+    margin-left: auto;
+    font-size: 10px;
+    background: var(--bg4);
+    color: var(--text3);
+    padding: 1px 6px;
+    border-radius: 10px;
+  }
+  .nav-item.active .count { background: #f5d9a8; color: #b5620a; }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text3);
+  }
+  .rank-target {
+    display: flex; align-items: center; gap: 8px;
+    background: #fef3e2;
+    border: 1px solid #f5d9a8;
+    border-radius: var(--r);
+    padding: 10px 12px;
+  }
+  .rank-target .trophy { font-size: 20px; }
+  .rank-target p { font-size: 12px; color: var(--gold); font-weight: 500; }
+  .rank-target span { font-size: 11px; color: var(--text3); }
+
+  /* ── MAIN ── */
+  .main {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .page { display: none; padding: 32px 36px 60px; max-width: 960px; }
+  .page.active { display: block; }
+
+  .page-header { margin-bottom: 28px; }
+  .page-header .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .page-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .page-header p { font-size: 14px; color: var(--text2); margin-top: 6px; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r2);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+
+  /* ── TAGS ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin: 2px 2px;
+    font-weight: 500;
+  }
+  .tag-gold { background: #fef3e2; color: #b5620a; border: 1px solid #f5d9a8; }
+  .tag-teal { background: #e0f5ef; color: #0e7a60; border: 1px solid #a8ddd0; }
+  .tag-blue { background: #e5eef9; color: #1a5fa8; border: 1px solid #aac4e8; }
+  .tag-red { background: #fdecea; color: #c0392b; border: 1px solid #f0b8b2; }
+  .tag-purple { background: #ede9fb; color: #6b46c1; border: 1px solid #c4b5f0; }
+  .tag-orange { background: #fef0e6; color: #c05621; border: 1px solid #f0c9a8; }
+  .tag-green { background: #e6f4ed; color: #276749; border: 1px solid #a8d8bc; }
+
+  /* ── GRID ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+  /* ── STAT CARDS ── */
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r2);
+    padding: 16px 18px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label { font-size: 11px; color: var(--text3); margin-top: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ── TABLE ── */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tbl th {
+    background: var(--bg3);
+    color: var(--text2);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border2);
+  }
+  .tbl td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl tr:hover td { background: var(--bg3); }
+  .tbl-wrap { border: 1px solid var(--border); border-radius: var(--r2); overflow: hidden; overflow-x: auto; }
+
+  /* ── ACCORDION ── */
+  .acc-item { border: 1px solid var(--border); border-radius: var(--r2); margin-bottom: 8px; overflow: hidden; }
+  .acc-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px;
+    background: var(--bg2);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.1s;
+  }
+  .acc-header:hover { background: var(--bg3); }
+  .acc-title { font-size: 14px; font-weight: 600; color: var(--text); flex: 1; }
+  .acc-sub { font-size: 12px; color: var(--text3); }
+  .acc-arrow { color: var(--text3); transition: transform 0.2s; font-size: 18px; }
+  .acc-arrow.open { transform: rotate(180deg); }
+  .acc-body { padding: 16px 18px; background: var(--bg); display: none; border-top: 1px solid var(--border); }
+  .acc-body.open { display: block; }
+
+  /* ── INFO ROWS ── */
+  .info-row { display: flex; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .info-row:last-child { border-bottom: none; }
+  .info-key { width: 160px; flex-shrink: 0; color: var(--text3); font-weight: 500; font-size: 12px; }
+  .info-val { color: var(--text2); flex: 1; }
+
+  /* ── MCQ ── */
+  .mcq-box { border: 1px solid var(--border); border-radius: var(--r2); margin-bottom: 10px; overflow: hidden; }
+  .mcq-q { padding: 14px 16px; font-size: 14px; color: var(--text); background: var(--bg2); font-weight: 500; border-bottom: 1px solid var(--border); }
+  .mcq-opts { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; background: var(--bg); }
+  .mcq-opt {
+    padding: 8px 14px; border-radius: var(--r);
+    font-size: 13px; color: var(--text2);
+    border: 1px solid var(--border);
+    cursor: pointer; transition: all 0.12s;
+    background: var(--bg2);
+  }
+  .mcq-opt:hover { border-color: var(--border2); color: var(--text); }
+  .mcq-opt.correct { background: #e6f4ed; border-color: #a8d8bc; color: #276749; font-weight: 500; }
+  .mcq-opt.wrong { background: #fdecea; border-color: #f0b8b2; color: #c0392b; }
+  .mcq-exp { padding: 10px 16px; font-size: 12px; color: #0e7a60; background: #e0f5ef; border-top: 1px solid #a8ddd0; display: none; }
+  .mcq-exp.show { display: block; }
+  .score-row { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r2); margin-bottom: 18px; }
+  .score-big { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--gold); }
+  .score-info { font-size: 12px; color: var(--text3); }
+
+  /* ── MNEMONIC ── */
+  .mnemonic {
+    border-left: 3px solid var(--gold);
+    background: var(--gold-dim);
+    border-radius: 0 var(--r) var(--r) 0;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .mnemonic-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
+  .mnemonic-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .mnemonic-key { font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--gold2); font-weight: 500; }
+
+  /* ── PROGRESS BAR ── */
+  .pbar-wrap { height: 5px; background: var(--bg4); border-radius: 3px; overflow: hidden; margin: 6px 0; }
+  .pbar-fill { height: 100%; border-radius: 3px; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .hl-box {
+    padding: 12px 16px;
+    border-radius: var(--r);
+    font-size: 13px;
+    margin-bottom: 10px;
+    border: 1px solid;
+  }
+  .hl-gold { background: #fef3e2; border-color: #f5d9a8; color: #8a4a08; }
+  .hl-teal { background: #e0f5ef; border-color: #a8ddd0; color: #0a6050; }
+  .hl-red { background: #fdecea; border-color: #f0b8b2; color: #a32821; }
+
+  /* ── RIVER FLOW VIZ ── */
+  .river-flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 10px 0; }
+  .flow-node {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--r);
+    padding: 5px 10px;
+    font-size: 11px;
+    color: var(--text2);
+    white-space: nowrap;
+  }
+  .flow-arrow { color: var(--text3); padding: 0 4px; font-size: 12px; }
+
+  /* ── DISTRICT GRID ── */
+  .district-pill {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    margin: 2px;
+  }
+  .district-pill.hq { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+  /* ── ZONE CARD ── */
+  .zone-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r2);
+    padding: 14px 16px;
+    margin-bottom: 8px;
+  }
+  .zone-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+    float: right;
+  }
+  .zone-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .zone-detail { font-size: 12px; color: var(--text3); }
+
+  /* ── SEARCH ── */
+  .search-box {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--r);
+    padding: 9px 14px;
+    font-size: 13px;
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 14px;
+  }
+  .search-box:focus { outline: none; border-color: var(--gold); }
+  .search-box::placeholder { color: var(--text3); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #f0ece4; }
+  ::-webkit-scrollbar-thumb { background: #c8bfb0; border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    .sidebar { width: 220px; }
+    .page { padding: 20px 18px 40px; }
+    .grid2, .grid3, .grid4 { grid-template-columns: 1fr; }
+    .info-key { width: 120px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ── SIDEBAR ── -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="badge">UPPSC 2026</div>
+    <h1>UP Geography Toolkit</h1>
+    <p>SDM rank ke liye</p>
+  </div>
+
+  <div class="nav-section">Bhugol</div>
+  <button class="nav-item active" onclick="show('home')"><span class="icon">🏠</span> Dashboard</button>
+  <button class="nav-item" onclick="show('location')"><span class="icon">📍</span> Location &amp; Boundaries</button>
+  <button class="nav-item" onclick="show('physical')"><span class="icon">🏔️</span> Physical Divisions</button>
+  <button class="nav-item" onclick="show('rivers')"><span class="icon">🌊</span> Rivers &amp; Dams <span class="count">12</span></button>
+  <button class="nav-item" onclick="show('districts')"><span class="icon">🗺️</span> Districts &amp; Divisions <span class="count">75</span></button>
+  <button class="nav-item" onclick="show('climate')"><span class="icon">🌤️</span> Climate &amp; Agro-Zones</button>
+  <button class="nav-item" onclick="show('wildlife')"><span class="icon">🦁</span> Wildlife &amp; Forests</button>
+  <button class="nav-item" onclick="show('minerals')"><span class="icon">💎</span> Minerals</button>
+
+  <div class="nav-section" style="margin-top:8px">Practice</div>
+  <button class="nav-item" onclick="show('mnemonics')"><span class="icon">🧠</span> Mnemonics</button>
+  <button class="nav-item" onclick="show('mcqs')"><span class="icon">✏️</span> MCQ Bank <span class="count">50+</span></button>
+
+  <div class="sidebar-footer">
+    <div class="rank-target">
+      <span class="trophy">🏆</span>
+      <div>
+        <p>Target: Top 10 Rank</p>
+        <span>SDM | PCS 2026</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="main">
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="page-header">
+    <div class="eyebrow">UPPSC PCS 2026 Preparation</div>
+    <h2>UP Geography — Master Dashboard</h2>
+    <p>Quality over quantity. SDM ke liye top-10 rank ka target.</p>
+  </div>
+
+  <div class="grid4" style="margin-bottom:20px">
+    <div class="stat-card"><div class="stat-num">75</div><div class="stat-label">Districts</div></div>
+    <div class="stat-card"><div class="stat-num">18</div><div class="stat-label">Mandals</div></div>
+    <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Agro-zones</div></div>
+    <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Major Rivers</div></div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <div class="card-title"><div class="dot" style="background:var(--gold)"></div>Quick Facts — UP at a glance</div>
+        <div class="info-row"><span class="info-key">Rajdhani</span><span class="info-val">Lucknow</span></div>
+        <div class="info-row"><span class="info-key">Area</span><span class="info-val">2,40,928 km² (4th largest state)</span></div>
+        <div class="info-row"><span class="info-key">Population</span><span class="info-val">~24 crore (1st — Census 2011)</span></div>
+        <div class="info-row"><span class="info-key">Latitude</span><span class="info-val">23°52'N – 30°25'N</span></div>
+        <div class="info-row"><span class="info-key">Longitude</span><span class="info-val">77°05'E – 84°39'E</span></div>
+        <div class="info-row"><span class="info-key">Districts</span><span class="info-val">75</span></div>
+        <div class="info-row"><span class="info-key">Mandal (Divisions)</span><span class="info-val">18</span></div>
+        <div class="info-row"><span class="info-key">Vidhan Sabha seats</span><span class="info-val">403</span></div>
+        <div class="info-row"><span class="info-key">Lok Sabha seats</span><span class="info-val">80 (highest in India)</span></div>
+        <div class="info-row"><span class="info-key">Rajya Sabha seats</span><span class="info-val">31</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title"><div class="dot" style="background:var(--teal)"></div>Sima — Neighbouring states</div>
+        <div class="info-row"><span class="info-key">Uttarakhand</span><span class="info-val">North — Himalayan border (Bijnor–Pilibhit)</span></div>
+        <div class="info-row"><span class="info-key">Himachal Pradesh</span><span class="info-val">North-west (tiny border)</span></div>
+        <div class="info-row"><span class="info-key">Haryana</span><span class="info-val">West (Shamli/Muzaffarnagar)</span></div>
+        <div class="info-row"><span class="info-key">Delhi</span><span class="info-val">West (Gautam Buddha Nagar)</span></div>
+        <div class="info-row"><span class="info-key">Rajasthan</span><span class="info-val">SW (Agra/Mathura corner)</span></div>
+        <div class="info-row"><span class="info-key">Madhya Pradesh</span><span class="info-val">South — long border (Vindhya belt)</span></div>
+        <div class="info-row"><span class="info-key">Chhattisgarh</span><span class="info-val">SE (Sonbhadra)</span></div>
+        <div class="info-row"><span class="info-key">Jharkhand</span><span class="info-val">SE (Sonbhadra corner)</span></div>
+        <div class="info-row"><span class="info-key">Bihar</span><span class="info-val">East (Ballia–Sonbhadra)</span></div>
+        <div class="info-row"><span class="info-key">Nepal</span><span class="info-val">North (international border)</span></div>
+      </div>
+      <div class="hl-gold" style="margin-top:10px">⚡ UPPSC Trap: UP shares boundary with <strong>9 states + 1 UT (Delhi) + Nepal</strong>. Total = 9 states + 1 UT + 1 country.</div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<div class="page" id="page-location">
+  <div class="page-header">
+    <div class="eyebrow">Sthiti aur Seemaen</div>
+    <h2>Location, Area &amp; Boundaries</h2>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">📐 Geographical position</div>
+      <div class="info-row"><span class="info-key">Akshansh (Lat)</span><span class="info-val">23°52'N to 30°25'N</span></div>
+      <div class="info-row"><span class="info-key">Deshantar (Long)</span><span class="info-val">77°05'E to 84°39'E</span></div>
+      <div class="info-row"><span class="info-key">N–S extent</span><span class="info-val">~590 km</span></div>
+      <div class="info-row"><span class="info-key">E–W extent</span><span class="info-val">~650 km</span></div>
+      <div class="info-row"><span class="info-key">Area rank</span><span class="info-val">4th largest in India (2,40,928 km²)</span></div>
+      <div class="info-row"><span class="info-key">India ke % area</span><span class="info-val">7.33%</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗓️ UP ka itihas (statehood)</div>
+      <div class="info-row"><span class="info-key">1950</span><span class="info-val">United Provinces → Uttar Pradesh (26 Jan)</span></div>
+      <div class="info-row"><span class="info-key">2000</span><span class="info-val">Uttaranchal (now Uttarakhand) bifurcated</span></div>
+      <div class="info-row"><span class="info-key">Sabse bada jila</span><span class="info-val">Lakhimpur Khiri (area)</span></div>
+      <div class="info-row"><span class="info-key">Sabse chhota jila</span><span class="info-val">Hapur</span></div>
+      <div class="info-row"><span class="info-key">Highest point</span><span class="info-val">Sona peak, Sonbhadra (~1000m)</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:4px">
+    <div class="card-title">🗺️ Border districts by state</div>
+    <div style="overflow-x:auto">
+    <table class="tbl">
+      <thead><tr><th>Paros State/Country</th><th>Direction</th><th>Border districts (UP side)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag tag-blue">Uttarakhand</span></td><td>North</td><td>Bijnor, Moradabad, Rampur, Pilibhit, Lakhimpur Khiri, Bahraich, Shravasti, Balrampur, Siddharth Nagar</td></tr>
+        <tr><td><span class="tag tag-teal">Nepal</span></td><td>North (International)</td><td>Pilibhit, Lakhimpur Khiri, Bahraich, Shravasti, Balrampur, Siddharth Nagar, Maharajganj, Kushinagar</td></tr>
+        <tr><td><span class="tag tag-gold">Bihar</span></td><td>East</td><td>Kushinagar, Deoria, Mau, Ballia, Ghazipur, Varanasi, Chandauli, Sonbhadra</td></tr>
+        <tr><td><span class="tag tag-orange">Madhya Pradesh</span></td><td>South</td><td>Sonbhadra, Mirzapur, Banda, Chitrakoot, Jhansi, Lalitpur + more</td></tr>
+        <tr><td><span class="tag tag-red">Rajasthan</span></td><td>SW</td><td>Agra (tiny corner)</td></tr>
+        <tr><td><span class="tag tag-purple">Haryana</span></td><td>West</td><td>Shamli, Muzaffarnagar, Baghpat, Gautam Buddha Nagar</td></tr>
+        <tr><td><span class="tag tag-gold">Delhi (UT)</span></td><td>West</td><td>Gautam Buddha Nagar, Ghaziabad</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="hl-teal">💡 Trick for corner districts: <strong>Saharanpur</strong> (NW corner), <strong>Sonbhadra</strong> (SE corner — touches 4 states: UP, MP, CG, JH), <strong>Bahraich/Lakhimpur</strong> (Nepal border), <strong>Ballia</strong> (E corner).</div>
+</div>
+
+<!-- PHYSICAL -->
+<div class="page" id="page-physical">
+  <div class="page-header">
+    <div class="eyebrow">Bhautik Vibhajan</div>
+    <h2>Physical Divisions of UP</h2>
+    <p>Teen pramukh bhautik vibhag — Himalayan Terai, Ganga plain, Vindhya hills</p>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('terai')">
+      <div class="dot" style="width:10px;height:10px;border-radius:50%;background:var(--teal);flex-shrink:0"></div>
+      <div style="flex:1"><div class="acc-title">1. Himalayan Terai &amp; Bhabar region</div><div class="acc-sub">Northern UP — Nepal border se laga</div></div>
+      <span class="acc-arrow" id="arr-terai">▼</span>
+    </div>
+    <div class="acc-body" id="body-terai">
+      <div class="grid2">
+        <div>
+          <div class="info-row"><span class="info-key">Bhabar belt</span><span class="info-val">Himalayan foothills ke neeche — porous, boulder-laden. Rivers disappear underground here.</span></div>
+          <div class="info-row"><span class="info-key">Terai belt</span><span class="info-val">South of Bhabar — waterlogged, marshy, dense forests. Rivers reappear.</span></div>
+          <div class="info-row"><span class="info-key">Districts</span><span class="info-val">Pilibhit, Lakhimpur Khiri, Bahraich, Shravasti, Balrampur, Siddharth Nagar, Maharajganj, Kushinagar</span></div>
+          <div class="info-row"><span class="info-key">Vegetation</span><span class="info-val">Sal forests, tall grasses, dense jungles — Dudhwa National Park area</span></div>
+        </div>
+        <div>
+          <div class="hl-teal">🌿 Economic importance: Sugarcane belt of UP — Lakhimpur, Bahraich sugar mills. Also major wheat &amp; rice producer. Wildlife corridor — elephant, tiger passage.</div>
+          <div class="hl-gold" style="margin-top:8px">⚡ UPPSC: Terai ki mitti = silty-clayey, highly fertile. Bhootar/bhurs (sandy mounds) bhi milte hain terai mein.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('plain')">
+      <div class="dot" style="width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0"></div>
+      <div style="flex:1"><div class="acc-title">2. Ganga ka Maidaan (Indo-Gangetic Plain)</div><div class="acc-sub">UP ka 90%+ area — sab se mahatvapoorn</div></div>
+      <span class="acc-arrow" id="arr-plain">▼</span>
+    </div>
+    <div class="acc-body" id="body-plain">
+      <div class="grid2">
+        <div>
+          <div class="info-row"><span class="info-key">Formation</span><span class="info-val">Tethys Sea ka talchhath — alluvial deposits by Himalayan rivers over millions of years</span></div>
+          <div class="info-row"><span class="info-key">Sub-divisions</span><span class="info-val">Bangar (old alluvium, high ground) + Khadar (new alluvium, flood plains, fertile)</span></div>
+          <div class="info-row"><span class="info-key">Bhabar</span><span class="info-val">Northernmost — coarse gravel, rivers go underground</span></div>
+          <div class="info-row"><span class="info-key">Terai</span><span class="info-val">Rivers reappear — marshy, humid forests</span></div>
+          <div class="info-row"><span class="info-key">Bhoor land</span><span class="info-val">Sandy raised ground along river banks — found in Doabs</span></div>
+          <div class="info-row"><span class="info-key">Doab</span><span class="info-val">Land between two rivers: Ganga-Yamuna Doab (most fertile)</span></div>
+        </div>
+        <div>
+          <div class="info-row"><span class="info-key">Average elevation</span><span class="info-val">75m to 300m (slopes gently east-southeast)</span></div>
+          <div class="info-row"><span class="info-key">Mitti prakar</span><span class="info-val">Alluvial soil (Domat) — most fertile in world for wheat &amp; sugarcane</span></div>
+          <div class="card" style="margin-top:10px;padding:12px">
+            <div class="card-title" style="font-size:12px">Pramukh Doabs of UP</div>
+            <div class="tag tag-gold">Ganga-Yamuna Doab</div>
+            <div class="tag tag-blue">Ganga-Ramganga Doab</div>
+            <div class="tag tag-teal">Ganga-Gomti Doab</div>
+            <div class="tag tag-purple">Gomti-Ghaghra Doab</div>
+            <div class="tag tag-orange">Ghaghra-Gandak Doab</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('vindhya')">
+      <div class="dot" style="width:10px;height:10px;border-radius:50%;background:var(--orange);flex-shrink:0"></div>
+      <div style="flex:1"><div class="acc-title">3. Vindhya + Kaimur Hills (Dakshini Pahari Kshetra)</div><div class="acc-sub">Southern UP — Bundelkhand + Mirzapur–Sonbhadra belt</div></div>
+      <span class="acc-arrow" id="arr-vindhya">▼</span>
+    </div>
+    <div class="acc-body" id="body-vindhya">
+      <div class="grid2">
+        <div>
+          <div class="info-row"><span class="info-key">Vindhya range</span><span class="info-val">Jhansi–Lalitpur–Chitrakoot–Mirzapur–Sonbhadra. Hard red sandstone.</span></div>
+          <div class="info-row"><span class="info-key">Kaimur range</span><span class="info-val">Mirzapur–Sonbhadra — eastern extension. Coal-bearing. Limestone abundant.</span></div>
+          <div class="info-row"><span class="info-key">Bundelkhand</span><span class="info-val">Granite-gneiss rocky terrain — SW UP. Water scarcity chronic. Jhansi, Lalitpur, Mahoba, Banda, Chitrakoot, Hamirpur, Jalaun.</span></div>
+          <div class="info-row"><span class="info-key">Baghelkhand</span><span class="info-val">SE extension — Mirzapur, Sonbhadra</span></div>
+          <div class="info-row"><span class="info-key">Highest peak (UP)</span><span class="info-val">~1000m in Sonbhadra hills</span></div>
+        </div>
+        <div>
+          <div class="hl-gold">⚡ Ken-Betwa River Link project: To solve Bundelkhand water crisis — India's first inter-basin river link. Approved 2021.</div>
+          <div class="hl-teal" style="margin-top:8px">Minerals: Coal (Sonbhadra-Singrauli), Bauxite (Sonbhadra), Limestone (Sonbhadra-Mirzapur), Silica sand. UP's industrial belt.</div>
+          <div class="hl-red" style="margin-top:8px">⚠️ Bundelkhand problem: Less rainfall (&lt;700mm), hard rock terrain, poor irrigation — droughts frequent. Ken-Betwa link solution.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RIVERS -->
+<div class="page" id="page-rivers">
+  <div class="page-header">
+    <div class="eyebrow">Nadiyaan aur Bandh</div>
+    <h2>Rivers &amp; Dams of Uttar Pradesh</h2>
+  </div>
+
+  <div class="grid4" style="margin-bottom:18px">
+    <div class="stat-card"><div class="stat-num" style="font-size:22px;color:var(--blue)">H</div><div class="stat-label">Himalayan (perennial)</div></div>
+    <div class="stat-card"><div class="stat-num" style="font-size:22px;color:var(--orange)">P</div><div class="stat-label">Peninsular (seasonal)</div></div>
+    <div class="stat-card"><div class="stat-num">1000</div><div class="stat-label">km Ganga in UP</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--red)">GB</div><div class="stat-label">Pant Sagar (biggest)</div></div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-bottom:16px">
+    <table class="tbl">
+      <thead><tr><th>Nadi</th><th>Origin</th><th>UP entry</th><th>Joins</th><th>Pramukh cities (UP)</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ganga</strong></td><td>Gangotri, Uttarakhand</td><td>Bijnor</td><td>—</td><td>Kanpur, Prayagraj, Varanasi, Ghazipur</td><td><span class="tag tag-blue">Himalayan</span></td></tr>
+        <tr><td><strong>Yamuna</strong></td><td>Yamunotri, Uttarakhand</td><td>Saharanpur</td><td>Ganga at Prayagraj (Right)</td><td>Mathura, Agra, Etawah</td><td><span class="tag tag-blue">Himalayan</span></td></tr>
+        <tr><td><strong>Ghaghra/Saryu</strong></td><td>Tibet (Karnali, Nepal)</td><td>Bahraich</td><td>Ganga at Chhapra (Left)</td><td>Ayodhya, Ballia</td><td><span class="tag tag-blue">Himalayan</span></td></tr>
+        <tr><td><strong>Gomti</strong></td><td>Gomat Taal, Pilibhit</td><td>Born in UP</td><td>Ganga at Varanasi (Left)</td><td>Lucknow, Jaunpur, Sultanpur</td><td><span class="tag tag-teal">Spring-fed</span></td></tr>
+        <tr><td><strong>Ramganga</strong></td><td>Namik glacier, Uttarakhand</td><td>Moradabad</td><td>Ganga at Kannauj (Left)</td><td>Moradabad, Badaun</td><td><span class="tag tag-blue">Himalayan</span></td></tr>
+        <tr><td><strong>Sharda/Kali</strong></td><td>Pindari glacier, Uttarakhand</td><td>Pilibhit/Bahraich</td><td>Ghaghra at Bahraich (Left)</td><td>Pilibhit, Bahraich</td><td><span class="tag tag-blue">Himalayan</span></td></tr>
+        <tr><td><strong>Rapti</strong></td><td>Nepal hills</td><td>Bahraich/Sidh Nagar</td><td>Ghaghra at Gorakhpur (Left)</td><td>Gorakhpur</td><td><span class="tag tag-blue">Himalayan</span></td></tr>
+        <tr><td><strong>Chambal</strong></td><td>Vindhya, Mhow, MP</td><td>Bhind/Etawah</td><td>Yamuna at Etawah (Left)</td><td>Etawah</td><td><span class="tag tag-orange">Peninsular</span></td></tr>
+        <tr><td><strong>Betwa</strong></td><td>Raisen, MP</td><td>Jhansi</td><td>Yamuna at Hamirpur (Left)</td><td>Jhansi, Lalitpur, Jalaun</td><td><span class="tag tag-orange">Peninsular</span></td></tr>
+        <tr><td><strong>Ken</strong></td><td>Kaimur hills, MP</td><td>Banda</td><td>Yamuna at Banda (Left)</td><td>Banda</td><td><span class="tag tag-orange">Peninsular</span></td></tr>
+        <tr><td><strong>Sindh</strong></td><td>Vidisha, MP</td><td>Jalaun</td><td>Yamuna at Jalaun (Left)</td><td>Jalaun</td><td><span class="tag tag-orange">Peninsular</span></td></tr>
+        <tr><td><strong>Son</strong></td><td>Amarkantak, MP</td><td>Sonbhadra</td><td>Ganga at Arrah/Bihar (Right)</td><td>Renukoot</td><td><span class="tag tag-orange">Peninsular</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:16px;color:var(--text);margin-bottom:12px;font-family:'DM Serif Display',serif">Pramukh Dams &amp; Barrages</h3>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Dam/Barrage</th><th>Nadi</th><th>Jila</th><th>Uddeshya</th></tr></thead>
+      <tbody>
+        <tr><td><strong>G.B. Pant Sagar (Rihand Dam)</strong></td><td>Rihand (Son tributary)</td><td>Sonbhadra</td><td>UP ka sabse bada — bijli (NTPC), irrigation</td></tr>
+        <tr><td><strong>Matatila Dam</strong></td><td>Betwa</td><td>Lalitpur</td><td>Irrigation + hydropower (Bundelkhand)</td></tr>
+        <tr><td><strong>Rajghat Dam</strong></td><td>Betwa</td><td>Lalitpur (UP–MP border)</td><td>Irrigation UP &amp; MP, power</td></tr>
+        <tr><td><strong>Parichha Dam</strong></td><td>Betwa</td><td>Jhansi</td><td>Parichha Thermal Power Station</td></tr>
+        <tr><td><strong>Obra Dam</strong></td><td>Rihand</td><td>Sonbhadra</td><td>Obra Thermal + Hydro Power</td></tr>
+        <tr><td><strong>Narora Barrage</strong></td><td>Ganga</td><td>Bulandshahr</td><td>Lower Ganga Canal + Narora Atomic Plant</td></tr>
+        <tr><td><strong>Sharda Barrage</strong></td><td>Sharda (Kali)</td><td>Bahraich</td><td>Sharda Sahayak Canal — eastern UP irrigation</td></tr>
+        <tr><td><strong>Kalagarh Dam</strong></td><td>Ramganga</td><td>(Uttarakhand — UP irrigation)</td><td>Ram Ganga Project — Terai irrigation</td></tr>
+        <tr><td><strong>Rohini Dam</strong></td><td>Rohini</td><td>Lalitpur</td><td>Irrigation (Bundelkhand)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hl-gold" style="margin-top:12px">⚡ UPPSC Critical: Ramganga joins Ganga at <strong>Kannauj</strong> (NOT Kanpur). Betwa joins Yamuna at <strong>Hamirpur</strong> (NOT Prayagraj). These are direct exam traps.</div>
+</div>
+
+<!-- DISTRICTS -->
+<div class="page" id="page-districts">
+  <div class="page-header">
+    <div class="eyebrow">Jile aur Mandal</div>
+    <h2>75 Districts — 18 Divisions</h2>
+  </div>
+
+  <input class="search-box" id="dist-search" placeholder="Search district or division..." oninput="filterDistricts(this.value)">
+
+  <div id="div-list"></div>
+</div>
+
+<!-- CLIMATE -->
+<div class="page" id="page-climate">
+  <div class="page-header">
+    <div class="eyebrow">Jalvayu aur Krishijalvayu</div>
+    <h2>Climate &amp; 9 Agro-Climatic Zones</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">UP ki Jalvayu (Climate)</div>
+    <div class="grid2">
+      <div>
+        <div class="info-row"><span class="info-key">Type</span><span class="info-val">Subtropical monsoon (Aw/Cwa type)</span></div>
+        <div class="info-row"><span class="info-key">Rainfall range</span><span class="info-val">600mm (Bundelkhand) → 1200mm (Terai)</span></div>
+        <div class="info-row"><span class="info-key">Summer max</span><span class="info-val">45–47°C (Agra, Allahabad belt)</span></div>
+        <div class="info-row"><span class="info-key">Winter min</span><span class="info-val">0–4°C (Northern plains, fog)</span></div>
+        <div class="info-row"><span class="info-key">Monsoon entry</span><span class="info-val">June first week (SE direction, Bay of Bengal branch)</span></div>
+        <div class="info-row"><span class="info-key">Loo (hot wind)</span><span class="info-val">April–June, western UP — dangerous dry hot wind</span></div>
+      </div>
+      <div>
+        <div class="info-row"><span class="info-key">Seasons</span><span class="info-val">4: Grishma (March–June), Varsha (July–Sept), Sharad (Oct–Nov), Shishir (Dec–Feb)</span></div>
+        <div class="info-row"><span class="info-key">Winter rain</span><span class="info-val">Western disturbances — wheat ke liye helpful</span></div>
+        <div class="info-row"><span class="info-key">Lowest rainfall</span><span class="info-val">Agra–Etawah belt (~600–700mm)</span></div>
+        <div class="info-row"><span class="info-key">Highest rainfall</span><span class="info-val">Terai belt (Shravasti, Bahraich, Maharajganj ~1200mm)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:16px;color:var(--text);margin:18px 0 10px;font-family:'DM Serif Display',serif">9 Agro-Climatic Zones of UP</h3>
+
+  <div id="agro-zones"></div>
+</div>
+
+<!-- WILDLIFE -->
+<div class="page" id="page-wildlife">
+  <div class="page-header">
+    <div class="eyebrow">Vanya Jeev aur Van</div>
+    <h2>Wildlife Sanctuaries &amp; National Parks</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏞️ National Parks (Rashtriya Udyaan) — UP</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>National Park</th><th>District</th><th>Area</th><th>Visheshata</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Dudhwa National Park</strong></td><td>Lakhimpur Khiri</td><td>490 km²</td><td>Tiger, Rhino (reintroduced), Barasingha, Elephant corridor. Nepal border.</td></tr>
+          <tr><td><strong>Pilibhit Tiger Reserve</strong></td><td>Pilibhit + Bahraich + Lakhimpur</td><td>730 km²</td><td>Tiger reserve (declared 2014). Terai belt.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-title">🦁 Wildlife Sanctuaries (Abhyaranya) — Major ones</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Abhyaranya</th><th>District</th><th>Pramukh Janwar</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Dudhwa (Tiger Reserve)</strong></td><td>Lakhimpur Khiri</td><td>Tiger, Rhino, Leopard, Gharial, Barasingha</td></tr>
+          <tr><td><strong>Pilibhit Tiger Reserve</strong></td><td>Pilibhit</td><td>Tiger, Leopard — highest tiger density in terai</td></tr>
+          <tr><td><strong>Suhelwa Wildlife Sanctuary</strong></td><td>Shravasti + Balrampur</td><td>Tiger, Elephant, Wild boar. Nepal border buffer.</td></tr>
+          <tr><td><strong>Kishanpur Wildlife Sanctuary</strong></td><td>Lakhimpur Khiri</td><td>Tiger, Barasingha — part of Dudhwa complex</td></tr>
+          <tr><td><strong>Katerniaghat Wildlife Sanctuary</strong></td><td>Bahraich</td><td>Gharial, Gangetic dolphin, Tiger, Elephant</td></tr>
+          <tr><td><strong>Hastinapur Wildlife Sanctuary</strong></td><td>Meerut / Hapur / Amroha / Muzaffarnagar / Bijnor</td><td>Swamp deer (Barasingha), Gharial — Ganga floodplain</td></tr>
+          <tr><td><strong>Chandraprabha Wildlife Sanctuary</strong></td><td>Chandauli</td><td>Leopard, Wolf, Chinkara, Sambhar. First lion reintroduction attempt (1957).</td></tr>
+          <tr><td><strong>Soheldev Wildlife Sanctuary</strong></td><td>Bahraich</td><td>Elephant, Leopard</td></tr>
+          <tr><td><strong>Ranipur Wildlife Sanctuary</strong></td><td>Banda (Chitrakoot)</td><td>Tiger, Leopard, Chinkara</td></tr>
+          <tr><td><strong>National Chambal Sanctuary</strong></td><td>Agra + Etawah</td><td>Gharial, Gangetic dolphin, Mugger crocodile. Shared with MP, Rajasthan.</td></tr>
+          <tr><td><strong>Sohagi Barwa Wildlife Sanctuary</strong></td><td>Maharajganj</td><td>Tiger, Leopard, Rhino (possible)</td></tr>
+          <tr><td><strong>Mahavir Swami Wildlife Sanctuary</strong></td><td>Lalitpur</td><td>Wolf, Leopard, Chinkara</td></tr>
+          <tr><td><strong>Kaimur Wildlife Sanctuary</strong></td><td>Mirzapur</td><td>Tiger, Leopard, Chinkara, Gharial</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="hl-gold" style="margin-top:10px">⚡ UPPSC frequently asked: Chandraprabha WLS = Chandauli (asked UPPSC 2023). Dudhwa = Lakhimpur Khiri. Katerniaghat = Bahraich (Gangetic dolphin + Gharial).</div>
+</div>
+
+<!-- MINERALS -->
+<div class="page" id="page-minerals">
+  <div class="page-header">
+    <div class="eyebrow">Khanijaaj Sansaadhan</div>
+    <h2>Minerals of Uttar Pradesh</h2>
+  </div>
+  <div class="hl-teal" style="margin-bottom:14px">UP ek mineral-rich state hai — lekin ye UP ka SOUTHERN belt (Vindhya–Kaimur) mein concentrated hai. Particularly Sonbhadra = UP ka mineral hub.</div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Khanij (Mineral)</th><th>Pramukh jile</th><th>Use</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Coal (Koyala)</strong></td><td>Sonbhadra (Singrauli)</td><td>Thermal power, industry</td><td>Gondwana coal fields. NTPC Singrauli, Rihand, Vindhyachal plants use it.</td></tr>
+        <tr><td><strong>Limestone (Chuna Patthar)</strong></td><td>Sonbhadra, Mirzapur, Banda</td><td>Cement industry</td><td>UP mein cement industry base. Dalla cement (Chandauli).</td></tr>
+        <tr><td><strong>Bauxite</strong></td><td>Sonbhadra, Banda</td><td>Aluminium production</td><td>Vindhya belt mein deposits</td></tr>
+        <tr><td><strong>Silica Sand</strong></td><td>Allahabad (Prayagraj), Banda</td><td>Glass industry (Firozabad)</td><td>Firozabad glass/bangle industry = silica sand se</td></tr>
+        <tr><td><strong>Rock Phosphate</strong></td><td>Lalitpur</td><td>Fertilizer industry</td><td>Small deposits</td></tr>
+        <tr><td><strong>Dolomite</strong></td><td>Sonbhadra, Mirzapur</td><td>Iron &amp; steel (flux), refractory</td><td>Kaimur range mein</td></tr>
+        <tr><td><strong>Pyrite (Iron Sulphide)</strong></td><td>Banda (Shahgarh)</td><td>Sulphuric acid, fertilizer</td><td>India mein sirf Banda mein commercial pyrite</td></tr>
+        <tr><td><strong>Glass Sand / Quartz</strong></td><td>Banda, Hamirpur, Prayagraj</td><td>Glass making</td><td>Ken river valley mein abundant</td></tr>
+        <tr><td><strong>Diaspore/Fireclay</strong></td><td>Banda</td><td>Refractory bricks</td><td>Chunar (Mirzapur) — famous for stone crafts</td></tr>
+        <tr><td><strong>Copper</strong></td><td>Lalitpur, Sonbhadra (traces)</td><td>Industry</td><td>Very minor — not commercially important</td></tr>
+        <tr><td><strong>Granite/Stone</strong></td><td>Bundelkhand (Jhansi, Lalitpur)</td><td>Construction, handicrafts</td><td>Bundelkhand granite — famous</td></tr>
+        <tr><td><strong>Potassium feldspar</strong></td><td>Lalitpur</td><td>Ceramics</td><td>Small deposits</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="hl-gold" style="margin-top:12px">⚡ Sonbhadra = "UP ka mineral rajya" — coal, bauxite, limestone, dolomite sab yahaan. <strong>Singrauli</strong> = India ka biggest coal-based power hub (in Sonbhadra/MP border). <strong>Pyrite ka commercial production</strong> sirf Banda mein — ye rare fact pucha jaata hai.</div>
+</div>
+
+<!-- MNEMONICS -->
+<div class="page" id="page-mnemonics">
+  <div class="page-header">
+    <div class="eyebrow">Memory Techniques</div>
+    <h2>Mnemonics — Yaad karne ke tricks</h2>
+    <p>SDM level preparation ke liye map-based memory tools</p>
+  </div>
+
+  <div id="mnemonic-list"></div>
+</div>
+
+<!-- MCQs -->
+<div class="page" id="page-mcqs">
+  <div class="page-header">
+    <div class="eyebrow">Abhyas</div>
+    <h2>MCQ Bank — UPPSC Level</h2>
+  </div>
+
+  <div class="score-row">
+    <div>
+      <div class="score-big" id="score-disp">0 / 0</div>
+      <div class="score-info">attempted</div>
+    </div>
+    <div style="flex:1">
+      <div class="pbar-wrap"><div class="pbar-fill" id="score-bar" style="background:var(--gold);width:0%"></div></div>
+    </div>
+    <button style="padding:8px 16px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text2);cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px" onclick="resetMCQ()">↺ Reset</button>
+  </div>
+
+  <div id="mcq-container"></div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ── DATA ──
+
+const DIVISIONS = [
+  { name:"Agra Mandal", hq:"Agra", districts:["Agra","Firozabad","Mainpuri","Mathura"] },
+  { name:"Aligarh Mandal", hq:"Aligarh", districts:["Aligarh","Etah","Hathras","Kasganj"] },
+  { name:"Ayodhya Mandal", hq:"Ayodhya (Faizabad)", districts:["Ambedkar Nagar","Amethi","Ayodhya","Barabanki","Sultanpur"] },
+  { name:"Azamgarh Mandal", hq:"Azamgarh", districts:["Azamgarh","Ballia","Mau"] },
+  { name:"Bareilly Mandal", hq:"Bareilly", districts:["Badaun","Bareilly","Pilibhit","Shahjahanpur"] },
+  { name:"Basti Mandal", hq:"Basti", districts:["Basti","Sant Kabir Nagar","Siddharth Nagar"] },
+  { name:"Chitrakoot Mandal", hq:"Chitrakoot (Banda)", districts:["Banda","Chitrakoot","Hamirpur","Mahoba"] },
+  { name:"Devipatan Mandal", hq:"Gonda", districts:["Bahraich","Balrampur","Gonda","Shravasti"] },
+  { name:"Gorakhpur Mandal", hq:"Gorakhpur", districts:["Deoria","Gorakhpur","Kushinagar","Maharajganj"] },
+  { name:"Jhansi Mandal", hq:"Jhansi", districts:["Jalaun","Jhansi","Lalitpur"] },
+  { name:"Kanpur Mandal", hq:"Kanpur", districts:["Etawah","Farrukhabad","Kannauj","Kanpur Dehat","Kanpur Nagar","Auraiya"] },
+  { name:"Lucknow Mandal", hq:"Lucknow", districts:["Hardoi","Lakhimpur Khiri","Lucknow","Raebareli","Sitapur","Unnao"] },
+  { name:"Meerut Mandal", hq:"Meerut", districts:["Baghpat","Bulandshahr","Gautam Buddha Nagar","Ghaziabad","Hapur","Meerut"] },
+  { name:"Mirzapur Mandal", hq:"Mirzapur", districts:["Bhadohi","Mirzapur","Sonbhadra"] },
+  { name:"Moradabad Mandal", hq:"Moradabad", districts:["Amroha","Bijnor","Moradabad","Rampur","Sambhal"] },
+  { name:"Prayagraj Mandal", hq:"Prayagraj", districts:["Fatehpur","Kaushambi","Prayagraj","Pratapgarh"] },
+  { name:"Saharanpur Mandal", hq:"Saharanpur", districts:["Muzaffarnagar","Saharanpur","Shamli"] },
+  { name:"Varanasi Mandal", hq:"Varanasi", districts:["Chandauli","Ghazipur","Jaunpur","Varanasi"] },
+];
+
+const AGRO_ZONES = [
+  { num:1, name:"Bhabar &amp; Terai (Upper Hill) Zone", dist:"Saharanpur, Muzaffarnagar, Bijnor, Moradabad, Rampur, Pilibhit, Lakhimpur Khiri, Bahraich, Shravasti, Balrampur", rainfall:"1000–1200mm", crops:"Sugarcane, Rice, Wheat, Jute", soil:"Coarse alluvial, sandy loam" },
+  { num:2, name:"Western Plain Zone (Paschimi Maidaan)", dist:"Shamli, Muzaffarnagar, Meerut, Baghpat, Ghaziabad, Hapur, Aligarh, Hathras, Mathura, Agra", rainfall:"600–800mm", crops:"Wheat, Sugarcane, Paddy, Potato", soil:"Alluvial (Domat)" },
+  { num:3, name:"Mid-Western Plain Zone", dist:"Bulandshahr, Gautam Buddha Nagar, Farrukhabad, Kannauj, Etah, Mainpuri, Firozabad, Kasganj", rainfall:"700–850mm", crops:"Wheat, Sugarcane, Mustard", soil:"Alluvial — medium texture" },
+  { num:4, name:"South-Western Semi-Arid Zone", dist:"Agra, Mathura, Aligarh (southern parts), Jalaun, Jhansi, Lalitpur, Hamirpur, Mahoba, Banda, Chitrakoot", rainfall:"600–750mm", crops:"Jowar, Bajra, Wheat, Rai/Mustard", soil:"Mixed red-alluvial, rocky (Bundelkhand)" },
+  { num:5, name:"Central Plain Zone (Madhya Maidaan)", dist:"Lucknow, Unnao, Barabanki, Hardoi, Sitapur, Rae Bareli, Amethi, Sultanpur", rainfall:"800–950mm", crops:"Wheat, Sugarcane, Rice, Pulses", soil:"Deep alluvial, fertile" },
+  { num:6, name:"Bundelkhand Zone", dist:"Jhansi, Lalitpur, Jalaun, Mahoba, Banda, Chitrakoot, Hamirpur", rainfall:"600–800mm", crops:"Jowar, Bajra, Til, Arhar (Tur)", soil:"Shallow, rocky, poor water retention. Kankari mitti." },
+  { num:7, name:"North-Eastern Plain Zone", dist:"Gorakhpur, Maharajganj, Kushinagar, Deoria, Siddharth Nagar, Basti, Gonda, Balrampur, Bahraich (southern parts)", rainfall:"900–1100mm", crops:"Rice, Wheat, Arhar, Maize", soil:"Heavy clay alluvial, flood-prone" },
+  { num:8, name:"Eastern Plain Zone", dist:"Varanasi, Ghazipur, Ballia, Azamgarh, Mau, Jaunpur, Bhadohi, Chandauli, Mirzapur", rainfall:"850–1000mm", crops:"Rice, Wheat, Vegetables, Potato", soil:"Alluvial + partially laterite in south" },
+  { num:9, name:"Vindhya Zone (Dakshini Pahari)", dist:"Sonbhadra, Mirzapur, Banda (Baghelkhand part)", rainfall:"800–1200mm", crops:"Sorghum, Arhar, Wheat, Kodo-Kutki (millets)", soil:"Mixed red-lateritic, stony" },
+];
+
+const MNEMONICS = [
+  { label:"UP ke 9 states + Delhi + Nepal", key:"H H R D — R M C J B + D + N", text:"Haryana, Himachal, Rajasthan, Delhi — Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, Bihar + Delhi UT + Nepal. Trick: सीमाओं पर 'H H R D' (northwest) + 'M C J B' (south/east)." },
+  { label:"Yamuna left-bank tributaries W→E", key:"Chambal Se Betwa Ken", text:"C → S → B → K: Chambal (Etawah) → Sindh (Jalaun) → Betwa (Hamirpur) → Ken (Banda). All left bank. UPPSC 2020 mein pucha tha exact order!" },
+  { label:"Ganga — UP mein district flow W→E", key:"Baan Maar — Kaali Kannan Paar Vaar Gayi Bali", text:"Bijnor → Moradabad → Badaun → Kannauj → Kanpur → Prayagraj → Varanasi → Ghazipur → Ballia" },
+  { label:"Ramganga joins Ganga = Kannauj (NOT Kanpur)", key:"Ram = Kanna (Kannauj) — remember Kannauj city of perfumes", text:"Kannauj = itr ki nagri (perfume city) — Ramganga + Ganga ka sangam yahaan. Kanpur mein koi sangam nahi hai." },
+  { label:"Betwa joins Yamuna = Hamirpur", key:"Ham-Irpur = Ham-esh Betwa", text:"Betwa + Yamuna = Hamirpur. Prayagraj mein sirf Ganga + Yamuna milti hain (Triveni). Betwa bhi Yamuna ki hi tributary hai, Prayagraj se bahut pehle." },
+  { label:"Gomti ki visheshata", key:"Gomat Taal — Pilibhit ki Peeli dhoop", text:"Pilibhit (Pili = yellow) ke Gomat Taal (spring-fed lake) se nikalti hai. Koi glacier nahi. Lucknow ki shaan. Varanasi ke paas Ganga mein milti hai (Saidpur ghat)." },
+  { label:"Sonbhadra = Mineral Hub", key:"Sonbhadra = COAL-BAUXITE-LIMESTONE Triple", text:"Coal (Singrauli), Bauxite, Limestone — teeno Sonbhadra mein. NTPC ka power cluster yahaan. 'Son' ke naam se hi mineral-rich geography yaad karo." },
+  { label:"18 Mandals ka group", key:"A A A A B B C D G J K L M M M P S V", text:"Agra, Aligarh, Ayodhya, Azamgarh, Bareilly, Basti, Chitrakoot, Devipatan, Gorakhpur, Jhansi, Kanpur, Lucknow, Meerut, Mirzapur, Moradabad, Prayagraj, Saharanpur, Varanasi" },
+  { label:"Dudhwa NP location", key:"DUDHWA = Doodh = Milk = Lakhimpur (dairy belt)", text:"Lakhimpur Khiri mein Dudhwa National Park. Tiger + Rhino (reintroduced). Nepal border pe. Terai belt." },
+  { label:"9 Agro-climatic zones ka number", key:"BW-MC-BN-EV", text:"Bhabar/Terai, Western, Mid-Western, Semi-arid SW — Central, Bundelkhand, NE, Eastern, Vindhya. 9 zones total." },
+  { label:"Chandraprabha WS = Chandauli", key:"Chandraprabha = Chandra + prabha = Chandauli", text:"Same sound — Chandraprabha sanctuary is in Chandauli. UPPSC 2023 direct question. First lion reintroduction attempt in 1957 here." },
+  { label:"Son aur Narmada — same origin, alag direction", key:"AMARKANTAK = AM-bhi-KAN-ta (do alag raste)", text:"Amarkantak se Son east (Ganga basin → Bay of Bengal), Narmada west (Arabian Sea). Ek hi ghar se do bhai alag-alag disha mein." },
+];
+
+const MCQS = [
+  { q:"UP ka sabse bada jila (area mein) kaun sa hai?", opts:["Agra","Sonbhadra","Lakhimpur Khiri","Varanasi"], ans:2, exp:"Lakhimpur Khiri UP ka sabse bada jila hai area ke hisaab se." },
+  { q:"Gomti nadi ka udgam kahan se hota hai?", opts:["Namik glacier, Uttarakhand","Gomat Taal, Pilibhit, UP","Yamunotri, Uttarakhand","Nepal Himalaya"], ans:1, exp:"Gomti ka udgam Pilibhit ke Gomat Taal se hota hai — puri tarah UP mein. Koi glacier source nahi." },
+  { q:"Yamuna nadi ki LEFT bank tributaries ka sahi W→E kram kaunsa hai?", opts:["Betwa→Chambal→Sindh→Ken","Chambal→Sindh→Betwa→Ken","Ken→Betwa→Sindh→Chambal","Sindh→Betwa→Chambal→Ken"], ans:1, exp:"UPPSC 2020: Chambal(Etawah) → Sindh(Jalaun) → Betwa(Hamirpur) → Ken(Banda). West se east." },
+  { q:"Ramganga nadi Ganga mein kahan milti hai?", opts:["Kanpur","Varanasi","Kannauj","Prayagraj"], ans:2, exp:"UPPSC 2023: Ramganga joins Ganga at Kannauj. Kanpur ek common trap answer hai." },
+  { q:"UP ka sabse bada dam/reservoir kaun sa hai?", opts:["Matatila Dam","Rajghat Dam","Govind Ballabh Pant Sagar (Rihand)","Narora Barrage"], ans:2, exp:"Govind Ballabh Pant Sagar (Rihand Dam) in Sonbhadra — UP ka sabse bada dam (~934 km² area)." },
+  { q:"Chandraprabha Wildlife Sanctuary UP ke kis jile mein hai?", opts:["Sonbhadra","Chandauli","Bahraich","Lakhimpur Khiri"], ans:1, exp:"UPPSC 2023 (Q.56): Chandraprabha WLS = Chandauli. 1957 mein pehla lion reintroduction bhi yahaan hua tha." },
+  { q:"Betwa nadi Yamuna mein kahan milti hai?", opts:["Prayagraj ke paas","Etawah ke paas","Hamirpur ke paas","Jalaun ke paas"], ans:2, exp:"Betwa joins Yamuna at Hamirpur. UPPSC 2023 mein 'Betwa joins near Prayagraj' GALAT statement tha." },
+  { q:"Son nadi aur Narmada nadi kahan se nikalti hain?", opts:["Satpura range, MP","Amarkantak plateau, MP","Vindhya range, MP","Maikalal hills, Chhattisgarh"], ans:1, exp:"Amarkantak se Son east (Ganga basin), Narmada west (Arabian Sea). Same source, opposite directions." },
+  { q:"UP ka kaun sa district 4 states se sima lagata hai?", opts:["Varanasi","Mirzapur","Banda","Sonbhadra"], ans:3, exp:"Sonbhadra UP, MP, Chhattisgarh aur Jharkhand — charon states ko chhuta hai. UP ka most unique border district." },
+  { q:"Ghaghra nadi Nepal mein kis naam se jaani jaati hai?", opts:["Koshi","Gandak","Karnali","Mahakali"], ans:2, exp:"Ghaghra = Karnali (Nepal) = Mapchachungo glacier se. UP mein Bahraich se enter karti hai." },
+  { q:"National Waterway-1 (NW-1) kahan se kahan tak hai?", opts:["Haridwar se Patna","Prayagraj (Allahabad) se Haldia","Delhi se Varanasi","Farakka se Prayagraj"], ans:1, exp:"NW-1 = Allahabad/Prayagraj se Haldia (WB), 1620 km. Ganga par. UP ka major inland waterway." },
+  { q:"Ganga Action Plan kab shuru hua?", opts:["1972","1980","1985","1990"], ans:2, exp:"UPPSC 2022: Ganga Action Plan 1985 mein launch hua (Rajiv Gandhi). Main aim: pollution reduction. Namami Gange 2014 ne replace kiya." },
+  { q:"UP ke 9 agro-climatic zones mein Bundelkhand zone mein rainfall kitni hai?", opts:["400–600 mm","600–800 mm","800–1000 mm","1000–1200 mm"], ans:1, exp:"Bundelkhand zone mein rainfall sirf 600–800 mm — UP ka sabse kam rainfall wala zone. Isliye yahan water scarcity chronic problem hai." },
+  { q:"Dudhwa National Park kahan hai aur kaunse janwar ke liye famous hai?", opts:["Bahraich — Tiger + Elephant","Lakhimpur Khiri — Tiger + Rhino","Pilibhit — Tiger + Leopard","Chandauli — Leopard + Wolf"], ans:1, exp:"Dudhwa NP = Lakhimpur Khiri. Tiger + Rhino (1984 mein reintroduced). Barasingha (swamp deer) bhi. Nepal border pe terai belt mein." },
+  { q:"Ken-Betwa River Link Project kya hai?", opts:["Ganga ko Yamuna se jodna","Ken nadi ka surplus paani Betwa mein transfer karna","Betwa ko Chambal se jodna","Son ko Ken se jodna"], ans:1, exp:"India's first inter-basin river link. Ken (surplus in MP) → Betwa (deficit in Bundelkhand). 2021 mein approved. Bundelkhand water crisis solve karne ke liye." },
+  { q:"UP mein Pyrite ka commercial production kahan hota hai?", opts:["Sonbhadra","Mirzapur","Banda (Shahgarh)","Lalitpur"], ans:2, exp:"Banda ke Shahgarh mein India ka commercial pyrite production hota hai — rare fact. Sulphuric acid aur fertilizer industry mein use." },
+  { q:"Terai region ki pramukh visheshata kya hai?", opts:["Ek pahari kshetra hai","Waterlogged/marshy area where underground rivers reappear south of Bhabar","Chambal ravines area","Bundelkhand plateau area"], ans:1, exp:"Terai = Bhabar ke south mein. Bhabar mein rivers underground chali jaati hain, Terai mein wapas nikalti hain. Waterlogged, dense jungles, wildlife-rich." },
+  { q:"18 mandals mein se kaunsa sabse jyada districts wala mandal hai?", opts:["Lucknow Mandal (6 jile)","Kanpur Mandal (6 jile)","Agra Mandal (4 jile)","Varanasi Mandal (4 jile)"], ans:0, exp:"Lucknow Mandal (Hardoi, Lakhimpur Khiri, Lucknow, Raebareli, Sitapur, Unnao — 6 districts) aur Kanpur Mandal bhi 6 districts wala hai. Both are 6." },
+  { q:"Katerniaghat Wildlife Sanctuary kahan hai aur kisliye famous hai?", opts:["Pilibhit — Tiger","Bahraich — Gharial + Gangetic dolphin + Tiger","Lakhimpur — Rhino","Mahoba — Chinkara"], ans:1, exp:"Katerniaghat WS = Bahraich. Gharial, Gangetic dolphin (platanista gangetica), Tiger sab milte hain. Important for aquatic biodiversity." },
+  { q:"UP mein 'Upper Ganga Agro-climatic Zone' ke baare mein kaun sa statement sahi hai?", opts:["Ye sirf eastern UP mein hai","Ye central aur western UP mein hai (Kanpur-Agra belt)","Ye sirf Bundelkhand mein hai","Ye zone sirf terai tak seedimited hai"], ans:1, exp:"UPPSC 2024: Upper Gangetic Agro-climatic zone central aur western UP mein hai — 130%+ irrigation intensity, 140%+ cropping intensity." },
+];
+
+// ── NAVIGATION ──
+function show(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (page === 'districts') renderDistricts('');
+  if (page === 'mcqs') renderMCQs();
+  if (page === 'mnemonics') renderMnemonics();
+  if (page === 'climate') renderAgroZones();
+}
+
+// ── ACCORDION ──
+function toggleAcc(id) {
+  const body = document.getElementById('body-' + id);
+  const arr = document.getElementById('arr-' + id);
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  arr.classList.toggle('open', !open);
+}
+
+// ── DISTRICTS ──
+function renderDistricts(filter) {
+  const container = document.getElementById('div-list');
+  container.innerHTML = '';
+  const f = filter.toLowerCase();
+  DIVISIONS.forEach(div => {
+    const matchedDistricts = div.districts.filter(d => f === '' || d.toLowerCase().includes(f) || div.name.toLowerCase().includes(f) || div.hq.toLowerCase().includes(f));
+    if (matchedDistricts.length === 0 && f !== '') return;
+    const item = document.createElement('div');
+    item.className = 'acc-item';
+    const show = f !== '' || false;
+    item.innerHTML = `
+      <div class="acc-header" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.acc-arrow').classList.toggle('open')">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0"></div>
+        <div style="flex:1">
+          <div class="acc-title">${div.name}</div>
+          <div class="acc-sub">HQ: <span style="color:var(--gold)">${div.hq}</span> · ${div.districts.length} districts</div>
+        </div>
+        <span class="acc-arrow ${show ? 'open' : ''}">▼</span>
+      </div>
+      <div class="acc-body ${show ? 'open' : ''}">
+        <div style="line-height:2">${(f === '' ? div.districts : matchedDistricts).map(d => `<span class="district-pill ${d === div.hq ? 'hq' : ''}">${d}${d === div.hq ? ' ★' : ''}</span>`).join('')}</div>
+      </div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+function filterDistricts(val) { renderDistricts(val); }
+
+// ── AGRO ZONES ──
+function renderAgroZones() {
+  const c = document.getElementById('agro-zones');
+  if (c.children.length > 0) return;
+  AGRO_ZONES.forEach(z => {
+    const div = document.createElement('div');
+    div.className = 'zone-card';
+    div.innerHTML = `
+      <div class="zone-num">${z.num}</div>
+      <div class="zone-name">${z.name}</div>
+      <div class="zone-detail" style="margin:6px 0 4px">📍 <strong>Districts:</strong> ${z.dist}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+        <span class="tag tag-blue">🌧 ${z.rainfall}</span>
+        <span class="tag tag-teal">🌾 ${z.crops}</span>
+        <span class="tag tag-orange">🪨 ${z.soil}</span>
+      </div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+// ── MNEMONICS ──
+function renderMnemonics() {
+  const c = document.getElementById('mnemonic-list');
+  if (c.children.length > 0) return;
+  MNEMONICS.forEach(m => {
+    const div = document.createElement('div');
+    div.className = 'mnemonic';
+    div.innerHTML = `<div class="mnemonic-label">${m.label}</div><div class="mnemonic-key">${m.key}</div><div class="mnemonic-text" style="margin-top:5px">${m.text}</div>`;
+    c.appendChild(div);
+  });
+}
+
+// ── MCQs ──
+let mcqState = {};
+let mcqScore = 0;
+let mcqAttempted = 0;
+
+function renderMCQs() {
+  const c = document.getElementById('mcq-container');
+  if (c.children.length > 0) return;
+  MCQS.forEach((m, i) => {
+    const div = document.createElement('div');
+    div.className = 'mcq-box';
+    div.id = 'mcq-' + i;
+    div.innerHTML = `
+      <div class="mcq-q">Q${i+1}. ${m.q}</div>
+      <div class="mcq-opts">
+        ${m.opts.map((o,j) => `<div class="mcq-opt" id="opt-${i}-${j}" onclick="answerMCQ(${i},${j})">${String.fromCharCode(65+j)}) ${o}</div>`).join('')}
+      </div>
+      <div class="mcq-exp" id="exp-${i}">💡 ${m.exp}</div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function answerMCQ(qi, oi) {
+  if (mcqState[qi] !== undefined) return;
+  mcqState[qi] = oi;
+  mcqAttempted++;
+  if (oi === MCQS[qi].ans) mcqScore++;
+  document.getElementById('opt-' + qi + '-' + MCQS[qi].ans).className = 'mcq-opt correct';
+  if (oi !== MCQS[qi].ans) document.getElementById('opt-' + qi + '-' + oi).className = 'mcq-opt wrong';
+  document.getElementById('exp-' + qi).classList.add('show');
+  document.getElementById('score-disp').textContent = mcqScore + ' / ' + mcqAttempted;
+  const pct = mcqAttempted > 0 ? Math.round((mcqScore / mcqAttempted) * 100) : 0;
+  document.getElementById('score-bar').style.width = pct + '%';
+}
+
+function resetMCQ() {
+  mcqState = {}; mcqScore = 0; mcqAttempted = 0;
+  document.getElementById('mcq-container').innerHTML = '';
+  document.getElementById('score-disp').textContent = '0 / 0';
+  document.getElementById('score-bar').style.width = '0%';
+  renderMCQs();
+}
+</script>
+</body>
+</html>
