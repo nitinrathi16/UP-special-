@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 — UP History & Culture Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF6B00;
+    --saffron-light: #FFF3E8;
+    --saffron-mid: #FFB366;
+    --green-dark: #1A4C2E;
+    --green-mid: #2D7A4F;
+    --green-light: #E8F5EE;
+    --indigo: #1E3A6E;
+    --indigo-light: #E8EDF7;
+    --gold: #B8860B;
+    --gold-light: #FFF8E1;
+    --maroon: #7B1C1C;
+    --maroon-light: #FDF0F0;
+    --cream: #FEFAF4;
+    --paper: #F9F4EC;
+    --ink: #1A1208;
+    --ink-mid: #4A3F2F;
+    --ink-soft: #8B7355;
+    --border: rgba(139,115,85,0.2);
+    --border-strong: rgba(139,115,85,0.4);
+    --white: #FFFFFF;
+    --shadow: 0 2px 12px rgba(26,18,8,0.08);
+    --shadow-lg: 0 8px 32px rgba(26,18,8,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* === HEADER === */
+  .header {
+    background: linear-gradient(135deg, var(--indigo) 0%, #0F2347 100%);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,107,0,0.2);
+    border: 1px solid rgba(255,107,0,0.4);
+    color: var(--saffron-mid);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 span { color: var(--saffron-mid); }
+  .header-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .h-stat {
+    text-align: center;
+  }
+  .h-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--saffron-mid);
+  }
+  .h-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* === NAV TABS === */
+  .nav-wrapper {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+  }
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    list-style: none;
+    white-space: nowrap;
+  }
+  .nav-tab {
+    padding: 0.9rem 1.2rem;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border-bottom: 2.5px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .nav-tab:hover { color: var(--saffron); }
+  .nav-tab.active {
+    color: var(--saffron);
+    border-bottom-color: var(--saffron);
+  }
+  .nav-tab span { margin-right: 5px; }
+
+  /* === MAIN CONTAINER === */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  /* === SECTIONS === */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* === CITY SELECTOR === */
+  .city-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+  .city-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .city-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--saffron);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+  .city-card:hover { border-color: var(--saffron); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .city-card:hover::before { transform: scaleX(1); }
+  .city-card.active { border-color: var(--saffron); background: var(--saffron-light); box-shadow: var(--shadow); }
+  .city-card.active::before { transform: scaleX(1); }
+  .city-icon { font-size: 2rem; margin-bottom: 6px; }
+  .city-name { font-weight: 600; font-size: 14px; color: var(--ink); }
+  .city-hindi { font-size: 11px; color: var(--ink-soft); font-family: 'Tiro Devanagari Hindi', serif; }
+
+  /* === CONTENT CARDS === */
+  .content-area { display: none; }
+  .content-area.active { display: block; }
+
+  .city-hero {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  .city-hero-icon { font-size: 4rem; flex-shrink: 0; }
+  .city-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--indigo);
+    margin-bottom: 0.25rem;
+  }
+  .city-hero-hindi {
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    font-family: 'Tiro Devanagari Hindi', serif;
+    margin-bottom: 0.75rem;
+  }
+  .city-hero-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.7; }
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.75rem; }
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag-ancient { background: var(--gold-light); color: var(--gold); }
+  .tag-buddhist { background: var(--green-light); color: var(--green-dark); }
+  .tag-medieval { background: var(--maroon-light); color: var(--maroon); }
+  .tag-modern { background: var(--indigo-light); color: var(--indigo); }
+  .tag-culture { background: var(--saffron-light); color: var(--saffron); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .info-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .info-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .icon-ancient { background: var(--gold-light); }
+  .icon-religious { background: var(--saffron-light); }
+  .icon-medieval { background: var(--maroon-light); }
+  .icon-revolt { background: #FEF2F2; }
+  .icon-freedom { background: var(--green-light); }
+  .icon-culture { background: var(--indigo-light); }
+  .icon-modern { background: #EFF6FF; }
+  .info-card-title { font-weight: 600; font-size: 14px; color: var(--ink); }
+  .info-card-sub { font-size: 11px; color: var(--ink-soft); }
+
+  .fact-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .fact-item:last-child { border-bottom: none; }
+  .fact-bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--saffron);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .fact-text { color: var(--ink-mid); }
+  .fact-text strong { color: var(--ink); font-weight: 600; }
+
+  .uppsc-angle {
+    background: linear-gradient(135deg, var(--indigo-light), #EEF2FF);
+    border: 1px solid rgba(30,58,110,0.15);
+    border-left: 4px solid var(--indigo);
+    border-radius: 0 12px 12px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .uppsc-angle-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 0.5rem;
+  }
+  .uppsc-angle-list { list-style: none; }
+  .uppsc-angle-list li {
+    font-size: 13px;
+    color: var(--indigo);
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+  .uppsc-angle-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--saffron);
+  }
+
+  /* === MCQ SECTION === */
+  .mcq-container { margin-top: 1rem; }
+  .mcq-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--indigo);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mcq-score-bar {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .score-display { font-size: 2rem; font-family: 'Playfair Display', serif; color: var(--indigo); font-weight: 700; }
+  .score-label { font-size: 13px; color: var(--ink-soft); }
+  .mcq-actions { display: flex; gap: 10px; margin-left: auto; }
+  .btn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--saffron); color: white; }
+  .btn-primary:hover { background: #e55c00; }
+  .btn-outline { background: white; color: var(--ink); border: 1px solid var(--border-strong); }
+  .btn-outline:hover { background: var(--paper); }
+
+  .mcq-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s;
+  }
+  .mcq-item.answered { border-color: rgba(139,115,85,0.3); }
+  .mcq-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 0.5rem;
+  }
+  .mcq-q {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  .mcq-options { display: grid; gap: 6px; }
+  .mcq-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink-mid);
+    transition: all 0.2s;
+    background: var(--paper);
+  }
+  .mcq-opt:hover { border-color: var(--saffron); background: var(--saffron-light); }
+  .mcq-opt.selected { border-color: var(--saffron); background: var(--saffron-light); }
+  .mcq-opt.correct { border-color: #16a34a; background: #f0fdf4; color: #15803d; font-weight: 600; }
+  .mcq-opt.wrong { border-color: #dc2626; background: #fef2f2; color: #dc2626; }
+  .mcq-opt-letter {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .mcq-explanation {
+    display: none;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: var(--green-light);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--green-dark);
+    line-height: 1.6;
+    border-left: 3px solid var(--green-mid);
+  }
+  .mcq-explanation.show { display: block; }
+
+  /* === OVERVIEW SECTION === */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--saffron), var(--gold), var(--green-mid), var(--indigo));
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 2rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .tl-dot {
+    position: absolute;
+    left: -2.4rem;
+    top: 1.3rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+  }
+  .tl-period {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tl-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .tl-body { font-size: 13px; color: var(--ink-mid); line-height: 1.7; }
+
+  /* === FREEDOM FIGHTERS === */
+  .fighter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .fighter-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: all 0.25s;
+  }
+  .fighter-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+  .fighter-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  .fighter-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .fighter-years { font-size: 11px; color: var(--ink-soft); margin-bottom: 0.75rem; }
+  .fighter-facts { list-style: none; }
+  .fighter-facts li {
+    font-size: 12px;
+    color: var(--ink-mid);
+    padding: 4px 0;
+    border-bottom: 1px dashed var(--border);
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .fighter-facts li::before { content: '→'; position: absolute; left: 0; color: var(--saffron); font-size: 10px; top: 5px; }
+  .fighter-facts li:last-child { border-bottom: none; }
+
+  /* === BUDDHIST SITES === */
+  .site-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .site-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--green-mid);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .site-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+  .site-district { font-size: 11px; color: var(--ink-soft); margin-bottom: 0.75rem; }
+  .site-event {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+  }
+
+  /* === PROGRESS BAR === */
+  .progress-section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .progress-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
+  .progress-item { margin-bottom: 12px; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-mid); margin-bottom: 5px; }
+  .progress-bar { height: 6px; background: var(--paper); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+
+  /* === SEARCH === */
+  .search-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .search-input {
+    width: 100%;
+    padding: 12px 20px 12px 44px;
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--saffron); }
+  .search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  /* === KUMBH SPECIAL === */
+  .kumbh-card {
+    background: linear-gradient(135deg, #FFF8E1, #FFF3E8);
+    border: 1px solid rgba(184,134,11,0.25);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .kumbh-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 700px) {
+    .header h1 { font-size: 2rem; }
+    .city-hero { flex-direction: column; gap: 1rem; }
+    .info-grid { grid-template-columns: 1fr; }
+    .fighter-grid { grid-template-columns: 1fr; }
+    .city-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* === PRINT === */
+  @media print {
+    .nav-wrapper { display: none; }
+    .section { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-badge">🎯 SDM Rank Top 10 Preparation</div>
+  <h1>UPPSC 2026<br><span>UP History & Culture</span><br>Complete Toolkit</h1>
+  <p class="header-sub">उत्तर प्रदेश का इतिहास, सभ्यता और संस्कृति — UPPSC Prelims + Mains</p>
+  <div class="header-stats">
+    <div class="h-stat"><div class="h-stat-num">7</div><div class="h-stat-label">Major Cities</div></div>
+    <div class="h-stat"><div class="h-stat-num">4</div><div class="h-stat-label">Buddhist Sites</div></div>
+    <div class="h-stat"><div class="h-stat-num">6</div><div class="h-stat-label">Freedom Fighters</div></div>
+    <div class="h-stat"><div class="h-stat-num">70+</div><div class="h-stat-label">MCQs Included</div></div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-wrapper">
+  <ul class="nav-tabs">
+    <li class="nav-tab active" onclick="switchTab('city-explorer')"><span>🏙️</span> City Explorer</li>
+    <li class="nav-tab" onclick="switchTab('timeline')"><span>📜</span> Historical Timeline</li>
+    <li class="nav-tab" onclick="switchTab('buddhist')"><span>🕌</span> Buddhist Sites</li>
+    <li class="nav-tab" onclick="switchTab('revolt1857')"><span>⚔️</span> 1857 Revolt</li>
+    <li class="nav-tab" onclick="switchTab('fighters')"><span>🧡</span> Freedom Fighters</li>
+    <li class="nav-tab" onclick="switchTab('culture')"><span>🎨</span> Culture & Fairs</li>
+    <li class="nav-tab" onclick="switchTab('mcq-grand')"><span>📝</span> MCQ Bank (70+)</li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- ==================== CITY EXPLORER ==================== -->
+  <div class="section active" id="sec-city-explorer">
+
+    <div class="city-grid">
+      <div class="city-card active" onclick="selectCity('varanasi', this)">
+        <div class="city-icon">🕯️</div>
+        <div class="city-name">Varanasi</div>
+        <div class="city-hindi">वाराणसी / काशी</div>
+      </div>
+      <div class="city-card" onclick="selectCity('prayagraj', this)">
+        <div class="city-icon">🌊</div>
+        <div class="city-name">Prayagraj</div>
+        <div class="city-hindi">प्रयागराज</div>
+      </div>
+      <div class="city-card" onclick="selectCity('mathura', this)">
+        <div class="city-icon">🦚</div>
+        <div class="city-name">Mathura</div>
+        <div class="city-hindi">मथुरा</div>
+      </div>
+      <div class="city-card" onclick="selectCity('ayodhya', this)">
+        <div class="city-icon">🏛️</div>
+        <div class="city-name">Ayodhya</div>
+        <div class="city-hindi">अयोध्या</div>
+      </div>
+      <div class="city-card" onclick="selectCity('lucknow', this)">
+        <div class="city-icon">🌹</div>
+        <div class="city-name">Lucknow</div>
+        <div class="city-hindi">लखनऊ</div>
+      </div>
+      <div class="city-card" onclick="selectCity('agra', this)">
+        <div class="city-icon">🕌</div>
+        <div class="city-name">Agra</div>
+        <div class="city-hindi">आगरा</div>
+      </div>
+      <div class="city-card" onclick="selectCity('jhansi', this)">
+        <div class="city-icon">⚔️</div>
+        <div class="city-name">Jhansi</div>
+        <div class="city-hindi">झाँसी</div>
+      </div>
+    </div>
+
+    <!-- CITY: VARANASI -->
+    <div class="content-area active" id="city-varanasi">
+      <div class="city-hero">
+        <div class="city-hero-icon">🕯️</div>
+        <div>
+          <div class="city-hero-title">Varanasi — काशी</div>
+          <div class="city-hero-hindi">विश्व की प्राचीनतम जीवित नगरी</div>
+          <div class="city-hero-desc">वाराणसी (काशी) विश्व के प्राचीनतम जीवित शहरों में से एक है। गंगा के पश्चिमी तट पर स्थित यह नगर आध्यात्मिकता, शिक्षा, संगीत और कला का केंद्र है। UPPSC 2026 में इससे 4-6 प्रश्न अपेक्षित।</div>
+          <div class="tag-row">
+            <span class="tag tag-ancient">Ancient</span>
+            <span class="tag tag-culture">Spiritual Capital</span>
+            <span class="tag tag-modern">Smart City</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-ancient">🏺</div>
+            <div><div class="info-card-title">Ancient History</div><div class="info-card-sub">Puranic & Vedic References</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>पुराने नाम:</strong> काशी, वाराणसी, अविमुक्त, आनंदवन, महाश्मशान — ऋग्वेद में उल्लेख</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>स्थापना:</strong> पौराणिक मान्यता — भगवान शिव द्वारा स्थापित; वरुणा और अस्सी नदियों के मध्य</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Rigveda:</strong> काशी का उल्लेख ऋग्वेद में वाकस्पति के रूप में मिलता है</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Atharvaveda:</strong> काशी की वस्त्र-शिल्प (मलमल) का उल्लेख; काशी राज्य — महाजनपद काल में 16 महाजनपदों में से एक</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Maurya Period:</strong> अशोक के समय महत्वपूर्ण व्यापारिक केंद्र; पास में सारनाथ में बौद्ध धर्म प्रचार</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-religious">🙏</div>
+            <div><div class="info-card-title">Religious Significance</div><div class="info-card-sub">Temples, Ghats & Pilgrimages</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>काशी विश्वनाथ मंदिर:</strong> 12 ज्योतिर्लिंगों में से एक; मूल मंदिर औरंगजेब ने 1669 में ध्वस्त किया; 1777 में अहिल्याबाई होल्कर ने पुनर्निर्माण कराया</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>84 घाट:</strong> दशाश्वमेध, मणिकर्णिका, हरिश्चंद्र, अस्सी प्रमुख; मणिकर्णिका — महाश्मशान घाट (माना जाता है शिव यहाँ मंत्र सुनाते हैं)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Panchkroshi Yatra:</strong> 5 कोस की परिक्रमा — धार्मिक महत्व</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Annapurna Temple, Durga Temple, Sankat Mochan</strong> — प्रमुख धार्मिक स्थल</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-medieval">👑</div>
+            <div><div class="info-card-title">Medieval Period</div><div class="info-card-sub">Sultanate to Mughal Era</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Muhammad Ghori (1193):</strong> काशी पर आक्रमण; मंदिरों का विनाश</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Akbar Period:</strong> मानसिंह ने बिंदु माधव मंदिर बनवाया; टोडरमल ने काशी विश्वनाथ मंदिर का जीर्णोद्धार</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Aurangzeb (1669):</strong> काशी विश्वनाथ मंदिर ध्वस्त करके ज्ञानवापी मस्जिद निर्माण</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Maratha Protection:</strong> 18वीं सदी में मराठों (विशेषतः नागपुर के भोंसले) का संरक्षण</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-revolt">⚔️</div>
+            <div><div class="info-card-title">1857 Revolt Connection</div><div class="info-card-sub">Resistance & Role</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>June 4, 1857:</strong> 37वीं NI के सैनिकों ने विद्रोह किया; कर्नल नील ने क्रूरता से दमन किया</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Mangal Pandey:</strong> बैरकपुर का विद्रोही 34वीं NI — काशी क्षेत्र से संबद्ध प्रभाव</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>आज़मगढ़ घोषणापत्र:</strong> बनारस के पास का क्षेत्र — हिंदू-मुस्लिम एकता की अपील</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-freedom">🧡</div>
+            <div><div class="info-card-title">Freedom Movement</div><div class="info-card-sub">Nationalist Connections</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Annie Besant:</strong> बनारस में Home Rule League की स्थापना (1916)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>BHU Inauguration (1916):</strong> पंडित मदन मोहन मालवीय द्वारा; गांधीजी के प्रथम भाषण में तीखा प्रहार</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Sampurnanand, Lal Bahadur Shastri</strong> — काशी से जुड़े राजनेता</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Swami Vivekananda:</strong> 1888 में काशी प्रवास — "जब मैं काशी आया तो मुझे मुक्ति की अनुभूति हुई"</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-culture">🎵</div>
+            <div><div class="info-card-title">Cultural Identity</div><div class="info-card-sub">Music, Literature & Arts</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Benares Gharana:</strong> शास्त्रीय संगीत — पंडित ओमकारनाथ ठाकुर, पंडित रवि शंकर (सितार)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>तुलसीदास:</strong> रामचरितमानस की रचना काशी में; गोस्वामी तुलसीदास का अधिकांश जीवन यहीं</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>कबीरदास:</strong> काशी में जन्म (लहरतारा); "काशी में हम रहत हैं" — भक्ति परंपरा</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Banarasi Saree:</strong> GI Tag प्राप्त; बनारसी रेशमी साड़ी — विश्व प्रसिद्ध</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Dev Deepawali:</strong> कार्तिक पूर्णिमा — 84 घाटों पर लाखों दीप</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-modern">🏫</div>
+            <div><div class="info-card-title">Modern Importance</div><div class="info-card-sub">Education, Industry & Tourism</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>BHU (1916):</strong> बनारस हिंदू विश्वविद्यालय — एशिया का सबसे बड़ा आवासीय विश्वविद्यालय; मालवीय द्वारा स्थापित</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Kashi Vishwanath Corridor:</strong> 2021 में PM Modi द्वारा उद्घाटन — ₹800 करोड़ परियोजना</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Silk Industry:</strong> बनारसी वस्त्र उद्योग — करोड़ों का व्यापार; GI Tag</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Parliamentary Constituency:</strong> PM Narendra Modi का संसदीय क्षेत्र (2014 से)</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-ancient">⭐</div>
+            <div><div class="info-card-title">Important Personalities</div><div class="info-card-sub">Associated with Varanasi</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Kabirdas</strong> — भक्ति संत, जन्म काशी (15वीं सदी)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Tulsidas</strong> — रामचरितमानस (16वीं सदी)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Pt. Madan Mohan Malviya</strong> — BHU के संस्थापक; महामना (1861-1946)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Lal Bahadur Shastri</strong> — भारत के दूसरे PM; काशी से शिक्षा</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Bismillah Khan</strong> — शहनाई वादक; भारत रत्न; काशी में जन्म और निधन</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Munshi Premchand</strong> — हिंदी साहित्य के उपन्यास सम्राट; लमही (वाराणसी) में जन्म</div></div>
+        </div>
+      </div>
+
+      <div class="uppsc-angle">
+        <div class="uppsc-angle-title">🎯 UPPSC 2026 — Varanasi Key Angles</div>
+        <ul class="uppsc-angle-list">
+          <li>काशी विश्वनाथ मंदिर — निर्माण, ध्वंस और पुनर्निर्माण का क्रम (Frequently Asked)</li>
+          <li>BHU की स्थापना — मालवीय + Annie Besant की भूमिका; 1916 का संदर्भ</li>
+          <li>बनारसी साड़ी — GI Tag Year (2009) और उद्योग का महत्व</li>
+          <li>काशी नरेश — ब्रिटिश काल में रियासत का दर्जा</li>
+          <li>कबीर और तुलसीदास — काशी में रचनाएँ और भक्ति आंदोलन</li>
+          <li>Dev Deepawali — कब मनाई जाती है (कार्तिक पूर्णिमा) और इसका महत्व</li>
+          <li>काशी = किस महाजनपद का हिस्सा था? → काशी महाजनपद (16 महाजनपदों में)</li>
+        </ul>
+      </div>
+
+      <!-- MCQ FOR VARANASI -->
+      <div class="mcq-container">
+        <div class="mcq-title">📝 Varanasi — 8 UPPSC MCQs</div>
+        <div id="mcq-varanasi"></div>
+      </div>
+    </div>
+
+    <!-- CITY: PRAYAGRAJ -->
+    <div class="content-area" id="city-prayagraj">
+      <div class="city-hero">
+        <div class="city-hero-icon">🌊</div>
+        <div>
+          <div class="city-hero-title">Prayagraj — प्रयागराज</div>
+          <div class="city-hero-hindi">त्रिवेणी संगम की पवित्र भूमि</div>
+          <div class="city-hero-desc">गंगा, यमुना और सरस्वती (अदृश्य) के संगम पर स्थित प्रयागराज (पूर्व इलाहाबाद) एक प्रशासनिक, शैक्षणिक और धार्मिक केंद्र है। कुंभ मेले के लिए विश्व प्रसिद्ध। पुराना नाम 2018 में बदलकर प्रयागराज किया गया।</div>
+          <div class="tag-row">
+            <span class="tag tag-ancient">Triveni Sangam</span>
+            <span class="tag tag-culture">Kumbh Capital</span>
+            <span class="tag tag-modern">High Court</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-ancient">🏺</div>
+            <div><div class="info-card-title">Ancient History</div><div class="info-card-sub">Vedic to Gupta Period</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>प्राचीन नाम:</strong> प्रयाग, तीर्थराज, इलाहाबाद (मुगल नाम 1583), प्रयागराज (2018 से पुनर्स्थापित)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Rigveda:</strong> "गंगे च यमुने चैव" — संगम का उल्लेख; प्रयाग का Valmiki Ramayana में उल्लेख</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Ashoka Pillar:</strong> प्रयाग में अशोक स्तंभ — समुद्रगुप्त की प्रशस्ति (Allahabad Prasasti); 335-380 AD</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Harsha Period:</strong> हर्षवर्धन द्वारा यहाँ प्रयाग महामोक्ष परिषद (6वीं सदी); Xuanzang का विवरण</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-religious">🙏</div>
+            <div><div class="info-card-title">Religious & Kumbh Significance</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Triveni Sangam:</strong> गंगा + यमुना + सरस्वती (अंतर्वाहिनी) — तीर्थराज; प्रत्येक 12 वर्षों में कुंभ</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Kumbh 2019:</strong> विश्व का सबसे बड़ा आयोजन — Guinness Record; 24 करोड़ श्रद्धालु; UNESCO Intangible Heritage</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Ardh Kumbh:</strong> 6 वर्षों में; <strong>Maha Kumbh 2025:</strong> 45 दिन — रिकॉर्ड तीर्थयात्री</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Akshayavat (अक्षयवट):</strong> किले के अंदर अमर वृक्ष — धार्मिक महत्व</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Mankameshwar Temple, Alopi Devi Temple</strong> — प्रमुख मंदिर</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-medieval">👑</div>
+            <div><div class="info-card-title">Medieval Period</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Akbar (1583):</strong> "इलाहाबास" नाम दिया (अल्लाह का आवास); किला निर्माण — Allahabad Fort</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Allahabad Fort:</strong> अकबर ने 1583 में गंगा-यमुना तट पर; अशोक स्तंभ किले के अंदर</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Jahangir:</strong> किले में राज्याभिषेक; खुसरो से संघर्ष यहीं</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Awadh Nawabs:</strong> 18वीं सदी में प्रयाग अवध सूबे का हिस्सा</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-freedom">🧡</div>
+            <div><div class="info-card-title">Freedom Movement — Centre Stage</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Nehru Family Home:</strong> आनंद भवन और स्वराज भवन — राष्ट्रीय आंदोलन का केंद्र</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Indian National Congress (1885):</strong> दूसरा अधिवेशन 1888 में इलाहाबाद में</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>1857 Revolt:</strong> मऊलवी लियाकत अली के नेतृत्व में विद्रोह; अंग्रेजों ने कड़ाई से दमन</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Jawaharlal Nehru:</strong> जन्म 14 नवंबर 1889, इलाहाबाद; पिता — मोतीलाल नेहरू</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Allahabad Pact (1916):</strong> Lucknow के बाद; Congress-League Joint Meeting</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-culture">🎨</div>
+            <div><div class="info-card-title">Cultural Identity</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Allahabad University (1887):</strong> स्थापना; "पूर्व का Oxford" — ब्रिटिश काल में प्रतिष्ठित</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Hindi Literature:</strong> महादेवी वर्मा, सुमित्रानंदन पंत, निराला — प्रयागराज से संबद्ध</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Chandra Shekhar Azad:</strong> Alfred Park (Azad Park) में 1931 में शहीद</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Prayagraj High Court:</strong> UP का सर्वोच्च न्यायालय; 1866 में स्थापित</div></div>
+        </div>
+      </div>
+
+      <div class="uppsc-angle">
+        <div class="uppsc-angle-title">🎯 UPPSC 2026 — Prayagraj Key Angles</div>
+        <ul class="uppsc-angle-list">
+          <li>Allahabad Prasasti (समुद्रगुप्त) — कौन से स्तंभ पर? → अशोक स्तंभ (प्रयागराज)</li>
+          <li>कुंभ मेला — UNESCO Intangible Cultural Heritage (2017), 12 वर्ष में कहाँ-कहाँ?</li>
+          <li>Anand Bhavan — किसने दान किया Congress को? → मोतीलाल नेहरू</li>
+          <li>Alfred Park → Azad Park — Chandra Shekhar Azad 1931</li>
+          <li>इलाहाबाद का नाम परिवर्तन — कब? (2018); किस सरकार ने?</li>
+          <li>Allahabad University स्थापना वर्ष — 1887</li>
+        </ul>
+      </div>
+
+      <div class="mcq-container">
+        <div class="mcq-title">📝 Prayagraj — 8 UPPSC MCQs</div>
+        <div id="mcq-prayagraj"></div>
+      </div>
+    </div>
+
+    <!-- CITY: MATHURA -->
+    <div class="content-area" id="city-mathura">
+      <div class="city-hero">
+        <div class="city-hero-icon">🦚</div>
+        <div>
+          <div class="city-hero-title">Mathura — मथुरा</div>
+          <div class="city-hero-hindi">भगवान कृष्ण की जन्मभूमि</div>
+          <div class="city-hero-desc">यमुना तट पर स्थित मथुरा भगवान श्रीकृष्ण की जन्मभूमि और सप्त मोक्षदायिनी पुरियों में से एक है। मथुरा-वृंदावन एक धार्मिक-सांस्कृतिक इकाई के रूप में प्रसिद्ध है। UPPSC में यहाँ से कला, मूर्तिशिल्प और धर्म संबंधी प्रश्न आते हैं।</div>
+          <div class="tag-row">
+            <span class="tag tag-ancient">Krishna Birthplace</span>
+            <span class="tag tag-buddhist">Mathura Art School</span>
+            <span class="tag tag-culture">Braj Sanskriti</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-ancient">🏺</div>
+            <div><div class="info-card-title">Ancient History & Art</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Mathura Art School:</strong> 1st-3rd सदी ईस्वी — पहली बार बुद्ध की मानवीय मूर्तियाँ; लाल बलुआ पत्थर का उपयोग</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Mathura vs Gandhara:</strong> मथुरा शैली — देशी परंपरा; गांधार — ग्रीको-बौद्ध; दोनों 1st सदी में समानांतर</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Kushana Capital:</strong> कुषाण वंश की राजधानी (विशेषतः Kanishka के समय); कनिष्क I का बड़ा प्रभाव</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Surasena Mahajanapada:</strong> मथुरा इसकी राजधानी थी; 16 महाजनपदों में से एक</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-religious">🙏</div>
+            <div><div class="info-card-title">Religious Significance</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Krishna Janmabhoomi:</strong> भाद्रपद कृष्ण अष्टमी (जन्माष्टमी); कंस की जेल — वर्तमान मंदिर स्थल</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>सप्त मोक्षदायिनी पुरी:</strong> अयोध्या, मथुरा, हरिद्वार, काशी, कांची, उज्जैन, द्वारका</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Vrindavan:</strong> मथुरा से 15 km; 5000+ मंदिर; निधिवन, Banke Bihari, ISKCON Temple</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Braj Mandal:</strong> 84 Kos Parikrama — 252 km की परिक्रमा; Govardhan, Barsana, Nandgaon</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-medieval">👑</div>
+            <div><div class="info-card-title">Medieval Period</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Mahmud Ghazni (1017):</strong> मथुरा पर आक्रमण; मंदिरों का विनाश</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Akbar:</strong> Birbal और Todarmal ने मंदिर निर्माण में सहयोग; Govind Dev Temple (1590) — Amber के राजा मानसिंह</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Aurangzeb:</strong> Keshavdeo मंदिर (Krishna Janmabhoomi) ध्वस्त; शाही ईदगाह निर्माण</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-culture">🎨</div>
+            <div><div class="info-card-title">Cultural Identity — Braj Sanskriti</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Braj Bhasha:</strong> मध्यकालीन हिंदी साहित्य की भाषा; सूरदास, मीराबाई की रचनाएँ इसी में</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Surdas:</strong> Braj Bhasha में Krishna Bhakti; "Sursagar" — अष्टछाप के प्रमुख कवि</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Lathmar Holi (Barsana):</strong> नंदगाँव के पुरुष और बरसाना की महिलाएँ; विश्व प्रसिद्ध</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Raas Leela:</strong> वृंदावन की रास लीला — UNESCO मान्यता प्रयासरत</div></div>
+        </div>
+      </div>
+
+      <div class="uppsc-angle">
+        <div class="uppsc-angle-title">🎯 UPPSC 2026 — Mathura Key Angles</div>
+        <ul class="uppsc-angle-list">
+          <li>Mathura Art School — किस काल में? किस पत्थर का उपयोग? (लाल बलुआ पत्थर)</li>
+          <li>Surasena Mahajanapada की राजधानी = मथुरा</li>
+          <li>गांधार vs मथुरा मूर्तिकला शैली का अंतर — UPPSC Mains के लिए महत्वपूर्ण</li>
+          <li>सप्त मोक्षदायिनी में मथुरा की स्थिति</li>
+          <li>Lathmar Holi — किस जिले में? (Mathura)</li>
+          <li>ISKCON की स्थापना — Prabhupada; Vrindavan ISKCON Temple</li>
+        </ul>
+      </div>
+
+      <div class="mcq-container">
+        <div class="mcq-title">📝 Mathura — 8 UPPSC MCQs</div>
+        <div id="mcq-mathura"></div>
+      </div>
+    </div>
+
+    <!-- CITY: LUCKNOW -->
+    <div class="content-area" id="city-lucknow">
+      <div class="city-hero">
+        <div class="city-hero-icon">🌹</div>
+        <div>
+          <div class="city-hero-title">Lucknow — लखनऊ</div>
+          <div class="city-hero-hindi">नवाबों का शहर, तहज़ीब का केंद्र</div>
+          <div class="city-hero-desc">गोमती नदी के तट पर स्थित लखनऊ उत्तर प्रदेश की राजधानी है। अवध के नवाबों की विरासत, कथक नृत्य, चिकनकारी, और अपनी विशेष तहज़ीब (शिष्टाचार) के लिए विश्व प्रसिद्ध। 1857 के विद्रोह में Residency Siege ऐतिहासिक घटना।</div>
+          <div class="tag-row">
+            <span class="tag tag-medieval">Awadh Capital</span>
+            <span class="tag tag-culture">Tehzeeb City</span>
+            <span class="tag tag-modern">UP Capital</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-medieval">👑</div>
+            <div><div class="info-card-title">Awadh Nawabs — Detailed</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Saadat Ali Khan I (1722):</strong> अवध सूबेदारी की स्थापना; मुगल सम्राट से अर्द्ध-स्वतंत्र</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Safdar Jung (1739-54):</strong> मुगल PM भी रहे; नई दिल्ली में Safdarjung Tomb</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Shuja-ud-Daula (1754-75):</strong> Buxar युद्ध (1764); Treaty of Allahabad (1765) — Robert Clive के साथ</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Asaf-ud-Daula (1775-97):</strong> Lucknow को राजधानी बनाया; Imambara, Rumi Darwaza निर्माण; "जो न खाए अन्न बैलन, वो क्या जाने चटखारे" — लखनऊ cuisine</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Wajid Ali Shah (1847-56):</strong> अंतिम नवाब; 1856 में Dalhousie ने Doctrine of Lapse से अवध विलय; कलकत्ता निर्वासित</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-revolt">⚔️</div>
+            <div><div class="info-card-title">1857 Revolt — Lucknow Siege</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Begum Hazrat Mahal:</strong> Wajid Ali Shah की बेगम; पुत्र Birjis Qadr को नवाब घोषित; अंग्रेजों से युद्ध</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Lucknow Residency Siege (Jul-Nov 1857):</strong> Henry Lawrence की मृत्यु; 90 दिन की घेराबंदी; Colin Campbell ने राहत दी</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Maulavi Ahmadullah Shah:</strong> "Lighthouse of Revolt"; फैज़ाबाद में विद्रोह का नेतृत्व</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Henry Lawrence:</strong> Chief Commissioner Awadh; Residency में घायल; "Here died Henry Lawrence who tried to do his duty"</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-culture">🎭</div>
+            <div><div class="info-card-title">Cultural Identity — Tehzeeb</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Kathak Dance:</strong> लखनऊ घराना (Kalka-Bindadin) vs जयपुर घराना; लखनऊ — नाज़ुक भाव अभिव्यक्ति</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Chikankari:</strong> GI Tag प्राप्त कढ़ाई; 300+ साल पुरानी परंपरा; Nur Jahan द्वारा प्रोत्साहित (मान्यता)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Lucknowi Cuisine:</strong> Galouti Kebab, Biryani, Shahi Tukda — Dum Pukht शैली; Tunday Kababi (1905)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Wajid Ali Shah:</strong> कथक का महान संरक्षक; "Inder Sabha" नाटक की रचना; संगीत और नृत्य का पारखी</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Bara Imambara (1784):</strong> Asaf-ud-Daula; अकाल राहत में निर्मित; Bhool Bhulaiya (भूलभुलैया)</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-modern">🏛️</div>
+            <div><div class="info-card-title">Heritage Monuments</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Rumi Darwaza:</strong> Asaf-ud-Daula (1783); तुर्की के कॉन्स्टेंटिनोपल दरवाज़े से प्रेरित; 60 ft ऊँचा</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Chhota Imambara (1838):</strong> Muhammad Ali Shah; Hussainabad; "Palace of Lights"</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>La Martiniere College (1845):</strong> Claude Martin द्वारा; एशिया का एकमात्र स्कूल — 1857 में Battle Honours</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Dilkusha Kothi:</strong> 1857 में Colin Campbell की छावनी; अब खंडहर</div></div>
+        </div>
+      </div>
+
+      <div class="uppsc-angle">
+        <div class="uppsc-angle-title">🎯 UPPSC 2026 — Lucknow Key Angles</div>
+        <ul class="uppsc-angle-list">
+          <li>अवध का विलय — Doctrine of Lapse vs कुशासन का आरोप; Lord Dalhousie; 1856</li>
+          <li>Begum Hazrat Mahal — 1857 में Lucknow का नेतृत्व; बाद में Nepal गईं</li>
+          <li>Bara Imambara — कब, किसने बनवाया, किस उद्देश्य से? (अकाल राहत)</li>
+          <li>Kathak — Lucknow Gharana vs Jaipur Gharana का अंतर</li>
+          <li>Chikankari — GI Tag Year (2008); किस मुगल रानी से जोड़ा जाता है?</li>
+          <li>Wajid Ali Shah — कलकत्ता निर्वासन के बाद कहाँ रहे? (Matiaburj, Kolkata)</li>
+        </ul>
+      </div>
+
+      <div class="mcq-container">
+        <div class="mcq-title">📝 Lucknow — 8 UPPSC MCQs</div>
+        <div id="mcq-lucknow"></div>
+      </div>
+    </div>
+
+    <!-- CITY: AGRA (abbreviated) -->
+    <div class="content-area" id="city-agra">
+      <div class="city-hero">
+        <div class="city-hero-icon">🕌</div>
+        <div>
+          <div class="city-hero-title">Agra — आगरा</div>
+          <div class="city-hero-hindi">मुगल साम्राज्य की राजधानी — ताज की नगरी</div>
+          <div class="city-hero-desc">यमुना तट पर स्थित आगरा मुगल साम्राज्य की प्रमुख राजधानी रही। विश्व के सात अजूबों में शामिल ताजमहल यहीं है। UNESCO World Heritage Sites की सबसे अधिक संख्या (3) किसी एक शहर में — Taj Mahal, Agra Fort, Fatehpur Sikri।</div>
+          <div class="tag-row">
+            <span class="tag tag-medieval">Mughal Capital</span>
+            <span class="tag tag-culture">Taj Mahal</span>
+            <span class="tag tag-modern">3 UNESCO Sites</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-medieval">👑</div>
+            <div><div class="info-card-title">Mughal Period — Detailed</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Sikander Lodi (1504):</strong> आगरा की स्थापना; दिल्ली से Agra में राजधानी स्थानांतरण</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Battle of Panipat I (1526):</strong> Babur ने Ibrahim Lodi को हराया; आगरा पर अधिकार; Kohinoor यहीं मिला</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Akbar (1556-1605):</strong> Agra Fort (Lal Qila) का निर्माण (1565-73); लाल बलुआ पत्थर; Fatehpur Sikri (1571) — नई राजधानी</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Taj Mahal (1632-53):</strong> Shah Jahan ने Mumtaz Mahal की याद में; उस्ताद अहमद लाहौरी — मुख्य वास्तुकार; 22,000 मजदूर</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Aurangzeb:</strong> राजधानी Aurangabad स्थानांतरित; आगरा का महत्व घटा; Shah Jahan की आगरा किले में कैद</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-ancient">🏛️</div>
+            <div><div class="info-card-title">UNESCO Heritage Monuments</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Taj Mahal (1983 UNESCO):</strong> White Marble; Makrana Marble (Rajasthan); 7 Wonders of World; "पत्थरों में जमा आँसू" — Rabindranath Tagore</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Agra Fort (1983 UNESCO):</strong> Akbar द्वारा; Red Sandstone + White Marble; Diwan-i-Aam, Diwan-i-Khas, Moti Masjid</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Fatehpur Sikri (1986 UNESCO):</strong> Akbar की abandoned capital (1571-85); पानी की कमी से छोड़ी; Buland Darwaza (54 m) — Gujarat विजय स्मारक</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Itmad-ud-Daula (Baby Taj):</strong> Nur Jahan द्वारा; पहला Mughal monument in white marble</div></div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-revolt">⚔️</div>
+            <div><div class="info-card-title">1857 & Modern Connections</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>1857 Revolt:</strong> अंग्रेज अधिकारी Agra Fort में शरण लिए; कर्नल Greathed ने दमन किया</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Petha Industry:</strong> आगरे का पेठा — GI Tag; sweet made from ash gourd</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Dayal Bagh (Radhasoami Satsang):</strong> ब्रह्मांड के निर्माण का लघु रूप; 1904 से निर्माण जारी</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Leather Industry:</strong> आगरा — फुटवियर उद्योग; UP का प्रमुख निर्यात केंद्र</div></div>
+        </div>
+      </div>
+
+      <div class="uppsc-angle">
+        <div class="uppsc-angle-title">🎯 UPPSC 2026 — Agra Key Angles</div>
+        <ul class="uppsc-angle-list">
+          <li>ताजमहल का वास्तुकार — उस्ताद अहमद लाहौरी (सर्वमान्य); निर्माण वर्ष 1632-53</li>
+          <li>Fatehpur Sikri — क्यों छोड़ी गई? (पानी की कमी); Buland Darwaza किस विजय का प्रतीक?</li>
+          <li>Baby Taj (Itmad-ud-Daula) — किसने बनवाया? (Nur Jahan) — First Marble Mughal Monument</li>
+          <li>3 UNESCO Sites — Taj, Agra Fort (1983), Fatehpur Sikri (1986)</li>
+          <li>Agra की स्थापना — Sikander Lodi (1504); आगरा किसकी राजधानी थी?</li>
+        </ul>
+      </div>
+      <div class="mcq-container">
+        <div class="mcq-title">📝 Agra — 8 UPPSC MCQs</div>
+        <div id="mcq-agra"></div>
+      </div>
+    </div>
+
+    <!-- CITY: AYODHYA -->
+    <div class="content-area" id="city-ayodhya">
+      <div class="city-hero">
+        <div class="city-hero-icon">🏛️</div>
+        <div>
+          <div class="city-hero-title">Ayodhya — अयोध्या</div>
+          <div class="city-hero-hindi">राम की जन्मभूमि — सप्त मोक्षदायिनी पुरी</div>
+          <div class="city-hero-desc">सरयू नदी के तट पर स्थित अयोध्या भगवान राम की जन्मभूमि और अष्टादश महापुराणों में वर्णित पवित्र नगरी है। 2024 में राम मंदिर प्राण प्रतिष्ठा के बाद अब UP का प्रमुख धार्मिक-पर्यटन केंद्र। UPPSC 2026 में इससे 3-5 प्रश्न अपेक्षित।</div>
+          <div class="tag-row">
+            <span class="tag tag-ancient">Ram Janmabhoomi</span>
+            <span class="tag tag-culture">Sapta Puri</span>
+            <span class="tag tag-modern">Ram Mandir 2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-ancient">🏺</div>
+            <div><div class="info-card-title">Ancient & Religious Significance</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Valmiki Ramayana:</strong> अयोध्या — इक्ष्वाकु वंश की राजधानी; राजा दशरथ का राज्य; "सूर्यकुल" की उत्पत्ति</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Skanda Purana:</strong> "अयोध्या" = जिसे जीता न जा सके; 7 मोक्षदायिनी पुरियों में प्रथम</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Jain Connection:</strong> जैन परंपरा के अनुसार 5 तीर्थंकरों (आदिनाथ, अजितनाथ, अभिनंदन, सुमतिनाथ, अनंतनाथ) की जन्मभूमि</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Buddhist Connection:</strong> बौद्ध ग्रंथों में "साकेत" नाम से उल्लेख; बुद्ध का प्रवास</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Kanak Bhawan, Hanuman Garhi, Dashrath Mahal</strong> — प्रमुख मंदिर</div></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-modern">🏛️</div>
+            <div><div class="info-card-title">Ram Mandir & Modern Significance</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Babri Masjid (1528):</strong> बाबर के सेनापति मीर बाकी ने निर्माण कराया (विवादित इतिहास)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Supreme Court Verdict (9 Nov 2019):</strong> 5-judge bench; विवादित 2.77 acres — Ram Lalla को; सुन्नी वक्फ बोर्ड को 5 acres अन्यत्र</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Ram Mandir Inauguration (22 Jan 2024):</strong> PM Modi द्वारा प्राण प्रतिष्ठा; नागर शैली में निर्माण; 70 acres campus</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Ayodhya Airport — Maharishi Valmiki International Airport:</strong> 2024 में उद्घाटन</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Deepotsav:</strong> दिवाली पर अयोध्या में सरयू तट पर दीप — 2023 में 22 लाख दीप — Guinness Record</div></div>
+        </div>
+      </div>
+      <div class="uppsc-angle">
+        <div class="uppsc-angle-title">🎯 UPPSC 2026 — Ayodhya Key Angles</div>
+        <ul class="uppsc-angle-list">
+          <li>सप्त मोक्षदायिनी पुरियाँ — सभी 7 नाम याद करें; अयोध्या प्रथम</li>
+          <li>SC Verdict 2019 — 5-0; किसको क्या मिला?</li>
+          <li>Ram Mandir Architecture — नागर शैली; Chandrakant Sompura (वास्तुकार)</li>
+          <li>Babri Masjid — 1528; मीर बाकी; 6 December 1992 — ध्वंस</li>
+          <li>अयोध्या का पुराना नाम — साकेत (बौद्ध काल में)</li>
+          <li>Deepotsav — कब शुरू हुआ? (2017, Yogi govt); 2023 में World Record</li>
+        </ul>
+      </div>
+      <div class="mcq-container">
+        <div class="mcq-title">📝 Ayodhya — 8 UPPSC MCQs</div>
+        <div id="mcq-ayodhya"></div>
+      </div>
+    </div>
+
+    <!-- CITY: JHANSI -->
+    <div class="content-area" id="city-jhansi">
+      <div class="city-hero">
+        <div class="city-hero-icon">⚔️</div>
+        <div>
+          <div class="city-hero-title">Jhansi — झाँसी</div>
+          <div class="city-hero-hindi">वीरांगना की नगरी — 1857 का गढ़</div>
+          <div class="city-hero-desc">बेतवा नदी के किनारे स्थित झाँसी का नाम इतिहास में रानी लक्ष्मीबाई के कारण अमर है। 1857 के स्वातंत्र्य समर में झाँसी ने अंग्रेजों को कड़ी टक्कर दी। "खूब लड़ी मर्दानी, वो तो झाँसी वाली रानी थी" — सुभद्रा कुमारी चौहान।</div>
+          <div class="tag-row">
+            <span class="tag tag-medieval">Maratha Heritage</span>
+            <span class="tag tag-culture">1857 Symbol</span>
+            <span class="tag tag-modern">Bundelkhand</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-revolt">⚔️</div>
+            <div><div class="info-card-title">Rani Laxmibai & 1857</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Manikarnika (Real Name):</strong> जन्म 19 Nov 1828, Varanasi; पिता — मोरोपंत तांबे; माँ — भागीरथीबाई</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Marriage (1842):</strong> Gangadhar Rao Newalkar (झाँसी नरेश) से विवाह; पुत्र की मृत्यु के बाद Damodar Rao दत्तक</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Doctrine of Lapse (1853):</strong> Dalhousie ने झाँसी को British Territory घोषित; रानी ने मना किया — "मैं अपनी झाँसी नहीं दूँगी"</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>1857 Revolt (March 1858):</strong> Hugh Rose के नेतृत्व में British attack; रानी ने किले की रक्षा; झाँसी का पतन</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Gwalior (17-18 June 1858):</strong> Tatya Tope के साथ; Kotah ki Serai में युद्ध; 18 June 1858 — वीरगति; पुरुष वेश में लड़ीं</div></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon icon-ancient">🏛️</div>
+            <div><div class="info-card-title">Historical Heritage</div></div>
+          </div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Jhansi Fort (Orchha Fort period):</strong> 11वीं सदी में Chandela; 17वीं सदी में Bundela राजा Bir Singh Deo ने पुनर्निर्माण</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Orchha:</strong> झाँसी के पास — Bundela Rajput capital; Ram Raja Temple (पहले palace, फिर temple)</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Bundelkhand Heritage:</strong> Chandela architecture — Khajuraho (पास में MP में); झाँसी — Bundelkhand region</div></div>
+          <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Rani Mahal Museum:</strong> अब ASI संरक्षित; रानी के कक्षों में संग्रहालय</div></div>
+        </div>
+      </div>
+      <div class="uppsc-angle">
+        <div class="uppsc-angle-title">🎯 UPPSC 2026 — Jhansi Key Angles</div>
+        <ul class="uppsc-angle-list">
+          <li>रानी लक्ष्मीबाई की मृत्यु — 18 June 1858; कहाँ? Gwalior (Kotah ki Serai)</li>
+          <li>Doctrine of Lapse — झाँसी पर लागू — 1853; कौन से Governor General? (Dalhousie)</li>
+          <li>Hugh Rose — झाँसी पर आक्रमण करने वाला ब्रिटिश अधिकारी</li>
+          <li>रानी का असली नाम — मणिकर्णिका; पिता — मोरोपंत तांबे</li>
+          <li>Tatya Tope — रानी के साथी; बाद में पकड़े गए और फाँसी (1859)</li>
+          <li>सुभद्रा कुमारी चौहान — "झाँसी की रानी" कविता; इनका जन्म कहाँ? (Allahabad)</li>
+        </ul>
+      </div>
+      <div class="mcq-container">
+        <div class="mcq-title">📝 Jhansi — 8 UPPSC MCQs</div>
+        <div id="mcq-jhansi"></div>
+      </div>
+    </div>
+
+  </div><!-- end city-explorer -->
+
+  <!-- ==================== HISTORICAL TIMELINE ==================== -->
+  <div class="section" id="sec-timeline">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--indigo);margin-bottom:1.5rem;">UP का ऐतिहासिक कालक्रम</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--gold);"></div>
+        <div class="tl-period" style="color:var(--gold)">~3000 BCE — 600 BCE</div>
+        <div class="tl-heading">वैदिक एवं महाजनपद काल</div>
+        <div class="tl-body">ऋग्वेद में गंगा-यमुना दोआब का उल्लेख। 16 महाजनपदों में से 8+ UP में — काशी (वाराणसी), कोशल (अयोध्या), वत्स (प्रयाग), शूरसेन (मथुरा), पांचाल (बरेली-बदायूँ), मल्ल (कुशीनगर-देवरिया), चेदि (बुंदेलखंड)। मगध से पहले कोशल और काशी प्रभावशाली।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--green-mid);"></div>
+        <div class="tl-period" style="color:var(--green-dark)">563 BCE — 483 BCE (approx)</div>
+        <div class="tl-heading">बुद्ध और बौद्ध धर्म का उदय</div>
+        <div class="tl-body">गौतम बुद्ध का जन्म — लुंबिनी (नेपाल); ज्ञान — बोधगया; प्रथम उपदेश (धम्मचक्कप्पवत्तन) — सारनाथ (वाराणसी); परिनिर्वाण — कुशीनगर। UP बौद्ध Circuit का केंद्र। सारनाथ, कुशीनगर, श्रावस्ती, संकिसा — चार पवित्र बौद्ध स्थल।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--saffron);"></div>
+        <div class="tl-period" style="color:var(--saffron)">321 BCE — 185 BCE</div>
+        <div class="tl-heading">मौर्य साम्राज्य</div>
+        <div class="tl-body">चंद्रगुप्त मौर्य → बिंदुसार → अशोक। अशोक के अनेक शिलालेख और स्तंभ UP में — सारनाथ अशोक स्तंभ (राष्ट्रीय प्रतीक का स्रोत), इलाहाबाद स्तंभ। कलिंग युद्ध (261 BCE) के बाद अहिंसा और धम्म नीति; बौद्ध धर्म प्रचार।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--gold);"></div>
+        <div class="tl-period" style="color:var(--gold)">320 CE — 550 CE</div>
+        <div class="tl-heading">गुप्त साम्राज्य — स्वर्णयुग</div>
+        <div class="tl-body">समुद्रगुप्त की प्रयागराज प्रशस्ति (Allahabad Prasasti) — हरिषेण द्वारा रचित। Prayag को "देवराज की नगरी" कहा। कालिदास का काल — विक्रमादित्य (चंद्रगुप्त II) — नाट्यशास्त्र, अभिज्ञानशाकुंतलम। फाह्यान का UP दौरा (399-414 CE)।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--maroon);"></div>
+        <div class="tl-period" style="color:var(--maroon)">606 CE — 647 CE</div>
+        <div class="tl-heading">हर्षवर्धन — कन्नौज साम्राज्य</div>
+        <div class="tl-body">ह्वेनसांग/Xuanzang का विस्तृत विवरण। प्रयाग में महामोक्ष परिषद (643 CE) — सभी धर्मों को दान। कन्नौज (UP) — साम्राज्य की राजधानी। 647 में हर्ष की मृत्यु के बाद साम्राज्य बिखरा।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--indigo);"></div>
+        <div class="tl-period" style="color:var(--indigo)">1206 CE — 1526 CE</div>
+        <div class="tl-heading">दिल्ली सल्तनत</div>
+        <div class="tl-body">Qutub-ud-Din Aibak → Iltutmish → Balban → Khilji → Tughlaq → Lodi। UP — दिल्ली सल्तनत का मुख्य क्षेत्र। अलाउद्दीन खिलजी की राजस्व नीति। Sikandar Lodi ने Agra बसाया (1504)। Bahlul Lodi (1451-1489)।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--saffron);"></div>
+        <div class="tl-period" style="color:var(--saffron)">1526 CE — 1707 CE</div>
+        <div class="tl-heading">मुगल साम्राज्य — UP का स्वर्णकाल</div>
+        <div class="tl-body">Panipat I (1526) → Babur ने Agra अधिकृत। Humayun → Sher Shah (1540-45, UP में प्रशासन सुधार) → Akbar (Fatehpur Sikri, Agra Fort) → Jahangir → Shah Jahan (Taj Mahal 1632-53) → Aurangzeb। UP मुगलों का हृदय-प्रदेश।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--green-mid);"></div>
+        <div class="tl-period" style="color:var(--green-dark)">1722 CE — 1856 CE</div>
+        <div class="tl-heading">अवध के नवाब</div>
+        <div class="tl-body">Saadat Ali Khan I → Safdar Jung → Shuja-ud-Daula (Buxar 1764) → Asaf-ud-Daula (Lucknow राजधानी, Bara Imambara 1784) → Wajid Ali Shah (1847-56, Kathak patron)। 1856 में Dalhousie ने Doctrine of Lapse से अवध विलय — 1857 विद्रोह की प्रमुख वजह।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--maroon);"></div>
+        <div class="tl-period" style="color:var(--maroon)">1857 CE</div>
+        <div class="tl-heading">स्वातंत्र्य समर — 1857</div>
+        <div class="tl-body">10 May 1857 — Meerut विद्रोह; 11 May — Delhi पर अधिकार। UP में मेरठ, लखनऊ, कानपुर, झाँसी, इलाहाबाद, बरेली, बनारस में विद्रोह। Mangal Pandey (March 29, Barrackpore); Nana Saheb (Kanpur); Rani Laxmibai (Jhansi); Begum Hazrat Mahal (Lucknow)। विफलता के कारण: एकता का अभाव, नेतृत्व का अभाव, अंग्रेज अधिकारियों की रणनीति।</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--saffron);"></div>
+        <div class="tl-period" style="color:var(--saffron)">1947 CE — Present</div>
+        <div class="tl-heading">आधुनिक उत्तर प्रदेश</div>
+        <div class="tl-body">1950 में "United Provinces" → "Uttar Pradesh"। 9 नवंबर 2000 — Uttarakhand UP से अलग हुआ। वर्तमान क्षेत्र 240,928 km²; जनसंख्या ~24 करोड़ (2011 Census)। 75 जिले, 18 मंडल, 4 High Court Benches। आर्थिक दृष्टि से देश की 2nd largest state economy।</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== BUDDHIST SITES ==================== -->
+  <div class="section" id="sec-buddhist">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--green-dark);margin-bottom:0.5rem;">UP के बौद्ध तीर्थ स्थल</h2>
+    <p style="font-size:14px;color:var(--ink-soft);margin-bottom:1.5rem;">बुद्ध का जीवन UP से गहरा जुड़ा — UPPSC में इनसे 3-4 प्रश्न अवश्य आते हैं</p>
+
+    <div class="site-grid">
+      <div class="site-card">
+        <div class="site-name">🦌 Sarnath — सारनाथ</div>
+        <div class="site-district">ज़िला: वाराणसी (मृगदाव / ऋषिपत्तन)</div>
+        <div class="site-event">प्रथम उपदेश — धम्मचक्कप्पवत्तन</div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>घटना:</strong> ज्ञान प्राप्ति के बाद पाँच शिष्यों को प्रथम उपदेश (528 BCE)</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Dhamek Stupa (500 CE):</strong> Gupta Period; Ashoka ने पहले stupa बनवाया था</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Ashoka Pillar:</strong> चतुर्मुख सिंह — भारत का <strong>राष्ट्रीय प्रतीक</strong>; Sarnath Museum में</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Mulagandhakuti Vihara:</strong> Mahabodhi Society (1931); श्रीलंका संबद्ध</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>UPPSC Angle:</strong> धम्मचक्क = 24 तीलियाँ = तिरंगे में अशोक चक्र</div></div>
+      </div>
+
+      <div class="site-card">
+        <div class="site-name">🕊️ Kushinagar — कुशीनगर</div>
+        <div class="site-district">ज़िला: कुशीनगर (पूर्वी UP)</div>
+        <div class="site-event">महापरिनिर्वाण — Parinirvana</div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>घटना:</strong> 483 BCE में बुद्ध का परिनिर्वाण (मृत्यु); मल्ल गणराज्य की राजधानी</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Mahaparinirvana Temple:</strong> 5 meter लंबी Reclining Buddha; Gupta Period</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Ramabhar Stupa:</strong> अंतिम संस्कार स्थल; Ashoka rebuilt</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>International Buddhist Circuit:</strong> UNWTO द्वारा मान्यता</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>UPPSC Angle:</strong> कुशीनगर = कुशावती (महाजनपद काल) = मल्ल गणराज्य</div></div>
+      </div>
+
+      <div class="site-card">
+        <div class="site-name">🏯 Shravasti — श्रावस्ती</div>
+        <div class="site-district">ज़िला: श्रावस्ती (उत्तरी UP)</div>
+        <div class="site-event">बुद्ध का सर्वाधिक प्रवास (24 वर्षाकाल)</div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>घटना:</strong> कोशल महाजनपद की राजधानी; Anathapindika (अनाथपिंडक) का Jetavana Vihara दान</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Jetavana:</strong> "राजकुमार जेत का बगीचा" — अनाथपिंडक ने सोने के सिक्कों से खरीदा</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Angulimala:</strong> डाकू से शिष्य बनने की प्रसिद्ध कथा यहीं</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Sahet-Mahet:</strong> श्रावस्ती का प्राचीन नाम; ASI उत्खनन</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>UPPSC Angle:</strong> श्रावस्ती = सेठ जेतवन + बुद्ध के 24 Varsha</div></div>
+      </div>
+
+      <div class="site-card">
+        <div class="site-name">🐘 Sankisa — संकिसा</div>
+        <div class="site-district">ज़िला: फर्रुखाबाद (मध्य UP)</div>
+        <div class="site-event">स्वर्ग से पुनरागमन — Buddha's Descent</div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>घटना:</strong> बुद्ध माता माया को उपदेश देने Tushita Heaven गए; यहाँ Sankisa में वापस आए</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Bisambhar Temple:</strong> प्राचीन हाथी मूर्ति (Ashoka's Elephant Pillar)</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Fa Hian's Account:</strong> 5वीं सदी में फाह्यान ने संकिसा की यात्रा का विवरण दिया</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>UPPSC Angle:</strong> संकिसा — बौद्ध 4 sites में 4th; फर्रुखाबाद जिले में</div></div>
+      </div>
+
+      <div class="site-card">
+        <div class="site-name">🏛️ Kapilvastu — कपिलवस्तु</div>
+        <div class="site-district">ज़िला: सिद्धार्थनगर (UP-Nepal border)</div>
+        <div class="site-event">बुद्ध का बचपन — Childhood</div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>घटना:</strong> Siddharth Gautama का बचपन यहाँ; Shakya Gana-rajya (शाक्य गणराज्य) की राजधानी</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Piprahwa:</strong> 1898 में W.C. Peppé ने बुद्ध की अस्थियाँ खोजीं — inscribed casket</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>UPPSC Angle:</strong> Kapilvastu = UP side (Piprahwa) vs Nepal side (Tilaurakot) — विवाद</div></div>
+      </div>
+    </div>
+
+    <div class="uppsc-angle" style="margin-top:1.5rem;">
+      <div class="uppsc-angle-title">🎯 Buddhist Sites — UPPSC Critical Facts</div>
+      <ul class="uppsc-angle-list">
+        <li>बुद्ध के 4 पवित्र स्थल: जन्म-लुंबिनी, ज्ञान-बोधगया, उपदेश-सारनाथ, निर्वाण-कुशीनगर</li>
+        <li>UP में बौद्ध स्थल: सारनाथ, कुशीनगर, श्रावस्ती, संकिसा, कपिलवस्तु</li>
+        <li>राष्ट्रीय प्रतीक — सारनाथ सिंह स्तंभ से; "सत्यमेव जयते" — मुंडकोपनिषद</li>
+        <li>Dhamek Stupa (सारनाथ) — Gupta Period; Ashoka's original demolished</li>
+        <li>International Buddhist Circuit — 2016 में GOI द्वारा launch</li>
+        <li>कुशीनगर अंतर्राष्ट्रीय Airport — 2021 में उद्घाटन (PM Modi)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== 1857 REVOLT ==================== -->
+  <div class="section" id="sec-revolt1857">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--maroon);margin-bottom:1.5rem;">⚔️ 1857 का स्वातंत्र्य समर — UP की भूमिका</h2>
+
+    <div class="progress-section">
+      <div class="progress-title">1857 विद्रोह — प्रमुख केंद्र और तीव्रता</div>
+      <div class="progress-item"><div class="progress-label"><span>मेरठ (आरम्भ)</span><span>100%</span></div><div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--maroon);"></div></div></div>
+      <div class="progress-item"><div class="progress-label"><span>कानपुर</span><span>95%</span></div><div class="progress-bar"><div class="progress-fill" style="width:95%;background:var(--saffron);"></div></div></div>
+      <div class="progress-item"><div class="progress-label"><span>लखनऊ</span><span>90%</span></div><div class="progress-bar"><div class="progress-fill" style="width:90%;background:var(--gold);"></div></div></div>
+      <div class="progress-item"><div class="progress-label"><span>झाँसी</span><span>88%</span></div><div class="progress-bar"><div class="progress-fill" style="width:88%;background:var(--green-mid);"></div></div></div>
+      <div class="progress-item"><div class="progress-label"><span>इलाहाबाद</span><span>70%</span></div><div class="progress-bar"><div class="progress-fill" style="width:70%;background:var(--indigo);"></div></div></div>
+      <div class="progress-item"><div class="progress-label"><span>बरेली</span><span>65%</span></div><div class="progress-bar"><div class="progress-fill" style="width:65%;background:var(--green-dark);"></div></div></div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-revolt">💥</div>
+          <div><div class="info-card-title">मेरठ — 10 मई 1857 (आरंभ)</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Background:</strong> Enfield Rifle में चर्बी वाले कारतूस (गाय/सुअर); धार्मिक भावनाओं को ठेस</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>29 March 1857:</strong> Mangal Pandey ने Barrackpore (Bengal) में विद्रोह; फाँसी 8 April</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>9 May 1857:</strong> मेरठ में 85 सैनिकों को 10 साल की कैद; सार्वजनिक अपमान</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>10 May (रविवार):</strong> 3rd Light Cavalry + 11th, 20th NI विद्रोह; जेल तोड़कर कैदियों को मुक्त; दिल्ली की ओर मार्च</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>11 May:</strong> दिल्ली पहुँचे; बहादुर शाह ज़फर को "हिंदुस्तान का बादशाह" घोषित</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-revolt">🩸</div>
+          <div><div class="info-card-title">कानपुर — नाना साहब की लड़ाई</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Nana Saheb (Dhondu Pant):</strong> Peshwa Baji Rao II के दत्तक पुत्र; pension बंद — Doctrine of Lapse</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>June 1857:</strong> Nana Saheb ने कानपुर में अंग्रेजों को घेरा; General Wheeler की आत्मसमर्पण</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Bibighar Massacre:</strong> 15 July 1857 — 200+ ब्रिटिश महिला-बच्चों की हत्या (विवादित)</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>General Havelock:</strong> जुलाई में कानपुर奪回; Nana Saheb भाग गए (नेपाल?)</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Tatya Tope:</strong> नाना साहब का सेनापति; गुरिल्ला युद्ध; 1859 में पकड़कर फाँसी</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-revolt">🏰</div>
+          <div><div class="info-card-title">लखनऊ — Residency Siege</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Begum Hazrat Mahal:</strong> पुत्र Birjis Qadr को नवाब बनाया; विद्रोह नेतृत्व</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Henry Lawrence:</strong> Chief Commissioner; Residency में शरण; 4 July को घायल, मृत्यु</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Havelock + Outram (Sep 1857):</strong> प्रथम राहत; पूरी राहत नहीं</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Colin Campbell (Nov 1857):</strong> अंतिम राहत; Lucknow Residency पर फिर अधिकार</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>March 1858:</strong> लखनऊ पूरी तरह British अधिकार में; Begum नेपाल भागीं (1879 में मृत्यु Kathmandu)</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-revolt">⚔️</div>
+          <div><div class="info-card-title">झाँसी — रानी लक्ष्मीबाई</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>March 1858:</strong> Hugh Rose का झाँसी पर हमला; रानी ने 3 सप्ताह रक्षा की</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>April 4-5, 1858:</strong> झाँसी का पतन; रानी पीठ पर पुत्र बाँधकर घोड़े से कूदकर भागीं</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Gwalior:</strong> रानी + Tatya Tope + Nana Saheb — गुरिल्ला युद्ध</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>18 June 1858:</strong> Kotah ki Serai (Gwalior) में युद्ध; रानी की वीरगति (24-25 वर्ष की आयु)</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Hugh Rose का कथन:</strong> "She was the best and bravest military leader of the rebels"</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-revolt">🏴</div>
+          <div><div class="info-card-title">बरेली — खान बहादुर खान</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Khan Bahadur Khan:</strong> रोहिलखंड के नवाब; बरेली में विद्रोह; बहादुर शाह ज़फर की तरफ से नायब-नज़ीम</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Bareilly Revolt (May 1857):</strong> 18th NI का विद्रोह; शहर पर अधिकार</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>1858:</strong> अंग्रेजों ने दमन किया; Khan Bahadur Khan पकड़े गए — फाँसी</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-revolt">🔥</div>
+          <div><div class="info-card-title">इलाहाबाद — मऊलवी लियाकत अली</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Maulavi Liyakat Ali:</strong> इलाहाबाद में विद्रोह का नेतृत्व; कुछ सप्ताह शहर पर अधिकार</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Colonel Neill:</strong> क्रूर दमन; गंगा किनारे सार्वजनिक फाँसी</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>37th NI विद्रोह:</strong> बनारस में; नील ने गोलियों से दमन</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Significance:</strong> इलाहाबाद किले में British troops — मुख्य संचार केंद्र बनाए रखा</div></div>
+      </div>
+    </div>
+
+    <div class="kumbh-card" style="background:linear-gradient(135deg,#FDF0F0,#FEF2F2);border-color:rgba(123,28,28,0.2);">
+      <div class="kumbh-title" style="color:var(--maroon);">1857 विद्रोह — विफलता के कारण (UPPSC Mains Critical)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:1rem;">
+        <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:0.75rem;font-size:12px;color:var(--ink-mid);">
+          <strong style="color:var(--maroon);display:block;margin-bottom:4px;">राष्ट्रीय भावना का अभाव</strong>
+          विद्रोह राष्ट्रव्यापी नहीं था; South India, Punjab, Bengal अप्रभावित
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:0.75rem;font-size:12px;color:var(--ink-mid);">
+          <strong style="color:var(--maroon);display:block;margin-bottom:4px;">नेतृत्व की कमी</strong>
+          एकीकृत नेतृत्व नहीं; बहादुर शाह ज़फर कमज़ोर; स्थानीय नेताओं में तालमेल नहीं
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:0.75rem;font-size:12px;color:var(--ink-mid);">
+          <strong style="color:var(--maroon);display:block;margin-bottom:4px;">सैन्य कमज़ोरी</strong>
+          अंग्रेजों के पास बेहतर हथियार, संचार (telegraph), रेलवे
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:0.75rem;font-size:12px;color:var(--ink-mid);">
+          <strong style="color:var(--maroon);display:block;margin-bottom:4px;">विदेशी सहयोग का अभाव</strong>
+          मराठा/Sikh rulers ने British का साथ दिया या तटस्थ रहे
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FREEDOM FIGHTERS ==================== -->
+  <div class="section" id="sec-fighters">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--green-dark);margin-bottom:1.5rem;">🧡 UP के प्रमुख स्वतंत्रता सेनानी</h2>
+
+    <div class="fighter-grid">
+      <div class="fighter-card">
+        <div class="fighter-avatar" style="background:var(--saffron-light);">⚔️</div>
+        <div class="fighter-name">Mangal Pandey</div>
+        <div class="fighter-years">मंगल पांडेय • 1827–1857 • बलिया, UP</div>
+        <ul class="fighter-facts">
+          <li>34वीं Bengal Native Infantry (BNI) में सिपाही</li>
+          <li>29 March 1857 — Barrackpore में हमला Lt. Baugh पर</li>
+          <li>8 April 1857 — फाँसी (Barrackpore)</li>
+          <li>प्रेरणा — Enfield Rifle में गाय-सुअर की चर्बी</li>
+          <li>1857 का प्रथम विद्रोही सिपाही; "पांडेय" → "Pandy" अंग्रेजी अपशब्द</li>
+          <li>2005 में film "Mangal Pandey: The Rising"</li>
+        </ul>
+      </div>
+
+      <div class="fighter-card">
+        <div class="fighter-avatar" style="background:#FDF0F0;">🗡️</div>
+        <div class="fighter-name">Rani Laxmibai</div>
+        <div class="fighter-years">रानी लक्ष्मीबाई • 1828–1858 • वाराणसी जन्म, झाँसी कर्मभूमि</div>
+        <ul class="fighter-facts">
+          <li>असली नाम — मणिकर्णिका; माँ — भागीरथीबाई; पिता — मोरोपंत तांबे</li>
+          <li>1842 — झाँसी नरेश गंगाधर राव से विवाह</li>
+          <li>"मैं अपनी झाँसी नहीं दूँगी" — Dalhousie को प्रत्युत्तर</li>
+          <li>March 1858 — Hugh Rose से युद्ध; झाँसी का पतन</li>
+          <li>18 June 1858 — Gwalior में वीरगति (Kotah ki Serai)</li>
+          <li>Hugh Rose: "She was the best and bravest military leader"</li>
+        </ul>
+      </div>
+
+      <div class="fighter-card">
+        <div class="fighter-avatar" style="background:var(--green-light);">💥</div>
+        <div class="fighter-name">Chandra Shekhar Azad</div>
+        <div class="fighter-years">चंद्र शेखर आज़ाद • 1906–1931 • भावरा (MP), UP में शहीद</div>
+        <ul class="fighter-facts">
+          <li>असली नाम — चंद्रशेखर तिवारी; जन्म — भावरा, MP</li>
+          <li>HSRA (Hindustan Socialist Republican Association) के प्रमुख नेता</li>
+          <li>प्रण — "जीते जी गिरफ्तार नहीं होऊँगा"</li>
+          <li>Kakori Train Robbery (1925) में भागीदारी</li>
+          <li>Bhagat Singh के गुरु/साथी; Sanders हत्याकांड (Lahore)</li>
+          <li>27 Feb 1931 — Allahabad के Alfred Park में स्वयं को गोली मारी</li>
+        </ul>
+      </div>
+
+      <div class="fighter-card">
+        <div class="fighter-avatar" style="background:var(--gold-light);">🚂</div>
+        <div class="fighter-name">Ram Prasad Bismil</div>
+        <div class="fighter-years">राम प्रसाद बिस्मिल • 1897–1927 • शाहजहाँपुर, UP</div>
+        <ul class="fighter-facts">
+          <li>जन्म — शाहजहाँपुर, UP; क्रांतिकारी कवि</li>
+          <li>HSRA (Hindustan Republican Association) — संस्थापक</li>
+          <li>Kakori Train Robbery (9 Aug 1925) — मुख्य साजिशकर्ता</li>
+          <li>19 Dec 1927 — गोरखपुर जेल में फाँसी</li>
+          <li>प्रसिद्ध गीत: "सरफरोशी की तमन्ना अब हमारे दिल में है"</li>
+          <li>UPPSC 2021 — जन्म शताब्दी: Shahjahanpur में कार्यक्रम</li>
+        </ul>
+      </div>
+
+      <div class="fighter-card">
+        <div class="fighter-avatar" style="background:var(--indigo-light);">📚</div>
+        <div class="fighter-name">Pandit Madan Mohan Malviya</div>
+        <div class="fighter-years">पंडित मदन मोहन मालवीय • 1861–1946 • प्रयागराज</div>
+        <ul class="fighter-facts">
+          <li>"महामना" उपाधि; Congress President — 4 बार</li>
+          <li>BHU स्थापना (1916) — Varanasi; एशिया का सबसे बड़ा residential university</li>
+          <li>Hindu Mahasabha के संस्थापकों में</li>
+          <li>Bhagat Singh की फाँसी रोकने वायसराय से अपील</li>
+          <li>2014 — भारत रत्न (मरणोपरांत)</li>
+          <li>Satyagraha + Constitutional methods दोनों में विश्वास</li>
+        </ul>
+      </div>
+
+      <div class="fighter-card">
+        <div class="fighter-avatar" style="background:var(--saffron-light);">🌺</div>
+        <div class="fighter-name">Begum Hazrat Mahal</div>
+        <div class="fighter-years">बेगम हज़रत महल • 1820–1879 • फैज़ाबाद, UP</div>
+        <ul class="fighter-facts">
+          <li>Wajid Ali Shah की बेगम; पुत्र — Birjis Qadr</li>
+          <li>1857 में Lucknow विद्रोह का नेतृत्व</li>
+          <li>Birjis Qadr को "नवाब-ए-अवध" घोषित किया</li>
+          <li>Queen Victoria के proclamation का खंडन किया</li>
+          <li>1858 में Nepal भागीं; 1879 में Kathmandu में मृत्यु</li>
+          <li>1962 में India Post द्वारा डाक टिकट; Lucknow में पार्क उनके नाम पर</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CULTURE ==================== -->
+  <div class="section" id="sec-culture">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--saffron);margin-bottom:1.5rem;">🎨 UP की सांस्कृतिक विरासत</h2>
+
+    <div class="kumbh-card">
+      <div class="kumbh-title">🌊 कुंभ मेला — विश्व का सबसे बड़ा मानव समागम</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:1rem;">
+        <div style="font-size:13px;color:var(--ink-mid);">
+          <strong style="display:block;color:var(--gold);margin-bottom:4px;">4 स्थान</strong>
+          प्रयागराज (गंगा-यमुना-सरस्वती), हरिद्वार (गंगा), उज्जैन (क्षिप्रा), नासिक (गोदावरी)
+        </div>
+        <div style="font-size:13px;color:var(--ink-mid);">
+          <strong style="display:block;color:var(--gold);margin-bottom:4px;">समय-चक्र</strong>
+          महाकुंभ — 12 साल; अर्धकुंभ — 6 साल; कुंभ — हर 3 साल बारी-बारी
+        </div>
+        <div style="font-size:13px;color:var(--ink-mid);">
+          <strong style="display:block;color:var(--gold);margin-bottom:4px;">UNESCO मान्यता</strong>
+          2017 में "Intangible Cultural Heritage of Humanity" — Kumbh Mela
+        </div>
+        <div style="font-size:13px;color:var(--ink-mid);">
+          <strong style="display:block;color:var(--gold);margin-bottom:4px;">महाकुंभ 2025</strong>
+          प्रयागराज; 45 दिन; 40+ करोड़ श्रद्धालु; 13 जनवरी – 26 फरवरी 2025
+        </div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-culture">🎭</div>
+          <div><div class="info-card-title">रामलीला — UNESCO Heritage</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Ramlila of Ramnagar (Varanasi):</strong> 31 दिन; महाराज काशी नरेश की छत्रछाया में; 18वीं सदी से; UNESCO 2008 में Intangible Heritage</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Chitrakoot Ramlila:</strong> UP-MP सीमा पर; प्राकृतिक पृष्ठभूमि में</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Ayodhya Ramlila:</strong> राम जन्मभूमि पर विशेष; Deepotsav के साथ</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>तुलसीदास:</strong> रामचरितमानस (अवधी में) — रामलीला का आधार</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-culture">💃</div>
+          <div><div class="info-card-title">Kathak — शास्त्रीय नृत्य</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>उत्पत्ति:</strong> "Katha" = कहानी; मंदिरों में कथा वाचन से; कृष्ण-लीला प्रस्तुति</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Lucknow Gharana:</strong> Nawabi संरक्षण; भाव, नाज़ुकपन; Wajid Ali Shah के समय विकास; Kalka-Bindadin Maharaj</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Jaipur Gharana:</strong> ताल, लय, तेज़ गति; Bhanuji द्वारा</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Birju Maharaj:</strong> Lucknow Gharana; पद्मविभूषण; सबसे प्रसिद्ध Kathak guru</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>8 शास्त्रीय नृत्यों में कथक:</strong> Sangeet Natak Akademi मान्यता</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-culture">🏺</div>
+          <div><div class="info-card-title">Mathura-Vrindavan की Holi</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Lathmar Holi (Barsana):</strong> फाल्गुन शुक्ल नवमी; बरसाना (राधा की जन्मस्थली) में नंदगाँव के पुरुषों पर लाठी</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Phoolwalon ki Sair (Delhi proximity):</strong> Mughal era; Hindu-Muslim unity</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Vrindavan की Widow Holi:</strong> विधवाओं की होली — अब सरकारी प्रोत्साहन</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Duration:</strong> मथुरा-वृंदावन में 40 दिन तक होली उत्सव</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-culture">🎵</div>
+          <div><div class="info-card-title">UP की लोक संस्कृति</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Birha:</strong> पूर्वांचल (Bhojpuri belt) का लोकगीत — विरह की पीड़ा; Sharda Sinha</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Nautanki:</strong> UP का लोकनाट्य; Hathras और Kanpur शैली; Gulabobai</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Chaiti, Thumri, Dadra:</strong> UP की संगीत शैलियाँ; Varanasi-Lucknow केंद्र</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Awadhi, Braj, Bhojpuri, Bundeli:</strong> UP की प्रमुख बोलियाँ; हिंदी की उपशाखाएँ</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-ancient">🧵</div>
+          <div><div class="info-card-title">UP के GI Tagged Products</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Banarasi Saree (2009):</strong> रेशम जरी कढ़ाई; UNESCO Intangible Heritage प्रयासरत</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Lucknow Chikankari (2008):</strong> सफेद धागे की कढ़ाई; 300 साल पुरानी</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Agra Petha:</strong> कद्दू (ash gourd) से बनी मिठाई</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Muradabad Brass Work (Pital):</strong> पीतल के बर्तन — विश्व निर्यात</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Varanasi Glass Beads, Mirzapur Carpet:</strong> अन्य GI Products</div></div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-card-icon icon-modern">📖</div>
+          <div><div class="info-card-title">UP के साहित्यकार</div></div>
+        </div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Munshi Premchand:</strong> लमही (Varanasi); "Godaan", "Gaban"; हिंदी-उर्दू दोनों में</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Mahadevi Verma:</strong> Allahabad; नारी-वेदना; "छायावाद"; Padma Vibhushan</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Suryakant Tripathi 'Nirala':</strong> छायावाद; "Saroj Smriti"; Allahabad</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Sumitranandan Pant:</strong> अल्मोड़ा → Allahabad; "Pallav", "Chidambara"; Sahitya Akademi</div></div>
+        <div class="fact-item"><div class="fact-bullet"></div><div class="fact-text"><strong>Harivansh Rai Bachchan:</strong> Allahabad; "Madhushala" (1935); Amitabh के पिता</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MCQ GRAND BANK ==================== -->
+  <div class="section" id="sec-mcq-grand">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--indigo);margin-bottom:0.5rem;">📝 Grand MCQ Bank — 20 UPPSC UP Special Questions</h2>
+    <p style="font-size:14px;color:var(--ink-soft);margin-bottom:1.5rem;">UPPSC 2026 के लिए सर्वाधिक expected questions</p>
+    <div id="mcq-grand-bank"></div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+const cities = {
+  varanasi:'varanasi', prayagraj:'prayagraj', mathura:'mathura',
+  ayodhya:'ayodhya', lucknow:'lucknow', agra:'agra', jhansi:'jhansi'
+};
+
+function switchTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function selectCity(city, el) {
+  document.querySelectorAll('.city-card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.content-area').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('city-' + city).classList.add('active');
+}
+
+// MCQ Data
+const mcqData = {
+  varanasi: [
+    { q: "काशी विश्वनाथ मंदिर का पुनर्निर्माण किसने करवाया था?", opts: ["अहिल्याबाई होल्कर","रानी लक्ष्मीबाई","मदन मोहन मालवीय","मराठा पेशवा"], ans: 0, exp: "1777 में अहिल्याबाई होल्कर ने मूल मंदिर के स्थान पर पुनर्निर्माण कराया। मूल मंदिर 1669 में औरंगजेब ने तोड़वाया था।" },
+    { q: "बनारस हिंदू विश्वविद्यालय (BHU) की स्थापना किस वर्ष हुई?", opts: ["1910","1916","1920","1905"], ans: 1, exp: "BHU की स्थापना 1916 में पंडित मदन मोहन मालवीय ने की। यह एशिया का सबसे बड़ा आवासीय विश्वविद्यालय है।" },
+    { q: "देव दीपावली वाराणसी में किस अवसर पर मनाई जाती है?", opts: ["दिवाली","कार्तिक पूर्णिमा","गंगा दशहरा","मकर संक्रांति"], ans: 1, exp: "देव दीपावली कार्तिक पूर्णिमा को मनाई जाती है। 84 घाटों पर लाखों दीप प्रज्वलित किए जाते हैं।" },
+    { q: "काशी कितने महाजनपदों में से एक थी?", opts: ["8","12","16","24"], ans: 2, exp: "16 महाजनपदों में काशी एक महत्वपूर्ण महाजनपद था जिसकी राजधानी वाराणसी थी।" },
+    { q: "'सरफरोशी की तमन्ना' गीत के लेखक कौन हैं?", opts: ["चंद्रशेखर आज़ाद","राम प्रसाद बिस्मिल","भगत सिंह","अशफाकउल्लाह खान"], ans: 1, exp: "यह प्रसिद्ध क्रांतिकारी गीत राम प्रसाद बिस्मिल ने लिखा था। कुछ विवाद है, लेकिन UPPSC के नज़रिए से बिस्मिल ही मानक उत्तर है।" },
+    { q: "शहनाई वादक बिस्मिल्लाह खान का जन्म कहाँ हुआ था?", opts: ["पटना","डुमराँव (बिहार)","वाराणसी","लखनऊ"], ans: 2, exp: "उस्ताद बिस्मिल्लाह खान का जन्म वाराणसी में हुआ और उनका अधिकांश जीवन वाराणसी में बीता। उन्हें 2001 में भारत रत्न मिला।" },
+    { q: "बनारसी साड़ी को GI Tag किस वर्ष मिला?", opts: ["2005","2007","2009","2011"], ans: 2, exp: "बनारसी साड़ी को 2009 में Geographical Indication (GI) Tag प्राप्त हुआ।" },
+    { q: "काशी की ज्ञानवापी मस्जिद का निर्माण किसने कराया?", opts: ["अकबर","जहाँगीर","शाहजहाँ","औरंगजेब"], ans: 3, exp: "1669 में औरंगजेब ने काशी विश्वनाथ मंदिर तोड़कर ज्ञानवापी मस्जिद बनवाई।" }
+  ],
+  prayagraj: [
+    { q: "इलाहाबाद (प्रयागराज) का नाम परिवर्तन किस वर्ष हुआ?", opts: ["2015","2017","2018","2019"], ans: 2, exp: "2018 में UP सरकार ने इलाहाबाद का नाम बदलकर प्रयागराज किया।" },
+    { q: "इलाहाबाद प्रशस्ति (Allahabad Prasasti) किस शासक से संबंधित है?", opts: ["अशोक","समुद्रगुप्त","चंद्रगुप्त II","हर्षवर्धन"], ans: 1, exp: "समुद्रगुप्त की प्रशस्ति उनके दरबारी कवि हरिषेण ने अशोक स्तंभ पर लिखी। यह स्तंभ प्रयागराज में है।" },
+    { q: "कुंभ मेले को UNESCO की किस सूची में शामिल किया गया?", opts: ["World Heritage List","Intangible Cultural Heritage","Memory of the World","Creative Cities Network"], ans: 1, exp: "2017 में कुंभ मेले को UNESCO की Intangible Cultural Heritage of Humanity सूची में शामिल किया गया।" },
+    { q: "चंद्रशेखर आज़ाद किस पार्क में शहीद हुए?", opts: ["Gandhi Park","Hazratganj Park","Alfred Park (Azad Park)","Minto Park"], ans: 2, exp: "27 फरवरी 1931 को इलाहाबाद के Alfred Park में चंद्रशेखर आज़ाद ने खुद को गोली मार ली। बाद में इसका नाम Azad Park पड़ा।" },
+    { q: "आनंद भवन किसने Indian National Congress को दान दिया?", opts: ["जवाहरलाल नेहरू","इंदिरा गांधी","मोतीलाल नेहरू","सरोजिनी नायडू"], ans: 2, exp: "मोतीलाल नेहरू ने अपना आवास 'आनंद भवन' Congress को दान किया और स्वयं 'स्वराज भवन' में रहने लगे।" },
+    { q: "इलाहाबाद विश्वविद्यालय की स्थापना कब हुई?", opts: ["1875","1881","1887","1893"], ans: 2, exp: "इलाहाबाद विश्वविद्यालय की स्थापना 1887 में हुई। इसे 'पूर्व का Oxford' कहा जाता था।" },
+    { q: "1857 में इलाहाबाद विद्रोह का नेतृत्व किसने किया?", opts: ["खान बहादुर खान","मऊलवी लियाकत अली","बेगम हज़रत महल","नाना साहब"], ans: 1, exp: "मऊलवी लियाकत अली ने इलाहाबाद में 1857 के विद्रोह का नेतृत्व किया।" },
+    { q: "अकबर ने इलाहाबाद किले का निर्माण किस नदी तट पर कराया?", opts: ["केवल गंगा","केवल यमुना","गंगा-यमुना संगम पर","सरयू"], ans: 2, exp: "1583 में अकबर ने गंगा-यमुना के संगम पर इलाहाबाद किले का निर्माण कराया।" }
+  ],
+  mathura: [
+    { q: "मथुरा किस महाजनपद की राजधानी थी?", opts: ["कोशल","वत्स","शूरसेन","अवंति"], ans: 2, exp: "मथुरा शूरसेन महाजनपद की राजधानी थी। 16 महाजनपदों में शूरसेन का उल्लेख है।" },
+    { q: "मथुरा मूर्तिकला शैली में किस पत्थर का उपयोग होता था?", opts: ["श्वेत संगमरमर","काला पत्थर","लाल बलुआ पत्थर","नीला ग्रेनाइट"], ans: 2, exp: "मथुरा कला शैली में सिकरी के लाल बलुआ पत्थर का उपयोग होता था। गांधार शैली में ग्रे सिस्ट पत्थर का।" },
+    { q: "लठमार होली किस स्थान पर खेली जाती है?", opts: ["वृंदावन","मथुरा","बरसाना","गोकुल"], ans: 2, exp: "लठमार होली बरसाना (राधाजी की जन्मस्थली) में खेली जाती है। नंदगाँव के पुरुषों पर बरसाना की महिलाएँ लाठी मारती हैं।" },
+    { q: "सूरदास किस भाषा में कृष्ण भक्ति की रचनाएँ करते थे?", opts: ["अवधी","ब्रज भाषा","भोजपुरी","संस्कृत"], ans: 1, exp: "सूरदास ब्रज भाषा में 'सूरसागर' आदि ग्रंथों की रचना की। वे अष्टछाप के प्रमुख कवि थे।" },
+    { q: "कुषाण काल में मथुरा महत्वपूर्ण क्यों था?", opts: ["व्यापारिक केंद्र","कुषाण राजधानी और कला केंद्र","केवल धार्मिक केंद्र","सैनिक छावनी"], ans: 1, exp: "कनिष्क के समय मथुरा कुषाण साम्राज्य की महत्वपूर्ण (और कभी-कभी सह-राजधानी) नगरी और मथुरा कला का केंद्र था।" },
+    { q: "ISKCON की Vrindavan शाखा की स्थापना किसने की?", opts: ["Bhaktivedanta Swami Prabhupada","Bhaktivinoda Thakur","Nityananda Prabhu","Radhanath Swami"], ans: 0, exp: "A.C. Bhaktivedanta Swami Prabhupada ने ISKCON (International Society for Krishna Consciousness) की स्थापना 1966 में की।" },
+    { q: "मथुरा में गोविंद देव मंदिर किसने बनवाया था?", opts: ["अकबर","बीरबल","राजा मानसिंह (Amber)","टोडरमल"], ans: 2, exp: "1590 में अंबर (जयपुर) के राजा मानसिंह ने वृंदावन में गोविंद देव मंदिर बनवाया। यह मुगल काल का सबसे बड़ा मंदिर था।" },
+    { q: "सप्त मोक्षदायिनी पुरियों में मथुरा का स्थान क्या है?", opts: ["प्रथम","द्वितीय","तृतीय","चतुर्थ"], ans: 1, exp: "अयोध्या मथुरा हरिद्वार काशी — सप्त पुरियों में मथुरा द्वितीय स्थान पर है: 'अयोध्या मथुरा माया काशी कांची अवंतिका, पुरी द्वारावती चैव सप्तैते मोक्षदायिकाः।'" }
+  ],
+  lucknow: [
+    { q: "बड़ा इमामबाड़ा का निर्माण किसने और किस उद्देश्य से कराया?", opts: ["Wajid Ali Shah, धार्मिक उद्देश्य","Asaf-ud-Daula, अकाल राहत","Safdar Jung, युद्ध स्मारक","Shuja-ud-Daula, मकबरा"], ans: 1, exp: "1784 में Asaf-ud-Daula ने बड़ा इमामबाड़ा अकाल राहत कार्य के तहत बनवाया। लखनऊ में भीषण अकाल पड़ा था।" },
+    { q: "अवध के अंतिम नवाब Wajid Ali Shah को किसने निर्वासित किया?", opts: ["Lord Canning","Lord Dalhousie","Lord Bentinck","Lord Cornwallis"], ans: 1, exp: "1856 में Lord Dalhousie ने Doctrine of Lapse के तहत अवध का विलय किया। Wajid Ali Shah को Calcutta (Metiaburj) में निर्वासित किया।" },
+    { q: "1857 के विद्रोह में Lucknow Residency की घेराबंदी कितने दिन चली?", opts: ["47 दिन","90 दिन","70 दिन","120 दिन"], ans: 1, exp: "Lucknow Residency की घेराबंदी लगभग 90 दिन (जुलाई से नवंबर 1857) तक चली।" },
+    { q: "रूमी दरवाज़ा कहाँ के दरवाज़े से प्रेरित है?", opts: ["Cairo","Istanbul (Constantinople)","Baghdad","Damascus"], ans: 1, exp: "रूमी दरवाज़ा (1783) तुर्की के Constantinople के Sublime Porte से प्रेरित है। 60 फीट ऊँचा यह Asaf-ud-Daula ने बनवाया।" },
+    { q: "लखनऊ चिकनकारी को GI Tag किस वर्ष मिला?", opts: ["2005","2008","2010","2012"], ans: 1, exp: "लखनऊ चिकनकारी को 2008 में Geographical Indication Tag प्राप्त हुआ।" },
+    { q: "कथक के लखनऊ घराने के सर्वाधिक प्रसिद्ध गुरु कौन थे?", opts: ["Lachhu Maharaj","Birju Maharaj","Shambhu Maharaj","Kalka Prasad"], ans: 1, exp: "पंडित बिरजू महाराज (Brij Mohan Mishra) लखनऊ घराने के सर्वाधिक प्रसिद्ध कथक गुरु थे। पद्मविभूषण से सम्मानित।" },
+    { q: "Doctrine of Lapse किस सिद्धांत पर आधारित था?", opts: ["गोद-प्रथा का निषेध","राजस्व अधिकार","सैन्य अधिग्रहण","धार्मिक हस्तक्षेप"], ans: 0, exp: "Doctrine of Lapse के अनुसार यदि कोई राजा बिना स्वाभाविक उत्तराधिकारी के मरे तो राज्य British Empire में मिल जाएगा; दत्तक पुत्र मान्य नहीं।" },
+    { q: "Buxar का युद्ध (1764) किस अवध नवाब के समय हुआ?", opts: ["Saadat Ali Khan","Safdar Jung","Shuja-ud-Daula","Asaf-ud-Daula"], ans: 2, exp: "1764 में Buxar का युद्ध नवाब Shuja-ud-Daula + Mir Qasim + Mughal Emperor Shah Alam II vs British East India Company के बीच हुआ।" }
+  ],
+  agra: [
+    { q: "ताजमहल का मुख्य वास्तुकार कौन था?", opts: ["इस्माइल खान","उस्ताद अहमद लाहौरी","मिर्ज़ा इसा","गेरोनिमो वेरोनियो"], ans: 1, exp: "ताजमहल (1632-53) के मुख्य वास्तुकार उस्ताद अहमद लाहौरी थे। Shah Jahan ने यह Mumtaz Mahal की याद में बनवाया।" },
+    { q: "फतेहपुर सीकरी को UNESCO Heritage Status कब मिला?", opts: ["1983","1986","1990","1993"], ans: 1, exp: "फतेहपुर सीकरी को 1986 में UNESCO World Heritage Site का दर्जा मिला। आगरा किला और ताजमहल को 1983 में।" },
+    { q: "बुलंद दरवाज़ा किस विजय का प्रतीक है?", opts: ["बंगाल विजय","दक्कन विजय","गुजरात विजय","राजपूत विजय"], ans: 2, exp: "अकबर ने 1572 में गुजरात विजय के उपलक्ष्य में 1601 में Buland Darwaza (54m) बनवाया।" },
+    { q: "आगरा की स्थापना किसने की थी?", opts: ["बाबर","अकबर","सिकंदर लोदी","इब्राहिम लोदी"], ans: 2, exp: "1504 में Sikander Lodi ने आगरा को बसाया और दिल्ली से यहाँ राजधानी स्थानांतरित की।" },
+    { q: "ताजमहल में प्रयुक्त संगमरमर कहाँ से आया?", opts: ["जोधपुर","मकराना (राजस्थान)","ग्वालियर","जयपुर"], ans: 1, exp: "ताजमहल में मकराना (राजस्थान) के श्वेत संगमरमर का प्रयोग हुआ। यह विश्वप्रसिद्ध संगमरमर है।" },
+    { q: "Baby Taj (Itmad-ud-Daula का मकबरा) किसने बनवाया?", opts: ["Mumtaz Mahal","Nur Jahan","Shah Jahan","Akbar"], ans: 1, exp: "Nur Jahan ने 1622-1628 के बीच अपने पिता Mirza Ghiyas Beg (Itmad-ud-Daula) का मकबरा बनवाया। यह पहला Mughal monument है जो पूरी तरह white marble से बना।" },
+    { q: "शाहजहाँ ने आगरा किले में किसके द्वारा कैद किया गया था?", opts: ["Murad Baksh","Dara Shikoh","Aurangzeb","Shah Shuja"], ans: 2, exp: "1658 में Aurangzeb ने अपने पिता Shah Jahan को Agra Fort में कैद कर दिया। 1666 में Shah Jahan की वहीं मृत्यु हुई।" },
+    { q: "आगरे का पेठा किस सब्जी से बनता है?", opts: ["कद्दू (Ash Gourd)","गाजर","बेल","चुकंदर"], ans: 0, exp: "आगरे का पेठा Ash Gourd (पेठा/सफेद कद्दू/Winter Melon) से बनता है। इसे GI Tag प्राप्त है।" }
+  ],
+  ayodhya: [
+    { q: "अयोध्या को किस बौद्ध ग्रंथ में 'साकेत' कहा गया है?", opts: ["धम्मपद","जातक कथाएँ","महावंश","मिलिंदपन्हो"], ans: 1, exp: "बौद्ध ग्रंथों, विशेषतः जातक कथाओं में अयोध्या को 'साकेत' नाम से जाना जाता था।" },
+    { q: "सुप्रीम कोर्ट ने अयोध्या विवाद में कितने न्यायाधीशों की पीठ बनाई?", opts: ["3","5","7","9"], ans: 1, exp: "9 नवंबर 2019 को CJI Ranjan Gogoi की अध्यक्षता में 5 न्यायाधीशों की संविधान पीठ ने 5-0 से निर्णय दिया।" },
+    { q: "राम मंदिर में कौन-सी वास्तुकला शैली का प्रयोग किया गया है?", opts: ["द्रविड़ शैली","नागर शैली","वेसर शैली","गोपुरम शैली"], ans: 1, exp: "राम मंदिर नागर (उत्तर भारतीय) शैली में बना है। वास्तुकार — Chandrakant Sompura।" },
+    { q: "Deepotsav अयोध्या में किसके कार्यकाल में शुरू हुआ?", opts: ["Akhilesh Yadav","Yogi Adityanath","Mayawati","N.D. Tiwari"], ans: 1, exp: "2017 में योगी आदित्यनाथ सरकार ने Deepotsav की परंपरा शुरू की। 2023 में 22 लाख दीप जलाकर Guinness World Record।" },
+    { q: "सप्त मोक्षदायिनी पुरियों में अयोध्या का कौन-सा स्थान है?", opts: ["प्रथम","द्वितीय","तृतीय","चतुर्थ"], ans: 0, exp: "प्राचीन श्लोक 'अयोध्या मथुरा माया...' के अनुसार अयोध्या प्रथम मोक्षदायिनी पुरी है।" },
+    { q: "Babri Masjid का निर्माण किसने कराया था?", opts: ["बाबर स्वयं","मीर बाकी","फजल खान","शेर खान लोदी"], ans: 1, exp: "1528 में बाबर के सेनापति मीर बाकी ने बाबरी मस्जिद का निर्माण कराया (विवादित)।" },
+    { q: "अयोध्या हवाई अड्डे का नाम क्या रखा गया है?", opts: ["Ram Airport","Maharishi Valmiki International Airport","Ayodhya Dham Airport","Saryu Airport"], ans: 1, exp: "2024 में उद्घाटित अयोध्या अंतर्राष्ट्रीय हवाई अड्डे का नाम 'महर्षि वाल्मीकि अंतर्राष्ट्रीय हवाई अड्डा' रखा गया।" },
+    { q: "जैन परंपरा में अयोध्या का क्या महत्व है?", opts: ["1 तीर्थंकर की जन्मभूमि","3 तीर्थंकर की जन्मभूमि","5 तीर्थंकर की जन्मभूमि","8 तीर्थंकर की जन्मभूमि"], ans: 2, exp: "जैन परंपरा के अनुसार अयोध्या 5 तीर्थंकरों — आदिनाथ (ऋषभदेव), अजितनाथ, अभिनंदन, सुमतिनाथ और अनंतनाथ — की जन्मभूमि है।" }
+  ],
+  jhansi: [
+    { q: "रानी लक्ष्मीबाई का असली नाम क्या था?", opts: ["सुभद्रा","मणिकर्णिका","लक्ष्मी","चंद्रकला"], ans: 1, exp: "रानी लक्ष्मीबाई का असली नाम मणिकर्णिका था। झाँसी के नरेश गंगाधर राव से विवाह के बाद वे रानी लक्ष्मीबाई कहलाईं।" },
+    { q: "Doctrine of Lapse के तहत झाँसी को British Territory कब घोषित किया गया?", opts: ["1851","1852","1853","1856"], ans: 2, exp: "1853 में Lord Dalhousie ने Doctrine of Lapse के तहत झाँसी को ब्रिटिश साम्राज्य में मिला लिया।" },
+    { q: "झाँसी पर 1858 में हमला करने वाले ब्रिटिश अधिकारी कौन थे?", opts: ["General Havelock","Colonel Neill","Hugh Rose","Colin Campbell"], ans: 2, exp: "March 1858 में Hugh Rose (Sir Hugh Henry Rose) ने झाँसी पर आक्रमण किया।" },
+    { q: "रानी लक्ष्मीबाई की वीरगति कहाँ हुई?", opts: ["झाँसी","ग्वालियर","इंदौर","कानपुर"], ans: 1, exp: "18 June 1858 को ग्वालियर के पास Kotah ki Serai में रानी लक्ष्मीबाई वीरगति को प्राप्त हुईं। वे पुरुष वेश में लड़ रही थीं।" },
+    { q: "Hugh Rose ने रानी लक्ष्मीबाई के बारे में क्या कहा था?", opts: ["'She was a mere woman'","'She was the best and bravest military leader'","'She was a rebel'","'She was a coward'"], ans: 1, exp: "Hugh Rose ने लिखा — 'She was the best and bravest military leader of the rebels.' यह ब्रिटिश सेनापति की स्वीकारोक्ति थी।" },
+    { q: "'झाँसी की रानी' कविता किसने लिखी?", opts: ["महादेवी वर्मा","मीराबाई","सुभद्रा कुमारी चौहान","मैथिलीशरण गुप्त"], ans: 2, exp: "सुभद्रा कुमारी चौहान ने प्रसिद्ध कविता 'झाँसी की रानी' लिखी — 'खूब लड़ी मर्दानी, वो तो झाँसी वाली रानी थी।'" },
+    { q: "Tatya Tope को फाँसी किस वर्ष दी गई?", opts: ["1857","1858","1859","1860"], ans: 2, exp: "Tatya Tope (रामचंद्र पांडुरंग) को पकड़कर 18 April 1859 को फाँसी दी गई। वे झाँसी और ग्वालियर में रानी के साथ थे।" },
+    { q: "ओरछा का राम राजा मंदिर अनोखा क्यों है?", opts: ["भगवान राम राजा के रूप में पूजे जाते हैं","सोने से बना है","रात को खुलता है","मुगलों ने बनाया"], ans: 0, exp: "ओरछा (झाँसी के पास) का Ram Raja Temple अनोखा इसलिए है क्योंकि यहाँ भगवान राम की पूजा राजा के रूप में होती है और उन्हें सैनिक सलामी दी जाती है।" }
+  ]
+};
+
+const grandMCQs = [
+  { q: "उत्तर प्रदेश राज्य की स्थापना कब हुई?", opts: ["1947","1950","1952","1956"], ans: 1, exp: "1950 में 'United Provinces' का नाम बदलकर 'Uttar Pradesh' किया गया।" },
+  { q: "उत्तराखंड किस वर्ष UP से अलग हुआ?", opts: ["1999","2000","2001","2002"], ans: 1, exp: "9 नवंबर 2000 को उत्तराखंड (तब उत्तरांचल) UP से अलग होकर नया राज्य बना।" },
+  { q: "भारत के राष्ट्रीय प्रतीक (चतुर्मुख सिंह) की उत्पत्ति कहाँ से हुई?", opts: ["अयोध्या","सारनाथ","मथुरा","प्रयागराज"], ans: 1, exp: "भारत का राष्ट्रीय प्रतीक सारनाथ (वाराणसी) में स्थित अशोक स्तंभ के चतुर्मुख सिंह शीर्ष से लिया गया है।" },
+  { q: "Kakori Train Robbery किस तिथि को हुई?", opts: ["9 August 1925","9 August 1920","9 August 1930","9 August 1915"], ans: 0, exp: "9 अगस्त 1925 को Ram Prasad Bismil और Ashfaqullah Khan के नेतृत्व में Kakori (Lucknow के पास) में ट्रेन डकैती हुई।" },
+  { q: "1857 विद्रोह की शुरुआत किस स्थान से हुई?", opts: ["दिल्ली","कानपुर","मेरठ","लखनऊ"], ans: 2, exp: "10 May 1857 को मेरठ से 1857 के विद्रोह की शुरुआत हुई। यहाँ सिपाहियों ने जेल तोड़ी और दिल्ली की ओर मार्च किया।" },
+  { q: "Ramnagar की रामलीला को UNESCO ने कब Intangible Heritage घोषित किया?", opts: ["2003","2005","2008","2010"], ans: 2, exp: "2008 में UNESCO ने Ramnagar (Varanasi) की रामलीला को Intangible Cultural Heritage of Humanity घोषित किया।" },
+  { q: "उत्तर प्रदेश में वर्तमान में कितने जिले हैं?", opts: ["70","72","75","80"], ans: 2, exp: "UP में वर्तमान में 75 जिले हैं। (2020 में Amethi और Hapur को अलग जिलों में upgrade किया गया था; 75 मानक संख्या)।" },
+  { q: "Birju Maharaj किस नृत्य शैली से संबंधित हैं?", opts: ["Bharatnatyam","Odissi","Kathak","Manipuri"], ans: 2, exp: "पंडित बिरजू महाराज कथक (Lucknow Gharana) के सर्वश्रेष्ठ गुरु थे। उन्हें पद्मविभूषण (1986) और Sangeet Natak Akademi पुरस्कार मिला।" },
+  { q: "UP के किस शहर में 3 UNESCO World Heritage Sites हैं?", opts: ["वाराणसी","लखनऊ","आगरा","मथुरा"], ans: 2, exp: "आगरा में 3 UNESCO World Heritage Sites हैं — Taj Mahal (1983), Agra Fort (1983), और Fatehpur Sikri (1986)।" },
+  { q: "Chandra Shekhar Azad का संबंध किस संगठन से था?", opts: ["INC","HSRA","CPI","Muslim League"], ans: 1, exp: "Chandra Shekhar Azad Hindustan Socialist Republican Association (HSRA) के सर्वोच्च नेता थे। पहले HRA, फिर 1928 में HSRA।" },
+  { q: "मुंशी प्रेमचंद का जन्म किस जिले में हुआ?", opts: ["इलाहाबाद","गोरखपुर","वाराणसी","लखनऊ"], ans: 2, exp: "मुंशी प्रेमचंद (धनपत राय श्रीवास्तव) का जन्म 31 July 1880 को लमही (वाराणसी जिला) में हुआ।" },
+  { q: "Lucknow Residency में 1857 में कौन-से अंग्रेज अधिकारी की मृत्यु हुई?", opts: ["Colin Campbell","Havelock","Henry Lawrence","Hugh Rose"], ans: 2, exp: "Henry Lawrence (Chief Commissioner of Awadh) की 4 July 1857 को Lucknow Residency में मृत्यु हुई।" },
+  { q: "Kumbh Mela को UNESCO Intangible Heritage Status किस वर्ष मिला?", opts: ["2013","2015","2017","2019"], ans: 2, exp: "2017 में UNESCO ने Kumbh Mela को Intangible Cultural Heritage of Humanity की सूची में शामिल किया।" },
+  { q: "किस Mughal बादशाह ने Allahabad Fort बनवाया?", opts: ["Babur","Humayun","Akbar","Shah Jahan"], ans: 2, exp: "1583 में अकबर ने Allahabad (प्रयागराज) में गंगा-यमुना संगम पर Allahabad Fort बनवाया।" },
+  { q: "UP में Sarkar का पर्यायवाची शब्द Medieval History में क्या था?", opts: ["Pargana","Chakla","Subah","Khitta"], ans: 1, exp: "Medieval India में Chakla एक territorial unit था जो Subah और Pargana के बीच था लेकिन Sarkar के समान नहीं। (UPPSC 2018 में पूछा गया)।" },
+  { q: "कबीरदास का जन्म काशी के किस स्थान पर माना जाता है?", opts: ["अस्सी","लहरतारा","मणिकर्णिका","दशाश्वमेध"], ans: 1, exp: "कबीरदास का जन्म काशी (वाराणसी) के लहरतारा स्थान पर माना जाता है।" },
+  { q: "Sarnath में Dhamek Stupa का निर्माण किस काल में हुआ?", opts: ["मौर्य काल","कुषाण काल","गुप्त काल","पाल काल"], ans: 2, exp: "Dhamek Stupa का वर्तमान स्वरूप Gupta Period (लगभग 500 CE) में निर्मित है। मूल Stupa अशोक ने बनवाया था।" },
+  { q: "हर्षवर्धन की राजधानी कहाँ थी?", opts: ["प्रयागराज","वाराणसी","कन्नौज","मथुरा"], ans: 2, exp: "हर्षवर्धन (606-647 CE) की राजधानी कन्नौज (UP) थी। पहले थानेश्वर थी, फिर कन्नौज।" },
+  { q: "Surayakant Tripathi 'Nirala' का संबंध किस साहित्यिक आंदोलन से था?", opts: ["प्रगतिवाद","छायावाद","प्रयोगवाद","भक्तिवाद"], ans: 1, exp: "सूर्यकांत त्रिपाठी 'निराला' छायावाद के चार स्तंभों में से एक थे (प्रसाद, पंत, महादेवी वर्मा, निराला)।" },
+  { q: "UP का कौन-सा शहर 'पीतल नगरी' के नाम से जाना जाता है?", opts: ["आगरा","मेरठ","मुरादाबाद","कानपुर"], ans: 2, exp: "मुरादाबाद पीतल (Brass) के बर्तनों के लिए विश्वप्रसिद्ध है। इसे 'Brass City' या 'पीतल नगरी' कहा जाता है। पीतल का विश्व स्तर पर निर्यात।" }
+];
+
+function buildMCQs(containerId, data) {
+  const container = document.getElementById(containerId);
+  if (!container || container.innerHTML !== '') return;
+  let html = '';
+  let score = 0;
+  let answered = 0;
+  const letters = ['A','B','C','D'];
+  data.forEach((item, i) => {
+    html += `<div class="mcq-item" id="${containerId}-q${i}">
+      <div class="mcq-num">Q ${i+1} / ${data.length}</div>
+      <div class="mcq-q">${item.q}</div>
+      <div class="mcq-options">`;
+    item.opts.forEach((opt, j) => {
+      html += `<div class="mcq-opt" onclick="answerMCQ('${containerId}',${i},${j})">
+        <span class="mcq-opt-letter">${letters[j]}</span>${opt}
+      </div>`;
+    });
+    html += `</div>
+      <div class="mcq-explanation" id="${containerId}-exp${i}">💡 ${item.exp}</div>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function answerMCQ(prefix, qIdx, optIdx) {
+  const data = getAllData(prefix);
+  if (!data) return;
+  const item = data[qIdx];
+  const opts = document.querySelectorAll(`#${prefix}-q${qIdx} .mcq-opt`);
+  opts.forEach(o => o.style.pointerEvents = 'none');
+  opts[optIdx].classList.add(optIdx === item.ans ? 'correct' : 'wrong');
+  if (optIdx !== item.ans) opts[item.ans].classList.add('correct');
+  document.getElementById(`${prefix}-exp${qIdx}`).classList.add('show');
+}
+
+function getAllData(prefix) {
+  if (prefix === 'mcq-grand-bank') return grandMCQs;
+  const city = prefix.replace('mcq-', '');
+  return mcqData[city] || null;
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  // Build all MCQs
+  Object.keys(mcqData).forEach(city => {
+    buildMCQs('mcq-' + city, mcqData[city]);
+  });
+  buildMCQs('mcq-grand-bank', grandMCQs);
+  
+  // Animate progress bars
+  setTimeout(() => {
+    document.querySelectorAll('.progress-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => bar.style.width = w, 100);
+    });
+  }, 500);
+});
+
+// Build grand MCQ on section switch
+const origSwitch = window.switchTab;
+window.switchTab = function(id) {
+  origSwitch && origSwitch(id);
+  if (id === 'mcq-grand') {
+    buildMCQs('mcq-grand-bank', grandMCQs);
+  }
+};
+</script>
+</body>
+</html>
