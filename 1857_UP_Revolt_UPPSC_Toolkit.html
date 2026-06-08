@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>1857 UP Revolt — UPPSC 2026 Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --flame:    #e8410a;
+  --amber:    #f0900a;
+  --gold:     #d4a017;
+  --cream:    #f5e6c8;
+  --parchment:#ede0c4;
+  --ink:      #1a100a;
+  --sepia:    #3d2b1f;
+  --ash:      #8a7060;
+  --smoke:    #c4b09a;
+  --dark:     #0e0906;
+  --mid:      #2a1c14;
+  --card:     #1e1410;
+  --glow:     rgba(232,65,10,0.18);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--dark);
+  color: var(--cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND TEXTURE ── */
+body::before {
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(232,65,10,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 90%, rgba(212,160,23,0.06) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── HEADER ── */
+.masthead {
+  position:relative;
+  padding: 36px 32px 28px;
+  border-bottom: 1px solid rgba(232,65,10,0.3);
+  background: linear-gradient(180deg, rgba(14,9,6,1) 0%, rgba(30,20,16,1) 100%);
+  overflow:hidden;
+}
+.masthead::after {
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background: linear-gradient(90deg, transparent, var(--flame), var(--gold), var(--flame), transparent);
+}
+.masthead-inner { max-width:960px; margin:0 auto; position:relative; z-index:1; }
+
+.flame-badge {
+  display:inline-flex;align-items:center;gap:6px;
+  background: rgba(232,65,10,0.12);
+  border: 1px solid rgba(232,65,10,0.4);
+  border-radius:4px;
+  padding: 3px 12px;
+  font-family:'Space Mono',monospace;
+  font-size:0.65rem;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+.masthead h1 {
+  font-family:'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight:900;
+  line-height:1.1;
+  color: var(--cream);
+  letter-spacing:-0.5px;
+}
+.masthead h1 span {
+  color: var(--flame);
+  -webkit-text-stroke: 1px var(--amber);
+}
+.masthead-sub {
+  font-family:'Crimson Pro',serif;
+  font-style:italic;
+  color:var(--smoke);
+  margin-top:6px;
+  font-size:1.1rem;
+}
+.masthead-tags {
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;
+}
+.tag {
+  font-family:'Space Mono',monospace;
+  font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;
+  padding:3px 10px;border-radius:2px;
+  background:rgba(212,160,23,0.1);
+  border:1px solid rgba(212,160,23,0.3);
+  color:var(--gold);
+}
+
+/* ── TABS ── */
+.nav-bar {
+  position:sticky;top:0;z-index:100;
+  background:rgba(14,9,6,0.97);
+  border-bottom:1px solid rgba(232,65,10,0.2);
+  backdrop-filter:blur(12px);
+}
+.nav-inner {
+  max-width:960px;margin:0 auto;
+  display:flex;overflow-x:auto;gap:0;
+  scrollbar-width:none;
+}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-btn {
+  flex-shrink:0;
+  padding:14px 20px;
+  font-family:'Space Mono',monospace;
+  font-size:0.68rem;letter-spacing:1px;text-transform:uppercase;
+  color:var(--ash);
+  background:none;border:none;cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all 0.2s;white-space:nowrap;
+}
+.nav-btn:hover{color:var(--cream);}
+.nav-btn.active{color:var(--flame);border-bottom-color:var(--flame);}
+
+/* ── SECTIONS ── */
+.content{max-width:960px;margin:0 auto;padding:28px 20px 60px;}
+.section{display:none;animation:fadeIn 0.3s ease;}
+.section.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* ── SECTION TITLE ── */
+.sec-title {
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:700;
+  color:var(--cream);
+  margin-bottom:22px;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(232,65,10,0.25);
+  display:flex;align-items:center;gap:10px;
+}
+.sec-title::before{
+  content:'';display:block;
+  width:4px;height:28px;
+  background:linear-gradient(180deg,var(--flame),var(--gold));
+  border-radius:2px;flex-shrink:0;
+}
+
+/* ── CITY CARDS ── */
+.city-grid{display:grid;gap:16px;}
+.city-card {
+  background:var(--card);
+  border:1px solid rgba(232,65,10,0.2);
+  border-radius:8px;
+  overflow:hidden;
+  transition:border-color 0.2s;
+}
+.city-card:hover{border-color:rgba(232,65,10,0.5);}
+.city-header {
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;
+  cursor:pointer;
+  background:linear-gradient(90deg, rgba(232,65,10,0.08), transparent);
+  border-bottom:1px solid rgba(232,65,10,0.12);
+  transition:background 0.2s;
+  user-select:none;
+}
+.city-header:hover{background:linear-gradient(90deg,rgba(232,65,10,0.14),transparent);}
+.city-icon{font-size:1.6rem;flex-shrink:0;}
+.city-info{flex:1;}
+.city-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;color:var(--cream);
+}
+.city-meta{
+  font-family:'Space Mono',monospace;
+  font-size:0.62rem;color:var(--flame);
+  letter-spacing:1px;margin-top:2px;
+}
+.chevron{
+  color:var(--ash);font-size:0.8rem;
+  transition:transform 0.3s;flex-shrink:0;
+}
+.city-header.open .chevron{transform:rotate(180deg);}
+
+.city-body{
+  display:none;padding:16px 18px;
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+.city-body.open{display:block;}
+
+.fact-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;margin-bottom:14px;
+}
+@media(max-width:540px){.fact-grid{grid-template-columns:1fr;}}
+.fact-item{
+  background:rgba(255,255,255,0.03);
+  border-left:2px solid var(--flame);
+  padding:8px 11px;border-radius:4px;
+}
+.fact-lbl{
+  font-family:'Space Mono',monospace;
+  font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:3px;
+}
+.fact-val{font-size:0.88rem;color:var(--cream);line-height:1.4;}
+
+.uppsc-tip {
+  background:rgba(46,90,30,0.18);
+  border:1px solid rgba(80,160,50,0.3);
+  border-radius:6px;
+  padding:10px 13px;
+  font-size:0.84rem;
+  color:#a8d8a0;
+  line-height:1.6;
+}
+.uppsc-tip strong{color:#6fcf6f;}
+
+/* ── SCORE BAR ── */
+.score-bar {
+  display:grid;grid-template-columns:repeat(4,1fr) auto;
+  gap:12px;align-items:center;
+  background:var(--card);
+  border:1px solid rgba(232,65,10,0.25);
+  border-radius:8px;padding:14px 18px;
+  margin-bottom:16px;
+}
+@media(max-width:540px){.score-bar{grid-template-columns:repeat(2,1fr) auto;}}
+.score-item{text-align:center;}
+.score-num{
+  font-family:'Playfair Display',serif;
+  font-size:1.9rem;font-weight:700;color:var(--flame);
+  line-height:1;
+}
+.score-lbl{
+  font-family:'Space Mono',monospace;
+  font-size:0.58rem;letter-spacing:1px;text-transform:uppercase;
+  color:var(--ash);margin-top:3px;
+}
+.prog-wrap{margin-bottom:20px;}
+.prog-bar{
+  background:rgba(255,255,255,0.08);
+  border-radius:3px;height:4px;overflow:hidden;
+}
+.prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--flame),var(--gold));
+  border-radius:3px;transition:width 0.4s ease;
+}
+.prog-text{
+  font-family:'Space Mono',monospace;
+  font-size:0.62rem;color:var(--ash);
+  text-align:right;margin-top:5px;
+}
+
+/* ── MCQ ── */
+.mcq-card {
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px;
+  margin-bottom:18px;
+  overflow:hidden;
+  transition:border-color 0.2s;
+}
+.mcq-card:hover{border-color:rgba(232,65,10,0.3);}
+.mcq-head{
+  padding:14px 18px;
+  background:rgba(255,255,255,0.02);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.mcq-num{
+  font-family:'Space Mono',monospace;
+  font-size:0.62rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--flame);
+}
+.mcq-city-tag {
+  display:inline-block;
+  background:rgba(232,65,10,0.12);
+  border:1px solid rgba(232,65,10,0.3);
+  border-radius:3px;padding:1px 8px;
+  font-family:'Space Mono',monospace;
+  font-size:0.58rem;color:var(--amber);
+  margin-left:8px;
+}
+.mcq-q{
+  font-size:0.96rem;color:var(--cream);
+  margin-top:8px;line-height:1.6;
+  font-family:'Crimson Pro',serif;
+}
+
+.opts{padding:12px 18px;}
+.opt {
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 12px;margin:7px 0;
+  border-radius:6px;cursor:pointer;
+  border:1px solid rgba(255,255,255,0.08);
+  font-size:0.88rem;font-family:'Crimson Pro',serif;
+  transition:all 0.18s;line-height:1.5;
+  color:var(--cream);
+}
+.opt:hover{border-color:rgba(232,65,10,0.4);background:rgba(232,65,10,0.06);}
+.opt-ltr{
+  font-family:'Space Mono',monospace;
+  font-size:0.72rem;font-weight:700;
+  color:var(--flame);min-width:18px;flex-shrink:0;margin-top:1px;
+}
+.opt.correct{background:rgba(30,90,30,0.25);border-color:#4caf50;color:#a8d8a0;}
+.opt.correct .opt-ltr{color:#4caf50;}
+.opt.wrong{background:rgba(180,30,30,0.2);border-color:#e53935;color:#ffaaaa;}
+.opt.wrong .opt-ltr{color:#e53935;}
+.opt.reveal{background:rgba(30,90,30,0.15);border-color:rgba(76,175,80,0.5);color:#a8d8a0;}
+.opt.reveal .opt-ltr{color:#4caf50;}
+.opt.disabled{cursor:default;pointer-events:none;}
+
+.explanation {
+  display:none;
+  padding:14px 18px;
+  background:rgba(20,12,8,0.6);
+  border-top:1px solid rgba(232,65,10,0.15);
+}
+.explanation.show{display:block;}
+.exp-head{
+  font-family:'Space Mono',monospace;
+  font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;
+  color:#64b5f6;margin-bottom:8px;
+}
+.exp-body{
+  font-size:0.88rem;color:#c0b0a0;
+  line-height:1.7;font-family:'Crimson Pro',serif;
+}
+.why-box {
+  margin-top:10px;padding:9px 12px;
+  background:rgba(30,60,20,0.3);
+  border-left:3px solid #4caf50;
+  border-radius:4px;
+  font-size:0.83rem;color:#90d490;
+  line-height:1.6;font-family:'Crimson Pro',serif;
+}
+.why-box strong{color:#6fcf6f;}
+
+/* ── TIMELINE ── */
+.tl-wrap{position:relative;padding-left:30px;}
+.tl-wrap::before{
+  content:'';position:absolute;
+  left:9px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,var(--flame),rgba(232,65,10,0.1));
+}
+.tl-item{position:relative;margin-bottom:20px;}
+.tl-dot{
+  position:absolute;left:-25px;top:5px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--flame);
+  border:2px solid var(--dark);
+  box-shadow:0 0 0 2px var(--flame);
+}
+.tl-item.star .tl-dot{
+  background:var(--gold);
+  box-shadow:0 0 0 2px var(--gold), 0 0 8px rgba(212,160,23,0.5);
+}
+.tl-date{
+  font-family:'Space Mono',monospace;
+  font-size:0.68rem;letter-spacing:1px;
+  color:var(--flame);font-weight:700;
+}
+.tl-item.star .tl-date{color:var(--gold);}
+.tl-event{
+  font-family:'Crimson Pro',serif;
+  font-size:0.95rem;color:var(--cream);
+  margin-top:2px;line-height:1.5;
+}
+.tl-city{
+  display:inline-block;
+  background:rgba(232,65,10,0.12);
+  border:1px solid rgba(232,65,10,0.25);
+  border-radius:3px;padding:1px 7px;
+  font-family:'Space Mono',monospace;
+  font-size:0.58rem;color:var(--amber);
+  margin-left:6px;vertical-align:middle;
+}
+.tl-detail{
+  font-size:0.8rem;color:var(--ash);
+  margin-top:3px;font-style:italic;
+  font-family:'Crimson Pro',serif;
+}
+
+/* ── LEADERS ── */
+.leaders-grid{display:grid;gap:14px;}
+.leader-card {
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px;padding:14px 16px;
+  transition:border-color 0.2s;
+}
+.leader-card:hover{border-color:rgba(232,65,10,0.35);}
+.leader-icon{font-size:2rem;flex-shrink:0;line-height:1;}
+.leader-name{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:700;color:var(--flame);
+}
+.leader-meta{
+  font-family:'Space Mono',monospace;
+  font-size:0.6rem;color:var(--gold);
+  letter-spacing:1px;margin:3px 0;
+}
+.leader-desc{
+  font-size:0.85rem;color:var(--smoke);
+  line-height:1.6;font-family:'Crimson Pro',serif;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  font-family:'Space Mono',monospace;
+  font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;
+  padding:8px 18px;border-radius:4px;cursor:pointer;
+  background:linear-gradient(135deg,var(--flame),#c0390a);
+  color:#fff;border:none;
+  transition:opacity 0.2s;
+}
+.btn:hover{opacity:0.85;}
+
+/* ── QUICK REF TABLE ── */
+.ref-table{width:100%;border-collapse:collapse;margin-top:10px;}
+.ref-table th{
+  font-family:'Space Mono',monospace;
+  font-size:0.62rem;letter-spacing:1px;text-transform:uppercase;
+  color:var(--gold);padding:10px 12px;text-align:left;
+  border-bottom:1px solid rgba(212,160,23,0.3);
+  background:rgba(212,160,23,0.05);
+}
+.ref-table td{
+  font-family:'Crimson Pro',serif;
+  font-size:0.9rem;color:var(--cream);
+  padding:9px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.ref-table tr:hover td{background:rgba(232,65,10,0.05);}
+.ref-table td:first-child{color:var(--amber);font-weight:600;}
+
+.info-box {
+  background:rgba(25,15,10,0.8);
+  border:1px solid rgba(232,65,10,0.2);
+  border-radius:8px;padding:16px 18px;
+  margin-bottom:18px;
+  font-size:0.88rem;color:var(--smoke);
+  line-height:1.7;font-family:'Crimson Pro',serif;
+}
+.info-box h3{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;color:var(--cream);margin-bottom:8px;
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="flame-badge">🔥 UPPSC 2026 Toolkit</div>
+    <h1>1857 की <span>क्रांति</span><br>UP का योगदान</h1>
+    <p class="masthead-sub">First War of Independence — Uttar Pradesh Centres, Leaders & Timeline</p>
+    <div class="masthead-tags">
+      <span class="tag">SDM Level</span>
+      <span class="tag">Top-10 Rank</span>
+      <span class="tag">15 MCQs</span>
+      <span class="tag">Chronological Timeline</span>
+      <span class="tag">City-wise Analysis</span>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showTab('cities',this)">📍 City Guide</button>
+    <button class="nav-btn" onclick="showTab('mcq',this)">📝 15 MCQs</button>
+    <button class="nav-btn" onclick="showTab('timeline',this)">📅 Timeline</button>
+    <button class="nav-btn" onclick="showTab('leaders',this)">🦁 Key Leaders</button>
+    <button class="nav-btn" onclick="showTab('quickref',this)">⚡ Quick Ref</button>
+  </div>
+</nav>
+
+<div class="content">
+
+<!-- ══════════════ CITY GUIDE ══════════════ -->
+<div id="cities" class="section active">
+  <div class="sec-title">UP के प्रमुख विद्रोह केंद्र — 1857</div>
+  <div class="city-grid">
+
+    <!-- MEERUT -->
+    <div class="city-card">
+      <div class="city-header" onclick="toggleCity(this,'meerut-body')">
+        <span class="city-icon">⚔️</span>
+        <div class="city-info">
+          <div class="city-name">मेरठ — पहली संगठित उठान</div>
+          <div class="city-meta">10 मई 1857 • First Shot of the Revolt</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="city-body" id="meerut-body">
+        <div class="fact-grid">
+          <div class="fact-item"><div class="fact-lbl">तारीख</div><div class="fact-val">10 मई 1857 (रविवार)</div></div>
+          <div class="fact-item"><div class="fact-lbl">कारण</div><div class="fact-val">85 सिपाहियों की 10 वर्ष की सजा</div></div>
+          <div class="fact-item"><div class="fact-lbl">रेजिमेंट</div><div class="fact-val">3rd Bengal Cavalry, 11th & 20th Infantry</div></div>
+          <div class="fact-item"><div class="fact-lbl">घटना</div><div class="fact-val">जेल तोड़ी — अंग्रेज अफसरों की हत्या</div></div>
+          <div class="fact-item"><div class="fact-lbl">अगला कदम</div><div class="fact-val">11 मई को दिल्ली मार्च</div></div>
+          <div class="fact-item"><div class="fact-lbl">पृष्ठभूमि</div><div class="fact-val">29 मार्च — बैरकपुर में मंगल पांडे</div></div>
+        </div>
+        <div class="uppsc-tip"><strong>🎯 UPPSC ANGLE:</strong> "पहली घटना" (बैरकपुर, 29 मार्च) और "पहला संगठित विद्रोह" (मेरठ, 10 मई) का अंतर — <strong>UPPSC 2023 Q.40 में यही पूछा था।</strong> Confirmed repeat topic है।</div>
+      </div>
+    </div>
+
+    <!-- LUCKNOW -->
+    <div class="city-card">
+      <div class="city-header" onclick="toggleCity(this,'lucknow-body')">
+        <span class="city-icon">🏰</span>
+        <div class="city-info">
+          <div class="city-name">लखनऊ — दीर्घतम प्रतिरोध</div>
+          <div class="city-meta">4 जून 1857 • Begum Hazrat Mahal • Residency Siege</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="city-body" id="lucknow-body">
+        <div class="fact-grid">
+          <div class="fact-item"><div class="fact-lbl">विद्रोह तिथि</div><div class="fact-val">4 जून 1857</div></div>
+          <div class="fact-item"><div class="fact-lbl">नेता</div><div class="fact-val">बेगम हज़रत महल</div></div>
+          <div class="fact-item"><div class="fact-lbl">घोषणा</div><div class="fact-val">पुत्र बिरजिस कद्र को नवाब घोषित किया</div></div>
+          <div class="fact-item"><div class="fact-lbl">Residency Siege</div><div class="fact-val">मई–नवंबर 1857 (6+ महीने)</div></div>
+          <div class="fact-item"><div class="fact-lbl">पहली राहत</div><div class="fact-val">Henry Havelock — 25 सितम्बर 1857</div></div>
+          <div class="fact-item"><div class="fact-lbl">पूर्ण राहत</div><div class="fact-val">Sir Colin Campbell — नवंबर 1857</div></div>
+          <div class="fact-item"><div class="fact-lbl">अंतिम पतन</div><div class="fact-val">मार्च 1858 — Campbell</div></div>
+          <div class="fact-item"><div class="fact-lbl">बेगम का अंत</div><div class="fact-val">नेपाल → काठमांडू में 1879 में मृत्यु</div></div>
+        </div>
+        <div class="uppsc-tip"><strong>🎯 UPPSC ANGLE:</strong> <strong>"First relief" (Havelock) vs "Final relief" (Campbell)</strong> का अंतर classic UPPSC trap है। Lucknow Residency आज भी राष्ट्रीय स्मारक है। बेगम की मृत्यु का स्थान (काठमांडू) Mains में पूछा जाता है।</div>
+      </div>
+    </div>
+
+    <!-- JHANSI -->
+    <div class="city-card">
+      <div class="city-header" onclick="toggleCity(this,'jhansi-body')">
+        <span class="city-icon">👑</span>
+        <div class="city-info">
+          <div class="city-name">झाँसी — रानी लक्ष्मीबाई की वीरगाथा</div>
+          <div class="city-meta">मार्च 1858 • "खूब लड़ी मर्दानी" • Hugh Rose</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="city-body" id="jhansi-body">
+        <div class="fact-grid">
+          <div class="fact-item"><div class="fact-lbl">जन्म-नाम</div><div class="fact-val">मणिकर्णिका ताम्बे</div></div>
+          <div class="fact-item"><div class="fact-lbl">जन्म</div><div class="fact-val">19 नवंबर 1828, वाराणसी (काशी)</div></div>
+          <div class="fact-item"><div class="fact-lbl">कारण</div><div class="fact-val">Doctrine of Lapse — Lord Dalhousie 1854</div></div>
+          <div class="fact-item"><div class="fact-lbl">झाँसी की लड़ाई</div><div class="fact-val">मार्च–अप्रैल 1858 vs Hugh Rose</div></div>
+          <div class="fact-item"><div class="fact-lbl">वीरगति</div><div class="fact-val">17-18 जून 1858 — ग्वालियर</div></div>
+          <div class="fact-item"><div class="fact-lbl">Hugh Rose का कथन</div><div class="fact-val">"Best and bravest military leader of 1857"</div></div>
+        </div>
+        <div class="uppsc-tip"><strong>🎯 UPPSC ANGLE:</strong> जन्म स्थान <strong>वाराणसी (UP)</strong> है — न कि झाँसी। <strong>UPPSC 2024</strong> में Rani + Dalhousie का प्रश्न आया था। "खूब लड़ी मर्दानी" — सुभद्राकुमारी चौहान (UP साहित्य में भी महत्वपूर्ण)।</div>
+      </div>
+    </div>
+
+    <!-- KANPUR -->
+    <div class="city-card">
+      <div class="city-header" onclick="toggleCity(this,'kanpur-body')">
+        <span class="city-icon">🔱</span>
+        <div class="city-info">
+          <div class="city-name">कानपुर — नाना साहब व तांत्या टोपे</div>
+          <div class="city-meta">जून 1857 • Satichaura Ghat • Bibigarh</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="city-body" id="kanpur-body">
+        <div class="fact-grid">
+          <div class="fact-item"><div class="fact-lbl">नेता</div><div class="fact-val">नाना साहब (धोंधू पंत)</div></div>
+          <div class="fact-item"><div class="fact-lbl">पहचान</div><div class="fact-val">अंतिम पेशवा बाजीराव II के दत्तक पुत्र</div></div>
+          <div class="fact-item"><div class="fact-lbl">कारण</div><div class="fact-val">पेंशन बंद करने का विरोध</div></div>
+          <div class="fact-item"><div class="fact-lbl">सैन्य प्रमुख</div><div class="fact-val">तांत्या टोपे (रामचंद्र पांडुरंग)</div></div>
+          <div class="fact-item"><div class="fact-lbl">Satichaura Ghat</div><div class="fact-val">27 जून 1857 — नरसंहार</div></div>
+          <div class="fact-item"><div class="fact-lbl">Bibigarh</div><div class="fact-val">15 जुलाई 1857</div></div>
+          <div class="fact-item"><div class="fact-lbl">तांत्या का अंत</div><div class="fact-val">मानसिंह के विश्वासघात से पकड़े</div></div>
+          <div class="fact-item"><div class="fact-lbl">तांत्या को फाँसी</div><div class="fact-val">18 अप्रैल 1859 — शिवपुरी (MP)</div></div>
+        </div>
+        <div class="uppsc-tip"><strong>🎯 UPPSC ANGLE:</strong> नाना साहब (pension issue) vs रानी लक्ष्मीबाई (Doctrine of Lapse) — <strong>दोनों के कारण अलग-अलग हैं।</strong> तांत्या की फाँसी का स्थान <strong>शिवपुरी (MP)</strong> है, कानपुर/झाँसी नहीं।</div>
+      </div>
+    </div>
+
+    <!-- ALLAHABAD -->
+    <div class="city-card">
+      <div class="city-header" onclick="toggleCity(this,'alld-body')">
+        <span class="city-icon">🌟</span>
+        <div class="city-info">
+          <div class="city-name">इलाहाबाद — Queen's Proclamation का स्थल</div>
+          <div class="city-meta">जून 1857 • Maulvi Liaquat Ali • 1 नवंबर 1858</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="city-body" id="alld-body">
+        <div class="fact-grid">
+          <div class="fact-item"><div class="fact-lbl">नेता</div><div class="fact-val">मौलवी लियाकत अली</div></div>
+          <div class="fact-item"><div class="fact-lbl">रेजिमेंट</div><div class="fact-val">6th Bengal Infantry</div></div>
+          <div class="fact-item"><div class="fact-lbl">दमन</div><div class="fact-val">Colonel Neill — क्रूर Martial Law</div></div>
+          <div class="fact-item"><div class="fact-lbl">ऐतिहासिक घटना</div><div class="fact-val">1 नवंबर 1858 — Queen's Proclamation</div></div>
+          <div class="fact-item"><div class="fact-lbl">किसने पढ़ी</div><div class="fact-val">Lord Canning (प्रथम Viceroy)</div></div>
+          <div class="fact-item"><div class="fact-lbl">परिणाम</div><div class="fact-val">EIC समाप्त → British Crown का राज</div></div>
+        </div>
+        <div class="uppsc-tip"><strong>🎯 UPPSC ANGLE:</strong> इलाहाबाद में <strong>1 नवंबर 1858 को Queen's Proclamation</strong> — UP इतिहास की सबसे महत्वपूर्ण Constitutional घटना। इसके बाद India Secretary of State for India के अधीन आया।</div>
+      </div>
+    </div>
+
+    <!-- BAREILLY -->
+    <div class="city-card">
+      <div class="city-header" onclick="toggleCity(this,'bareilly-body')">
+        <span class="city-icon">⚡</span>
+        <div class="city-info">
+          <div class="city-name">बरेली — खान बहादुर खान (रुहेलखंड)</div>
+          <div class="city-meta">मई 1857 • UPPSC 2023 में पूछा गया!</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="city-body" id="bareilly-body">
+        <div class="fact-grid">
+          <div class="fact-item"><div class="fact-lbl">नेता</div><div class="fact-val">खान बहादुर खान</div></div>
+          <div class="fact-item"><div class="fact-lbl">पृष्ठभूमि</div><div class="fact-val">Rohilla Nawab हाफिज रहमत खान के वंशज</div></div>
+          <div class="fact-item"><div class="fact-lbl">घोषणा</div><div class="fact-val">खुद को नवाब घोषित किया</div></div>
+          <div class="fact-item"><div class="fact-lbl">पतन</div><div class="fact-val">May 1858 — Sir Colin Campbell</div></div>
+          <div class="fact-item"><div class="fact-lbl">दंड</div><div class="fact-val">1860 में फाँसी — बरेली</div></div>
+          <div class="fact-item"><div class="fact-lbl">⚠️ UPPSC</div><div class="fact-val">UPPSC 2023 Q.46 में यही पूछा!</div></div>
+        </div>
+        <div class="uppsc-tip"><strong>⚠️ CONFIRMED REPEAT:</strong> UPPSC 2023 Q.46 — "बरेली में 1857 के नेता" का उत्तर <strong>खान बहादुर खान</strong> था। अगली परीक्षा में variation के साथ फिर आ सकता है।</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ MCQ ══════════════ -->
+<div id="mcq" class="section">
+  <div class="sec-title">15 UPPSC Topper-Level MCQs</div>
+
+  <div class="score-bar">
+    <div class="score-item"><div class="score-num" id="s-score">0</div><div class="score-lbl">Score</div></div>
+    <div class="score-item"><div class="score-num" id="s-att">0</div><div class="score-lbl">Attempted</div></div>
+    <div class="score-item"><div class="score-num" id="s-cor">0</div><div class="score-lbl">Correct</div></div>
+    <div class="score-item"><div class="score-num" id="s-acc">—</div><div class="score-lbl">Accuracy</div></div>
+    <button class="btn" onclick="resetMCQ()">↺ Reset</button>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="prog-text" id="prog-text">0 / 15 attempted</div>
+  </div>
+
+  <div id="mcq-list"></div>
+</div>
+
+<!-- ══════════════ TIMELINE ══════════════ -->
+<div id="timeline" class="section">
+  <div class="sec-title">1857 — UP का कालक्रम</div>
+  <div class="tl-wrap">
+
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">29 मार्च 1857</div>
+      <div class="tl-event">मंगल पांडे की घटना <span class="tl-city">बैरकपुर (बंगाल)</span></div>
+      <div class="tl-detail">34वीं Bengal Infantry — चर्बी वाले कारतूस का विरोध, Lt. Baugh पर हमला</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">8 अप्रैल 1857</div>
+      <div class="tl-event">मंगल पांडे को फाँसी <span class="tl-city">बैरकपुर</span></div>
+      <div class="tl-detail">क्रांति की पहली चिंगारी — सिपाहियों में आक्रोश बढ़ा</div>
+    </div>
+    <div class="tl-item star"><div class="tl-dot"></div>
+      <div class="tl-date">10 मई 1857 ⭐</div>
+      <div class="tl-event">पहला संगठित सैनिक विद्रोह <span class="tl-city">मेरठ</span></div>
+      <div class="tl-detail">85 सिपाहियों की रिहाई, जेल तोड़ी, अंग्रेज अफसरों की हत्या — UPPSC 2023 Q.40</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">11–12 मई 1857</div>
+      <div class="tl-event">दिल्ली पर कब्जा — बहादुर शाह जफर को प्रतीकात्मक नेता घोषित किया</div>
+      <div class="tl-detail">मेरठ के सिपाही दिल्ली पहुंचे — Mughal symbolism</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">मई 1857</div>
+      <div class="tl-event">रुहेलखंड में विद्रोह — खान बहादुर खान <span class="tl-city">बरेली</span></div>
+      <div class="tl-detail">खुद को नवाब घोषित किया — UPPSC 2023 Q.46</div>
+    </div>
+    <div class="tl-item star"><div class="tl-dot"></div>
+      <div class="tl-date">4 जून 1857 ⭐</div>
+      <div class="tl-event">लखनऊ में विद्रोह — Residency Siege शुरू <span class="tl-city">लखनऊ</span></div>
+      <div class="tl-detail">Henry Lawrence ने Residency में शरण ली — बेगम हज़रत महल का नेतृत्व</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">जून 1857</div>
+      <div class="tl-event">नाना साहब का कानपुर विद्रोह <span class="tl-city">कानपुर</span></div>
+      <div class="tl-detail">General Wheeler की सेना ने घेराबंदी झेली</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">जून 1857</div>
+      <div class="tl-event">मौलवी लियाकत अली का विद्रोह <span class="tl-city">इलाहाबाद</span></div>
+      <div class="tl-detail">6th Bengal Infantry — Col. Neill का क्रूर दमन, Mass Hangings</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">27 जून 1857</div>
+      <div class="tl-event">Satichaura Ghat नरसंहार <span class="tl-city">कानपुर</span></div>
+      <div class="tl-detail">British surrender के बाद गोलीबारी — दोनों पक्षों के लिए त्रासदी</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">15 जुलाई 1857</div>
+      <div class="tl-event">Bibigarh Massacre <span class="tl-city">कानपुर</span></div>
+      <div class="tl-detail">British women and children — ब्रिटिश प्रचार का हथियार बना</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">25 सितम्बर 1857</div>
+      <div class="tl-event">Havelock की पहली राहत — Residency <span class="tl-city">लखनऊ</span></div>
+      <div class="tl-detail">पर घेराबंदी जारी रही — पूर्ण राहत नहीं</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">नवंबर 1857</div>
+      <div class="tl-event">Sir Colin Campbell की पूर्ण राहत <span class="tl-city">लखनऊ</span></div>
+      <div class="tl-detail">Residency के नागरिकों को सुरक्षित निकाला गया</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">मार्च–अप्रैल 1858</div>
+      <div class="tl-event">झाँसी की अंतिम लड़ाई — Hugh Rose vs रानी <span class="tl-city">झाँसी</span></div>
+      <div class="tl-detail">रानी ने अद्भुत साहस दिखाया — ग्वालियर की ओर प्रस्थान</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">मार्च 1858</div>
+      <div class="tl-event">Campbell का लखनऊ पर पूर्ण नियंत्रण <span class="tl-city">लखनऊ</span></div>
+      <div class="tl-detail">बेगम हज़रत महल नेपाल भाग गईं</div>
+    </div>
+    <div class="tl-item star"><div class="tl-dot"></div>
+      <div class="tl-date">17–18 जून 1858 ⭐</div>
+      <div class="tl-event">रानी लक्ष्मीबाई की वीरगति <span class="tl-city">ग्वालियर</span></div>
+      <div class="tl-detail">फूल बाग क्षेत्र में लड़ते हुए मृत्यु — Hugh Rose: "Best and bravest military leader"</div>
+    </div>
+    <div class="tl-item star"><div class="tl-dot"></div>
+      <div class="tl-date">1 नवंबर 1858 ⭐</div>
+      <div class="tl-event">Queen's Proclamation — EIC शासन समाप्त <span class="tl-city">इलाहाबाद</span></div>
+      <div class="tl-detail">Lord Canning ने पढ़ी → British Crown का सीधा राज → Secretary of State for India</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">18 अप्रैल 1859</div>
+      <div class="tl-event">तांत्या टोपे को फाँसी <span class="tl-city">शिवपुरी, MP</span></div>
+      <div class="tl-detail">मानसिंह के विश्वासघात से पकड़े गए</div>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <div class="tl-date">1860</div>
+      <div class="tl-event">खान बहादुर खान को फाँसी <span class="tl-city">बरेली</span></div>
+      <div class="tl-detail">1857 UP विद्रोह का आधिकारिक अंत</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ LEADERS ══════════════ -->
+<div id="leaders" class="section">
+  <div class="sec-title">🦁 1857 — UP के प्रमुख नायक</div>
+  <div class="leaders-grid">
+
+    <div class="leader-card">
+      <span class="leader-icon">⚔️</span>
+      <div>
+        <div class="leader-name">मंगल पांडे (1827–1857)</div>
+        <div class="leader-meta">बलिया, UP • 34वीं Bengal Native Infantry</div>
+        <div class="leader-desc">29 मार्च 1857 को बैरकपुर में Lt. Baugh पर हमला किया। 8 अप्रैल 1857 को फाँसी। UP के बलिया जिले से — "Sepoy Mutiny" की पहली चिंगारी। 1984 में भारत सरकार ने डाक टिकट जारी किया।</div>
+      </div>
+    </div>
+
+    <div class="leader-card">
+      <span class="leader-icon">👑</span>
+      <div>
+        <div class="leader-name">रानी लक्ष्मीबाई (1828–1858)</div>
+        <div class="leader-meta">वाराणसी में जन्म → झाँसी की रानी → ग्वालियर में वीरगति</div>
+        <div class="leader-desc">जन्म-नाम: मणिकर्णिका ताम्बे। Doctrine of Lapse का शिकार। Hugh Rose ने कहा — "Best and bravest military leader." तांत्या टोपे के साथ ग्वालियर में युद्ध। "खूब लड़ी मर्दानी" — सुभद्राकुमारी चौहान।</div>
+      </div>
+    </div>
+
+    <div class="leader-card">
+      <span class="leader-icon">🏰</span>
+      <div>
+        <div class="leader-name">बेगम हज़रत महल (1820–1879)</div>
+        <div class="leader-meta">लखनऊ • Awadh • पुत्र: बिरजिस कद्र</div>
+        <div class="leader-desc">Awadh के नवाब वाजिद अली शाह की पत्नी। 6+ महीने तक Lucknow Residency की घेराबंदी। पुत्र बिरजिस कद्र को नवाब घोषित किया। अंत में नेपाल गईं — 1879 में काठमांडू में मृत्यु।</div>
+      </div>
+    </div>
+
+    <div class="leader-card">
+      <span class="leader-icon">🔱</span>
+      <div>
+        <div class="leader-name">नाना साहब / धोंधू पंत (1824–?)</div>
+        <div class="leader-meta">कानपुर • अंतिम पेशवा के दत्तक पुत्र</div>
+        <div class="leader-desc">पेंशन बंद होने पर विद्रोह। Satichaura Ghat और Bibigarh Massacre से जुड़े। विद्रोह के बाद लापता — संभवतः नेपाल गए। अंत का कोई प्रमाण नहीं।</div>
+      </div>
+    </div>
+
+    <div class="leader-card">
+      <span class="leader-icon">⚡</span>
+      <div>
+        <div class="leader-name">तांत्या टोपे / रामचंद्र पांडुरंग (1814–1859)</div>
+        <div class="leader-meta">कानपुर + ग्वालियर • Guerrilla Warfare Expert</div>
+        <div class="leader-desc">नाना साहब के सैन्य प्रमुख। रानी लक्ष्मीबाई के साथ ग्वालियर में लड़े। Guerrilla tactics में माहिर। मानसिंह के विश्वासघात से पकड़े। 18 अप्रैल 1859 को शिवपुरी (MP) में फाँसी।</div>
+      </div>
+    </div>
+
+    <div class="leader-card">
+      <span class="leader-icon">🌙</span>
+      <div>
+        <div class="leader-name">खान बहादुर खान (बरेली)</div>
+        <div class="leader-meta">बरेली • Rohilkhand • UPPSC 2023 Q.46</div>
+        <div class="leader-desc">Rohilla Nawab हाफिज रहमत खान के वंशज। बरेली में खुद को नवाब घोषित किया। May 1858 में Campbell द्वारा दमन। 1860 में फाँसी। UPPSC 2023 में यही प्रश्न आया था।</div>
+      </div>
+    </div>
+
+    <div class="leader-card">
+      <span class="leader-icon">📿</span>
+      <div>
+        <div class="leader-name">मौलवी लियाकत अली (इलाहाबाद)</div>
+        <div class="leader-meta">इलाहाबाद • 6th Bengal Infantry</div>
+        <div class="leader-desc">इलाहाबाद में 1857 का नेतृत्व। 6th Bengal Infantry का सहयोग। Colonel Neill के Martial Law का सामना — Mass Hangings। Allahabad में Queen's Proclamation की पृष्ठभूमि।</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ QUICK REF ══════════════ -->
+<div id="quickref" class="section">
+  <div class="sec-title">⚡ Quick Reference — UPPSC Topper Sheet</div>
+
+  <div class="info-box">
+    <h3>🔑 Key Dates — रटना जरूरी</h3>
+    29 मार्च 1857 (बैरकपुर) → 8 अप्रैल 1857 (मंगल पांडे फाँसी) → <strong>10 मई 1857 (मेरठ)</strong> → 4 जून 1857 (लखनऊ) → 27 जून 1857 (Satichaura) → 25 सितम्बर 1857 (Havelock) → नवंबर 1857 (Campbell) → 17-18 जून 1858 (रानी वीरगति) → <strong>1 नवंबर 1858 (Queen's Proclamation, इलाहाबाद)</strong> → 18 अप्रैल 1859 (तांत्या टोपे) → 1860 (खान बहादुर खान)
+  </div>
+
+  <div class="sec-title" style="font-size:1rem;margin-top:10px;">Centre → Leader → Speciality</div>
+  <table class="ref-table">
+    <tr><th>केंद्र</th><th>नेता</th><th>विशेषता</th></tr>
+    <tr><td>मेरठ</td><td>कोई एक नेता नहीं</td><td>पहला संगठित विद्रोह — 10 मई 1857</td></tr>
+    <tr><td>लखनऊ</td><td>बेगम हज़रत महल</td><td>6+ महीने Residency Siege — पुत्र बिरजिस कद्र</td></tr>
+    <tr><td>झाँसी</td><td>रानी लक्ष्मीबाई</td><td>Doctrine of Lapse — जन्म वाराणसी — मृत्यु ग्वालियर</td></tr>
+    <tr><td>कानपुर</td><td>नाना साहब + तांत्या टोपे</td><td>Satichaura Ghat — Bibigarh — पेंशन issue</td></tr>
+    <tr><td>इलाहाबाद</td><td>मौलवी लियाकत अली</td><td>Queen's Proclamation — 1 नवंबर 1858</td></tr>
+    <tr><td>बरेली</td><td>खान बहादुर खान</td><td>Rohilkhand — UPPSC 2023 Q.46 ✅</td></tr>
+    <tr><td>जगदीशपुर (बिहार)</td><td>कुँवर सिंह</td><td>80 वर्षीय वीर — UP boundary से बाहर</td></tr>
+  </table>
+
+  <div class="sec-title" style="font-size:1rem;margin-top:24px;">Historians — 1857 की Interpretations</div>
+  <table class="ref-table">
+    <tr><th>इतिहासकार</th><th>मत</th></tr>
+    <tr><td>V.D. Savarkar</td><td>"प्रथम स्वतंत्रता संग्राम" — The Indian War of Independence 1857 (1909)</td></tr>
+    <tr><td>R.C. Majumdar</td><td>"Neither first, nor national, nor war of independence"</td></tr>
+    <tr><td>Karl Marx</td><td>"People's Revolt" — sepoy rebellion को जनता का समर्थन था</td></tr>
+    <tr><td>S.N. Sen</td><td>"Sepoy Mutiny" — started as military, became national</td></tr>
+    <tr><td>Disraeli</td><td>British Parliament में — "National revolt, not mere Sepoy Mutiny"</td></tr>
+  </table>
+
+  <div class="sec-title" style="font-size:1rem;margin-top:24px;">Relief Officers — लखनऊ</div>
+  <table class="ref-table">
+    <tr><th>अधिकारी</th><th>भूमिका</th><th>तारीख</th></tr>
+    <tr><td>Henry Lawrence</td><td>Residency में शरण ली — घेराबंदी में मृत्यु</td><td>जून 1857</td></tr>
+    <tr><td>Henry Havelock</td><td>पहली राहत (Partial) — घेराबंदी जारी रही</td><td>25 सितम्बर 1857</td></tr>
+    <tr><td>Sir Colin Campbell</td><td>पूर्ण राहत + मार्च 1858 में पूर्ण नियंत्रण</td><td>नवंबर 1857</td></tr>
+    <tr><td>Hugh Rose</td><td>झाँसी और ग्वालियर — रानी के विरुद्ध</td><td>1858</td></tr>
+    <tr><td>Colonel Neill</td><td>इलाहाबाद में क्रूर Martial Law</td><td>1857</td></tr>
+  </table>
+
+  <div class="info-box" style="margin-top:20px;">
+    <h3>🎯 UPPSC Mains — लिखने योग्य तथ्य</h3>
+    <br>
+    1. Hugh Rose का कथन (रानी के लिए) → दुश्मन की श्रद्धांजलि<br>
+    2. बेगम हज़रत महल का अंत (काठमांडू, 1879) → उपेक्षित नायिका<br>
+    3. इलाहाबाद में Queen's Proclamation → UP की Constitutional relevance<br>
+    4. तांत्या टोपे की Guerrilla tactics → Modern warfare की पूर्वपीठिका<br>
+    5. नाना साहब का गायब होना → अनुत्तरित ऐतिहासिक रहस्य
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+// ─── TAB SWITCHING ───
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ─── CITY ACCORDION ───
+function toggleCity(header, bodyId) {
+  const body = document.getElementById(bodyId);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+}
+
+// ─── MCQ DATA ───
+const mcqs = [
+  { city:"मेरठ", q:"1857 के विद्रोह में मेरठ में पहला संगठित सैनिक विद्रोह किस तारीख को हुआ?", opts:["29 मार्च 1857","10 मई 1857","4 जून 1857","11 मई 1857"], ans:1, exp:"10 मई 1857 (रविवार) को मेरठ में 85 सिपाहियों की गिरफ्तारी के विरोध में संगठित विद्रोह हुआ। 3rd Bengal Cavalry, 11th और 20th Infantry ने भाग लिया। सिपाहियों ने जेल तोड़ी और दिल्ली की ओर मार्च किया।", why:"<strong>UPPSC 2023 Q.40 में यही पूछा था।</strong> 'पहली घटना' (बैरकपुर, 29 मार्च) और 'पहला संगठित विद्रोह' (मेरठ, 10 मई) का अंतर Confirmed repeat topic है।" },
+  { city:"मेरठ", q:"मेरठ विद्रोह के बाद सिपाही कहाँ गए और किसे प्रतीकात्मक नेता बनाया?", opts:["लखनऊ — नाना साहब को","दिल्ली — बहादुर शाह जफर को","कानपुर — तांत्या टोपे को","झाँसी — रानी लक्ष्मीबाई को"], ans:1, exp:"11-12 मई 1857 को मेरठ के सिपाही दिल्ली पहुंचे और मुगल सम्राट बहादुर शाह जफर II को विद्रोह का प्रतीकात्मक नेता घोषित किया। वे स्वयं अनिच्छुक थे।", why:"Symbolic vs Real leadership का concept Mains में important है। बहादुर शाह जफर की अनिच्छा एक key fact है।" },
+  { city:"लखनऊ", q:"लखनऊ Residency की घेराबंदी को पहली राहत किसने दी?", opts:["Lord Canning","Henry Havelock","Sir Colin Campbell","Hugh Rose"], ans:1, exp:"पहली राहत 25 सितंबर 1857 को General Henry Havelock ने दी, परंतु घेराबंदी जारी रही। अंतिम (पूर्ण) राहत नवंबर 1857 में Sir Colin Campbell ने दी।", why:"'First relief' (Havelock) vs 'Final relief' (Campbell) का अंतर — <strong>classic UPPSC trap।</strong> दोनों नाम याद रखें।" },
+  { city:"लखनऊ", q:"बेगम हज़रत महल ने किस पुत्र को Awadh का नवाब घोषित किया और विद्रोह के बाद वे कहाँ गईं?", opts:["वाजिद अली शाह — ईरान","बिरजिस कद्र — नेपाल","मुशर्रफ उद्दौला — अफगानिस्तान","हैदर अली — बर्मा"], ans:1, exp:"बेगम हज़रत महल ने पुत्र बिरजिस कद्र को Awadh का नवाब घोषित किया। मार्च 1858 के बाद नेपाल भागीं। 1879 में काठमांडू में मृत्यु हुई।", why:"बेगम के पुत्र का नाम (बिरजिस कद्र) और मृत्यु स्थान (काठमांडू, 1879) — <strong>दोनों MCQ में पूछे जाते हैं।</strong>" },
+  { city:"झाँसी", q:"रानी लक्ष्मीबाई का वास्तविक नाम क्या था और उनका जन्म कहाँ हुआ था?", opts:["लक्ष्मी देवी — झाँसी","मणिकर्णिका ताम्बे — वाराणसी","सावित्री बाई — पुणे","अहिल्याबाई — इंदौर"], ans:1, exp:"रानी लक्ष्मीबाई का जन्म-नाम मणिकर्णिका ताम्बे था। वे 19 नवंबर 1828 को काशी (वाराणसी) में जन्मी थीं। 17-18 जून 1858 को ग्वालियर में वीरगति।", why:"<strong>UP के लिए विशेष — जन्म वाराणसी (UP) में।</strong> जन्म स्थान और मृत्यु स्थान दोनों UPPSC में पूछे जाते हैं। यह एक trap question है।" },
+  { city:"झाँसी", q:"झाँसी के ब्रिटिश विलय का आधार कौन सा था और इसे किस Viceroy ने लागू किया?", opts:["Subsidiary Alliance — Lord Wellesley","Doctrine of Lapse — Lord Dalhousie","Policy of Ring Fence — Warren Hastings","Forward Policy — Lord Lytton"], ans:1, exp:"Lord Dalhousie के Doctrine of Lapse (व्यपगत का सिद्धांत) के तहत 1854 में झाँसी का विलय हुआ क्योंकि रानी के दत्तक पुत्र को उत्तराधिकारी मानने से इनकार किया गया।", why:"<strong>UPPSC 2024 में Rani + Dalhousie का प्रश्न आया था।</strong> Doctrine of Lapse affected states — झाँसी, सतारा, जैतपुर, संबलपुर — याद रखें।" },
+  { city:"झाँसी", q:"किस ब्रिटिश अधिकारी ने रानी लक्ष्मीबाई को 'सर्वश्रेष्ठ और साहसी सैन्य नेता' कहा था?", opts:["Sir Colin Campbell","Henry Havelock","Sir Hugh Rose","Colonel Neill"], ans:2, exp:"Sir Hugh Rose, जिन्होंने झाँसी और ग्वालियर में रानी के विरुद्ध युद्ध किया, ने उन्हें 'Best and bravest military leader of 1857' कहा — दुश्मन की ओर से मिली सबसे बड़ी श्रद्धांजलि।", why:"यह quote <strong>UPPSC Mains में लिखने योग्य है।</strong> Hugh Rose और रानी का संबंध याद रखें।" },
+  { city:"कानपुर", q:"नाना साहब के विद्रोह का मुख्य तात्कालिक कारण क्या था?", opts:["Subsidiary Alliance का विरोध","ब्रिटिश सरकार द्वारा पेंशन बंद करना","Doctrine of Lapse से राज्य हरण","कर वृद्धि का विरोध"], ans:1, exp:"नाना साहब (धोंधू पंत) अंतिम पेशवा बाजीराव II के दत्तक पुत्र थे। ब्रिटिश सरकार ने दत्तक उत्तराधिकार के आधार पर पेंशन देने से इनकार किया — यही उनके विद्रोह का कारण था।", why:"नाना साहब (pension issue) vs रानी लक्ष्मीबाई (Doctrine of Lapse) — <strong>दोनों के कारण अलग हैं।</strong> Prelims और Mains दोनों में आता है।" },
+  { city:"कानपुर", q:"तांत्या टोपे को कब और कहाँ फाँसी दी गई?", opts:["1858 — कानपुर","18 अप्रैल 1859 — शिवपुरी (MP)","1860 — बरेली","1859 — झाँसी"], ans:1, exp:"तांत्या टोपे को Guerrilla warfare में माहिरी के बावजूद मानसिंह के विश्वासघात से पकड़ा गया। 18 अप्रैल 1859 को शिवपुरी (आज का मध्यप्रदेश) में फाँसी।", why:"<strong>मानसिंह के विश्वासघात</strong> का detail UPPSC level fact है। फाँसी का स्थान शिवपुरी (MP) है — कानपुर/झाँसी नहीं।" },
+  { city:"इलाहाबाद", q:"1 नवंबर 1858 को इलाहाबाद में क्या हुआ था?", opts:["1857 विद्रोह की औपचारिक शुरुआत","Lord Canning द्वारा Queen Victoria की Proclamation — EIC शासन का अंत","मौलवी लियाकत अली की फाँसी","Indian National Congress की स्थापना"], ans:1, exp:"1 नवंबर 1858 को Lord Canning (प्रथम Viceroy) ने इलाहाबाद में Queen Victoria की Royal Proclamation पढ़ी। EIC का शासन समाप्त, Crown Rule की शुरुआत। India Secretary of State के अधीन आया।", why:"<strong>UP की सबसे महत्वपूर्ण Constitutional event।</strong> इलाहाबाद से Crown Rule की शुरुआत — landmark UPPSC fact।" },
+  { city:"इलाहाबाद", q:"1857 में इलाहाबाद विद्रोह का नेतृत्व किसने किया?", opts:["खान बहादुर खान","मौलवी लियाकत अली","बेगम हज़रत महल","कुँवर सिंह"], ans:1, exp:"मौलवी लियाकत अली ने 6th Bengal Infantry के सहयोग से इलाहाबाद में विद्रोह किया। Colonel Neill ने Martial Law से क्रूर दमन किया।", why:"UP के सभी centers के नेता — Lucknow: Begum, Kanpur: Nana Sahib, <strong>Bareilly: Khan Bahadur Khan, Allahabad: Maulvi Liaquat Ali</strong> — एक साथ याद करें।" },
+  { city:"बरेली", q:"1857 में बरेली (रुहेलखंड) में विद्रोह का नेतृत्व किसने किया? (UPPSC 2023 Q.46)", opts:["हज़रत महल","खान बहादुर खान","कुँवर सिंह","नाना साहब"], ans:1, exp:"खान बहादुर खान — Rohilla Nawab हाफिज रहमत खान के वंशज — ने बरेली में खुद को नवाब घोषित कर विद्रोह किया। 1860 में फाँसी। यह प्रश्न UPPSC 2023 में literally आया था।", why:"⚠️ <strong>CONFIRMED REPEAT TOPIC — UPPSC 2023 Q.46</strong> में यही पूछा गया था। अगली परीक्षा में variation के साथ फिर आ सकता है।" },
+  { city:"Matching", q:"निम्नलिखित में से कौन सा युग्म (स्थान — नेता) सही सुमेलित नहीं है?", opts:["लखनऊ — बेगम हज़रत महल","बरेली — खान बहादुर खान","जगदीशपुर (बिहार) — कुँवर सिंह","इलाहाबाद — नाना साहब"], ans:3, exp:"इलाहाबाद के नेता मौलवी लियाकत अली थे, नाना साहब नहीं। नाना साहब का केंद्र कानपुर था। शेष सभी युग्म सही हैं।", why:"'Not correctly matched' format UPPSC का favorite है। <strong>Leaders/Places को mix करना classic trap है।</strong>" },
+  { city:"Chronology", q:"निम्न घटनाओं का सही कालक्रम क्या है? (1) मंगल पांडे फाँसी (2) मेरठ विद्रोह (3) लखनऊ विद्रोह (4) Queen's Proclamation", opts:["1, 2, 3, 4","2, 1, 3, 4","1, 3, 2, 4","2, 3, 1, 4"], ans:0, exp:"(1) मंगल पांडे फाँसी — 8 अप्रैल 1857 → (2) मेरठ विद्रोह — 10 मई 1857 → (3) लखनऊ विद्रोह — 4 जून 1857 → (4) Queen's Proclamation — 1 नवंबर 1858।", why:"<strong>Chronological ordering UPPSC का सबसे common format।</strong> Key dates — 8 अप्रैल, 10 मई, 4 जून 1857 और 1 नवंबर 1858 — याद करें।" },
+  { city:"Interpretation", q:"1857 के विद्रोह को 'प्रथम स्वतंत्रता संग्राम' किसने कहा?", opts:["R.C. Majumdar","Karl Marx","S.N. Sen","V.D. Savarkar"], ans:3, exp:"V.D. Savarkar ने अपनी पुस्तक 'The Indian War of Independence 1857' (1909) में इसे प्रथम स्वतंत्रता संग्राम कहा। R.C. Majumdar — 'Neither first, nor national, nor war of independence।' Karl Marx — 'People's Revolt।'", why:"<strong>विभिन्न Interpretations UPPSC Mains में extremely important।</strong> Savarkar, Majumdar, Marx, Disraeli — सभी के views याद रखें।" }
+];
+
+let state = { score:0, correct:0, attempted:0, answered: new Array(mcqs.length).fill(false) };
+
+function renderMCQ() {
+  const container = document.getElementById('mcq-list');
+  container.innerHTML = '';
+  const L = ['A','B','C','D'];
+  mcqs.forEach((m, qi) => {
+    const card = document.createElement('div');
+    card.className = 'mcq-card';
+    card.id = `mc-${qi}`;
+    card.innerHTML = `
+      <div class="mcq-head">
+        <span class="mcq-num">Q${qi+1} / ${mcqs.length}</span>
+        <span class="mcq-city-tag">📍 ${m.city}</span>
+        <div class="mcq-q">${m.q}</div>
+      </div>
+      <div class="opts" id="opts-${qi}">
+        ${m.opts.map((o,oi)=>`<div class="opt" id="opt-${qi}-${oi}" onclick="pick(${qi},${oi})"><span class="opt-ltr">${L[oi]}</span>${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="exp-${qi}">
+        <div class="exp-head">✅ Explanation</div>
+        <div class="exp-body">${m.exp}</div>
+        <div class="why-box">${m.why}</div>
+      </div>`;
+    container.appendChild(card);
+  });
+  updateStats();
+}
+
+function pick(qi, oi) {
+  if (state.answered[qi]) return;
+  state.answered[qi] = true;
+  state.attempted++;
+  const isRight = oi === mcqs[qi].ans;
+  if (isRight) { state.correct++; state.score += 2; }
+  for (let i=0;i<4;i++) {
+    const el = document.getElementById(`opt-${qi}-${i}`);
+    el.classList.add('disabled');
+    if (i === oi && isRight) el.classList.add('correct');
+    else if (i === oi) el.classList.add('wrong');
+    else if (i === mcqs[qi].ans) el.classList.add('reveal');
+  }
+  document.getElementById(`exp-${qi}`).classList.add('show');
+  document.getElementById(`mc-${qi}`).scrollIntoView({behavior:'smooth',block:'nearest'});
+  updateStats();
+}
+
+function updateStats() {
+  document.getElementById('s-score').textContent = state.score;
+  document.getElementById('s-att').textContent = state.attempted;
+  document.getElementById('s-cor').textContent = state.correct;
+  document.getElementById('s-acc').textContent = state.attempted > 0 ? Math.round(state.correct/state.attempted*100)+'%' : '—';
+  const pct = state.attempted/mcqs.length*100;
+  document.getElementById('prog-fill').style.width = pct+'%';
+  document.getElementById('prog-text').textContent = `${state.attempted} / ${mcqs.length} attempted`;
+}
+
+function resetMCQ() {
+  state = { score:0, correct:0, attempted:0, answered: new Array(mcqs.length).fill(false) };
+  renderMCQ();
+}
+
+renderMCQ();
+</script>
+</body>
+</html>
