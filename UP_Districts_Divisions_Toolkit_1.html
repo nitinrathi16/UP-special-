@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Districts & Divisions — UPPSC 2026 Toolkit</title>
+<style>
+  :root {
+    --cream: #FDFAF4;
+    --card: #FFFFFF;
+    --sidebar-bg: #EEF4FB;
+    --sidebar-active: #1A5FA8;
+    --sidebar-active-text: #FFFFFF;
+    --sidebar-text: #2C3E50;
+    --accent: #D97706;
+    --accent-light: #FEF3C7;
+    --primary: #1A5FA8;
+    --primary-light: #EEF4FB;
+    --text: #1E2837;
+    --muted: #6B7A8D;
+    --border: #E2E8F0;
+    --green: #2D6A4F;
+    --green-light: #D8F3DC;
+    --red: #9B2335;
+    --red-light: #FDECEA;
+    --purple: #553C9A;
+    --purple-light: #EDE9FE;
+    --teal: #0B6E72;
+    --teal-light: #CCFBF1;
+    --correct: #166534;
+    --correct-bg: #DCFCE7;
+    --wrong: #991B1B;
+    --wrong-bg: #FEE2E2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    width: 220px;
+    min-width: 220px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-logo {
+    padding: 18px 16px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-logo .logo-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .sidebar-logo .logo-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .sidebar-section {
+    padding: 10px 8px 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 9px 12px;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--sidebar-text);
+    text-align: left;
+    transition: background 0.15s;
+    margin: 1px 4px;
+    width: calc(100% - 8px);
+  }
+  .nav-btn:hover { background: #dce8f7; }
+  .nav-btn.active {
+    background: var(--sidebar-active);
+    color: var(--sidebar-active-text);
+    font-weight: 600;
+  }
+  .nav-icon { font-size: 15px; opacity: 0.8; }
+
+  /* MAIN */
+  #main {
+    flex: 1;
+    padding: 0;
+    overflow-y: auto;
+  }
+
+  .page { display: none; padding: 28px 32px; max-width: 1000px; }
+  .page.active { display: block; }
+
+  .page-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .page-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* STAT CARDS */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* DIVISION TABLE */
+  .div-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .div-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .div-header {
+    padding: 10px 14px;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .div-name { font-size: 14px; font-weight: 700; }
+  .div-hq { font-size: 11px; opacity: 0.85; }
+  .div-count {
+    background: rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .div-districts {
+    padding: 10px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .dist-tag {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 11.5px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: 1px solid #c8ddf5;
+  }
+  .dist-tag.hq-tag {
+    background: var(--accent-light);
+    color: #92400E;
+    border-color: #fcd34d;
+    font-weight: 700;
+  }
+
+  /* REGION COLORS */
+  .div-header.paschim { background: #1A5FA8; }
+  .div-header.madhya { background: #0B6E72; }
+  .div-header.poorvanchal { background: #553C9A; }
+  .div-header.bundelkhand { background: #9B2335; }
+  .div-header.terai { background: #2D6A4F; }
+
+  /* SEARCH */
+  .search-box {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background: var(--card);
+    color: var(--text);
+    outline: none;
+  }
+  .search-box:focus { border-color: var(--primary); }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .data-table th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .data-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #FAFBFC; }
+  .data-table tr:hover td { background: var(--primary-light); }
+
+  /* INDUSTRY BADGES */
+  .badge {
+    display: inline-block;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-amber { background: var(--accent-light); color: #92400E; }
+  .badge-purple { background: var(--purple-light); color: var(--purple); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-teal { background: var(--teal-light); color: var(--teal); }
+
+  /* MAP SVG */
+  .map-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* MNEMONIC CARDS */
+  .mnemonic-card {
+    background: var(--accent-light);
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .mnemonic-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #92400E;
+    margin-bottom: 6px;
+  }
+  .mnemonic-text {
+    font-size: 13px;
+    color: #78350F;
+    line-height: 1.6;
+  }
+  .mnemonic-text strong { color: #B45309; font-weight: 700; }
+
+  /* MCQ */
+  .mcq-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .mcq-q {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .mcq-q .q-num {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height: 22px;
+    font-size: 12px;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .mcq-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .mcq-opt {
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    background: var(--card);
+    color: var(--text);
+    transition: all 0.15s;
+    text-align: left;
+  }
+  .mcq-opt:hover:not(:disabled) { background: var(--primary-light); border-color: var(--primary); }
+  .mcq-opt.correct { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+  .mcq-opt.wrong { background: var(--wrong-bg); border-color: var(--wrong); color: var(--wrong); }
+  .mcq-exp {
+    font-size: 12.5px;
+    color: var(--muted);
+    background: #F8FAFC;
+    border-left: 3px solid var(--primary);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    display: none;
+    line-height: 1.6;
+  }
+  .mcq-exp.show { display: block; }
+
+  .score-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-display {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .score-label { font-size: 13px; color: var(--muted); }
+
+  .reset-btn {
+    padding: 8px 18px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .reset-btn:hover { background: #1550A0; }
+
+  /* BORDER DISTRICTS */
+  .border-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .border-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .border-flag {
+    width: 8px;
+    height: 18px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .border-districts-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* INDUSTRY PAGE */
+  .industry-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .industry-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .industry-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .industry-name { font-size: 15px; font-weight: 700; }
+  .industry-sub { font-size: 12px; color: var(--muted); }
+  .industry-dists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .industry-fact {
+    font-size: 12.5px;
+    color: var(--muted);
+    background: #F8FAFC;
+    padding: 8px 12px;
+    border-radius: 6px;
+    line-height: 1.6;
+  }
+
+  /* FILTER TABS */
+  .filter-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .filter-tab {
+    padding: 6px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    background: var(--card);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-tab:hover, .filter-tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  /* NOTIFICATION */
+  .info-box {
+    background: var(--primary-light);
+    border: 1px solid #c8ddf5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--primary);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .info-box strong { color: var(--sidebar-active); }
+
+  .warn-box {
+    background: var(--accent-light);
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #92400E;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 20px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .hidden { display: none !important; }
+
+  /* SVG Map */
+  .region-map {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-title">UP Districts</div>
+    <div class="logo-sub">UPPSC 2026 Toolkit</div>
+  </div>
+
+  <div class="sidebar-section">Overview</div>
+  <button class="nav-btn active" onclick="showPage('overview')">
+    <span class="nav-icon">🗺️</span> Overview & Map
+  </button>
+
+  <div class="sidebar-section">Mandals</div>
+  <button class="nav-btn" onclick="showPage('divisions')">
+    <span class="nav-icon">📋</span> 18 Divisions
+  </button>
+  <button class="nav-btn" onclick="showPage('alldistricts')">
+    <span class="nav-icon">🏙️</span> All 75 Districts
+  </button>
+
+  <div class="sidebar-section">Special Topics</div>
+  <button class="nav-btn" onclick="showPage('border')">
+    <span class="nav-icon">🔲</span> Border Districts
+  </button>
+  <button class="nav-btn" onclick="showPage('industry')">
+    <span class="nav-icon">🏭</span> Famous Industries
+  </button>
+  <button class="nav-btn" onclick="showPage('newdistricts')">
+    <span class="nav-icon">🆕</span> New Districts
+  </button>
+
+  <div class="sidebar-section">Revision</div>
+  <button class="nav-btn" onclick="showPage('mnemonics')">
+    <span class="nav-icon">🧠</span> Mnemonics
+  </button>
+  <button class="nav-btn" onclick="showPage('mcq')">
+    <span class="nav-icon">✅</span> MCQ Practice
+  </button>
+</nav>
+
+<main id="main">
+
+  <!-- PAGE: OVERVIEW -->
+  <section class="page active" id="page-overview">
+    <div class="page-header">
+      <div class="page-title">🗺️ Uttar Pradesh — Administrative Overview</div>
+      <div class="page-sub">75 Districts · 18 Mandals · 5 Regions · UPPSC 2026</div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">75</div>
+        <div class="stat-label">Total Districts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">18</div>
+        <div class="stat-label">Divisions (Mandals)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2,40,928</div>
+        <div class="stat-label">Area (km²)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">24.1 Cr</div>
+        <div class="stat-label">Population</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">9</div>
+        <div class="stat-label">Bordering States</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">403</div>
+        <div class="stat-label">Vidhan Sabha Seats</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>🏆 UPPSC Key Facts:</strong> UP is India's most populous state (1st) and 4th largest by area. It has the highest number of Lok Sabha seats (80). Capital = Lucknow. Largest district by area = Lakhimpur Kheri (7,680 km²). Smallest district = Hapur (660 km²). Only district touching 4 states = <strong>Sonbhadra</strong> (MP, CG, Jharkhand, Bihar).
+    </div>
+
+    <!-- Schematic Regional Map -->
+    <div class="map-container">
+      <div style="font-size:13px; color:var(--muted); margin-bottom:12px;">UP की 5 प्रमुख भौगोलिक पट्टियाँ (West → East)</div>
+      <svg class="region-map" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" aria-label="UP regions map">
+        <!-- Background -->
+        <rect width="700" height="320" fill="#FDFAF4" rx="8"/>
+
+        <!-- Nepal border top -->
+        <rect x="140" y="10" width="400" height="18" rx="4" fill="#E8F5E9"/>
+        <text x="340" y="23" text-anchor="middle" font-size="11" fill="#2D6A4F" font-weight="600">🇳🇵 NEPAL BORDER (Terai Belt)</text>
+
+        <!-- Terai -->
+        <rect x="140" y="30" width="400" height="40" rx="4" fill="#D8F3DC" stroke="#2D6A4F" stroke-width="1"/>
+        <text x="340" y="55" text-anchor="middle" font-size="12" fill="#1B4332" font-weight="700">TERAI BELT</text>
+        <text x="340" y="68" text-anchor="middle" font-size="10" fill="#2D6A4F">Lakhimpur Kheri · Bahraich · Balrampur · Shravasti · Maharajganj · Siddharthnagar</text>
+
+        <!-- Paschim UP -->
+        <rect x="20" y="80" width="160" height="160" rx="6" fill="#EEF4FB" stroke="#1A5FA8" stroke-width="1.5"/>
+        <text x="100" y="105" text-anchor="middle" font-size="13" fill="#1A5FA8" font-weight="700">PASCHIM UP</text>
+        <text x="100" y="120" text-anchor="middle" font-size="10" fill="#1E3A5F">Meerut Division</text>
+        <text x="100" y="134" text-anchor="middle" font-size="10" fill="#1E3A5F">Agra Division</text>
+        <text x="100" y="148" text-anchor="middle" font-size="10" fill="#1E3A5F">Aligarh Division</text>
+        <text x="100" y="162" text-anchor="middle" font-size="10" fill="#1E3A5F">Moradabad Div.</text>
+        <text x="100" y="176" text-anchor="middle" font-size="10" fill="#1E3A5F">Bareilly Division</text>
+        <text x="100" y="190" text-anchor="middle" font-size="10" fill="#1E3A5F">Saharanpur Div.</text>
+        <text x="100" y="210" text-anchor="middle" font-size="11" fill="#D97706" font-weight="600">~22 Districts</text>
+
+        <!-- Madhya UP -->
+        <rect x="195" y="80" width="190" height="130" rx="6" fill="#E1F5EE" stroke="#0B6E72" stroke-width="1.5"/>
+        <text x="290" y="105" text-anchor="middle" font-size="13" fill="#0B6E72" font-weight="700">MADHYA UP</text>
+        <text x="290" y="122" text-anchor="middle" font-size="10" fill="#065F46">Lucknow Division</text>
+        <text x="290" y="136" text-anchor="middle" font-size="10" fill="#065F46">Kanpur Division</text>
+        <text x="290" y="150" text-anchor="middle" font-size="10" fill="#065F46">Prayagraj Div.</text>
+        <text x="290" y="164" text-anchor="middle" font-size="10" fill="#065F46">Chitrakoot Div.</text>
+        <text x="290" y="185" text-anchor="middle" font-size="11" fill="#D97706" font-weight="600">~18 Districts</text>
+
+        <!-- Poorvanchal -->
+        <rect x="400" y="80" width="185" height="130" rx="6" fill="#EDE9FE" stroke="#553C9A" stroke-width="1.5"/>
+        <text x="492" y="105" text-anchor="middle" font-size="13" fill="#553C9A" font-weight="700">POORVANCHAL</text>
+        <text x="492" y="122" text-anchor="middle" font-size="10" fill="#4C1D95">Varanasi Division</text>
+        <text x="492" y="136" text-anchor="middle" font-size="10" fill="#4C1D95">Gorakhpur Div.</text>
+        <text x="492" y="150" text-anchor="middle" font-size="10" fill="#4C1D95">Azamgarh Div.</text>
+        <text x="492" y="164" text-anchor="middle" font-size="10" fill="#4C1D95">Basti Division</text>
+        <text x="492" y="185" text-anchor="middle" font-size="11" fill="#D97706" font-weight="600">~19 Districts</text>
+
+        <!-- Bundelkhand -->
+        <rect x="195" y="225" width="190" height="75" rx="6" fill="#FDECEA" stroke="#9B2335" stroke-width="1.5"/>
+        <text x="290" y="250" text-anchor="middle" font-size="13" fill="#9B2335" font-weight="700">BUNDELKHAND</text>
+        <text x="290" y="267" text-anchor="middle" font-size="10" fill="#7F1D1D">Jhansi · Chitrakoot</text>
+        <text x="290" y="281" text-anchor="middle" font-size="10" fill="#7F1D1D">Jhansi Division</text>
+        <text x="290" y="295" text-anchor="middle" font-size="11" fill="#D97706" font-weight="600">~7 Districts</text>
+
+        <!-- Mirzapur Zone -->
+        <rect x="400" y="225" width="185" height="75" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+        <text x="492" y="250" text-anchor="middle" font-size="13" fill="#92400E" font-weight="700">VINDHYA ZONE</text>
+        <text x="492" y="267" text-anchor="middle" font-size="10" fill="#78350F">Mirzapur Division</text>
+        <text x="492" y="281" text-anchor="middle" font-size="10" fill="#78350F">Mirzapur · Sonbhadra</text>
+        <text x="492" y="295" text-anchor="middle" font-size="11" fill="#D97706" font-weight="600">~3 Districts</text>
+
+        <!-- Arrows -->
+        <text x="186" y="160" text-anchor="middle" font-size="18" fill="#6B7A8D">→</text>
+        <text x="392" y="160" text-anchor="middle" font-size="18" fill="#6B7A8D">→</text>
+        <text x="186" y="260" text-anchor="middle" font-size="18" fill="#6B7A8D">→</text>
+        <text x="392" y="260" text-anchor="middle" font-size="18" fill="#6B7A8D">→</text>
+
+        <!-- Compass -->
+        <text x="665" y="30" text-anchor="middle" font-size="11" fill="#6B7A8D">N</text>
+        <text x="665" y="45" text-anchor="middle" font-size="16" fill="#6B7A8D">↑</text>
+      </svg>
+    </div>
+
+    <!-- Neighbouring States Quick View -->
+    <div class="section-title">🧭 UP की सीमाएं — Neighbouring States</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>दिशा</th>
+          <th>State / Country</th>
+          <th>Key Border Districts</th>
+          <th>Special Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>उत्तर (North)</strong></td>
+          <td>🇳🇵 Nepal + Uttarakhand</td>
+          <td>Lakhimpur Kheri, Bahraich, Balrampur, Shravasti, Siddharthnagar, Maharajganj, Pilibhit, Bijnor</td>
+          <td>Terai belt; Himalayan foothills</td>
+        </tr>
+        <tr>
+          <td><strong>पूर्व (East)</strong></td>
+          <td>Bihar</td>
+          <td>Kushinagar, Deoria, Ballia, Ghazipur, Chandauli, Sonbhadra, Varanasi</td>
+          <td>Ganga plain border; Ghaghra river</td>
+        </tr>
+        <tr>
+          <td><strong>दक्षिण (South)</strong></td>
+          <td>MP + Chhattisgarh</td>
+          <td>Sonbhadra, Mirzapur, Banda, Chitrakoot, Jhansi, Lalitpur, Hamirpur, Mahoba</td>
+          <td>Vindhya ranges; plateau region</td>
+        </tr>
+        <tr>
+          <td><strong>पश्चिम (West)</strong></td>
+          <td>Rajasthan + Haryana + Delhi</td>
+          <td>Mathura, Agra (Raj.), Saharanpur, Shamli, Muzaffarnagar (HR.), Baghpat, GB Nagar (Delhi)</td>
+          <td>Yamuna river border; NCR area</td>
+        </tr>
+        <tr>
+          <td><strong>NE (उत्तर-पूर्व)</strong></td>
+          <td>Jharkhand</td>
+          <td>Sonbhadra (only district)</td>
+          <td>Sonbhadra = 4 states boundary — exam favourite!</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PAGE: 18 DIVISIONS -->
+  <section class="page" id="page-divisions">
+    <div class="page-header">
+      <div class="page-title">📋 18 Mandals (Divisions) — Complete List</div>
+      <div class="page-sub">Each card shows: Division → Headquarters → Districts (HQ in gold)</div>
+    </div>
+
+    <div class="info-box">
+      <strong>याद रखो:</strong> जिले का HQ tag (सोने रंग) = वह शहर जहाँ Divisional Commissioner का कार्यालय है। Lucknow Mandal = सबसे बड़ा Division।
+    </div>
+
+    <div class="filter-tabs" id="region-filter">
+      <button class="filter-tab active" onclick="filterRegion('all', this)">सभी (18)</button>
+      <button class="filter-tab" onclick="filterRegion('Paschim UP', this)">Paschim UP</button>
+      <button class="filter-tab" onclick="filterRegion('Madhya UP', this)">Madhya UP</button>
+      <button class="filter-tab" onclick="filterRegion('Poorvanchal', this)">Poorvanchal</button>
+      <button class="filter-tab" onclick="filterRegion('Bundelkhand', this)">Bundelkhand</button>
+      <button class="filter-tab" onclick="filterRegion('Terai', this)">Terai</button>
+    </div>
+
+    <div class="div-grid" id="divisions-grid">
+
+      <!-- PASCHIM UP DIVISIONS -->
+      <div class="div-card" data-region="Paschim UP">
+        <div class="div-header paschim">
+          <div><div class="div-name">1. Saharanpur Mandal</div><div class="div-hq">HQ: Saharanpur | Paschim UP</div></div>
+          <div class="div-count">3</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Saharanpur ★</span>
+          <span class="dist-tag">Muzaffarnagar</span>
+          <span class="dist-tag">Shamli</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Paschim UP">
+        <div class="div-header paschim">
+          <div><div class="div-name">2. Meerut Mandal</div><div class="div-hq">HQ: Meerut | Paschim UP</div></div>
+          <div class="div-count">6</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Meerut ★</span>
+          <span class="dist-tag">Ghaziabad</span>
+          <span class="dist-tag">Gautam Buddha Nagar</span>
+          <span class="dist-tag">Hapur</span>
+          <span class="dist-tag">Bulandshahr</span>
+          <span class="dist-tag">Baghpat</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Paschim UP">
+        <div class="div-header paschim">
+          <div><div class="div-name">3. Agra Mandal</div><div class="div-hq">HQ: Agra | Paschim UP</div></div>
+          <div class="div-count">4</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Agra ★</span>
+          <span class="dist-tag">Mathura</span>
+          <span class="dist-tag">Firozabad</span>
+          <span class="dist-tag">Mainpuri</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Paschim UP">
+        <div class="div-header paschim">
+          <div><div class="div-name">4. Aligarh Mandal</div><div class="div-hq">HQ: Aligarh | Paschim UP</div></div>
+          <div class="div-count">4</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Aligarh ★</span>
+          <span class="dist-tag">Hathras</span>
+          <span class="dist-tag">Kasganj</span>
+          <span class="dist-tag">Etah</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Paschim UP">
+        <div class="div-header paschim">
+          <div><div class="div-name">5. Moradabad Mandal</div><div class="div-hq">HQ: Moradabad | Paschim UP</div></div>
+          <div class="div-count">5</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Moradabad ★</span>
+          <span class="dist-tag">Rampur</span>
+          <span class="dist-tag">Sambhal</span>
+          <span class="dist-tag">Amroha (J.P. Nagar)</span>
+          <span class="dist-tag">Bijnor</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Paschim UP">
+        <div class="div-header paschim">
+          <div><div class="div-name">6. Bareilly Mandal</div><div class="div-hq">HQ: Bareilly | Paschim UP</div></div>
+          <div class="div-count">4</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Bareilly ★</span>
+          <span class="dist-tag">Pilibhit</span>
+          <span class="dist-tag">Shahjahanpur</span>
+          <span class="dist-tag">Badaun</span>
+        </div>
+      </div>
+
+      <!-- MADHYA UP DIVISIONS -->
+      <div class="div-card" data-region="Madhya UP">
+        <div class="div-header madhya">
+          <div><div class="div-name">7. Lucknow Mandal</div><div class="div-hq">HQ: Lucknow | Madhya UP</div></div>
+          <div class="div-count">6</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Lucknow ★</span>
+          <span class="dist-tag">Unnao</span>
+          <span class="dist-tag">Rae Bareli</span>
+          <span class="dist-tag">Sitapur</span>
+          <span class="dist-tag">Hardoi</span>
+          <span class="dist-tag">Lakhimpur Kheri</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Madhya UP">
+        <div class="div-header madhya">
+          <div><div class="div-name">8. Kanpur Mandal</div><div class="div-hq">HQ: Kanpur | Madhya UP</div></div>
+          <div class="div-count">5</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Kanpur Nagar ★</span>
+          <span class="dist-tag">Kanpur Dehat</span>
+          <span class="dist-tag">Etawah</span>
+          <span class="dist-tag">Auraiya</span>
+          <span class="dist-tag">Farrukhabad</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Madhya UP">
+        <div class="div-header madhya">
+          <div><div class="div-name">9. Prayagraj Mandal</div><div class="div-hq">HQ: Prayagraj | Madhya UP</div></div>
+          <div class="div-count">4</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Prayagraj ★</span>
+          <span class="dist-tag">Fatehpur</span>
+          <span class="dist-tag">Kaushambi</span>
+          <span class="dist-tag">Pratapgarh</span>
+        </div>
+      </div>
+
+      <!-- BUNDELKHAND -->
+      <div class="div-card" data-region="Bundelkhand">
+        <div class="div-header bundelkhand">
+          <div><div class="div-name">10. Jhansi Mandal</div><div class="div-hq">HQ: Jhansi | Bundelkhand</div></div>
+          <div class="div-count">3</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Jhansi ★</span>
+          <span class="dist-tag">Lalitpur</span>
+          <span class="dist-tag">Jalaun (Orai)</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Bundelkhand">
+        <div class="div-header bundelkhand">
+          <div><div class="div-name">11. Chitrakoot Mandal</div><div class="div-hq">HQ: Banda | Bundelkhand</div></div>
+          <div class="div-count">4</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Banda ★</span>
+          <span class="dist-tag">Hamirpur</span>
+          <span class="dist-tag">Mahoba</span>
+          <span class="dist-tag">Chitrakoot</span>
+        </div>
+      </div>
+
+      <!-- VINDHYA / MIRZAPUR -->
+      <div class="div-card" data-region="Bundelkhand">
+        <div class="div-header" style="background:#B45309;">
+          <div><div class="div-name">12. Mirzapur Mandal</div><div class="div-hq">HQ: Mirzapur | Vindhya Zone</div></div>
+          <div class="div-count">3</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Mirzapur ★</span>
+          <span class="dist-tag">Sonbhadra</span>
+          <span class="dist-tag">Bhadohi</span>
+        </div>
+      </div>
+
+      <!-- POORVANCHAL DIVISIONS -->
+      <div class="div-card" data-region="Poorvanchal">
+        <div class="div-header poorvanchal">
+          <div><div class="div-name">13. Varanasi Mandal</div><div class="div-hq">HQ: Varanasi | Poorvanchal</div></div>
+          <div class="div-count">4</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Varanasi ★</span>
+          <span class="dist-tag">Chandauli</span>
+          <span class="dist-tag">Ghazipur</span>
+          <span class="dist-tag">Jaunpur</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Poorvanchal">
+        <div class="div-header poorvanchal">
+          <div><div class="div-name">14. Azamgarh Mandal</div><div class="div-hq">HQ: Azamgarh | Poorvanchal</div></div>
+          <div class="div-count">3</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Azamgarh ★</span>
+          <span class="dist-tag">Mau</span>
+          <span class="dist-tag">Ballia</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Poorvanchal">
+        <div class="div-header poorvanchal">
+          <div><div class="div-name">15. Gorakhpur Mandal</div><div class="div-hq">HQ: Gorakhpur | Poorvanchal</div></div>
+          <div class="div-count">4</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Gorakhpur ★</span>
+          <span class="dist-tag">Deoria</span>
+          <span class="dist-tag">Kushinagar</span>
+          <span class="dist-tag">Maharajganj</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Poorvanchal">
+        <div class="div-header poorvanchal">
+          <div><div class="div-name">16. Basti Mandal</div><div class="div-hq">HQ: Basti | Poorvanchal</div></div>
+          <div class="div-count">3</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Basti ★</span>
+          <span class="dist-tag">Sant Kabir Nagar</span>
+          <span class="dist-tag">Siddharthnagar</span>
+        </div>
+      </div>
+
+      <!-- TERAI / DEVIPATAN / AYODHYA -->
+      <div class="div-card" data-region="Terai">
+        <div class="div-header terai">
+          <div><div class="div-name">17. Devipatan Mandal</div><div class="div-hq">HQ: Gonda | Terai</div></div>
+          <div class="div-count">4</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Gonda ★</span>
+          <span class="dist-tag">Balrampur</span>
+          <span class="dist-tag">Bahraich</span>
+          <span class="dist-tag">Shravasti</span>
+        </div>
+      </div>
+
+      <div class="div-card" data-region="Terai">
+        <div class="div-header terai">
+          <div><div class="div-name">18. Ayodhya Mandal</div><div class="div-hq">HQ: Ayodhya | Terai/Central</div></div>
+          <div class="div-count">5</div>
+        </div>
+        <div class="div-districts">
+          <span class="dist-tag hq-tag">Ayodhya ★</span>
+          <span class="dist-tag">Barabanki</span>
+          <span class="dist-tag">Sultanpur</span>
+          <span class="dist-tag">Amethi</span>
+          <span class="dist-tag">Ambedkar Nagar</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAGE: ALL 75 DISTRICTS -->
+  <section class="page" id="page-alldistricts">
+    <div class="page-header">
+      <div class="page-title">🏙️ All 75 Districts — Searchable</div>
+      <div class="page-sub">District → HQ → Division → Region | Exam-ready data</div>
+    </div>
+
+    <input class="search-box" type="text" id="districtSearch" placeholder="🔍 District khojo... (e.g. Varanasi, Gorakhpur, Noida...)" oninput="searchDistricts()">
+
+    <div class="warn-box">
+      <strong>⚠️ Exam Trick:</strong> Kuch districts mein District HQ alag hota hai: Jalaun (HQ = Orai), Bhadohi (HQ = Gyanpur), Maharajganj (HQ = Maharajganj town), Chitrakoot (HQ = Karwi), Kannauj (HQ = Kannauj city). Sambhal = carved from Moradabad (2012).
+    </div>
+
+    <table class="data-table" id="districtTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>District</th>
+          <th>HQ City</th>
+          <th>Division</th>
+          <th>Region</th>
+          <th>Known For</th>
+        </tr>
+      </thead>
+      <tbody id="districtTbody">
+        <!-- filled by JS -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PAGE: BORDER DISTRICTS -->
+  <section class="page" id="page-border">
+    <div class="page-header">
+      <div class="page-title">🔲 Border Districts</div>
+      <div class="page-sub">Kaunsa district kaunse state/country ko touch karta hai</div>
+    </div>
+
+    <div class="info-box">
+      <strong>Sonbhadra Trick:</strong> UP ka ekmatr district jo 4 states ko touch karta hai — MP, Chhattisgarh, Jharkhand aur Bihar. Yeh UPPSC mein baar baar aata hai!
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#0057A8;"></span> Nepal (International Border — North)</div>
+      <div class="border-districts-list">
+        <span class="dist-tag">Bijnor</span><span class="dist-tag">Pilibhit</span><span class="dist-tag">Lakhimpur Kheri</span><span class="dist-tag">Bahraich</span><span class="dist-tag">Shravasti</span><span class="dist-tag">Balrampur</span><span class="dist-tag">Siddharthnagar</span><span class="dist-tag">Maharajganj</span>
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-top:8px;">Trick: <strong>Bi-Pi-La-Ba-Sh-Ba-Si-Ma</strong> → "Biwi Pili Lahsun Bachi Shravasti Baal Sida Maha"</div>
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#1A5FA8;"></span> Uttarakhand (North)</div>
+      <div class="border-districts-list">
+        <span class="dist-tag">Saharanpur</span><span class="dist-tag">Muzaffarnagar</span><span class="dist-tag">Bijnor</span><span class="dist-tag">Moradabad</span><span class="dist-tag">Rampur</span><span class="dist-tag">Pilibhit</span>
+      </div>
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#FF6B00;"></span> Bihar (East)</div>
+      <div class="border-districts-list">
+        <span class="dist-tag">Kushinagar</span><span class="dist-tag">Deoria</span><span class="dist-tag">Ballia</span><span class="dist-tag">Ghazipur</span><span class="dist-tag">Chandauli</span><span class="dist-tag">Sonbhadra</span>
+      </div>
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#6C3C8D;"></span> Jharkhand (East)</div>
+      <div class="border-districts-list">
+        <span class="dist-tag hq-tag">Sonbhadra only</span>
+      </div>
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#2D6A4F;"></span> Madhya Pradesh (South)</div>
+      <div class="border-districts-list">
+        <span class="dist-tag">Sonbhadra</span><span class="dist-tag">Mirzapur</span><span class="dist-tag">Chitrakoot</span><span class="dist-tag">Banda</span><span class="dist-tag">Hamirpur</span><span class="dist-tag">Mahoba</span><span class="dist-tag">Lalitpur</span><span class="dist-tag">Jhansi</span><span class="dist-tag">Jalaun</span>
+      </div>
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#B22222;"></span> Chhattisgarh (South)</div>
+      <div class="border-districts-list">
+        <span class="dist-tag hq-tag">Sonbhadra only</span>
+      </div>
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#D97706;"></span> Rajasthan (West)</div>
+      <div class="border-districts-list">
+        <span class="dist-tag">Agra</span><span class="dist-tag">Mathura</span>
+      </div>
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#0B6E72;"></span> Haryana (West)</div>
+      <div class="border-districts-list">
+        <span class="dist-tag">Saharanpur</span><span class="dist-tag">Shamli</span><span class="dist-tag">Muzaffarnagar</span><span class="dist-tag">Baghpat</span><span class="dist-tag">Mathura</span>
+      </div>
+    </div>
+
+    <div class="border-section">
+      <div class="border-title"><span class="border-flag" style="background:#CC0000;"></span> Delhi (NCT) — West</div>
+      <div class="border-districts-list">
+        <span class="dist-tag">Ghaziabad</span><span class="dist-tag">Gautam Buddha Nagar (Noida)</span><span class="dist-tag">Baghpat</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE: INDUSTRY -->
+  <section class="page" id="page-industry">
+    <div class="page-header">
+      <div class="page-title">🏭 Famous Industries & Districts</div>
+      <div class="page-sub">Economic geography — UPPSC Paper 1 high-value topic</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#D8F3DC;">🎸</div>
+        <div><div class="industry-name">Carpet Weaving (कालीन उद्योग)</div><div class="industry-sub">India's largest carpet export zone</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-green">Bhadohi (★ Carpet Capital)</span>
+        <span class="badge badge-green">Mirzapur</span>
+      </div>
+      <div class="industry-fact">Bhadohi (HQ: Gyanpur) = "Carpet City of India". Division: Mirzapur. Bhadohi aur Mirzapur milke India ke 80% handmade carpet export karte hain. GI tag: Mirzapur carpet. Exam trick: Bhadohi district Varanasi se alag hua 1994 mein.</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#FDECEA;">👟</div>
+        <div><div class="industry-name">Leather & Footwear (चमड़ा उद्योग)</div><div class="industry-sub">Asia's largest leather cluster</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-red">Kanpur (★ Leather City)</span>
+        <span class="badge badge-red">Agra</span>
+        <span class="badge badge-red">Unnao</span>
+      </div>
+      <div class="industry-fact">Kanpur = "Manchester of the East" (textile+leather). Kanpur Nagar district, Kanpur Division. Agra = footwear (Bata, formal shoes). Unnao = tanneries. GI Tag: Agra Petha + Agra Leather Goods.</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#EEF4FB;">💻</div>
+        <div><div class="industry-name">IT / Tech Hub</div><div class="industry-sub">NCR + Lucknow corridor</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-blue">Noida (GB Nagar)</span>
+        <span class="badge badge-blue">Lucknow</span>
+        <span class="badge badge-blue">Ghaziabad</span>
+      </div>
+      <div class="industry-fact">Noida = Gautam Buddha Nagar district, Meerut Division. IT companies + film city. Lucknow = IT/BPO growing hub. Ghaziabad = industrial corridor, NCR. UP Expressway Industrial Development Authority (UPEIDA) projects here.</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#FEF3C7;">🌿</div>
+        <div><div class="industry-name">Sugarcane / Sugar Mills (गन्ना उद्योग)</div><div class="industry-sub">India's #1 sugarcane state</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-amber">Muzaffarnagar</span>
+        <span class="badge badge-amber">Meerut</span>
+        <span class="badge badge-amber">Saharanpur</span>
+        <span class="badge badge-amber">Shamli</span>
+        <span class="badge badge-amber">Lakhimpur Kheri</span>
+        <span class="badge badge-amber">Bareilly</span>
+        <span class="badge badge-amber">Bijnor</span>
+      </div>
+      <div class="industry-fact">Muzaffarnagar = "Sugar Bowl of India". UP produces ~40% of India's sugarcane. Western UP (Saharanpur, Meerut, Muzaffarnagar belt) = dense sugar mill zone. Doab region (Ganga-Yamuna) = fertile sugarcane land.</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#EDE9FE;">🔩</div>
+        <div><div class="industry-name">Brass / Metal Work (पीतल उद्योग)</div><div class="industry-sub">World's brass hub</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-purple">Moradabad (★ Peetal Nagari)</span>
+      </div>
+      <div class="industry-fact">Moradabad = "Brass City of India" or "Pital Nagari". Moradabad Division, Paschim UP. World's largest brass handicraft exporter. GI Tag: Moradabad Metal Craft. Also famous for brassware export to USA, Europe.</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#CCFBF1;">🔒</div>
+        <div><div class="industry-name">Lock Industry (ताला उद्योग)</div><div class="industry-sub">India's lock capital</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-teal">Aligarh (★ Lock City)</span>
+      </div>
+      <div class="industry-fact">Aligarh = India ka 80% lock production. Aligarh Mandal. Also famous for Aligarh Muslim University (AMU, 1875). GI Tag: Aligarh Lock.</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#FEF3C7;">✨</div>
+        <div><div class="industry-name">Glass / Bangles (काँच उद्योग)</div><div class="industry-sub">Colourful glass industry</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-amber">Firozabad (★ Glass/Bangle City)</span>
+        <span class="badge badge-amber">Varanasi (Silk Sarees)</span>
+      </div>
+      <div class="industry-fact">Firozabad = "Suhag Nagri" - India's glass bangle capital (90% national production). Agra Division. Varanasi = Banarasi Silk Sarees (GI Tag). Varanasi Division, Poorvanchal.</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#E1F5EE;">🕌</div>
+        <div><div class="industry-name">Tourism Cities</div><div class="industry-sub">UP = India's spiritual tourism hub</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-green">Agra (Taj Mahal)</span>
+        <span class="badge badge-green">Varanasi (Ghats)</span>
+        <span class="badge badge-green">Ayodhya (Ram Temple)</span>
+        <span class="badge badge-green">Mathura-Vrindavan</span>
+        <span class="badge badge-green">Prayagraj (Kumbh)</span>
+        <span class="badge badge-green">Lucknow (Nawabi)</span>
+        <span class="badge badge-green">Sarnath (Buddhist)</span>
+      </div>
+      <div class="industry-fact">Prayagraj mein 2025 Maha Kumbh hua — temporary 76th district bana tha. Ayodhya = Ram Temple 2024 inauguration → religious tourism boost. Sarnath = Varanasi district mein, Buddha ka pehla pravachan. Kushinagar = Buddha mahaparinirvana.</div>
+    </div>
+
+    <div class="industry-card">
+      <div class="industry-head">
+        <div class="industry-icon" style="background:#EDE9FE;">⚗️</div>
+        <div><div class="industry-name">Chemical / Fertilizer</div><div class="industry-sub">Heavy industry belt</div></div>
+      </div>
+      <div class="industry-dists">
+        <span class="badge badge-purple">Gorakhpur (Fertilizer)</span>
+        <span class="badge badge-purple">Sonbhadra (Power/Minerals)</span>
+        <span class="badge badge-purple">Kanpur (Chemical)</span>
+        <span class="badge badge-purple">Mathura (Refinery)</span>
+      </div>
+      <div class="industry-fact">Mathura Refinery (IOC) = India ki sabse important oil refineries mein se ek. Gorakhpur Fertilizer Plant (revived 2022) = Hindustan Urvarak & Rasayan Ltd. Sonbhadra = Rihand Power Plant, Obra Power Plant + mineral wealth.</div>
+    </div>
+  </section>
+
+  <!-- PAGE: NEW DISTRICTS -->
+  <section class="page" id="page-newdistricts">
+    <div class="page-header">
+      <div class="page-title">🆕 Recently Created / Renamed Districts</div>
+      <div class="page-sub">UPPSC mein yeh most-tested recent changes hain</div>
+    </div>
+
+    <div class="info-box">
+      <strong>Current Status (2026):</strong> Official count = 75 districts. Maha Kumbh ke liye temporary 76th district (Prayagraj Maha Kumbh) bana tha — Dec 2024 to early 2025 — ab merge ho gaya.
+    </div>
+
+    <div class="section-title">Newly Created Districts (Post-2000)</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>District</th><th>Year Created</th><th>Carved From</th><th>Division</th><th>Why Famous</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Hapur</strong></td><td>2011</td><td>Ghaziabad</td><td>Meerut</td><td>Smallest district by area (660 km²)</td></tr>
+        <tr><td><strong>Sambhal</strong></td><td>2011</td><td>Moradabad</td><td>Moradabad</td><td>Textile; Sambhal Fort; communal history</td></tr>
+        <tr><td><strong>Shamli</strong></td><td>2011</td><td>Muzaffarnagar</td><td>Saharanpur</td><td>Sugarcane; Haryana border</td></tr>
+        <tr><td><strong>Amethi</strong></td><td>2010</td><td>Sultanpur</td><td>Ayodhya</td><td>Gandhi family constituency; Ordnance Factory</td></tr>
+        <tr><td><strong>Kasganj</strong></td><td>2008</td><td>Etah</td><td>Aligarh</td><td>Religious tourism; Ganga ghat</td></tr>
+        <tr><td><strong>Amroha (JP Nagar)</strong></td><td>1997</td><td>Moradabad</td><td>Moradabad</td><td>Sufi dargahs; paper industry</td></tr>
+        <tr><td><strong>Kannauj</strong></td><td>1997</td><td>Farrukhabad</td><td>Kanpur</td><td>"Perfume City of India" — Ittar (GI Tag)</td></tr>
+        <tr><td><strong>Bhadohi</strong></td><td>1994</td><td>Varanasi</td><td>Mirzapur</td><td>Carpet capital; actual HQ = Gyanpur</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Renamed Districts / Cities</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>New Name</th><th>Old Name</th><th>Year</th><th>Significance</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Prayagraj</strong></td><td>Allahabad</td><td>2018</td><td>Renamed by Yogi govt; Triveni Sangam; Kumbh Mela</td></tr>
+        <tr><td><strong>Ayodhya</strong></td><td>Faizabad</td><td>2018</td><td>Ram Mandir; religious significance; November 2018</td></tr>
+        <tr><td><strong>Amroha</strong></td><td>Jyotiba Phule Nagar</td><td>2012</td><td>Earlier renamed in 1997 by BSP; reverted</td></tr>
+        <tr><td><strong>Hathras</strong></td><td>Mahamaya Nagar</td><td>2012</td><td>Renamed 1997 (BSP), reverted 2012 (SP)</td></tr>
+        <tr><td><strong>Barabanki</strong></td><td>—</td><td>—</td><td>Was Awadhpur in ancient times; no official rename</td></tr>
+        <tr><td><strong>Kanpur Dehat</strong></td><td>Ramabai Nagar</td><td>2012</td><td>Renamed by BSP, reverted by SP</td></tr>
+        <tr><td><strong>Ambedkar Nagar</strong></td><td>Akbarpur</td><td>1995</td><td>District HQ still = Akbarpur</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PAGE: MNEMONICS -->
+  <section class="page" id="page-mnemonics">
+    <div class="page-header">
+      <div class="page-title">🧠 Mnemonics & Memory Tricks</div>
+      <div class="page-sub">Map-based tricks for UPPSC exam quick recall</div>
+    </div>
+
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">🗺️ 18 Mandals याद करो — "SAME BALAM JAPA KA VACHANA GOBA DEVI"</div>
+      <div class="mnemonic-text">
+        <strong>S</strong>aharanpur · <strong>A</strong>gra · <strong>M</strong>eerut · <strong>E</strong>→Aligarh (E = Eastern Paschim) · <strong>B</strong>areilly · <strong>A</strong>→Azamgarh · <strong>L</strong>ucknow · <strong>A</strong>→Ayodhya · <strong>M</strong>→Moradabad · <strong>J</strong>hansi · <strong>A</strong>→Mirzapur (Antim 'A') · <strong>P</strong>rayagraj · <strong>A</strong>→Kanpur (Ka) · <strong>V</strong>aranasi · <strong>A</strong>→Azamgarh (already) · <strong>C</strong>hitrakoot · <strong>G</strong>orakhpur · <strong>B</strong>asti · <strong>D</strong>evipatan
+      </div>
+    </div>
+
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">🇳🇵 Nepal Border Districts (West to East)</div>
+      <div class="mnemonic-text">
+        <strong>"Bijnor Pilibhit Lakhimpur Bahraich Shravasti Balrampur Siddharthnagar Maharajganj"</strong><br>
+        Trick: <strong>"BiPi LaBa ShBa SiMa"</strong> → "Biwi Pili Lahsun Bachi, Shravasti Baal Sida Maha"<br>
+        याद: Nepal border = Terai belt = Green forest = 8 districts
+      </div>
+    </div>
+
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">🏙️ Divisional HQs — "Capital Cities"</div>
+      <div class="mnemonic-text">
+        <strong>Lucknow, Kanpur, Agra, Varanasi, Prayagraj</strong> = 5 biggest cities = 5 divisions<br>
+        <strong>Meerut, Bareilly, Moradabad, Aligarh, Saharanpur</strong> = 5 Paschim UP divisions<br>
+        <strong>Gorakhpur, Azamgarh, Basti</strong> = 3 Poorvanchal divisions<br>
+        <strong>Jhansi + Banda (Chitrakoot)</strong> = 2 Bundelkhand<br>
+        <strong>Ayodhya + Gonda (Devipatan)</strong> = 2 Terai/Central<br>
+        <strong>Mirzapur</strong> = 1 Vindhya = Total 18 ✓
+      </div>
+    </div>
+
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">🏆 Superlatives — Most Asked in UPPSC</div>
+      <div class="mnemonic-text">
+        <strong>Largest district (area):</strong> Lakhimpur Kheri (7,680 km²) → "Kheer sabse zyada khate hain" (large appetite = large district)<br>
+        <strong>Smallest district (area):</strong> Hapur (660 km²) → "Hapur = Half-size UP"<br>
+        <strong>Most populous:</strong> Lucknow / Kanpur Nagar<br>
+        <strong>4-state border:</strong> Sonbhadra → "Son = Sun touches 4 horizons"<br>
+        <strong>Largest division:</strong> Lucknow Mandal (6 districts: Lucknow, Unnao, RaeBareli, Sitapur, Hardoi, Lakhimpur)<br>
+        <strong>Smallest division:</strong> Azamgarh/Basti (3 districts each)
+      </div>
+    </div>
+
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">🏭 Industry → City Map</div>
+      <div class="mnemonic-text">
+        <strong>"Alis Lock, Modi Brass, Firo Glass, Kanno Perfume"</strong><br>
+        <strong>Ali</strong>garh = Lock · <strong>Mo</strong>radabad = Brass · <strong>Fi</strong>rozabad = Glass/Bangles · <strong>Kanno</strong>j = Perfume (Ittar)<br><br>
+        <strong>"Ka-Ag Leather, Bha-Mi Carpet, Mu-Me Sugar"</strong><br>
+        <strong>Ka</strong>npur+<strong>Ag</strong>ra = Leather · <strong>Bha</strong>dohi+<strong>Mi</strong>rzapur = Carpet · <strong>Mu</strong>zaffarnagar+<strong>Me</strong>erut = Sugar
+      </div>
+    </div>
+
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">✏️ HQ ≠ District Name (Special Cases)</div>
+      <div class="mnemonic-text">
+        <strong>Jalaun</strong> → HQ = <strong>Orai</strong> | <strong>Bhadohi</strong> → HQ = <strong>Gyanpur</strong><br>
+        <strong>Chitrakoot</strong> → HQ = <strong>Karwi</strong> | <strong>Ambedkar Nagar</strong> → HQ = <strong>Akbarpur</strong><br>
+        <strong>Kanpur Dehat</strong> → HQ = <strong>Akbarpur</strong> (same name, different district!)<br>
+        <strong>Sambhal</strong> → carved from <strong>Moradabad</strong> (2011)
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE: MCQ -->
+  <section class="page" id="page-mcq">
+    <div class="page-header">
+      <div class="page-title">✅ MCQ Practice — UP Districts</div>
+      <div class="page-sub">10 UPPSC-style questions | Instant feedback with explanation</div>
+    </div>
+
+    <div class="score-bar">
+      <div>
+        <div class="score-label">Score</div>
+        <div class="score-display" id="scoreDisplay">0 / 10</div>
+      </div>
+      <div>
+        <div class="score-label">Attempted</div>
+        <div class="score-display" id="attemptDisplay">0</div>
+      </div>
+      <button class="reset-btn" onclick="resetMCQ()">🔄 Reset</button>
+    </div>
+
+    <div id="mcq-container"></div>
+  </section>
+
+</main>
+
+<script>
+const districtData = [
+  ["Agra","Agra","Agra","Paschim UP","Taj Mahal, Leather, Petha"],
+  ["Aligarh","Aligarh","Aligarh","Paschim UP","Lock Industry, AMU"],
+  ["Ambedkar Nagar","Akbarpur","Ayodhya","Central UP","Carved from Faizabad 1995"],
+  ["Amethi","Gauriganj","Ayodhya","Central UP","Gandhi constituency, Ordnance Factory"],
+  ["Amroha","Amroha","Moradabad","Paschim UP","Formerly J.P.Nagar; Sufi culture"],
+  ["Auraiya","Auraiya","Kanpur","Madhya UP","Agriculture; Yamuna riverbank"],
+  ["Ayodhya","Ayodhya","Ayodhya","Central UP","Ram Mandir, formerly Faizabad"],
+  ["Azamgarh","Azamgarh","Azamgarh","Poorvanchal","Arts, Kalyani sugar"],
+  ["Baghpat","Baghpat","Meerut","Paschim UP","Sugarcane; Haryana border; NCR"],
+  ["Bahraich","Bahraich","Devipatan","Terai","Nepal border; Suheldev WLS"],
+  ["Ballia","Ballia","Azamgarh","Poorvanchal","Bihar border; Bhrigu temple"],
+  ["Balrampur","Balrampur","Devipatan","Terai","Nepal border; Sravasti Buddhist site"],
+  ["Banda","Banda","Chitrakoot","Bundelkhand","Divisional HQ of Chitrakoot Mandal"],
+  ["Barabanki","Barabanki","Ayodhya","Central UP","Near Lucknow; agriculture"],
+  ["Bareilly","Bareilly","Bareilly","Paschim UP","Zari-Zardozi, North Indian culture hub"],
+  ["Basti","Basti","Basti","Poorvanchal","Sugar industry; Siddharth Nagar belt"],
+  ["Bhadohi","Gyanpur","Mirzapur","Vindhya Zone","Carpet Capital of India; GI Tag"],
+  ["Bijnor","Bijnor","Moradabad","Paschim UP","Nepal+Uttarakhand border; sugarcane"],
+  ["Budaun","Budaun","Bareilly","Paschim UP","Agriculture; Rampura Phul"],
+  ["Bulandshahr","Bulandshahr","Meerut","Paschim UP","Dairy; Sikandrabad industrial"],
+  ["Chandauli","Chandauli","Varanasi","Poorvanchal","Bihar border; paddy bowl"],
+  ["Chitrakoot","Karwi","Chitrakoot","Bundelkhand","Ram exile; MP border; pilgrimage"],
+  ["Deoria","Deoria","Gorakhpur","Poorvanchal","Sugar mills; Bihar border"],
+  ["Etah","Etah","Aligarh","Paschim UP","Agri; Milk coop"],
+  ["Etawah","Etawah","Kanpur","Madhya UP","Lion Safari; Chambal belt"],
+  ["Farrukhabad","Fatehgarh","Kanpur","Madhya UP","HQ = Fatehgarh; potato capital"],
+  ["Fatehpur","Fatehpur","Prayagraj","Madhya UP","Cotton; river Yamuna-Ganga doab"],
+  ["Firozabad","Firozabad","Agra","Paschim UP","Glass/Bangle capital; Suhag Nagri"],
+  ["Gautam Buddha Nagar","Greater Noida","Meerut","Paschim UP","Noida IT hub; Buddha theme"],
+  ["Ghaziabad","Ghaziabad","Meerut","Paschim UP","NCR; fastest growing city"],
+  ["Ghazipur","Ghazipur","Varanasi","Poorvanchal","Opium factory; Bihar border"],
+  ["Gonda","Gonda","Devipatan","Terai","Divisional HQ of Devipatan"],
+  ["Gorakhpur","Gorakhpur","Gorakhpur","Poorvanchal","Gorakhnath temple; fertilizer"],
+  ["Hamirpur","Hamirpur","Chitrakoot","Bundelkhand","MP border; Betwa river"],
+  ["Hapur","Hapur","Meerut","Paschim UP","Smallest district (660 km²)"],
+  ["Hardoi","Hardoi","Lucknow","Madhya UP","Large district; agri"],
+  ["Hathras","Hathras","Aligarh","Paschim UP","Formerly Mahamaya Nagar"],
+  ["Jalaun","Orai","Jhansi","Bundelkhand","HQ = Orai; oilseed crops"],
+  ["Jaunpur","Jaunpur","Varanasi","Poorvanchal","Sharqi architecture; Gomti river"],
+  ["Jhansi","Jhansi","Jhansi","Bundelkhand","Rani Laxmibai; Divisional HQ"],
+  ["Kannauj","Kannauj","Kanpur","Madhya UP","Perfume/Ittar city; GI Tag"],
+  ["Kanpur Dehat","Akbarpur","Kanpur","Madhya UP","Formerly Ramabai Nagar; agri"],
+  ["Kanpur Nagar","Kanpur","Kanpur","Madhya UP","Manchester of East; leather"],
+  ["Kasganj","Kasganj","Aligarh","Paschim UP","Carved from Etah 2008; Ganga ghat"],
+  ["Kaushambi","Manjhanpur","Prayagraj","Madhya UP","HQ = Manjhanpur; Buddhist heritage"],
+  ["Kushinagar","Padarauna","Gorakhpur","Poorvanchal","Buddha Mahaparinirvana; Bihar border"],
+  ["Lakhimpur Kheri","Kheri","Lucknow","Madhya UP","Largest district; Dudhwa NP"],
+  ["Lalitpur","Lalitpur","Jhansi","Bundelkhand","MP border; tribal region"],
+  ["Lucknow","Lucknow","Lucknow","Madhya UP","Capital; chikankari; Nawabi"],
+  ["Maharajganj","Maharajganj","Gorakhpur","Poorvanchal","Nepal border; forest"],
+  ["Mahoba","Mahoba","Chitrakoot","Bundelkhand","Chandela dynasty; Mela"],
+  ["Mainpuri","Mainpuri","Agra","Paschim UP","SP stronghold; Mulayam Singh"],
+  ["Mathura","Mathura","Agra","Paschim UP","Krishna birthplace; refinery"],
+  ["Mau","Mau","Azamgarh","Poorvanchal","Powerloom textile"],
+  ["Meerut","Meerut","Meerut","Paschim UP","1857 revolt; sports goods; scissors"],
+  ["Mirzapur","Mirzapur","Mirzapur","Vindhya Zone","Carpet+Brass; Vindhyachal temple"],
+  ["Moradabad","Moradabad","Moradabad","Paschim UP","Pital Nagri; brass export"],
+  ["Muzaffarnagar","Muzaffarnagar","Saharanpur","Paschim UP","Sugar Bowl; HR border"],
+  ["Pilibhit","Pilibhit","Bareilly","Paschim UP","Nepal border; Pilibhit Tiger Reserve"],
+  ["Prayagraj","Prayagraj","Prayagraj","Madhya UP","Kumbh; Sangam; HC; formerly Allahabad"],
+  ["Pratapgarh","Pratapgarh","Prayagraj","Madhya UP","Aonla fruit; agriculture"],
+  ["Rae Bareli","Rae Bareli","Lucknow","Madhya UP","Gandhi family; rail coach factory"],
+  ["Rampur","Rampur","Moradabad","Paschim UP","Rampuri knife; Muslim arts; Uttarakhand border"],
+  ["Saharanpur","Saharanpur","Saharanpur","Paschim UP","Wood carving; Uttarakhand border"],
+  ["Sambhal","Sambhal","Moradabad","Paschim UP","Carved from Moradabad 2011"],
+  ["Sant Kabir Nagar","Khalilabad","Basti","Poorvanchal","Kabir Chaura; weaving"],
+  ["Shahjahanpur","Shahjahanpur","Bareilly","Paschim UP","Ram Prasad Bismil; rose farming"],
+  ["Shamli","Shamli","Saharanpur","Paschim UP","Carved 2011 from Muzaffarnagar; Haryana border"],
+  ["Shravasti","Bhinga","Devipatan","Terai","Nepal border; Buddhist site Savatthi"],
+  ["Siddharthnagar","Naugarh","Basti","Poorvanchal","Nepal border; Buddha birthplace Kapilvastu"],
+  ["Sitapur","Sitapur","Lucknow","Madhya UP","Carpets; Neemsar pilgrimage"],
+  ["Sonbhadra","Robertsganj","Varanasi","Poorvanchal","4-state border; minerals; power plants"],
+  ["Sultanpur","Sultanpur","Ayodhya","Central UP","Agriculture; Amethi carved from this"],
+  ["Unnao","Unnao","Lucknow","Madhya UP","Leather tanneries; chemical industry"],
+  ["Varanasi","Varanasi","Varanasi","Poorvanchal","Oldest living city; Ganga ghats; silk"],
+];
+
+function renderDistricts(data) {
+  const tbody = document.getElementById('districtTbody');
+  tbody.innerHTML = '';
+  data.forEach((d, i) => {
+    const regionColors = {
+      'Paschim UP': '#EEF4FB',
+      'Madhya UP': '#E1F5EE',
+      'Poorvanchal': '#EDE9FE',
+      'Bundelkhand': '#FDECEA',
+      'Terai': '#D8F3DC',
+      'Central UP': '#FEF9C3',
+      'Vindhya Zone': '#FEF3C7',
+    };
+    const bg = regionColors[d[3]] || '#fff';
+    tbody.innerHTML += `<tr>
+      <td style="color:var(--muted); font-size:12px;">${i+1}</td>
+      <td><strong>${d[0]}</strong></td>
+      <td style="color:var(--primary); font-size:12px;">${d[1]}</td>
+      <td><span style="font-size:11.5px; font-weight:600;">${d[2]}</span></td>
+      <td><span style="background:${bg}; padding:2px 8px; border-radius:20px; font-size:11px; font-weight:600;">${d[3]}</span></td>
+      <td style="font-size:12px; color:var(--muted);">${d[4]}</td>
+    </tr>`;
+  });
+}
+
+function searchDistricts() {
+  const q = document.getElementById('districtSearch').value.toLowerCase();
+  const filtered = districtData.filter(d => d.join(' ').toLowerCase().includes(q));
+  renderDistricts(filtered);
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function filterRegion(region, btn) {
+  document.querySelectorAll('#region-filter .filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('#divisions-grid .div-card');
+  cards.forEach(card => {
+    if (region === 'all' || card.dataset.region === region) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// MCQ Data
+const mcqs = [
+  {
+    q: "UP का 'Smallest District by Area' कौनसा है?",
+    opts: ["Shamli","Bhadohi","Hapur","Kasganj"],
+    ans: 2,
+    exp: "Hapur (660 km²) UP का सबसे छोटा district है। इसे 2011 में Ghaziabad से अलग किया गया। यह Meerut Division में है।"
+  },
+  {
+    q: "किस UP district की सीमाएं 4 अलग-अलग states से लगती हैं?",
+    opts: ["Mirzapur","Jhansi","Ballia","Sonbhadra"],
+    ans: 3,
+    exp: "Sonbhadra — UP का एकमात्र district जो MP, Chhattisgarh, Jharkhand और Bihar चारों से लगता है। Varanasi Division में है।"
+  },
+  {
+    q: "Chitrakoot Mandal का Divisional Headquarters कहाँ है?",
+    opts: ["Chitrakoot","Mahoba","Banda","Hamirpur"],
+    ans: 2,
+    exp: "Chitrakoot Mandal का HQ = Banda है, न कि Chitrakoot city। इसमें Banda, Hamirpur, Mahoba और Chitrakoot district शामिल हैं। Bundelkhand region।"
+  },
+  {
+    q: "Moradabad को किस उद्योग के लिए 'पीतल नगरी' कहते हैं?",
+    opts: ["Lock Industry","Brass Handicraft","Glass Industry","Carpet Weaving"],
+    ans: 1,
+    exp: "Moradabad = 'Brass City' / 'Pital Nagri'। यहाँ World की सबसे बड़ी brass handicraft export industry है। Moradabad Mandal, Paschim UP।"
+  },
+  {
+    q: "Jalaun district का Headquarters कहाँ है?",
+    opts: ["Jalaun","Kalpi","Orai","Konch"],
+    ans: 2,
+    exp: "Jalaun district का HQ = Orai है। यह Jhansi Division (Bundelkhand) में है। यह UPPSC mein trick question की तरह आता है।"
+  },
+  {
+    q: "Prayagraj का पुराना नाम क्या था?",
+    opts: ["Allahabad","Kashi","Prayag","Triveni"],
+    ans: 0,
+    exp: "Allahabad → Prayagraj (2018, Yogi Adityanath सरकार)। Similarly Faizabad → Ayodhya (Nov 2018)। Triveni Sangam यहीं है।"
+  },
+  {
+    q: "UP का 'Carpet Capital' कौनसा district है?",
+    opts: ["Mirzapur","Varanasi","Bhadohi","Kanpur"],
+    ans: 2,
+    exp: "Bhadohi = 'Carpet Capital of India'। Mirzapur Division में है, actual HQ = Gyanpur। 1994 में Varanasi से अलग हुआ।"
+  },
+  {
+    q: "Devipatan Mandal का Headquarters कहाँ है?",
+    opts: ["Shravasti","Bahraich","Balrampur","Gonda"],
+    ans: 3,
+    exp: "Devipatan Mandal का HQ = Gonda। इसमें Gonda, Balrampur, Bahraich और Shravasti शामिल हैं। यह Terai region में है।"
+  },
+  {
+    q: "Sambhal district किस division में है और किस जिले से carved हुआ?",
+    opts: ["Meerut Division, Ghaziabad से","Moradabad Division, Moradabad से","Bareilly Division, Budaun से","Aligarh Division, Rampur से"],
+    ans: 1,
+    exp: "Sambhal = Moradabad Division। 2011 में Moradabad district से carved। Moradabad Mandal, Paschim UP।"
+  },
+  {
+    q: "कौनसा district Nepal की सीमा को touch करता है?",
+    opts: ["Rampur","Shahjahanpur","Lakhimpur Kheri","Hardoi"],
+    ans: 2,
+    exp: "Lakhimpur Kheri Nepal border को touch करता है और UP का Largest district by area (7,680 km²) भी है। Lucknow Division। Dudhwa National Park यहीं है।"
+  }
+];
+
+let scores = new Array(10).fill(null);
+
+function renderMCQ() {
+  const container = document.getElementById('mcq-container');
+  container.innerHTML = '';
+  mcqs.forEach((q, qi) => {
+    const opts = q.opts.map((o, oi) => `
+      <button class="mcq-opt" id="opt-${qi}-${oi}" onclick="checkAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}) ${o}</button>
+    `).join('');
+    container.innerHTML += `
+      <div class="mcq-card" id="mcq-${qi}">
+        <div class="mcq-q"><span class="q-num">${qi+1}</span>${q.q}</div>
+        <div class="mcq-options">${opts}</div>
+        <div class="mcq-exp" id="exp-${qi}">💡 ${q.exp}</div>
+      </div>
+    `;
+  });
+}
+
+function checkAnswer(qi, oi) {
+  if (scores[qi] !== null) return;
+  const q = mcqs[qi];
+  const opts = document.querySelectorAll(`#mcq-${qi} .mcq-opt`);
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.ans) btn.classList.add('correct');
+    else if (i === oi && oi !== q.ans) btn.classList.add('wrong');
+  });
+  document.getElementById(`exp-${qi}`).classList.add('show');
+  scores[qi] = (oi === q.ans) ? 1 : 0;
+  updateScore();
+}
+
+function updateScore() {
+  const answered = scores.filter(s => s !== null);
+  const correct = scores.filter(s => s === 1).length;
+  document.getElementById('scoreDisplay').textContent = `${correct} / 10`;
+  document.getElementById('attemptDisplay').textContent = answered.length;
+}
+
+function resetMCQ() {
+  scores = new Array(10).fill(null);
+  updateScore();
+  renderMCQ();
+}
+
+// Init
+renderDistricts(districtData);
+renderMCQ();
+</script>
+</body>
+</html>
