@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Districts & Divisions Toolkit — UPPSC 2026</title>
+<style>
+  /* ===== DESIGN TOKENS ===== */
+  :root {
+    --cream: #fdfaf5;
+    --white: #ffffff;
+    --sidebar-bg: #eef3fb;
+    --sidebar-active: #d6e4f7;
+    --accent: #2563eb;
+    --accent-amber: #d97706;
+    --accent-green: #059669;
+    --accent-red: #dc2626;
+    --accent-purple: #7c3aed;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream); color: var(--text-primary); display: flex; min-height: 100vh; font-size: 14px; }
+
+  /* ===== SIDEBAR ===== */
+  #sidebar {
+    width: 230px; min-width: 230px; background: var(--sidebar-bg);
+    border-right: 1px solid var(--border); padding: 18px 0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .sidebar-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--text-muted); text-transform: uppercase;
+    padding: 6px 18px 10px; border-bottom: 1px solid var(--border); margin-bottom: 6px;
+  }
+  .sidebar-title span { display: block; font-size: 13px; color: var(--accent); font-weight: 800; text-transform: none; letter-spacing: 0; margin-top: 2px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 18px; cursor: pointer; border-radius: 0;
+    color: var(--text-secondary); font-size: 13px; font-weight: 500;
+    transition: all 0.15s; border-left: 3px solid transparent;
+    text-decoration: none;
+  }
+  .nav-item:hover { background: var(--sidebar-active); color: var(--accent); }
+  .nav-item.active { background: var(--sidebar-active); color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+  .nav-icon { font-size: 15px; width: 20px; text-align: center; }
+  .nav-group { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; padding: 12px 18px 4px; }
+
+  /* ===== MAIN ===== */
+  #main { flex: 1; overflow-y: auto; padding: 28px 32px; max-width: 1100px; }
+
+  /* ===== SECTIONS ===== */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .page-header { margin-bottom: 24px; }
+  .page-header h1 { font-size: 22px; font-weight: 800; color: var(--text-primary); }
+  .page-header p { color: var(--text-secondary); margin-top: 4px; font-size: 13px; }
+
+  /* ===== CARDS ===== */
+  .card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); padding: 18px 20px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  .card-title { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .card-title .badge { font-size: 11px; background: var(--accent); color: white; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+
+  /* ===== TABS ===== */
+  .tabs { display: flex; gap: 4px; margin-bottom: 18px; border-bottom: 2px solid var(--border); padding-bottom: 0; flex-wrap: wrap; }
+  .tab { padding: 7px 16px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: var(--text-muted); border-radius: var(--radius-sm) var(--radius-sm) 0 0; border: 1px solid transparent; transition: all 0.15s; margin-bottom: -2px; }
+  .tab:hover { color: var(--accent); background: var(--sidebar-bg); }
+  .tab.active { color: var(--accent); background: var(--white); border-color: var(--border); border-bottom-color: var(--white); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ===== TABLES ===== */
+  .tbl-wrap { overflow-x: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: var(--sidebar-bg); }
+  th { padding: 9px 12px; font-weight: 700; color: var(--text-primary); text-align: left; font-size: 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border-light); color: var(--text-secondary); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--cream); }
+
+  .mandal-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; background: #dbeafe; color: #1d4ed8; }
+  .region-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; margin: 1px; }
+  .r-west { background: #fef9c3; color: #854d0e; }
+  .r-central { background: #dcfce7; color: #166534; }
+  .r-east { background: #fce7f3; color: #9d174d; }
+  .r-bundelkhand { background: #ede9fe; color: #5b21b6; }
+  .r-purvanchal { background: #fee2e2; color: #991b1b; }
+  .r-terai { background: #d1fae5; color: #065f46; }
+
+  /* ===== SEARCH ===== */
+  .search-bar { position: relative; margin-bottom: 18px; }
+  .search-bar input { width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; background: var(--white); outline: none; transition: border 0.15s; }
+  .search-bar input:focus { border-color: var(--accent); }
+  .search-bar::before { content: '🔍'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 13px; }
+
+  /* ===== TAGS ===== */
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; margin: 2px; font-weight: 600; }
+  .tag-cane { background: #fef3c7; color: #92400e; }
+  .tag-carpet { background: #ede9fe; color: #5b21b6; }
+  .tag-leather { background: #fee2e2; color: #991b1b; }
+  .tag-it { background: #dbeafe; color: #1e40af; }
+  .tag-tourism { background: #d1fae5; color: #065f46; }
+  .tag-mineral { background: #f3f4f6; color: #374151; }
+  .tag-border { background: #fce7f3; color: #9d174d; }
+  .tag-river { background: #e0f2fe; color: #075985; }
+  .tag-new { background: #fef9c3; color: #78350f; }
+
+  /* ===== ACCORDION ===== */
+  .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 10px; }
+  .acc-header { padding: 12px 16px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; background: var(--white); font-weight: 600; font-size: 13.5px; color: var(--text-primary); transition: background 0.12s; user-select: none; }
+  .acc-header:hover { background: var(--sidebar-bg); }
+  .acc-header .acc-left { display: flex; align-items: center; gap: 10px; }
+  .acc-arrow { font-size: 11px; color: var(--text-muted); transition: transform 0.2s; }
+  .acc-body { display: none; padding: 14px 16px; background: var(--white); border-top: 1px solid var(--border-light); font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+  .acc-body.open { display: block; }
+  .acc-arrow.open { transform: rotate(90deg); }
+
+  /* ===== GRID ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media(max-width: 800px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* ===== MCQ ===== */
+  .mcq-card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 14px; box-shadow: var(--shadow); }
+  .mcq-q { font-weight: 600; font-size: 13.5px; margin-bottom: 12px; color: var(--text-primary); line-height: 1.55; }
+  .mcq-q span { display: inline-block; background: var(--accent); color: white; border-radius: 50%; width: 22px; height: 22px; text-align: center; line-height: 22px; font-size: 11px; font-weight: 700; margin-right: 8px; flex-shrink: 0; }
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .opt { padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); cursor: pointer; font-size: 13px; transition: all 0.15s; color: var(--text-secondary); }
+  .opt:hover { border-color: var(--accent); background: #eff6ff; color: var(--accent); }
+  .opt.correct { background: #dcfce7; border-color: #16a34a; color: #15803d; font-weight: 600; }
+  .opt.wrong { background: #fee2e2; border-color: #dc2626; color: #b91c1c; }
+  .opt.reveal-correct { background: #dcfce7; border-color: #16a34a; color: #15803d; }
+  .explanation { margin-top: 10px; padding: 10px 12px; background: #eff6ff; border-radius: var(--radius-sm); font-size: 12.5px; color: #1e40af; border-left: 3px solid var(--accent); display: none; }
+  .explanation.show { display: block; }
+  .mcq-controls { display: flex; gap: 10px; align-items: center; margin: 20px 0 10px; }
+  .btn { padding: 8px 20px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: #1d4ed8; }
+  .btn-outline { background: var(--white); color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn-outline:hover { background: #eff6ff; }
+  .score-box { padding: 8px 16px; background: var(--sidebar-bg); border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; color: var(--text-primary); border: 1px solid var(--border); }
+
+  /* ===== STATS ROW ===== */
+  .stats-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .stat-box { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; flex: 1; min-width: 130px; box-shadow: var(--shadow); }
+  .stat-box .num { font-size: 22px; font-weight: 800; color: var(--accent); }
+  .stat-box .lbl { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
+
+  /* ===== INFO ALERT ===== */
+  .info-alert { padding: 10px 14px; background: #eff6ff; border-radius: var(--radius-sm); border-left: 3px solid var(--accent); font-size: 12.5px; color: #1e40af; margin-bottom: 14px; line-height: 1.6; }
+  .warn-alert { padding: 10px 14px; background: #fffbeb; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-amber); font-size: 12.5px; color: #92400e; margin-bottom: 14px; }
+
+  /* ===== MNEMONIC ===== */
+  .mnemonic { background: linear-gradient(135deg, #eff6ff 0%, #fdf4ff 100%); border: 1px dashed #a5b4fc; border-radius: var(--radius); padding: 14px 16px; margin: 12px 0; }
+  .mnemonic .label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-purple); margin-bottom: 6px; }
+  .mnemonic p { font-size: 13px; color: var(--text-primary); font-weight: 600; line-height: 1.6; }
+
+  /* ===== BORDER MAP ===== */
+  .border-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .border-cell { background: var(--white); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 12px; }
+  .border-cell .dir { font-size: 16px; margin-bottom: 4px; }
+  .border-cell .state-name { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .border-cell .districts { font-size: 11.5px; color: var(--text-secondary); line-height: 1.6; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+
+  .highlight { background: #fef9c3; padding: 1px 4px; border-radius: 3px; font-weight: 600; }
+
+  /* ===== DIVISION COLOR DOTS ===== */
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-title">UPPSC 2026 Prep<span>UP Geography Toolkit</span></div>
+  <div class="nav-group">Core Content</div>
+  <div class="nav-item active" onclick="showSection('overview')"><span class="nav-icon">🗺️</span> Overview & Stats</div>
+  <div class="nav-item" onclick="showSection('divisions')"><span class="nav-icon">📋</span> 18 Mandal Table</div>
+  <div class="nav-item" onclick="showSection('border')"><span class="nav-icon">🚩</span> Border Districts</div>
+  <div class="nav-item" onclick="showSection('identity')"><span class="nav-icon">🏭</span> District Identity</div>
+  <div class="nav-item" onclick="showSection('search')"><span class="nav-icon">🔍</span> District Search</div>
+  <div class="nav-group">Reference</div>
+  <div class="nav-item" onclick="showSection('new')"><span class="nav-icon">⭐</span> New / Recent Districts</div>
+  <div class="nav-item" onclick="showSection('mnemonic')"><span class="nav-icon">🧠</span> Mnemonics</div>
+  <div class="nav-group">Practice</div>
+  <div class="nav-item" onclick="showSection('mcq')"><span class="nav-icon">📝</span> MCQ Bank (10 Qs)</div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+<!-- ==================== OVERVIEW ==================== -->
+<div id="sec-overview" class="section active">
+  <div class="page-header">
+    <h1>🗺️ UP Districts & Divisions — Quick Reference</h1>
+    <p>UPPSC 2026 | Paper 1 Geography | SDM Level Preparation</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="num">75</div><div class="lbl">Total Districts</div></div>
+    <div class="stat-box"><div class="num">18</div><div class="lbl">Mandals (Divisions)</div></div>
+    <div class="stat-box"><div class="num">7</div><div class="lbl">Neighbouring States + Nepal</div></div>
+    <div class="stat-box"><div class="num">2,40,928</div><div class="lbl">Area (km²) — 8th largest</div></div>
+    <div class="stat-box"><div class="num">24.1 Cr</div><div class="lbl">Population — Largest state</div></div>
+  </div>
+
+  <div class="info-alert">
+    📌 <strong>UPPSC Exam Tip:</strong> UP mein 18 mandal aur 75 districts hain. Har district ka division + region yaad karo. Questions aksar "kaun sa district kaun se division mein hai" format mein aate hain.
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">📍 Location & Boundaries</div>
+      <table style="font-size:12.5px">
+        <tr><td style="font-weight:700;width:40%">Latitude</td><td>23°52'N – 30°24'N</td></tr>
+        <tr><td style="font-weight:700">Longitude</td><td>77°05'E – 84°39'E</td></tr>
+        <tr><td style="font-weight:700">Capital</td><td>Lucknow (Awadh Division)</td></tr>
+        <tr><td style="font-weight:700">High Court</td><td>Prayagraj + Lucknow Bench</td></tr>
+        <tr><td style="font-weight:700">Statehood</td><td>1 Nov 2000 (Uttarakhand carved out)</td></tr>
+        <tr><td style="font-weight:700">Borders</td><td>9 states + Nepal (international)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🌍 Neighbouring States Summary</div>
+      <table style="font-size:12.5px">
+        <tr><th>Direction</th><th>State/Country</th></tr>
+        <tr><td>North</td><td>Nepal (International) + Uttarakhand</td></tr>
+        <tr><td>West</td><td>Haryana, Rajasthan, Delhi</td></tr>
+        <tr><td>South-West</td><td>Madhya Pradesh</td></tr>
+        <tr><td>South</td><td>Chhattisgarh</td></tr>
+        <tr><td>East</td><td>Bihar, Jharkhand</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗺️ 5 Geographic Regions of UP</div>
+    <div class="grid-3">
+      <div style="padding:12px;background:#fef9c3;border-radius:8px;border:1px solid #fde68a">
+        <div style="font-weight:700;font-size:13px;color:#92400e">🌾 Western UP</div>
+        <div style="font-size:12px;color:#78350f;margin-top:6px">Meerut, Agra, Mathura, Aligarh, Moradabad, Saharanpur, Bareilly, Bijnor, Muzaffarnagar<br><br><strong>Known for:</strong> Sugarcane, Leather, IT (Noida), Canals</div>
+      </div>
+      <div style="padding:12px;background:#dcfce7;border-radius:8px;border:1px solid #bbf7d0">
+        <div style="font-weight:700;font-size:13px;color:#166534">🏛️ Central UP (Awadh)</div>
+        <div style="font-size:12px;color:#14532d;margin-top:6px">Lucknow, Kanpur, Unnao, Hardoi, Fatehpur, Sitapur, Barabanki, Rae Bareli<br><br><strong>Known for:</strong> State capital, Nawabi culture, Leather, Textiles</div>
+      </div>
+      <div style="padding:12px;background:#ede9fe;border-radius:8px;border:1px solid #c4b5fd">
+        <div style="font-weight:700;font-size:13px;color:#5b21b6">🎭 Bundelkhand</div>
+        <div style="font-size:12px;color:#4c1d95;margin-top:6px">Jhansi, Banda, Chitrakoot, Hamirpur, Jalaun, Lalitpur, Mahoba<br><br><strong>Known for:</strong> Granite, Ken-Betwa River link, Drought prone</div>
+      </div>
+      <div style="padding:12px;background:#fee2e2;border-radius:8px;border:1px solid #fecaca">
+        <div style="font-weight:700;font-size:13px;color:#991b1b">🕌 Purvanchal</div>
+        <div style="font-size:12px;color:#7f1d1d;margin-top:6px">Varanasi, Gorakhpur, Prayagraj, Mirzapur, Azamgarh, Ballia, Ghazipur<br><br><strong>Known for:</strong> Silk, Carpet, Ghats, Religious tourism</div>
+      </div>
+      <div style="padding:12px;background:#d1fae5;border-radius:8px;border:1px solid #6ee7b7">
+        <div style="font-weight:700;font-size:13px;color:#065f46">🌿 Terai Region</div>
+        <div style="font-size:12px;color:#064e3b;margin-top:6px">Lakhimpur Kheri, Bahraich, Shravasti, Balrampur, Siddharth Nagar, Pilibhit<br><br><strong>Known for:</strong> Forests, Wildlife, Nepal border, Sugarcane</div>
+      </div>
+      <div style="padding:12px;background:#e0f2fe;border-radius:8px;border:1px solid #bae6fd">
+        <div style="font-weight:700;font-size:13px;color:#075985">🏔️ Vindhya Region</div>
+        <div style="font-size:12px;color:#0c4a6e;margin-top:6px">Mirzapur, Sonbhadra, Chitrakoot (partial)<br><br><strong>Known for:</strong> Minerals, Limestone, Vindhya Plateau, Ghats on Ganga</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 18 DIVISIONS TABLE ==================== -->
+<div id="sec-divisions" class="section">
+  <div class="page-header">
+    <h1>📋 18 Mandal (Divisions) — Complete Table</h1>
+    <p>Har division ke districts, HQ aur region ke saath</p>
+  </div>
+
+  <div class="info-alert">💡 <strong>Trick:</strong> UP ke 18 mandal + 75 district — exam mein "mandal HQ" type question aate hain. Har mandal ka HQ wahan ka sabse bada shahar hota hai.</div>
+
+  <div class="tbl-wrap">
+    <table id="divTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Mandal (Division)</th>
+          <th>HQ</th>
+          <th>Districts (Count)</th>
+          <th>District Names</th>
+          <th>Region</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Agra</strong></td>
+          <td><strong>Agra</strong></td>
+          <td style="text-align:center">4</td>
+          <td>Agra, Firozabad, Mathura, Mainpuri</td>
+          <td><span class="region-badge r-west">Western</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Aligarh</strong></td>
+          <td><strong>Aligarh</strong></td>
+          <td style="text-align:center">4</td>
+          <td>Aligarh, Hathras, Kasganj, Etah</td>
+          <td><span class="region-badge r-west">Western</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Prayagraj</strong></td>
+          <td><strong>Prayagraj</strong></td>
+          <td style="text-align:center">4</td>
+          <td>Prayagraj, Fatehpur, Kaushambi, Pratapgarh</td>
+          <td><span class="region-badge r-purvanchal">Purvanchal</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Azamgarh</strong></td>
+          <td><strong>Azamgarh</strong></td>
+          <td style="text-align:center">3</td>
+          <td>Azamgarh, Mau, Ballia</td>
+          <td><span class="region-badge r-purvanchal">Purvanchal</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Bareilly</strong></td>
+          <td><strong>Bareilly</strong></td>
+          <td style="text-align:center">5</td>
+          <td>Bareilly, Badaun, Pilibhit, Shahjahanpur, Rampur</td>
+          <td><span class="region-badge r-terai">Terai/Western</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>Basti</strong></td>
+          <td><strong>Basti</strong></td>
+          <td style="text-align:center">3</td>
+          <td>Basti, Sant Kabir Nagar, Siddharth Nagar</td>
+          <td><span class="region-badge r-terai">Terai</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>Chitrakoot</strong></td>
+          <td><strong>Banda</strong></td>
+          <td style="text-align:center">4</td>
+          <td>Banda, Chitrakoot, Hamirpur, Mahoba</td>
+          <td><span class="region-badge r-bundelkhand">Bundelkhand</span></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><strong>Devipatan</strong></td>
+          <td><strong>Gonda</strong></td>
+          <td style="text-align:center">4</td>
+          <td>Gonda, Balrampur, Bahraich, Shravasti</td>
+          <td><span class="region-badge r-terai">Terai</span></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><strong>Faizabad</strong></td>
+          <td><strong>Ayodhya</strong></td>
+          <td style="text-align:center">5</td>
+          <td>Ayodhya (Faizabad), Ambedkar Nagar, Amethi, Barabanki, Sultanpur</td>
+          <td><span class="region-badge r-central">Awadh</span></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><strong>Gorakhpur</strong></td>
+          <td><strong>Gorakhpur</strong></td>
+          <td style="text-align:center">4</td>
+          <td>Gorakhpur, Kushinagar, Deoria, Maharajganj</td>
+          <td><span class="region-badge r-terai">Terai/Purvanchal</span></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td><strong>Jhansi</strong></td>
+          <td><strong>Jhansi</strong></td>
+          <td style="text-align:center">3</td>
+          <td>Jhansi, Lalitpur, Jalaun</td>
+          <td><span class="region-badge r-bundelkhand">Bundelkhand</span></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><strong>Kanpur</strong></td>
+          <td><strong>Kanpur</strong></td>
+          <td style="text-align:center">6</td>
+          <td>Kanpur Nagar, Kanpur Dehat, Etawah, Auraiya, Farrukhabad, Kannauj</td>
+          <td><span class="region-badge r-central">Central</span></td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td><strong>Lucknow</strong></td>
+          <td><strong>Lucknow</strong></td>
+          <td style="text-align:center">5</td>
+          <td>Lucknow, Unnao, Hardoi, Rae Bareli, Sitapur</td>
+          <td><span class="region-badge r-central">Awadh</span></td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td><strong>Meerut</strong></td>
+          <td><strong>Meerut</strong></td>
+          <td style="text-align:center">6</td>
+          <td>Meerut, Bagpat, Bulandshahr, Ghaziabad, Gautam Buddha Nagar, Hapur</td>
+          <td><span class="region-badge r-west">Western</span></td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><strong>Mirzapur</strong></td>
+          <td><strong>Mirzapur</strong></td>
+          <td style="text-align:center">3</td>
+          <td>Mirzapur, Sonbhadra, Bhadohi (Sant Ravidas Nagar)</td>
+          <td><span class="region-badge r-purvanchal">Vindhya/Purvanchal</span></td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td><strong>Moradabad</strong></td>
+          <td><strong>Moradabad</strong></td>
+          <td style="text-align:center">5</td>
+          <td>Moradabad, Amroha (J.P. Nagar), Bijnor, Rampur, Sambhal</td>
+          <td><span class="region-badge r-west">Western</span></td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td><strong>Saharanpur</strong></td>
+          <td><strong>Saharanpur</strong></td>
+          <td style="text-align:center">3</td>
+          <td>Saharanpur, Muzaffarnagar, Shamli</td>
+          <td><span class="region-badge r-west">Western</span></td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td><strong>Varanasi</strong></td>
+          <td><strong>Varanasi</strong></td>
+          <td style="text-align:center">4</td>
+          <td>Varanasi, Chandauli, Ghazipur, Jaunpur</td>
+          <td><span class="region-badge r-purvanchal">Purvanchal</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn-alert" style="margin-top:16px">
+    ⚠️ <strong>Note on Chitrakoot Mandal:</strong> Chitrakoot Mandal ka HQ <strong>Banda</strong> hai, Chitrakoot nahi — yeh common mistake hai. Exam mein dhyan rakhna.
+  </div>
+  <div class="warn-alert">
+    ⚠️ <strong>Note on Faizabad Mandal:</strong> Faizabad mandal ka naam ab <strong>Ayodhya</strong> hai (2020 se) lekin mandal HQ Ayodhya (old Faizabad city) hi hai. Isse Faizabad Division bhi kehte hain.
+  </div>
+  <div class="warn-alert">
+    ⚠️ <strong>Rampur:</strong> Rampur district do mandals mein aa sakta dikhta hai — woh <strong>Moradabad Mandal</strong> mein hai, Bareilly mein nahi.
+  </div>
+</div>
+
+<!-- ==================== BORDER DISTRICTS ==================== -->
+<div id="sec-border" class="section">
+  <div class="page-header">
+    <h1>🚩 Border Districts of UP</h1>
+    <p>Kaun se districts kaunse state ya desh se lagte hain</p>
+  </div>
+
+  <div class="info-alert">
+    📌 Border district questions UPPSC mein baar baar aate hain. Nepal border wale districts especially important hain — Dudhwa, Pilibhit Tiger Reserve bhi isi belt mein hain.
+  </div>
+
+  <div class="border-grid">
+    <div class="border-cell">
+      <div class="dir">🇳🇵</div>
+      <div class="state-name">Nepal (International Border)</div>
+      <div class="districts">
+        <span class="tag tag-border">Lakhimpur Kheri</span>
+        <span class="tag tag-border">Bahraich</span>
+        <span class="tag tag-border">Shravasti</span>
+        <span class="tag tag-border">Balrampur</span>
+        <span class="tag tag-border">Siddharth Nagar</span>
+        <span class="tag tag-border">Maharajganj</span>
+        <span class="tag tag-border">Pilibhit</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">7 districts touch Nepal border<br>Mnemonic: <strong>L-B-S-B-S-M-P</strong><br><em>"Lucky Bahraich Sightseeing Brings Serene Mountains Perfectly"</em></div>
+      </div>
+    </div>
+    <div class="border-cell">
+      <div class="dir">🟡</div>
+      <div class="state-name">Uttarakhand (North)</div>
+      <div class="districts">
+        <span class="tag tag-border">Saharanpur</span>
+        <span class="tag tag-border">Muzaffarnagar</span>
+        <span class="tag tag-border">Bijnor</span>
+        <span class="tag tag-border">Moradabad</span>
+        <span class="tag tag-border">Rampur</span>
+        <span class="tag tag-border">Bareilly</span>
+        <span class="tag tag-border">Pilibhit</span>
+        <span class="tag tag-border">Lakhimpur Kheri</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">Ganga enters UP from Bijnor (Haridwar area)</div>
+      </div>
+    </div>
+    <div class="border-cell">
+      <div class="dir">🟠</div>
+      <div class="state-name">Haryana (West)</div>
+      <div class="districts">
+        <span class="tag tag-border">Saharanpur</span>
+        <span class="tag tag-border">Shamli</span>
+        <span class="tag tag-border">Muzaffarnagar</span>
+        <span class="tag tag-border">Baghpat</span>
+        <span class="tag tag-border">Ghaziabad</span>
+        <span class="tag tag-border">Gautam Buddha Nagar</span>
+        <span class="tag tag-border">Mathura</span>
+        <span class="tag tag-border">Agra</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">Yamuna forms natural boundary</div>
+      </div>
+    </div>
+    <div class="border-cell">
+      <div class="dir">🔵</div>
+      <div class="state-name">Rajasthan (West)</div>
+      <div class="districts">
+        <span class="tag tag-border">Agra</span>
+        <span class="tag tag-border">Mathura</span>
+        <span class="tag tag-border">Bharatpur (Raj)</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">Very short border stretch</div>
+      </div>
+    </div>
+    <div class="border-cell">
+      <div class="dir">🟣</div>
+      <div class="state-name">Madhya Pradesh (South)</div>
+      <div class="districts">
+        <span class="tag tag-border">Jhansi</span>
+        <span class="tag tag-border">Lalitpur</span>
+        <span class="tag tag-border">Jalaun</span>
+        <span class="tag tag-border">Hamirpur</span>
+        <span class="tag tag-border">Banda</span>
+        <span class="tag tag-border">Chitrakoot</span>
+        <span class="tag tag-border">Allahabad (Prayagraj)</span>
+        <span class="tag tag-border">Mirzapur</span>
+        <span class="tag tag-border">Sonbhadra</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">Longest southern border; Ken & Betwa rivers flow here</div>
+      </div>
+    </div>
+    <div class="border-cell">
+      <div class="dir">🟤</div>
+      <div class="state-name">Chhattisgarh (South-East)</div>
+      <div class="districts">
+        <span class="tag tag-border">Sonbhadra</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">Only Sonbhadra touches Chhattisgarh — very important exam fact!</div>
+      </div>
+    </div>
+    <div class="border-cell">
+      <div class="dir">🟢</div>
+      <div class="state-name">Jharkhand (East)</div>
+      <div class="districts">
+        <span class="tag tag-border">Sonbhadra</span>
+        <span class="tag tag-border">Chandauli</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">Sonbhadra borders 4 states — UP, MP, Chhattisgarh, Jharkhand. MOST ASKED!</div>
+      </div>
+    </div>
+    <div class="border-cell">
+      <div class="dir">🔴</div>
+      <div class="state-name">Bihar (East)</div>
+      <div class="districts">
+        <span class="tag tag-border">Chandauli</span>
+        <span class="tag tag-border">Ghazipur</span>
+        <span class="tag tag-border">Ballia</span>
+        <span class="tag tag-border">Mau</span>
+        <span class="tag tag-border">Deoria</span>
+        <span class="tag tag-border">Kushinagar</span>
+        <span class="tag tag-border">Maharajganj</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">Mnemonic: "C-G-B-M-D-K-M"</div>
+      </div>
+    </div>
+    <div class="border-cell">
+      <div class="dir">🏙️</div>
+      <div class="state-name">Delhi (NCT) + NCR</div>
+      <div class="districts">
+        <span class="tag tag-border">Gautam Buddha Nagar</span>
+        <span class="tag tag-border">Ghaziabad</span>
+        <div style="margin-top:8px;font-size:11.5px;color:#555">Noida (GB Nagar) aur Ghaziabad Delhi NCR mein hain</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title">⭐ Most Asked Border Facts — UPPSC</div>
+    <table style="font-size:13px">
+      <tr><th>Fact</th><th>Answer</th></tr>
+      <tr><td>Kaun sa district sabse zyada states ko touch karta hai?</td><td><strong>Sonbhadra</strong> — MP, Chhattisgarh, Jharkhand + UP ka hi part hai</td></tr>
+      <tr><td>Nepal se kitne districts lagte hain?</td><td><strong>7 districts</strong></td></tr>
+      <tr><td>Kaunse state se UP ki sabse lambi border hai?</td><td><strong>Madhya Pradesh</strong></td></tr>
+      <tr><td>Ganga UP mein kahan se enter karti hai?</td><td><strong>Bijnor</strong> (from Uttarakhand)</td></tr>
+      <tr><td>Delhi NCR wale UP ke districts?</td><td><strong>Ghaziabad, Gautam Buddha Nagar (Noida), Meerut, Bulandshahr, Baghpat, Hapur</strong></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== IDENTITY ==================== -->
+<div id="sec-identity" class="section">
+  <div class="page-header">
+    <h1>🏭 District Identity — Industry, Tourism & Speciality</h1>
+    <p>Har district ki UPPSC-relevant pehchaan</p>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('identity','sugarcane')">🌾 Sugarcane</div>
+    <div class="tab" onclick="switchTab('identity','carpet')">🧶 Carpet & Textiles</div>
+    <div class="tab" onclick="switchTab('identity','leather')">👞 Leather</div>
+    <div class="tab" onclick="switchTab('identity','it')">💻 IT / Tech</div>
+    <div class="tab" onclick="switchTab('identity','tourism')">🕌 Tourism</div>
+    <div class="tab" onclick="switchTab('identity','industry')">⚙️ Other Industries</div>
+    <div class="tab" onclick="switchTab('identity','religion')">🛕 Religious Cities</div>
+  </div>
+
+  <div id="itab-sugarcane" class="tab-content active">
+    <div class="info-alert">🌾 UP is India's largest sugarcane and sugar producing state. Western UP dominates.</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>District</th><th>Division</th><th>Region</th><th>Sugarcane Significance</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Muzaffarnagar</strong></td><td>Saharanpur</td><td>Western</td><td>Highest number of sugar mills; "Sugar Bowl of India" (sometimes called)</td></tr>
+          <tr><td><strong>Meerut</strong></td><td>Meerut</td><td>Western</td><td>Major sugarcane belt + sports goods</td></tr>
+          <tr><td><strong>Saharanpur</strong></td><td>Saharanpur</td><td>Western</td><td>Sugarcane + Wood Carving</td></tr>
+          <tr><td><strong>Gorakhpur</strong></td><td>Gorakhpur</td><td>Purvanchal</td><td>Major sugar mills in eastern UP</td></tr>
+          <tr><td><strong>Lakhimpur Kheri</strong></td><td>Lucknow</td><td>Terai</td><td>Sugarcane + Dudhwa Tiger Reserve</td></tr>
+          <tr><td><strong>Bareilly</strong></td><td>Bareilly</td><td>Rohilkhand/Terai</td><td>Sugarcane + Furniture</td></tr>
+          <tr><td><strong>Bijnor</strong></td><td>Moradabad</td><td>Western</td><td>Sugarcane + Ganga entry point</td></tr>
+          <tr><td><strong>Gonda</strong></td><td>Devipatan</td><td>Terai</td><td>Sugarcane + HQ of Devipatan Mandal</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mnemonic"><div class="label">🧠 Mnemonic</div><p>"<strong>M</strong>uzaffarnagar <strong>M</strong>eerut <strong>S</strong>aharanpur <strong>G</strong>orakhpur <strong>L</strong>akhimpur <strong>B</strong>areilly <strong>B</strong>ijnor <strong>G</strong>onda" → <strong>"Make Sugar Great — Laddoo Bhi Bahut Garm"</strong></p></div>
+  </div>
+
+  <div id="itab-carpet" class="tab-content">
+    <div class="info-alert">🧶 UP produces ~90% of India's hand-knotted carpets. GI tag districts are exam-critical.</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>District</th><th>Division</th><th>Specialty</th><th>GI Tag?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Bhadohi</strong> (Sant Ravidas Nagar)</td><td>Mirzapur</td><td>Hand-knotted carpets — "Carpet City of India"</td><td>✅ Yes</td></tr>
+          <tr><td><strong>Mirzapur</strong></td><td>Mirzapur</td><td>Dari (durrie), Carpet weaving</td><td>✅ Yes</td></tr>
+          <tr><td><strong>Varanasi</strong></td><td>Varanasi</td><td>Banarasi Silk Saree (UNESCO heritage)</td><td>✅ Yes</td></tr>
+          <tr><td><strong>Azamgarh</strong></td><td>Azamgarh</td><td>Black pottery (Azamgarh Kali Mitti)</td><td>✅ Yes</td></tr>
+          <tr><td><strong>Muradabad</strong></td><td>Moradabad</td><td>Brassware — "Peetal Nagri" / "Brass City"</td><td>✅ Yes</td></tr>
+          <tr><td><strong>Firozabad</strong></td><td>Agra</td><td>Glass bangles, Glassware — "Suhag Nagari"</td><td>✅ Yes</td></tr>
+          <tr><td><strong>Lucknow</strong></td><td>Lucknow</td><td>Chikankari embroidery, Zardozi</td><td>✅ Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="itab-leather" class="tab-content">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>District</th><th>Division</th><th>Leather Specialty</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Kanpur</strong></td><td>Kanpur</td><td>"Leather City of India" — largest leather industry hub; tanneries, shoes, garments</td></tr>
+          <tr><td><strong>Agra</strong></td><td>Agra</td><td>Shoes/footwear — 2nd largest leather hub; "Shoe Capital of India" (petha bhi!)</td></tr>
+          <tr><td><strong>Unnao</strong></td><td>Lucknow</td><td>Tanneries (pollution issue; Ganga cleanup case)</td></tr>
+          <tr><td><strong>Mathura</strong></td><td>Agra</td><td>Leather footwear</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mnemonic"><div class="label">🧠 Mnemonic</div><p><strong>K</strong>anpur <strong>A</strong>gra <strong>U</strong>nnao <strong>M</strong>athura → <strong>"KAUM ke joote"</strong> 😄</p></div>
+  </div>
+
+  <div id="itab-it" class="tab-content">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>District</th><th>Division</th><th>IT/Tech Significance</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Gautam Buddha Nagar (Noida)</strong></td><td>Meerut</td><td>IT hub, MNCs, Media companies, Film city; part of Delhi NCR</td></tr>
+          <tr><td><strong>Ghaziabad</strong></td><td>Meerut</td><td>Industrial + IT corridor; "Gateway to UP"</td></tr>
+          <tr><td><strong>Lucknow</strong></td><td>Lucknow</td><td>State capital; emerging IT/startup ecosystem; Defence corridor</td></tr>
+          <tr><td><strong>Agra</strong></td><td>Agra</td><td>UP Defence Industrial Corridor node</td></tr>
+          <tr><td><strong>Kanpur</strong></td><td>Kanpur</td><td>IIT Kanpur, industrial base</td></tr>
+          <tr><td><strong>Prayagraj</strong></td><td>Prayagraj</td><td>High Court, UPPSC, competitive exam hub</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-alert">🏭 <strong>UP Defence Industrial Corridor:</strong> 6 nodes — Agra, Aligarh, Kanpur, Lucknow, Jhansi, Chitrakoot. Launched 2018.</div>
+  </div>
+
+  <div id="itab-tourism" class="tab-content">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>District</th><th>Division</th><th>Tourist Attraction</th><th>Significance</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Agra</strong></td><td>Agra</td><td>Taj Mahal, Agra Fort, Fatehpur Sikri</td><td>UNESCO World Heritage; most visited</td></tr>
+          <tr><td><strong>Varanasi</strong></td><td>Varanasi</td><td>Ghat, Kashi Vishwanath, Sarnath</td><td>Oldest living city; Buddhist circuit</td></tr>
+          <tr><td><strong>Prayagraj</strong></td><td>Prayagraj</td><td>Kumbh Mela, Sangam (Ganga-Yamuna-Saraswati)</td><td>Largest human gathering on earth</td></tr>
+          <tr><td><strong>Mathura</strong></td><td>Agra</td><td>Krishna Janmabhoomi, Vrindavan</td><td>Vaishnava pilgrimage</td></tr>
+          <tr><td><strong>Ayodhya</strong></td><td>Faizabad/Ayodhya</td><td>Ram Mandir, Saryu Ghat</td><td>Ram Janmabhoomi; massive tourism development 2024</td></tr>
+          <tr><td><strong>Kushinagar</strong></td><td>Gorakhpur</td><td>Mahaparinirvana Temple</td><td>Buddhist circuit; Buddha's death place</td></tr>
+          <tr><td><strong>Sravasti</strong></td><td>Devipatan</td><td>Jetavana Monastery</td><td>Buddhist circuit</td></tr>
+          <tr><td><strong>Sarnath</strong> (in Varanasi)</td><td>Varanasi</td><td>First sermon of Buddha</td><td>Buddhist circuit</td></tr>
+          <tr><td><strong>Chitrakoot</strong></td><td>Chitrakoot</td><td>Mandakini river, Ram-Sita exile</td><td>Hindu pilgrimage</td></tr>
+          <tr><td><strong>Vindhyachal</strong> (in Mirzapur)</td><td>Mirzapur</td><td>Vindhyavasini Devi Temple</td><td>Shakti Peeth</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="itab-industry" class="tab-content">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>District</th><th>Industry</th><th>Nickname/Note</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Moradabad</strong></td><td>Brassware, metalwork</td><td>"Peetal Nagri" — 70% of India's brass exports</td></tr>
+          <tr><td><strong>Firozabad</strong></td><td>Glass bangles, glassware</td><td>"Suhag Nagari" — largest glass bangle center</td></tr>
+          <tr><td><strong>Aligarh</strong></td><td>Locks</td><td>"Lock City of India" — 80% of India's locks</td></tr>
+          <tr><td><strong>Khurja</strong> (Bulandshahr)</td><td>Ceramics, pottery</td><td>"Pottery City" — GI tag for Khurja pottery</td></tr>
+          <tr><td><strong>Meerut</strong></td><td>Sports goods, scissors</td><td>Largest sports goods producer in Asia</td></tr>
+          <tr><td><strong>Pilkhuwa</strong> (Hapur)</td><td>Hosiery, bedsheets</td><td>Major textile center</td></tr>
+          <tr><td><strong>Rampur</strong></td><td>Rampuri knife (knife-making)</td><td>Traditional handicraft</td></tr>
+          <tr><td><strong>Gorakhpur</strong></td><td>Terracotta toys</td><td>GI tag for Gorakhpur Terracotta</td></tr>
+          <tr><td><strong>Saharanpur</strong></td><td>Wood carving furniture</td><td>Major woodwork export center</td></tr>
+          <tr><td><strong>Prayagraj</strong></td><td>High Court, UPPSC</td><td>Administrative & judicial capital (partial)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="itab-religion" class="tab-content">
+    <div class="info-alert">🛕 UP is called "Devbhoomi" of the Gangetic plain. Buddhist + Hindu + Sufi circuits all important.</div>
+    <div class="grid-2">
+      <div class="card" style="margin:0">
+        <div class="card-title">🕉️ Hindu Pilgrimage Circuit</div>
+        <table style="font-size:12.5px">
+          <tr><th>Place</th><th>Deity / Significance</th></tr>
+          <tr><td>Varanasi</td><td>Kashi Vishwanath (Shiva)</td></tr>
+          <tr><td>Mathura-Vrindavan</td><td>Krishna</td></tr>
+          <tr><td>Ayodhya</td><td>Ram Janmabhoomi</td></tr>
+          <tr><td>Vindhyachal (Mirzapur)</td><td>Vindhyavasini — Shakti Peeth</td></tr>
+          <tr><td>Chitrakoot</td><td>Ram-Sita exile, Kamadgiri</td></tr>
+          <tr><td>Prayagraj</td><td>Triveni Sangam, Kumbh</td></tr>
+        </table>
+      </div>
+      <div class="card" style="margin:0">
+        <div class="card-title">☸️ Buddhist Circuit</div>
+        <table style="font-size:12.5px">
+          <tr><th>Place</th><th>Significance</th></tr>
+          <tr><td>Sarnath (Varanasi)</td><td>First sermon — Dhammachakra Pravartana</td></tr>
+          <tr><td>Kushinagar</td><td>Mahaparinirvana (death)</td></tr>
+          <tr><td>Sravasti</td><td>Buddha lived here 25 varshas</td></tr>
+          <tr><td>Kaushambi</td><td>Buddha visited twice</td></tr>
+          <tr><td>Sankisa (Farrukhabad)</td><td>Descended from heaven</td></tr>
+          <tr><td>Kapilvastu (Siddharth Nagar)</td><td>Buddha's childhood (disputed)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SEARCH ==================== -->
+<div id="sec-search" class="section">
+  <div class="page-header">
+    <h1>🔍 District Finder</h1>
+    <p>Kisi bhi district ka division, region aur importance turant dhundo</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="districtSearch" placeholder="District name type karo... (e.g., Ballia, Sonbhadra, Hapur)" oninput="searchDistricts()" />
+  </div>
+
+  <div id="searchResults"></div>
+  <div id="searchTable" class="tbl-wrap">
+    <table id="allDistrictsTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>District</th>
+          <th>Division (Mandal)</th>
+          <th>Region</th>
+          <th>Key Identity</th>
+        </tr>
+      </thead>
+      <tbody id="districtTableBody">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== NEW DISTRICTS ==================== -->
+<div id="sec-new" class="section">
+  <div class="page-header">
+    <h1>⭐ New / Renamed Districts & Recent Changes</h1>
+    <p>UPPSC 2026 ke liye current affairs — officially verified</p>
+  </div>
+
+  <div class="warn-alert">⚠️ As of 2024–25, UP mein koi naaya naya district officially declared nahi hua hai beyond 75. Lekin kuch renaming aur important changes hain jo exam mein aate hain.</div>
+
+  <div class="card">
+    <div class="card-title">📝 Important Name Changes (Officially Confirmed)</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Old Name</th><th>New Name</th><th>Year</th><th>Division</th><th>Exam Note</th></tr></thead>
+        <tbody>
+          <tr><td>Allahabad</td><td><strong>Prayagraj</strong></td><td>2018</td><td>Prayagraj</td><td>Mandal ka naam bhi Allahabad se Prayagraj hua</td></tr>
+          <tr><td>Faizabad</td><td><strong>Ayodhya</strong></td><td>2018</td><td>Faizabad/Ayodhya</td><td>District + city renamed; mandal abhi bhi Faizabad/Ayodhya dono chalte hain</td></tr>
+          <tr><td>Bhadohi</td><td><strong>Sant Ravidas Nagar</strong></td><td>2008</td><td>Mirzapur</td><td>Official name Sant Ravidas Nagar; colloquially Bhadohi zyada familiar</td></tr>
+          <tr><td>Amroha</td><td><strong>Jyotiba Phule Nagar</strong> (J.P. Nagar)</td><td>1997</td><td>Moradabad</td><td>Official: Jyotiba Phule Nagar; commonly Amroha</td></tr>
+          <tr><td>Garhwal (part carved)</td><td>Uttarakhand separate state</td><td>2000</td><td>—</td><td>Nov 1 2000: Uttaranchal (now Uttarakhand) formed from UP</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🆕 Newly Created Districts (Historical Context)</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>District</th><th>Carved From</th><th>Year</th><th>Division</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Hapur</strong></td><td>Ghaziabad</td><td>2011</td><td>Meerut</td></tr>
+          <tr><td><strong>Sambhal</strong></td><td>Moradabad</td><td>2011</td><td>Moradabad</td></tr>
+          <tr><td><strong>Shamli</strong></td><td>Muzaffarnagar</td><td>2011</td><td>Saharanpur</td></tr>
+          <tr><td><strong>Amethi</strong></td><td>Sultanpur</td><td>2010</td><td>Faizabad/Ayodhya</td></tr>
+          <tr><td><strong>Kaushambi</strong></td><td>Allahabad (Prayagraj)</td><td>1994</td><td>Prayagraj</td></tr>
+          <tr><td><strong>Chandauli</strong></td><td>Varanasi</td><td>1997</td><td>Varanasi</td></tr>
+          <tr><td><strong>Kanpur Dehat</strong></td><td>Kanpur</td><td>1981</td><td>Kanpur</td></tr>
+          <tr><td><strong>Chitrakoot</strong></td><td>Banda</td><td>1998</td><td>Chitrakoot</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 UP ke Important Administrative Facts 2024–25</div>
+    <table style="font-size:13px">
+      <tr><th>Topic</th><th>Detail</th></tr>
+      <tr><td>Total Districts</td><td><strong>75</strong> (confirmed; no new district in 2024–25)</td></tr>
+      <tr><td>Total Divisions (Mandal)</td><td><strong>18</strong></td></tr>
+      <tr><td>Total Tehsils</td><td><strong>351</strong> (approx)</td></tr>
+      <tr><td>Total Gram Panchayats</td><td><strong>~58,000+</strong></td></tr>
+      <tr><td>UP ka 75th district</td><td><strong>Sambhal / Hapur</strong> (2011 mein created)</td></tr>
+      <tr><td>Ayodhya Mandal</td><td>Officially still sometimes referred as <strong>Faizabad Mandal</strong> in older records</td></tr>
+      <tr><td>UP Defence Corridor</td><td>6 nodes: Agra, Aligarh, Kanpur, Lucknow, Jhansi, Chitrakoot (2018)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== MNEMONICS ==================== -->
+<div id="sec-mnemonic" class="section">
+  <div class="page-header">
+    <h1>🧠 Map-Based Mnemonics</h1>
+    <p>Divisions, borders aur districts yaad karne ki tricks</p>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-left">🧭 18 Mandal — West to East Trick</div>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <p><strong>West UP Mandals (5):</strong> <span class="highlight">Saharanpur → Meerut → Moradabad → Aligarh → Agra</span></p>
+      <div class="mnemonic"><div class="label">Mnemonic</div><p>"<strong>S</strong>undar <strong>M</strong>eerut <strong>M</strong>ahan <strong>A</strong>ligarh <strong>A</strong>gra" — Sab Mast Mast Aage Aao</p></div>
+      <p style="margin-top:12px"><strong>Central/Awadh Mandals (3):</strong> <span class="highlight">Lucknow → Kanpur → Faizabad</span></p>
+      <div class="mnemonic"><div class="label">Mnemonic</div><p>"<strong>L</strong>ucknow <strong>K</strong>i <strong>F</strong>ood" — LKF (Left to Right: Lucknow–Kanpur–Faizabad)</p></div>
+      <p style="margin-top:12px"><strong>Terai Mandals (3):</strong> <span class="highlight">Bareilly → Devipatan → Basti → Gorakhpur</span></p>
+      <div class="mnemonic"><div class="label">Mnemonic</div><p>"<strong>B</strong>areilly <strong>D</strong>evi <strong>B</strong>asti <strong>G</strong>ayo" — BDBG</p></div>
+      <p style="margin-top:12px"><strong>East UP Mandals (4):</strong> <span class="highlight">Azamgarh → Varanasi → Mirzapur → Prayagraj</span></p>
+      <div class="mnemonic"><div class="label">Mnemonic</div><p>"<strong>A</strong>zam <strong>V</strong>aranasi <strong>M</strong>ilaa <strong>P</strong>rayag" — AVMP</p></div>
+      <p style="margin-top:12px"><strong>Bundelkhand Mandals (2):</strong> <span class="highlight">Jhansi + Chitrakoot</span></p>
+      <div class="mnemonic"><div class="label">Mnemonic</div><p>"<strong>J</strong>hansi ki <strong>C</strong>hitrakoot" — JC (Rani Laxmibai ki story yaad karo!)</p></div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-left">🇳🇵 Nepal Border Districts (7) — Memory Trick</div>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <p>West se East: <strong>Pilibhit → Lakhimpur Kheri → Bahraich → Shravasti → Balrampur → Siddharth Nagar → Maharajganj</strong></p>
+      <div class="mnemonic">
+        <div class="label">Mnemonic (West→East)</div>
+        <p>"<strong>P</strong>hir <strong>L</strong>o <strong>B</strong>haiyo <strong>S</strong>abse <strong>B</strong>aadh <strong>S</strong>afar <strong>M</strong>ahan" <br>P=Pilibhit, L=Lakhimpur, B=Bahraich, S=Shravasti, B=Balrampur, S=Siddharth Nagar, M=Maharajganj</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-left">⭐ Sonbhadra — "4-State Wonder" Trick</div>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <p>Sonbhadra UP ka <strong>eklauta district</strong> hai jo ek saath 4 states ko touch karta hai:</p>
+      <div class="mnemonic">
+        <div class="label">Trick</div>
+        <p><strong>S</strong>onbhadra → <strong>M</strong>adhya Pradesh + <strong>C</strong>hhattisgarh + <strong>J</strong>harkhand + <strong>B</strong>ihar <br>"<strong>S</strong>onbhadra <strong>M</strong>ega <strong>C</strong>orner <strong>J</strong>unction <strong>B</strong>order" = SMCJB</p>
+      </div>
+      <p>Also: Sonbhadra is UP's <strong>mineral-richest district</strong> — coal, bauxite, limestone, dolomite.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-left">🏭 GI Tag Cities Trick</div>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <div class="mnemonic">
+        <div class="label">Mnemonic — UP GI Tags</div>
+        <p>"<strong>B</strong>hadohi <strong>K</strong>arpet, <strong>V</strong>aranasi <strong>S</strong>ilk, <strong>A</strong>ligarh <strong>L</strong>ock, <strong>M</strong>oradabad <strong>B</strong>rass, <strong>F</strong>irozabad <strong>G</strong>lass, <strong>L</strong>ucknow <strong>C</strong>hikankari, <strong>A</strong>zamgarh <strong>P</strong>ottery, <strong>K</strong>hurja <strong>C</strong>eramics"</p>
+      </div>
+      <div style="margin-top:10px;font-size:12.5px;color:var(--text-secondary)">
+        <strong>BVA-MLF-LAK</strong> (first letters): Bhadohi, Varanasi, Aligarh, Moradabad, Lucknow, Firozabad, Lucknow, Azamgarh, Khurja
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-left">🌊 Buddhist Circuit Districts (W→E)</div>
+      <span class="acc-arrow">▶</span>
+    </div>
+    <div class="acc-body">
+      <p>Key Buddhist sites in UP (West to East):</p>
+      <div class="mnemonic">
+        <div class="label">Mnemonic</div>
+        <p><strong>S</strong>ravasti → <strong>K</strong>apilvastu → <strong>K</strong>aushambi → <strong>S</strong>arkissa → <strong>S</strong>arnath → <strong>K</strong>ushinagar <br>"<strong>SK-KS-SK</strong>" → Shravasti Kapilvastu — Kaushambi Sankisa — Sarnath Kushinagar</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MCQ ==================== -->
+<div id="sec-mcq" class="section">
+  <div class="page-header">
+    <h1>📝 MCQ Bank — UP Districts & Divisions</h1>
+    <p>10 UPPSC-style questions | Green = correct, Red = wrong</p>
+  </div>
+
+  <div class="mcq-controls">
+    <button class="btn btn-outline" onclick="resetMCQ()">🔄 Reset All</button>
+    <div class="score-box" id="scoreDisplay">Score: 0 / 0</div>
+  </div>
+
+  <div id="mcqContainer"></div>
+</div>
+
+</main>
+
+<script>
+// ===== NAVIGATION =====
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ===== TABS =====
+function switchTab(group, id) {
+  const parent = event.currentTarget.closest('.section');
+  parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const el = document.getElementById('itab-' + id);
+  if(el) el.classList.add('active');
+}
+
+// ===== ACCORDION =====
+function toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.acc-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+// ===== DISTRICT DATA =====
+const districts = [
+  {n:"Agra",div:"Agra",reg:"Western",key:"Taj Mahal, Leather, Tourism"},
+  {n:"Firozabad",div:"Agra",reg:"Western",key:"Glass Bangles, Suhag Nagari"},
+  {n:"Mathura",div:"Agra",reg:"Western",key:"Krishna Janmabhoomi, Vrindavan, Leather"},
+  {n:"Mainpuri",div:"Agra",reg:"Western",key:"Petha, agriculture"},
+  {n:"Aligarh",div:"Aligarh",reg:"Western",key:"Lock City, AMU, Lock industry"},
+  {n:"Hathras",div:"Aligarh",reg:"Western",key:"Hing (asafoetida) — major producer"},
+  {n:"Kasganj",div:"Aligarh",reg:"Western",key:"Agriculture, created 2008"},
+  {n:"Etah",div:"Aligarh",reg:"Western",key:"Agriculture, milk"},
+  {n:"Prayagraj",div:"Prayagraj",reg:"Purvanchal",key:"High Court, UPPSC, Kumbh, Sangam"},
+  {n:"Fatehpur",div:"Prayagraj",reg:"Purvanchal",key:"Agriculture, Ganga bank"},
+  {n:"Kaushambi",div:"Prayagraj",reg:"Purvanchal",key:"Buddhist site, created 1994 from Prayagraj"},
+  {n:"Pratapgarh",div:"Prayagraj",reg:"Purvanchal",key:"Amla (aonla) production, agriculture"},
+  {n:"Azamgarh",div:"Azamgarh",reg:"Purvanchal",key:"Black pottery GI tag, Azamgarh Kali Mitti"},
+  {n:"Mau",div:"Azamgarh",reg:"Purvanchal",key:"Textile, Power loom sarees"},
+  {n:"Ballia",div:"Azamgarh",reg:"Purvanchal",key:"Bihar border, Mangal Pandey birthplace"},
+  {n:"Bareilly",div:"Bareilly",reg:"Rohilkhand/Terai",key:"Furniture, Sugarcane, Zari-Zardozi"},
+  {n:"Badaun",div:"Bareilly",reg:"Rohilkhand",key:"Agriculture, historical importance"},
+  {n:"Pilibhit",div:"Bareilly",reg:"Terai",key:"Pilibhit Tiger Reserve, Nepal border, Sugarcane"},
+  {n:"Shahjahanpur",div:"Bareilly",reg:"Rohilkhand",key:"Agriculture, Ram Prasad Bismil birthplace"},
+  {n:"Rampur",div:"Moradabad",reg:"Western",key:"Rampuri knife, Rampur Library (Raza Library)"},
+  {n:"Basti",div:"Basti",reg:"Terai",key:"HQ of Basti mandal"},
+  {n:"Sant Kabir Nagar",div:"Basti",reg:"Terai",key:"Named after Saint Kabir"},
+  {n:"Siddharth Nagar",div:"Basti",reg:"Terai",key:"Nepal border, Kapilvastu (Buddha's birthplace nearby), Sohna nala"},
+  {n:"Banda",div:"Chitrakoot",reg:"Bundelkhand",key:"HQ of Chitrakoot mandal; Ken river"},
+  {n:"Chitrakoot",div:"Chitrakoot",reg:"Bundelkhand",key:"Ram-Sita exile; Mandakini river; MP border"},
+  {n:"Hamirpur",div:"Chitrakoot",reg:"Bundelkhand",key:"Betwa-Yamuna doab"},
+  {n:"Mahoba",div:"Chitrakoot",reg:"Bundelkhand",key:"Chandel dynasty heritage, GI tag: Mahoba Gaura stone"},
+  {n:"Gonda",div:"Devipatan",reg:"Terai",key:"HQ Devipatan Mandal; Saryu river; Sugarcane"},
+  {n:"Balrampur",div:"Devipatan",reg:"Terai",key:"Nepal border, Shravasti nearby"},
+  {n:"Bahraich",div:"Devipatan",reg:"Terai",key:"Nepal border, Ghaghra river, Dudhwa buffer"},
+  {n:"Shravasti",div:"Devipatan",reg:"Terai",key:"Buddhist circuit; Jetavana monastery; Nepal border"},
+  {n:"Ayodhya (Faizabad)",div:"Faizabad/Ayodhya",reg:"Awadh",key:"Ram Mandir, Saryu ghats; renamed 2018"},
+  {n:"Ambedkar Nagar",div:"Faizabad/Ayodhya",reg:"Awadh",key:"Named after BR Ambedkar"},
+  {n:"Amethi",div:"Faizabad/Ayodhya",reg:"Awadh",key:"Gandhi political family; created 2010"},
+  {n:"Barabanki",div:"Faizabad/Ayodhya",reg:"Awadh",key:"Lucknow suburb; menthol production"},
+  {n:"Sultanpur",div:"Faizabad/Ayodhya",reg:"Awadh",key:"Gomti river, agriculture"},
+  {n:"Gorakhpur",div:"Gorakhpur",reg:"Terai/Purvanchal",key:"Gorakhpur Terracotta GI, Gorakhnath temple, Fertilizer plant"},
+  {n:"Kushinagar",div:"Gorakhpur",reg:"Terai",key:"Mahaparinirvana — Buddha's death site; Buddhist circuit"},
+  {n:"Deoria",div:"Gorakhpur",reg:"Purvanchal",key:"Bihar border, Sugarcane"},
+  {n:"Maharajganj",div:"Gorakhpur",reg:"Terai",key:"Nepal border, Suhelwa Wildlife Sanctuary"},
+  {n:"Jhansi",div:"Jhansi",reg:"Bundelkhand",key:"Rani Laxmibai, Defence Corridor node, Betwa river"},
+  {n:"Lalitpur",div:"Jhansi",reg:"Bundelkhand",key:"MP border, tribal area"},
+  {n:"Jalaun",div:"Jhansi",reg:"Bundelkhand",key:"Betwa river"},
+  {n:"Kanpur Nagar",div:"Kanpur",reg:"Central",key:"Leather City of India, IIT Kanpur, Ganga river"},
+  {n:"Kanpur Dehat",div:"Kanpur",reg:"Central",key:"Agricultural; carved from Kanpur 1981"},
+  {n:"Etawah",div:"Kanpur",reg:"Central",key:"Yamuna river, Chambal meets Yamuna, Lion Safari"},
+  {n:"Auraiya",div:"Kanpur",reg:"Central",key:"ONGC gas plant"},
+  {n:"Farrukhabad",div:"Kanpur",reg:"Central",key:"Sankisa Buddhist site (Buddha descended from heaven)"},
+  {n:"Kannauj",div:"Kanpur",reg:"Central",key:"Attar (ittar) fragrance capital; GI tag"},
+  {n:"Lucknow",div:"Lucknow",reg:"Awadh",key:"State Capital, Chikankari GI, Nawabi culture, IT hub"},
+  {n:"Unnao",div:"Lucknow",reg:"Central",key:"Leather tanneries, Ganga pollution case"},
+  {n:"Hardoi",div:"Lucknow",reg:"Awadh",key:"Agriculture"},
+  {n:"Rae Bareli",div:"Lucknow",reg:"Awadh",key:"Gandhi family constituency, Rail Coach Factory"},
+  {n:"Sitapur",div:"Lucknow",reg:"Awadh",key:"Agriculture"},
+  {n:"Meerut",div:"Meerut",reg:"Western",key:"Sports goods (Asian largest), 1857 sepoy mutiny, Sugarcane"},
+  {n:"Bagpat",div:"Meerut",reg:"Western",key:"Haryana border, Yamuna"},
+  {n:"Bulandshahr",div:"Meerut",reg:"Western",key:"Khurja pottery GI, Narora Nuclear Plant"},
+  {n:"Ghaziabad",div:"Meerut",reg:"Western",key:"Delhi NCR, Gateway to UP, Industrial"},
+  {n:"Gautam Buddha Nagar",div:"Meerut",reg:"Western",key:"Noida, Greater Noida; IT hub; Film City; Delhi NCR"},
+  {n:"Hapur",div:"Meerut",reg:"Western",key:"Pilkhuwa textiles; created 2011 from Ghaziabad"},
+  {n:"Mirzapur",div:"Mirzapur",reg:"Vindhya/Purvanchal",key:"Carpet, Dari weaving; Vindhyachal temple; Ganga ghats"},
+  {n:"Sonbhadra",div:"Mirzapur",reg:"Vindhya",key:"4-state border: MP+CG+JH+BH; minerals; coal; Rihand Dam"},
+  {n:"Bhadohi (Sant Ravidas Nagar)",div:"Mirzapur",reg:"Purvanchal",key:"Carpet City of India; GI tag; ~90% India's carpet"},
+  {n:"Moradabad",div:"Moradabad",reg:"Western",key:"Brass City, Peetal Nagri, 70% India brass exports"},
+  {n:"Amroha (J.P. Nagar)",div:"Moradabad",reg:"Western",key:"Officially Jyotiba Phule Nagar"},
+  {n:"Bijnor",div:"Moradabad",reg:"Western",key:"Ganga enters UP here from Uttarakhand; Sugarcane"},
+  {n:"Sambhal",div:"Moradabad",reg:"Western",key:"Sambhal mosque controversy 2024; created 2011"},
+  {n:"Saharanpur",div:"Saharanpur",reg:"Western",key:"Wood carving furniture exports, Sugarcane, UP-Uttarakhand border"},
+  {n:"Muzaffarnagar",div:"Saharanpur",reg:"Western",key:"Sugar mills capital, sugarcane"},
+  {n:"Shamli",div:"Saharanpur",reg:"Western",key:"Created 2011 from Muzaffarnagar; Haryana border"},
+  {n:"Varanasi",div:"Varanasi",reg:"Purvanchal",key:"Kashi Vishwanath, Banarasi Silk GI, Ganga ghats, Sarnath"},
+  {n:"Chandauli",div:"Varanasi",reg:"Purvanchal",key:"Bihar+Jharkhand border; created 1997"},
+  {n:"Ghazipur",div:"Varanasi",reg:"Purvanchal",key:"Bihar border, Ganga, Opium factory (British era)"},
+  {n:"Jaunpur",div:"Varanasi",reg:"Purvanchal",key:"Sharqi dynasty heritage, Gomti river"},
+  {n:"Lakhimpur Kheri",div:"Lucknow",reg:"Terai",key:"Dudhwa Tiger Reserve; Nepal border; largest district by area"},
+];
+
+// ===== POPULATE DISTRICT TABLE =====
+function populateDistrictTable(data) {
+  const tbody = document.getElementById('districtTableBody');
+  tbody.innerHTML = '';
+  data.forEach((d, i) => {
+    const regClass = d.reg.includes('West') ? 'r-west' : d.reg.includes('Central') || d.reg.includes('Awadh') ? 'r-central' : d.reg.includes('Bund') ? 'r-bundelkhand' : d.reg.includes('Terai') ? 'r-terai' : d.reg.includes('Vindhya') ? 'r-bundelkhand' : 'r-purvanchal';
+    tbody.innerHTML += `<tr>
+      <td>${i+1}</td>
+      <td><strong>${d.n}</strong></td>
+      <td><span class="mandal-badge">${d.div}</span></td>
+      <td><span class="region-badge ${regClass}">${d.reg}</span></td>
+      <td style="font-size:12px;color:var(--text-secondary)">${d.key}</td>
+    </tr>`;
+  });
+}
+populateDistrictTable(districts);
+
+function searchDistricts() {
+  const q = document.getElementById('districtSearch').value.toLowerCase().trim();
+  if(!q) { populateDistrictTable(districts); return; }
+  const filtered = districts.filter(d => d.n.toLowerCase().includes(q) || d.div.toLowerCase().includes(q) || d.reg.toLowerCase().includes(q) || d.key.toLowerCase().includes(q));
+  populateDistrictTable(filtered);
+  document.getElementById('searchResults').innerHTML = filtered.length ? `<div class="info-alert">🔍 <strong>${filtered.length}</strong> result(s) found</div>` : `<div class="warn-alert">❌ No results for "<strong>${q}</strong>"</div>`;
+}
+
+// ===== MCQ DATA =====
+const mcqs = [
+  {
+    q: "Chitrakoot Mandal (Division) ka Divisional Headquarters kahan hai?",
+    opts: ["Chitrakoot","Banda","Allahabad","Hamirpur"],
+    ans: 1,
+    exp: "Chitrakoot Mandal ka HQ Banda hai, na ki Chitrakoot. Yeh ek common exam trap hai."
+  },
+  {
+    q: "Sonbhadra district UP ke saath kin 3 states ko bhi border karta hai?",
+    opts: ["MP, Chhattisgarh, Bihar","MP, Chhattisgarh, Jharkhand","Bihar, Jharkhand, Chhattisgarh","MP, Bihar, Uttarakhand"],
+    ans: 1,
+    exp: "Sonbhadra UP ka eklauta district hai jo ek saath MP, Chhattisgarh, aur Jharkhand ko bhi touch karta hai — total 4 state borders. Iska Bihar se bhi border hai."
+  },
+  {
+    q: "Nepal se kitne UP districts directly border share karte hain?",
+    opts: ["5","6","7","8"],
+    ans: 2,
+    exp: "7 districts: Pilibhit, Lakhimpur Kheri, Bahraich, Shravasti, Balrampur, Siddharth Nagar, Maharajganj."
+  },
+  {
+    q: "'Carpet City of India' kise kaha jata hai?",
+    opts: ["Mirzapur","Varanasi","Bhadohi (Sant Ravidas Nagar)","Azamgarh"],
+    ans: 2,
+    exp: "Bhadohi (Sant Ravidas Nagar) ko 'Carpet City of India' kaha jata hai. Yahan UP ka lagbhag 90% hand-knotted carpet produce hota hai."
+  },
+  {
+    q: "Hapur district kaunse mandal mein hai?",
+    opts: ["Ghaziabad","Meerut","Moradabad","Aligarh"],
+    ans: 1,
+    exp: "Hapur 2011 mein Ghaziabad se kaat kar banaya gaya tha, lekin Meerut Mandal mein aata hai."
+  },
+  {
+    q: "Ganga nadi UP mein kaunse district se enter karti hai?",
+    opts: ["Saharanpur","Muzaffarnagar","Bijnor","Meerut"],
+    ans: 2,
+    exp: "Ganga Haridwar (Uttarakhand) ke baad Bijnor district se Uttar Pradesh mein enter karti hai."
+  },
+  {
+    q: "Devipatan Mandal ka Headquarters kahan hai?",
+    opts: ["Bahraich","Shravasti","Balrampur","Gonda"],
+    ans: 3,
+    exp: "Devipatan Mandal ka HQ Gonda hai. Is mandal mein Gonda, Balrampur, Bahraich aur Shravasti aate hain."
+  },
+  {
+    q: "Kaunsa district 'Lock City of India' ke naam se jaana jaata hai?",
+    opts: ["Kanpur","Agra","Aligarh","Firozabad"],
+    ans: 2,
+    exp: "Aligarh ko 'Lock City of India' kaha jata hai. Yahan India ke lagbhag 80% taale (locks) bante hain."
+  },
+  {
+    q: "Faizabad Division ka naam badal kar kya rakha gaya?",
+    opts: ["Awadh Division","Ayodhya Division","Saryu Division","Devipatan Division"],
+    ans: 1,
+    exp: "Faizabad Division ka naam badal kar Ayodhya Division kar diya gaya hai (2018 ke baad). District ka naam bhi Faizabad se Ayodhya hua."
+  },
+  {
+    q: "Noida (Gautam Buddha Nagar) kaunse mandal mein aata hai?",
+    opts: ["Ghaziabad Mandal","Agra Mandal","Meerut Mandal","Aligarh Mandal"],
+    ans: 2,
+    exp: "Gautam Buddha Nagar (Noida) Meerut Mandal mein aata hai, kyunki yeh Meerut Division ka hissa hai. Aksar Ghaziabad se confuse kar lete hain."
+  }
+];
+
+let scores = new Array(mcqs.length).fill(null);
+let answered = new Array(mcqs.length).fill(false);
+
+function renderMCQs() {
+  const container = document.getElementById('mcqContainer');
+  container.innerHTML = '';
+  mcqs.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'mcq-card';
+    div.innerHTML = `
+      <div class="mcq-q"><span>${qi+1}</span>${q.q}</div>
+      <div class="options">
+        ${q.opts.map((o, oi) => `<div class="opt" id="opt-${qi}-${oi}" onclick="selectOpt(${qi},${oi})">(${String.fromCharCode(65+oi)}) ${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="exp-${qi}">💡 ${q.exp}</div>
+    `;
+    container.appendChild(div);
+  });
+  updateScore();
+}
+
+function selectOpt(qi, oi) {
+  if(answered[qi]) return;
+  answered[qi] = true;
+  const correct = mcqs[qi].ans;
+  document.getElementById(`opt-${qi}-${oi}`).classList.add(oi === correct ? 'correct' : 'wrong');
+  if(oi !== correct) document.getElementById(`opt-${qi}-${correct}`).classList.add('reveal-correct');
+  document.getElementById(`exp-${qi}`).classList.add('show');
+  scores[qi] = oi === correct ? 1 : 0;
+  updateScore();
+}
+
+function updateScore() {
+  const done = answered.filter(Boolean).length;
+  const got = scores.filter(s => s === 1).length;
+  document.getElementById('scoreDisplay').textContent = `Score: ${got} / ${done} (of ${mcqs.length})`;
+}
+
+function resetMCQ() {
+  scores = new Array(mcqs.length).fill(null);
+  answered = new Array(mcqs.length).fill(false);
+  renderMCQs();
+}
+
+renderMCQs();
+</script>
+</body>
+</html>
