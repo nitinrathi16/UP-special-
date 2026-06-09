@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Economy & Agriculture — UPPSC 2026 Toolkit</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6}
+  
+  .header{background:linear-gradient(135deg,#1a237e 0%,#0d47a1 50%,#006064 100%);color:#fff;padding:2rem 2rem 1.5rem;text-align:center}
+  .header h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+  .header p{font-size:13px;opacity:.85;margin-top:6px}
+  .header .tags{display:flex;justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .htag{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 12px;font-size:12px}
+
+  .nav{background:#fff;border-bottom:1px solid #e0e0e0;position:sticky;top:0;z-index:100;padding:0 1rem;display:flex;overflow-x:auto;gap:4px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .nb{padding:12px 16px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:none;color:#555;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+  .nb:hover{color:#1a237e;background:#f0f4ff}
+  .nb.active{color:#1a237e;border-bottom-color:#1a237e;background:#f0f4ff}
+
+  .container{max-width:900px;margin:0 auto;padding:1.5rem 1rem}
+  .section{display:none}.section.active{display:block}
+
+  .sec-title{font-size:20px;font-weight:700;color:#1a237e;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .sec-sub{font-size:13px;color:#666;margin-bottom:1.4rem;padding-bottom:10px;border-bottom:2px solid #e8ecf5}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:1.2rem}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1.2rem}
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.2rem}
+
+  .mcard{background:#fff;border-radius:10px;padding:1rem;border:1px solid #e8ecf5;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .mlabel{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+  .mval{font-size:22px;font-weight:700;color:#1a237e}
+  .munit{font-size:11px;color:#666;margin-top:3px}
+
+  .card{background:#fff;border-radius:12px;padding:1.2rem 1.4rem;border:1px solid #e8ecf5;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:12px}
+  .card-title{font-size:14px;font-weight:600;color:#1a237e;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+
+  .row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid #f0f4ff}
+  .row:last-child{border:none}
+  .rk{font-size:13px;color:#555;flex:1.2}
+  .rv{font-size:13px;font-weight:500;color:#1a1a2e;flex:2}
+
+  .badge{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;font-weight:600;vertical-align:middle}
+  .b-green{background:#e8f5e9;color:#2e7d32}
+  .b-blue{background:#e3f2fd;color:#1565c0}
+  .b-amber{background:#fff8e1;color:#e65100}
+  .b-red{background:#ffebee;color:#c62828}
+  .b-purple{background:#ede7f6;color:#4527a0}
+  .b-teal{background:#e0f2f1;color:#00695c}
+  .b-rank{background:#1a237e;color:#fff;font-size:12px;padding:2px 10px}
+
+  .crop-tag{display:inline-flex;align-items:center;gap:3px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;margin:2px;border:1px solid rgba(0,0,0,.08)}
+
+  .zone-card{background:#fff;border-radius:10px;border:1px solid #e8ecf5;padding:.9rem 1.1rem;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .zone-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .zname{font-size:13px;font-weight:600;color:#1a237e}
+  .zdist{font-size:11px;color:#777;margin:3px 0}
+  .zcrops{margin-top:5px}
+  .znote{font-size:11px;color:#888;margin-top:4px;font-style:italic}
+
+  .canal-item{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid #f0f4ff}
+  .canal-item:last-child{border:none}
+  .ci-icon{width:34px;height:34px;border-radius:50%;background:#e3f2fd;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+  .ci-name{font-size:13px;font-weight:600;color:#0d47a1;margin-bottom:2px}
+  .ci-desc{font-size:12px;color:#666}
+
+  .odop-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f4ff;font-size:13px}
+  .odop-row:last-child{border:none}
+  .odop-dist{color:#555;font-weight:500}
+  .odop-prod{color:#1a237e;font-weight:600}
+
+  .q-card{background:#fff;border:1px solid #e8ecf5;border-radius:12px;padding:1rem 1.2rem;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .q-num{font-size:11px;font-weight:700;color:#1565c0;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .q-text{font-size:14px;font-weight:500;color:#1a1a2e;margin-bottom:10px;line-height:1.5}
+  .q-opt{display:block;width:100%;text-align:left;padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer;margin-bottom:5px;border:1px solid #e0e7ef;background:#f8faff;color:#333;transition:all .2s}
+  .q-opt:hover:not(:disabled){background:#e8f0fe;border-color:#1a237e}
+  .q-opt:disabled{cursor:not-allowed}
+  .q-opt.correct{background:#e8f5e9;border-color:#2e7d32;color:#1b5e20;font-weight:600}
+  .q-opt.wrong{background:#ffebee;border-color:#c62828;color:#b71c1c}
+  .q-exp{font-size:12px;color:#444;margin-top:8px;padding:8px 12px;background:#f0f4ff;border-radius:8px;border-left:3px solid #1a237e;display:none;line-height:1.6}
+  .q-exp strong{color:#1a237e}
+
+  .score-card{background:linear-gradient(135deg,#e8f5e9,#e3f2fd);border:1px solid #c8e6c9;border-radius:12px;padding:1.2rem;text-align:center;margin-bottom:1.5rem}
+  .score-val{font-size:32px;font-weight:700;color:#1a237e}
+  .score-label{font-size:13px;color:#555;margin-top:2px}
+  .progress-bar{height:8px;border-radius:4px;background:#dde3f0;margin-top:10px;overflow:hidden}
+  .progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#1a237e,#0d47a1);transition:width .5s ease}
+
+  .tip-box{background:#fff8e1;border:1px solid #ffcc02;border-radius:10px;padding:.9rem 1.1rem;margin-bottom:1.2rem}
+  .tip-title{font-size:13px;font-weight:700;color:#e65100;margin-bottom:6px}
+  .tip-text{font-size:12px;color:#444;line-height:1.6}
+
+  .highlight-box{background:#e8eaf6;border:1px solid #c5cae9;border-radius:10px;padding:.9rem 1.1rem;margin-bottom:1.2rem}
+
+  footer{background:#1a237e;color:#fff;text-align:center;padding:1rem;font-size:12px;opacity:.85;margin-top:2rem}
+
+  @media(max-width:600px){
+    .header h1{font-size:20px}
+    .mval{font-size:18px}
+    .grid3{grid-template-columns:repeat(2,1fr)}
+  }
+
+  .rank-table{width:100%;border-collapse:collapse;font-size:13px}
+  .rank-table th{background:#1a237e;color:#fff;padding:8px 10px;text-align:left;font-weight:600}
+  .rank-table td{padding:7px 10px;border-bottom:1px solid #e8ecf5}
+  .rank-table tr:hover td{background:#f0f4ff}
+  .rank-table tr:last-child td{border:none}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="font-size:28px;margin-bottom:6px">🌾</div>
+  <h1>UP Economy &amp; Agriculture</h1>
+  <p>UPPSC 2026 Topper-Level Toolkit • SDM (Top 10) Rank Target</p>
+  <div class="tags">
+    <span class="htag">📊 Latest 2024-25 Data</span>
+    <span class="htag">🗺️ District-wise Mapping</span>
+    <span class="htag">✅ 10 Practice MCQs</span>
+    <span class="htag">🔑 Exam-Critical Facts</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nb active" onclick="show('economy',this)">📊 Economy</button>
+  <button class="nb" onclick="show('crops',this)">🌾 Major Crops</button>
+  <button class="nb" onclick="show('zones',this)">🗺️ Agro Zones</button>
+  <button class="nb" onclick="show('irrigation',this)">💧 Irrigation</button>
+  <button class="nb" onclick="show('industry',this)">🏭 Industry</button>
+  <button class="nb" onclick="show('odop',this)">🏅 ODOP</button>
+  <button class="nb" onclick="show('mcq',this)">❓ MCQs</button>
+</nav>
+
+<div class="container">
+
+<!-- ===== ECONOMY ===== -->
+<div id="economy" class="section active">
+  <div class="sec-title">📊 UP Economic Overview 2024-25</div>
+  <div class="sec-sub">India ki 3rd largest economy — UPPSC ke liye essential data points</div>
+
+  <div class="tip-box">
+    <div class="tip-title">⚡ Quick Recall — Most Asked in UPPSC</div>
+    <div class="tip-text">UP = 3rd largest economy | GSDP ₹29.78 LC (2024-25) | Growth 8.99% (4th highest) | Per capita income ₹1.09 lakh (2nd lowest after Bihar) | 8.77% of national GDP</div>
+  </div>
+
+  <div class="grid4">
+    <div class="mcard"><div class="mlabel">GSDP 2024-25</div><div class="mval">₹29.78</div><div class="munit">Lakh Crore (3rd in India)</div></div>
+    <div class="mcard"><div class="mlabel">GSDP Growth Rate</div><div class="mval">8.99%</div><div class="munit">4th highest in India</div></div>
+    <div class="mcard"><div class="mlabel">National GDP Share</div><div class="mval">8.77%</div><div class="munit">of India's GDP (2023-24)</div></div>
+    <div class="mcard"><div class="mlabel">Per Capita Income</div><div class="mval">₹1.09L</div><div class="munit">2nd poorest state (above Bihar)</div></div>
+    <div class="mcard"><div class="mlabel">Population</div><div class="mval">24.6 Cr</div><div class="munit">17.02% of India</div></div>
+    <div class="mcard"><div class="mlabel">Exports FY25</div><div class="mval">$19B</div><div class="munit">Electronics, Garments, Leather</div></div>
+    <div class="mcard"><div class="mlabel">FDI (Apr 2019–Jun 2025)</div><div class="mval">₹17,004 Cr</div><div class="munit">DPIIT data</div></div>
+    <div class="mcard"><div class="mlabel">GSDP FY26 Estimate</div><div class="mval">₹30.80</div><div class="munit">Lakh Crore (IBEF)</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">📊 GSVA Sector Share 2024-25</div>
+      <div class="row"><span class="rk">🏦 Services (Tertiary)</span><span class="rv"><strong>47.26%</strong></span></div>
+      <div class="row"><span class="rk">🌾 Primary (Agriculture)</span><span class="rv"><strong>26.83%</strong></span></div>
+      <div class="row"><span class="rk">🏭 Secondary (Industry)</span><span class="rv"><strong>25.91%</strong></span></div>
+      <div class="row"><span class="rk">Agriculture in employment</span><span class="rv"><strong>59.3%</strong> workforce</span></div>
+      <div class="row"><span class="rk">60% of UP employment</span><span class="rv">from agriculture alone</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏆 UP Rankings — India mein</div>
+      <div class="row"><span class="rk">Economy (GSDP)</span><span class="rv"><span class="badge b-blue">3rd</span></span></div>
+      <div class="row"><span class="rk">Food grain production</span><span class="rv"><span class="badge b-green">#1 — 60+ MT (FY24)</span></span></div>
+      <div class="row"><span class="rk">Wheat production</span><span class="rv"><span class="badge b-green">#1 — ~30-35% national</span></span></div>
+      <div class="row"><span class="rk">Sugarcane &amp; Sugar</span><span class="rv"><span class="badge b-green">#1 — 48.57% national</span></span></div>
+      <div class="row"><span class="rk">Potato production</span><span class="rv"><span class="badge b-green">#1 in India</span></span></div>
+      <div class="row"><span class="rk">Rice production</span><span class="rv"><span class="badge b-amber">#2 — 14.7% national</span></span></div>
+      <div class="row"><span class="rk">Ethanol production</span><span class="rv"><span class="badge b-green">#1 — 42.27% national</span></span></div>
+      <div class="row"><span class="rk">Per capita income rank</span><span class="rv"><span class="badge b-red">2nd lowest (above Bihar)</span></span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Key Economic Facts (Exam-Critical)</div>
+    <table class="rank-table">
+      <tr><th>Parameter</th><th>Data / Fact</th></tr>
+      <tr><td>Sugar Bowl of India</td><td>UP = ~48% of India's sugarcane production</td></tr>
+      <tr><td>Ethanol contribution</td><td>42.27% of India's ethanol = 180 crore liters (2023-24)</td></tr>
+      <tr><td>Pulses production</td><td>3.25 MT = 14.1% of India's total pulses</td></tr>
+      <tr><td>Oilseed production</td><td>6.9% of India's oilseed output</td></tr>
+      <tr><td>Data Centres (Jun 2025)</td><td>644 MW capacity; ₹21,343 crore investment</td></tr>
+      <tr><td>Human Development Index</td><td>0.693 medium — 32nd rank (2023)</td></tr>
+      <tr><td>Poverty rate</td><td>19.40% below poverty line (2022-23)</td></tr>
+      <tr><td>Government debt</td><td>~23% of GSDP (₹9.19 lakh crore)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== CROPS ===== -->
+<div id="crops" class="section">
+  <div class="sec-title">🌾 Major Crops — District-wise Mapping</div>
+  <div class="sec-sub">Crop → Rank in India → Key Districts → Special Facts (UPPSC hottest topic)</div>
+
+  <div class="card">
+    <div class="card-title">🌾 Wheat — <span class="badge b-green">India #1 | ~30–35% national output</span></div>
+    <div class="row"><span class="rk">Season</span><span class="rv">Rabi (sown Nov, harvested Apr)</span></div>
+    <div class="row"><span class="rk">Production 2024-25</span><span class="rv"><strong>414.39 lakh MT</strong></span></div>
+    <div class="row"><span class="rk">Productivity</span><span class="rv">38.50 quintal per hectare</span></div>
+    <div class="row"><span class="rk">Top 5 Districts</span><span class="rv">
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Meerut</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Muzaffarnagar</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Saharanpur</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Bulandshahr</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Aligarh</span>
+    </span></div>
+    <div class="row"><span class="rk">Also important</span><span class="rv">Etah, Mainpuri, Firozabad, Agra, Mathura — western UP doab belt</span></div>
+    <div class="row"><span class="rk">Key factor</span><span class="rv">Fertile alluvial soil + Upper Ganga Canal + tube wells</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎋 Sugarcane — <span class="badge b-green">India #1 | 48.57% national production</span></div>
+    <div class="row"><span class="rk">Season</span><span class="rv">Year-round (Zaid/perennial crop)</span></div>
+    <div class="row"><span class="rk">Production 2024-25</span><span class="rv"><strong>220.80 MT</strong> (Economic Survey 2025-26)</span></div>
+    <div class="row"><span class="rk">Area under cultivation</span><span class="rv">28.53 lakh hectares — largest in India</span></div>
+    <div class="row"><span class="rk">Crushing 2022-23</span><span class="rv">1,084.57 lakh MT crushed by 120 mills</span></div>
+    <div class="row"><span class="rk">Western UP belt</span><span class="rv">
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Muzaffarnagar</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Meerut</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Saharanpur</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Bijnor</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Hapur</span>
+    </span></div>
+    <div class="row"><span class="rk">Central UP belt</span><span class="rv">
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Bareilly</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Pilibhit</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Moradabad</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Shahjahanpur</span>
+    </span></div>
+    <div class="row"><span class="rk">60+ of 75 districts</span><span class="rv">Have sugarcane in their top 5 crops</span></div>
+    <div class="row"><span class="rk">Problem</span><span class="rv">Short crushing season (4 months only, Nov–Feb)</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍚 Rice (Dhan) — <span class="badge b-amber">India #2 | 14.7% national output</span></div>
+    <div class="row"><span class="rk">Season</span><span class="rv">Kharif (sown Jun, harvested Nov)</span></div>
+    <div class="row"><span class="rk">Production 2021-22</span><span class="rv">171.36 lakh MT</span></div>
+    <div class="row"><span class="rk">Area cultivated</span><span class="rv">5.86 lakh hectares</span></div>
+    <div class="row"><span class="rk">Poorvanchal belt</span><span class="rv">
+      <span class="crop-tag" style="background:#e3f2fd;color:#0d47a1">Gorakhpur</span>
+      <span class="crop-tag" style="background:#e3f2fd;color:#0d47a1">Deoria</span>
+      <span class="crop-tag" style="background:#e3f2fd;color:#0d47a1">Azamgarh</span>
+      <span class="crop-tag" style="background:#e3f2fd;color:#0d47a1">Varanasi</span>
+      <span class="crop-tag" style="background:#e3f2fd;color:#0d47a1">Ballia</span>
+      <span class="crop-tag" style="background:#e3f2fd;color:#0d47a1">Jaunpur</span>
+    </span></div>
+    <div class="row"><span class="rk">Tarai belt</span><span class="rv">Bahraich, Lakhimpur Kheri, Shravasti — also major rice belt</span></div>
+    <div class="row"><span class="rk">Basmati belt</span><span class="rv">Saharanpur, Meerut, Bijnor — exported internationally</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🥔 Potato (Aalu) — <span class="badge b-green">India #1</span></div>
+    <div class="row"><span class="rk">Key production districts</span><span class="rv">
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Agra</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Farrukhabad</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Kannauj</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Hathras</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Firozabad</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Etah</span>
+    </span></div>
+    <div class="row"><span class="rk">Varieties grown</span><span class="rv">Kufri Bahar, Sadabahar, Kufri Surya, Kufri Pukhraj</span></div>
+    <div class="row"><span class="rk">Special note (UPPSC 2025)</span><span class="rv">International Potato Centre's South Asia Regional Centre approved at <strong>Aligarh</strong></span></div>
+    <div class="row"><span class="rk">Oilseeds area</span><span class="rv">~13 lakh hectare for oilseeds (mustard, groundnut, sesame)</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🥭 Mango (Aam) — <span class="badge b-amber">Major producer; Famous varieties</span></div>
+    <div class="row"><span class="rk">Mango Capital of India</span><span class="rv"><strong>Malihabad</strong> (Lucknow district)</span></div>
+    <div class="row"><span class="rk">Key districts</span><span class="rv">
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Lucknow</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Saharanpur</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Hardoi</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Varanasi</span>
+    </span></div>
+    <div class="row"><span class="rk">Variety ↔ District (Exam Critical!)</span><span class="rv"><strong>Dussehri</strong> → Malihabad (Lucknow) | <strong>Langra</strong> → Varanasi | <strong>Chausa</strong> → Hardoi | <strong>Safeda</strong> → Saharanpur</span></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">🍌 Banana (Kela)</div>
+      <div class="row"><span class="rk">Key districts</span><span class="rv">Kushinagar, Maharajganj, Gorakhpur</span></div>
+      <div class="row"><span class="rk">Belt</span><span class="rv">Tarai &amp; Poorvanchal region</span></div>
+      <div class="row"><span class="rk">Variety</span><span class="rv">Dwarf Cavendish, Robusta</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🍈 Guava &amp; Amla</div>
+      <div class="row"><span class="rk">Guava (Peru)</span><span class="rv"><strong>Allahabad (Prayagraj)</strong> — GI Tag; Sardar variety</span></div>
+      <div class="row"><span class="rk">Amla (Indian Gooseberry)</span><span class="rv"><strong>Pratapgarh</strong> — India's largest amla producer</span></div>
+      <div class="row"><span class="rk">Guava also</span><span class="rv">Lucknow, Varanasi, Kanpur</span></div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div style="font-size:14px;font-weight:700;color:#1a237e;margin-bottom:6px">🎯 Crop Ranking Summary — Quick Revision</div>
+    <table class="rank-table">
+      <tr><th>Crop</th><th>India Rank</th><th>Key Fact</th></tr>
+      <tr><td>Wheat</td><td><span class="badge b-green">#1</span></td><td>414.39 LMT; Meerut-Muzaffarnagar-Saharanpur belt</td></tr>
+      <tr><td>Sugarcane</td><td><span class="badge b-green">#1</span></td><td>220.80 MT; 48.57% national; Sugar Bowl of India</td></tr>
+      <tr><td>Potato</td><td><span class="badge b-green">#1</span></td><td>Agra-Farrukhabad; Kufri varieties; IPC Centre at Aligarh</td></tr>
+      <tr><td>Food Grains</td><td><span class="badge b-green">#1</span></td><td>60+ MT (FY24); Highest in India</td></tr>
+      <tr><td>Rice</td><td><span class="badge b-amber">#2</span></td><td>171 LMT; 14.7%; Poorvanchal &amp; Tarai</td></tr>
+      <tr><td>Pulses</td><td><span class="badge b-amber">Major</span></td><td>3.25 MT; 14.1% national</td></tr>
+      <tr><td>Mango</td><td><span class="badge b-amber">Major</span></td><td>Malihabad (Dussehri); Langra (Varanasi)</td></tr>
+      <tr><td>Amla</td><td><span class="badge b-green">Largest</span></td><td>Pratapgarh — India's largest amla producer</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== AGRO ZONES ===== -->
+<div id="zones" class="section">
+  <div class="sec-title">🗺️ 9 Agro-Climatic Zones of UP</div>
+  <div class="sec-sub">Zone → Districts → Crops → Problems (UPPSC Mains mein bahut important!)</div>
+
+  <div class="tip-box">
+    <div class="tip-title">📌 Exam Tip</div>
+    <div class="tip-text">UP has 9 agro-climatic zones (as per UP Agriculture Dept). India level par UP comes under 3 national zones — Upper Gangetic Plains (Zone 5), Middle Gangetic Plains (Zone 4), and partly Bundelkhand region. Zone 6 (Bundelkhand) and Zone 9 (Vindhyachal) are drought-prone — frequently asked!</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 1 — Tarai &amp; Bhabhar Region</span>
+      <span class="badge b-teal">High rainfall 900–1100mm</span>
+    </div>
+    <div class="zdist">📍 Saharanpur, Bahraich, Shravasti, Lakhimpur Kheri, Pilibhit, Bijnor (northern belt near Nepal)</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Rice</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Wheat</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Sugarcane</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Maize</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Jute</span>
+    </div>
+    <div class="znote">Marshy/forest belt; waterlogging problem; wells &amp; canals; high biological diversity</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 2 — Western Plain Region</span>
+      <span class="badge b-blue">Sub-humid | 800–1000mm</span>
+    </div>
+    <div class="zdist">📍 Meerut, Ghaziabad, Muzaffarnagar, Bulandshahr, Aligarh, Mathura, Agra, Hapur</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Wheat</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Sugarcane</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Potato</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Rice</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Cotton</span>
+    </div>
+    <div class="znote">Most fertile zone; khadar &amp; bhangar alluvial soils; Upper Ganga Canal; highest agricultural intensity</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 3 — Central Western Plain Region</span>
+      <span class="badge b-blue">Sub-humid | 800–950mm</span>
+    </div>
+    <div class="zdist">📍 Moradabad, Bareilly, Rampur, Shahjahanpur, Pilibhit, Budaun, Sambhal</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Sugarcane</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Wheat</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Rice</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Mustard</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Pulses</span>
+    </div>
+    <div class="znote">Major sugar mill cluster; Ramganga multipurpose irrigation project; fertile Rohilkhand plains</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 4 — South Western Semi-Arid Region</span>
+      <span class="badge b-amber">Semi-arid | 600–800mm</span>
+    </div>
+    <div class="zdist">📍 Agra, Mathura (overlap), Firozabad, Etah, Mainpuri, Farrukhabad, Kannauj, Auraiya</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Potato</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Wheat</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Bajra</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Mustard</span>
+      <span class="crop-tag" style="background:#fff8e1;color:#e65100">Asafoetida</span>
+    </div>
+    <div class="znote">Potato capital (Agra-Farrukhabad); less rainfall; tube well irrigation dependent; IPC Centre at Aligarh</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 5 — Central Plain Region</span>
+      <span class="badge b-blue">Sub-humid | 800–1000mm</span>
+    </div>
+    <div class="zdist">📍 Lucknow, Unnao, Barabanki, Raebareli, Sitapur, Hardoi, Fatehpur, Kaushambi</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Wheat</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Rice</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Mango</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Pulses</span>
+      <span class="crop-tag" style="background:#e8f5e9;color:#1b5e20">Sugarcane</span>
+    </div>
+    <div class="znote">Malihabad mango (Dussehri); Sharda Sahayak canal; state capital zone; diverse cropping</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 6 — Bundelkhand Region</span>
+      <span class="badge b-red">Drought-prone | 700–900mm</span>
+    </div>
+    <div class="zdist">📍 Jhansi, Banda, Mahoba, Chitrakoot, Hamirpur, Jalaun, Lalitpur</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Jowar</span>
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Gram</span>
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Til (Sesame)</span>
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Bajra</span>
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Urad</span>
+    </div>
+    <div class="znote">Rocky Vindhyan terrain; drought every 2-3 years; Ken-Betwa River Linking Project (India's 1st) for relief; backward region</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 7 — North Eastern Plain Region</span>
+      <span class="badge b-teal">Humid | 1000–1200mm</span>
+    </div>
+    <div class="zdist">📍 Gorakhpur, Deoria, Kushinagar, Maharajganj, Basti, Siddharth Nagar, Sant Kabir Nagar</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Rice</span>
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Wheat</span>
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Banana</span>
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Sugarcane</span>
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Maize</span>
+    </div>
+    <div class="znote">Nepal border zone; Gandak canal (Indo-Nepal project); Gorakhpur-Deoria sugar mills; banana production (Kushinagar)</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 8 — Eastern Plain Region</span>
+      <span class="badge b-teal">Humid | 1000–1200mm</span>
+    </div>
+    <div class="zdist">📍 Varanasi, Prayagraj, Azamgarh, Jaunpur, Ghazipur, Ballia, Mirzapur, Sonbhadra, Chandauli, Bhadohi</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Rice</span>
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Wheat</span>
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Guava</span>
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Amla</span>
+      <span class="crop-tag" style="background:#e0f2f1;color:#004d40">Vegetables</span>
+    </div>
+    <div class="znote">Allahabad guava (GI tag); Pratapgarh amla; Eastern Ganga canal; Carpet industry (Bhadohi, Mirzapur)</div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-header">
+      <span class="zname">Zone 9 — Vindhyachal Region</span>
+      <span class="badge b-red">Plateau region | Low fertility</span>
+    </div>
+    <div class="zdist">📍 Mirzapur (plateau part), Sonbhadra, Robertsganj</div>
+    <div class="zcrops">
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Jowar</span>
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Til</span>
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Gram</span>
+      <span class="crop-tag" style="background:#ffebee;color:#b71c1c">Rice</span>
+    </div>
+    <div class="znote">Plateau/hill; Rihand reservoir; tribal belt; lowest cultivated %; minerals (coal, bauxite, limestone)</div>
+  </div>
+</div>
+
+<!-- ===== IRRIGATION ===== -->
+<div id="irrigation" class="section">
+  <div class="sec-title">💧 Irrigation in Uttar Pradesh</div>
+  <div class="sec-sub">UP has the most dense canal network in India — UPPSC Mains pe direct questions aate hain</div>
+
+  <div class="grid3">
+    <div class="mcard"><div class="mlabel">Primary source</div><div class="mval">Tube Wells</div><div class="munit">~70% of irrigation</div></div>
+    <div class="mcard"><div class="mlabel">Tube wells count</div><div class="mval">~10 Lakh+</div><div class="munit">Largest in India</div></div>
+    <div class="mcard"><div class="mlabel">Canal irrigation</div><div class="mval">2nd source</div><div class="munit">After tube wells</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌊 Major Canal Systems of UP</div>
+    <div class="canal-item">
+      <div class="ci-icon">🏛️</div>
+      <div>
+        <div class="ci-name">Upper Ganga Canal (Ganga Nahar)</div>
+        <div class="ci-desc">Built 1854 (British era) — India's oldest major canal. Starts at <strong>Haridwar</strong>, flows through Meerut, Aligarh, Mathura, Agra divisions. Also called "Upper Doab Canal".</div>
+      </div>
+    </div>
+    <div class="canal-item">
+      <div class="ci-icon">🌊</div>
+      <div>
+        <div class="ci-name">Lower Ganga Canal</div>
+        <div class="ci-desc">From <strong>Narora (Bulandshahr)</strong> to Fatehpur; irrigates Etah, Farrukhabad, Kanpur, Fatehpur districts. Built 1878.</div>
+      </div>
+    </div>
+    <div class="canal-item">
+      <div class="ci-icon">💧</div>
+      <div>
+        <div class="ci-name">Sharda Canal (Sarda Nahar)</div>
+        <div class="ci-desc">Originates from <strong>Banbasa (Uttarakhand)</strong>; major north UP canal. Irrigates Lakhimpur Kheri, Sitapur, Hardoi, Barabanki, Gonda, Bahraich. One of the largest canal systems in India.</div>
+      </div>
+    </div>
+    <div class="canal-item">
+      <div class="ci-icon">🔗</div>
+      <div>
+        <div class="ci-name">Sharda Sahayak Canal (Sarda Sahayak Pariyojana)</div>
+        <div class="ci-desc">Links Sharda with Ganga river system. Irrigates <strong>Balrampur, Gonda, Bahraich</strong>. Major Tarai region project. Reduces monsoon dependence.</div>
+      </div>
+    </div>
+    <div class="canal-item">
+      <div class="ci-icon">🤝</div>
+      <div>
+        <div class="ci-name">Gandak Canal (UP–Bihar Joint Project)</div>
+        <div class="ci-desc">Indo-Nepal joint multipurpose project. Irrigates <strong>Deoria, Gorakhpur, Kushinagar</strong> in eastern UP. Also benefits Bihar.</div>
+      </div>
+    </div>
+    <div class="canal-item">
+      <div class="ci-icon">🚿</div>
+      <div>
+        <div class="ci-name">Agra Canal</div>
+        <div class="ci-desc">From <strong>Okhla Barrage (Delhi)</strong> to Agra. Multipurpose — irrigation + drinking water for Agra city.</div>
+      </div>
+    </div>
+    <div class="canal-item">
+      <div class="ci-icon">⚡</div>
+      <div>
+        <div class="ci-name">Ramganga Multipurpose Project</div>
+        <div class="ci-desc">Dam at <strong>Kalagarh, Uttarakhand</strong>. Irrigates Moradabad, Bareilly, Shahjahanpur. Also generates hydroelectricity. Ramganga river (tributary of Ganga).</div>
+      </div>
+    </div>
+    <div class="canal-item">
+      <div class="ci-icon">🌉</div>
+      <div>
+        <div class="ci-name">Ken-Betwa River Linking Project</div>
+        <div class="ci-desc"><strong>India's first river-linking project</strong>. Ken → Betwa (UP–MP joint). Target: 10.62 lakh hectares in Bundelkhand. Approved; helps drought-prone Jhansi, Banda, Mahoba districts.</div>
+      </div>
+    </div>
+    <div class="canal-item">
+      <div class="ci-icon">🏞️</div>
+      <div>
+        <div class="ci-name">Rihand Dam (Govind Ballabh Pant Sagar)</div>
+        <div class="ci-desc">On Rihand river, <strong>Sonbhadra</strong>. India's largest reservoir by volume (at time of construction). Hydro power + irrigation for Vindhyachal zone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚠️ Agricultural Problems &amp; Government Solutions</div>
+    <table class="rank-table">
+      <tr><th>Problem</th><th>Government Solution</th></tr>
+      <tr><td>Small &amp; fragmented landholdings</td><td>Land consolidation (Chundan); cooperative farming</td></tr>
+      <tr><td>Low sugarcane yield/hectare vs Maharashtra</td><td>New HYV varieties; Seed Park; extension services</td></tr>
+      <tr><td>Short crushing season (4 months only)</td><td>Ethanol production from molasses; crop diversification</td></tr>
+      <tr><td>Groundwater over-exploitation (W. UP)</td><td>Per Drop More Crop; drip/sprinkler irrigation</td></tr>
+      <tr><td>Bundelkhand chronic drought</td><td>Ken-Betwa project; Bundelkhand Special Package</td></tr>
+      <tr><td>Flood in Poorvanchal</td><td>Embankments; Kosi, Rapti flood management</td></tr>
+      <tr><td>Farmer income low</td><td>PM-KISAN ₹6000/yr; MSP increase; Kisan Credit Card</td></tr>
+      <tr><td>Soil salinisation (Usar land)</td><td>National Land Reclamation Project; gypsum application</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== INDUSTRY ===== -->
+<div id="industry" class="section">
+  <div class="sec-title">🏭 Industry, Sugar &amp; Food Processing</div>
+  <div class="sec-sub">Sugar Bowl of India + Handicrafts + Major Industrial Cities</div>
+
+  <div class="grid4">
+    <div class="mcard"><div class="mlabel">Sugar production 2022-23</div><div class="mval">107.29</div><div class="munit">Lakh tonnes — India #1</div></div>
+    <div class="mcard"><div class="mlabel">Sugar mills (operational)</div><div class="mval">120</div><div class="munit">In 45 districts</div></div>
+    <div class="mcard"><div class="mlabel">Cane crushing area</div><div class="mval">28.53 LH</div><div class="munit">Largest in India</div></div>
+    <div class="mcard"><div class="mlabel">Farmer payment (6 yrs)</div><div class="mval">₹2.11 LC</div><div class="munit">Paid to cane farmers</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍬 Sugar Industry — "Sugar Bowl of India"</div>
+    <div class="row"><span class="rk">National share</span><span class="rv">~40–48% of India's total sugar; reclaimed #1 in 2022-23</span></div>
+    <div class="row"><span class="rk">Crushing season</span><span class="rv">Nov–Feb (only 4 months; South gets 7-8 months)</span></div>
+    <div class="row"><span class="rk">Top mill districts</span><span class="rv">Muzaffarnagar, Meerut, Saharanpur, Pilibhit, Bareilly, Bijnor, Kushinagar</span></div>
+    <div class="row"><span class="rk">Key companies</span><span class="rv">Balrampur Chini Mills, Bajaj Hindusthan, Dhampur Sugar, Triveni Engineering</span></div>
+    <div class="row"><span class="rk">Sugar by-products</span><span class="rv">Ethanol (molasses), Bagasse (power/paper), Press-mud (organic fertilizer)</span></div>
+    <div class="row"><span class="rk">Challenge</span><span class="rv">Low yield/hectare vs Tamil Nadu &amp; Maharashtra; delayed cane payment to farmers</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⛽ Ethanol — UP's New Economic Driver</div>
+    <div class="row"><span class="rk">National contribution</span><span class="rv"><strong>42.27%</strong> of India's ethanol production</span></div>
+    <div class="row"><span class="rk">Production 2023-24</span><span class="rv">180 crore liters</span></div>
+    <div class="row"><span class="rk">Projected 2024-25</span><span class="rv">223.9 crore liters (target)</span></div>
+    <div class="row"><span class="rk">Source crops</span><span class="rv">Sugarcane molasses + Maize (grain-based)</span></div>
+    <div class="row"><span class="rk">Policy push</span><span class="rv">National Biofuel Policy 2018; E20 blending target by 2025</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍱 Food Processing Sector</div>
+    <div class="row"><span class="rk">Projected size FY28</span><span class="rv">~$25 Billion (CAGR ~26% during 2022-28)</span></div>
+    <div class="row"><span class="rk">Key processing clusters</span><span class="rv">Noida (food park), Lucknow, Kanpur, Agra</span></div>
+    <div class="row"><span class="rk">Export specialties</span><span class="rv">Basmati rice (Tarai), Mango pulp (Malihabad), Potato starch (Agra)</span></div>
+    <div class="row"><span class="rk">UP Seed Park</span><span class="rv">For seed self-sufficiency by 2026-27</span></div>
+    <div class="row"><span class="rk">Corn starch</span><span class="rv">India is world's largest corn starch exporter; UP is major contributor</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏙️ Major Industrial Cities of UP</div>
+    <table class="rank-table">
+      <tr><th>City / District</th><th>Key Industry</th><th>Special Note</th></tr>
+      <tr><td>Noida / Greater Noida</td><td>IT, Electronics, Auto parts</td><td>Samsung largest mobile plant; DMIC</td></tr>
+      <tr><td>Kanpur</td><td>Leather goods, Textiles, Defense</td><td>Ordnance Factory; Leather capital</td></tr>
+      <tr><td>Agra</td><td>Leather, Footwear, Marble, Petha</td><td>ODOP — Leather goods</td></tr>
+      <tr><td>Moradabad</td><td>Brassware (metal crafts)</td><td>"Pitaliya Shahar"; major export hub</td></tr>
+      <tr><td>Varanasi</td><td>Banarasi silk, Carpets</td><td>GI Tag for Banarasi silk</td></tr>
+      <tr><td>Firozabad</td><td>Glass bangles, glassware</td><td>"Suhag Nagari"; ~50% India's glass bangles</td></tr>
+      <tr><td>Meerut</td><td>Sports goods, Musical instruments</td><td>Cricket bats, scissors, brass bands</td></tr>
+      <tr><td>Aligarh</td><td>Locks &amp; hardware</td><td>"Tala Nagari" — 80% of India's locks</td></tr>
+      <tr><td>Saharanpur</td><td>Wood carving, Furniture</td><td>Famous deodar wood carving</td></tr>
+      <tr><td>Lucknow</td><td>Chikankari, Zardozi</td><td>GI Tag; CM's flagship craft</td></tr>
+      <tr><td>Kannauj</td><td>Perfume (Ittar/Attar)</td><td>Perfume capital of India; GI Tag</td></tr>
+      <tr><td>Bhadohi</td><td>Carpets (Kaleen)</td><td>Carpet export hub; 3rd largest in world</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== ODOP ===== -->
+<div id="odop" class="section">
+  <div class="sec-title">🏅 ODOP — One District One Product</div>
+  <div class="sec-sub">Launched Jan 24, 2018 by CM Yogi Adityanath — UPPSC ka favourite topic, har year ata hai</div>
+
+  <div class="grid3">
+    <div class="mcard"><div class="mlabel">Launch date</div><div class="mval">Jan 24, 2018</div><div class="munit">UP Sthaapna Diwas</div></div>
+    <div class="mcard"><div class="mlabel">Districts covered</div><div class="mval">75 / 75</div><div class="munit">All UP districts</div></div>
+    <div class="mcard"><div class="mlabel">Budget allocation</div><div class="mval">₹25,000 Cr</div><div class="munit">5-year plan</div></div>
+    <div class="mcard"><div class="mlabel">Employment target</div><div class="mval">25 Lakh</div><div class="munit">Youth employment</div></div>
+    <div class="mcard"><div class="mlabel">Expected GDP rise</div><div class="mval">+2%</div><div class="munit">to UP's GSDP</div></div>
+    <div class="mcard"><div class="mlabel">Inspired by</div><div class="mval">Japan</div><div class="munit">"One Village One Product" model</div></div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-title">🌐 Global Recognition</div>
+    <div class="tip-text">During India's G20 Presidency (2023), ODOP products were gifted to world leaders by PM Modi. The scheme has been adopted nationally — covers 1,102 products across 761 districts of India as of 2025, inspired by UP's model.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗺️ Key District-Product Mapping (Most exam-asked!)</div>
+    <table class="rank-table">
+      <tr><th>District</th><th>ODOP Product</th><th>Special Note</th></tr>
+      <tr><td>Lucknow</td><td>Chikankari embroidery</td><td>GI Tag; white thread work on muslin</td></tr>
+      <tr><td>Varanasi</td><td>Banarasi silk sarees</td><td>GI Tag; UNESCO heritage</td></tr>
+      <tr><td>Moradabad</td><td>Brassware (Pittal work)</td><td>First ODOP product announced</td></tr>
+      <tr><td>Agra</td><td>Leather goods / Petha</td><td>Petha — stone candy; Taj Mahal city</td></tr>
+      <tr><td>Aligarh</td><td>Locks &amp; hardware</td><td>80% of India's locks made here</td></tr>
+      <tr><td>Firozabad</td><td>Glass bangles</td><td>Suhag Nagari — ~50% India's glass bangles</td></tr>
+      <tr><td>Bhadohi</td><td>Carpets (Kaleen)</td><td>3rd largest carpet exporting region in world</td></tr>
+      <tr><td>Meerut</td><td>Sports goods</td><td>Cricket bats, hockey sticks, scissors</td></tr>
+      <tr><td>Kannauj</td><td>Perfume (Ittar/Attar)</td><td>Perfume capital; GI Tag</td></tr>
+      <tr><td>Saharanpur</td><td>Wood carving</td><td>Deodar &amp; teak furniture carving</td></tr>
+      <tr><td>Pilibhit</td><td>Flute (Bansuri)</td><td>Pilibhit flutes are famous worldwide</td></tr>
+      <tr><td>Rampur</td><td>Rampur Raza (knife/cutlery)</td><td>Rampuri Chaku; traditional craft</td></tr>
+      <tr><td>Mirzapur</td><td>Carpets &amp; Dari</td><td>Along with Bhadohi — carpet belt</td></tr>
+      <tr><td>Mainpuri</td><td>Tarakashi (wire inlay)</td><td>Gold/silver wire inlay on wood</td></tr>
+      <tr><td>Amroha</td><td>Dholak (musical instrument)</td><td>Traditional drum; musical heritage</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Key Agricultural Schemes in UP</div>
+    <table class="rank-table">
+      <tr><th>Scheme</th><th>Purpose</th><th>Year</th></tr>
+      <tr><td>Atmanirbhar Krishak Samanvit Vikas Yojana</td><td>Comprehensive farmer development</td><td>Budget 2021-22</td></tr>
+      <tr><td>Mukhya Mantri Saksham Suposhan Yojana</td><td>Farmer nutrition support</td><td>2021-22</td></tr>
+      <tr><td>PM-KISAN</td><td>₹6,000/year direct income to farmers</td><td>2019 (Central)</td></tr>
+      <tr><td>Pradhan Mantri Fasal Bima Yojana</td><td>Crop insurance</td><td>2016 (Central)</td></tr>
+      <tr><td>Kisan Credit Card (KCC)</td><td>Short-term agricultural credit</td><td>1998 (enhanced)</td></tr>
+      <tr><td>Paramparagat Krishi Vikas Yojana</td><td>Organic farming clusters</td><td>2015 (Central)</td></tr>
+      <tr><td>Per Drop More Crop (PDMC)</td><td>Micro-irrigation (drip/sprinkler)</td><td>2015-16 (Central)</td></tr>
+      <tr><td>UP Seed Park</td><td>Seed self-sufficiency by 2026-27</td><td>2021 (State)</td></tr>
+      <tr><td>Mukhya Mantri Pragatisheel Pashupalak Yojana</td><td>Dairy farmer support</td><td>2022 (State)</td></tr>
+      <tr><td>National Biofuel Policy (Ethanol)</td><td>E20 blending; income to cane farmers</td><td>2018 (Central)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== MCQ ===== -->
+<div id="mcq" class="section">
+  <div class="sec-title">❓ Practice MCQs — UP Agriculture &amp; Economy</div>
+  <div class="sec-sub">UPPSC 2026 pattern — click an option to check your answer</div>
+
+  <div class="score-card" id="score-card" style="display:none">
+    <div class="score-val" id="score-val">0 / 10</div>
+    <div class="score-label">Score (answered so far)</div>
+    <div class="progress-bar"><div class="progress-fill" id="score-bar" style="width:0%"></div></div>
+  </div>
+
+  <div id="mcqs-container"></div>
+</div>
+
+</div><!-- /container -->
+
+<footer>
+  UPPSC 2026 Preparation Material — UP Economy &amp; Agriculture | Latest data from Economic Survey 2025-26, IBEF, MoSPI | For educational use only
+</footer>
+
+<script>
+const questions = [
+  {
+    q: "UP is known as the 'Sugar Bowl of India'. In 2022-23, UP produced how much sugar to reclaim India's #1 position?",
+    opts: ["80 lakh tonnes", "107.29 lakh tonnes", "125 lakh tonnes", "95 lakh tonnes"],
+    ans: 1,
+    exp: "<strong>Correct: 107.29 lakh tonnes.</strong> In 2022-23, UP produced 107.29 LT sugar, surpassing Maharashtra (105.30 LT) to reclaim the top spot. As of Economic Survey 2025-26, UP contributes 48.57% of India's sugarcane (220.80 MT)."
+  },
+  {
+    q: "Which district of UP is known as 'Mango Capital of India' and is famous for 'Dussehri' variety?",
+    opts: ["Saharanpur", "Varanasi", "Malihabad (Lucknow)", "Hardoi"],
+    ans: 2,
+    exp: "<strong>Correct: Malihabad (Lucknow).</strong> Malihabad in Lucknow district is the 'Mango Capital of India', world-famous for Dussehri mango. Remember: Langra → Varanasi; Chausa → Hardoi; Safeda → Saharanpur."
+  },
+  {
+    q: "According to Economic Survey 2025-26, UP contributed what percentage of India's sugarcane production in 2024-25?",
+    opts: ["35.20%", "48.57%", "55.12%", "42.10%"],
+    ans: 1,
+    exp: "<strong>Correct: 48.57%.</strong> As per Economic Survey 2025-26, UP produced 220.80 MT of sugarcane which is 48.57% of India's total sugarcane production in 2024-25."
+  },
+  {
+    q: "UP's GSDP growth rate in 2024-25 was 8.99%, making it the ___ highest in India.",
+    opts: ["1st", "2nd", "3rd", "4th"],
+    ans: 3,
+    exp: "<strong>Correct: 4th.</strong> UP's 8.99% real GSDP growth rate in 2024-25 was the 4th highest in India. UP is the 3rd largest economy by GSDP size (₹29.78 lakh crore)."
+  },
+  {
+    q: "International Potato Centre's South Asia Regional Centre has been approved at which district of UP? (Asked in UPPSC 2025)",
+    opts: ["Agra", "Farrukhabad", "Aligarh", "Kannauj"],
+    ans: 2,
+    exp: "<strong>Correct: Aligarh.</strong> Government of India approved establishment of South Asia Regional Centre of International Potato Centre (CIP) at Aligarh, UP. UP is India's #1 potato producer."
+  },
+  {
+    q: "The ODOP (One District One Product) scheme was launched in UP on:",
+    opts: ["January 24, 2017", "January 26, 2018", "January 24, 2018", "March 15, 2019"],
+    ans: 2,
+    exp: "<strong>Correct: January 24, 2018.</strong> CM Yogi Adityanath launched ODOP on January 24, 2018 (UP Foundation Day/Sthaapna Diwas), starting with Moradabad's brassware. Budget allocation: ₹25,000 crore for 5 years."
+  },
+  {
+    q: "Which agro-climatic zone of UP is most drought-prone with rocky Vindhyan terrain?",
+    opts: ["Zone 5 — Central Plain", "Zone 6 — Bundelkhand", "Zone 9 — Vindhyachal", "Zone 4 — South Western Semi-Arid"],
+    ans: 1,
+    exp: "<strong>Correct: Zone 6 (Bundelkhand).</strong> Bundelkhand zone covering Jhansi, Banda, Mahoba, Chitrakoot is the most drought-prone — receives only ~700mm rain, drought every 2-3 years. India's first river-linking project (Ken-Betwa) is planned for this region."
+  },
+  {
+    q: "UP contributes what percentage of India's total ethanol production?",
+    opts: ["28.5%", "35.6%", "42.27%", "50.1%"],
+    ans: 2,
+    exp: "<strong>Correct: 42.27%.</strong> UP contributes 42.27% of India's ethanol, producing 180 crore liters in 2023-24. Target for 2024-25 is 223.9 crore liters. Primary source: sugarcane molasses and maize."
+  },
+  {
+    q: "Which is the oldest major canal of UP, constructed in 1854 during British rule?",
+    opts: ["Sharda Canal", "Lower Ganga Canal", "Upper Ganga Canal", "Agra Canal"],
+    ans: 2,
+    exp: "<strong>Correct: Upper Ganga Canal (Ganga Nahar).</strong> Starting from Haridwar, this is one of India's oldest canals built in 1854 during British rule. It irrigates Meerut, Aligarh, Mathura and Agra divisions."
+  },
+  {
+    q: "UP ranks second in rice production (14.7% national). The Poorvanchal rice belt districts include all EXCEPT:",
+    opts: ["Gorakhpur", "Deoria", "Muzaffarnagar", "Azamgarh"],
+    ans: 2,
+    exp: "<strong>Correct: Muzaffarnagar.</strong> Muzaffarnagar is in western UP and is primarily a wheat and sugarcane district (Zone 2 — Western Plain). It is NOT part of the Poorvanchal rice belt. Gorakhpur, Deoria, Azamgarh, Ballia, and Varanasi are core Poorvanchal rice districts."
+  }
+];
+
+let answered = {};
+let score = 0;
+
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'mcq') renderMCQ();
+}
+
+function renderMCQ() {
+  const c = document.getElementById('mcqs-container');
+  if (c.children.length) return;
+  questions.forEach((q, i) => {
+    const d = document.createElement('div');
+    d.className = 'q-card';
+    d.innerHTML = `
+      <div class="q-num">Question ${i + 1} of ${questions.length}</div>
+      <div class="q-text">${q.q}</div>
+      ${q.opts.map((o, j) => `<button class="q-opt" onclick="answer(${i},${j},this)">${String.fromCharCode(65 + j)}. ${o}</button>`).join('')}
+      <div class="q-exp" id="exp-${i}">💡 ${q.exp}</div>
+    `;
+    c.appendChild(d);
+  });
+}
+
+function answer(qi, oi, btn) {
+  if (answered[qi] !== undefined) return;
+  answered[qi] = oi;
+  const opts = btn.parentElement.querySelectorAll('.q-opt');
+  opts.forEach((o, j) => {
+    o.disabled = true;
+    if (j === questions[qi].ans) o.classList.add('correct');
+    else if (j === oi) o.classList.add('wrong');
+  });
+  document.getElementById('exp-' + qi).style.display = 'block';
+  if (oi === questions[qi].ans) score++;
+  const total = Object.keys(answered).length;
+  const sc = document.getElementById('score-card');
+  sc.style.display = 'block';
+  document.getElementById('score-val').textContent = score + ' / ' + total;
+  document.getElementById('score-bar').style.width = Math.round(score / 10 * 100) + '%';
+}
+</script>
+</body>
+</html>
