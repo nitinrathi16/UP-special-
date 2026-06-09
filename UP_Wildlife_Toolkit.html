@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Wildlife Toolkit — UPPSC 2026</title>
+<style>
+  :root {
+    --bg: #f7f3ee;
+    --card: #ffffff;
+    --sidebar-bg: #dce8f5;
+    --sidebar-active: #2563eb;
+    --accent: #f59e0b;
+    --accent2: #10b981;
+    --accent3: #ef4444;
+    --accent4: #8b5cf6;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --tag-np: #dcfce7;
+    --tag-np-text: #166534;
+    --tag-ws: #dbeafe;
+    --tag-ws-text: #1e40af;
+    --tag-tr: #fef3c7;
+    --tag-tr-text: #92400e;
+    --tag-bs: #fce7f3;
+    --tag-bs-text: #9d174d;
+    --correct: #dcfce7;
+    --correct-border: #16a34a;
+    --wrong: #fee2e2;
+    --wrong-border: #dc2626;
+    --font-head: 'Georgia', serif;
+    --font-body: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ─── SIDEBAR ─── */
+  #sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: var(--sidebar-bg);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    z-index: 100;
+    border-right: 1px solid #b6cfe8;
+  }
+
+  .sidebar-logo {
+    padding: 20px 18px 16px;
+    border-bottom: 1px solid #b6cfe8;
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  }
+
+  .sidebar-logo h1 {
+    font-family: var(--font-head);
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .sidebar-logo p {
+    color: #bfdbfe;
+    font-size: 0.72rem;
+    margin-top: 4px;
+  }
+
+  .nav-section {
+    padding: 10px 0 4px;
+  }
+
+  .nav-section-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4b7aaa;
+    padding: 6px 18px 2px;
+  }
+
+  .nav-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 9px 18px 9px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: #2c4a6e;
+    transition: all 0.15s;
+    border-left: 3px solid transparent;
+    font-family: var(--font-body);
+  }
+
+  .nav-btn:hover { background: rgba(37,99,235,0.08); color: #1e40af; }
+
+  .nav-btn.active {
+    background: rgba(37,99,235,0.12);
+    color: var(--sidebar-active);
+    border-left-color: var(--sidebar-active);
+    font-weight: 600;
+  }
+
+  .nav-btn .nav-icon { margin-right: 7px; font-size: 0.9rem; }
+
+  /* ─── MAIN CONTENT ─── */
+  #main {
+    margin-left: 240px;
+    flex: 1;
+    padding: 28px 32px 48px;
+    max-width: 1100px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .page-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .page-header h2 {
+    font-family: var(--font-head);
+    font-size: 1.6rem;
+    color: #1e3a5f;
+  }
+
+  .page-header p {
+    color: var(--text-muted);
+    margin-top: 5px;
+    font-size: 0.88rem;
+  }
+
+  /* ─── STATS CARDS ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-card .num {
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: var(--font-head);
+    line-height: 1;
+  }
+
+  .stat-card .lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── TABLE ─── */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    background: var(--card);
+  }
+
+  thead {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: #fff;
+  }
+
+  thead th {
+    padding: 11px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.77rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #f0f7ff; }
+
+  td {
+    padding: 10px 14px;
+    vertical-align: top;
+    line-height: 1.45;
+  }
+
+  td strong { color: #1e3a5f; }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .tag-np { background: var(--tag-np); color: var(--tag-np-text); }
+  .tag-ws { background: var(--tag-ws); color: var(--tag-ws-text); }
+  .tag-tr { background: var(--tag-tr); color: var(--tag-tr-text); }
+  .tag-bs { background: var(--tag-bs); color: var(--tag-bs-text); }
+  .tag-br { background: #ede9fe; color: #4c1d95; }
+  .tag-rs { background: #fef9c3; color: #713f12; }
+
+  /* ─── INFO BOXES ─── */
+  .info-box {
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+
+  .info-box.blue  { background: #eff6ff; border-color: #3b82f6; }
+  .info-box.green { background: #f0fdf4; border-color: #22c55e; }
+  .info-box.amber { background: #fffbeb; border-color: #f59e0b; }
+  .info-box.red   { background: #fef2f2; border-color: #ef4444; }
+  .info-box.purple{ background: #faf5ff; border-color: #a855f7; }
+
+  .info-box h3 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1e3a5f;
+  }
+
+  .info-box p, .info-box li {
+    font-size: 0.83rem;
+    line-height: 1.6;
+    color: #374151;
+  }
+
+  .info-box ul { padding-left: 18px; }
+  .info-box li { margin-bottom: 3px; }
+
+  /* ─── DETAIL CARD (Tiger Reserve) ─── */
+  .tr-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .tr-card-header {
+    padding: 16px 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tr-card-header.dudhwa { background: linear-gradient(135deg, #065f46 0%, #059669 100%); }
+  .tr-card-header.pilibhit { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); }
+  .tr-card-header.amangarh { background: linear-gradient(135deg, #78350f 0%, #d97706 100%); }
+  .tr-card-header.ranipur { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); }
+
+  .tr-icon { font-size: 2rem; }
+
+  .tr-card-header h3 {
+    font-family: var(--font-head);
+    font-size: 1.2rem;
+  }
+
+  .tr-card-header p { font-size: 0.78rem; opacity: 0.85; margin-top: 2px; }
+
+  .tr-card-body {
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .tr-detail-row { margin-bottom: 10px; }
+
+  .tr-detail-row dt {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .tr-detail-row dd {
+    font-size: 0.83rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* ─── MNEMONIC ─── */
+  .mnemonic-box {
+    background: linear-gradient(135deg, #fef9c3 0%, #fef3c7 100%);
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+  }
+
+  .mnemonic-box h4 {
+    font-size: 0.8rem;
+    color: #92400e;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 8px;
+  }
+
+  .mnemonic-box p {
+    font-size: 0.9rem;
+    color: #451a03;
+    line-height: 1.6;
+  }
+
+  .mnemonic-box strong { color: #b45309; }
+
+  /* ─── NEWS TICKER ─── */
+  .news-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .news-badge {
+    background: #ef4444;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .news-card p { font-size: 0.83rem; line-height: 1.5; color: var(--text); }
+  .news-card .news-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 3px; }
+
+  /* ─── MCQ ─── */
+  .mcq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .mcq-score-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  .mcq-score-bar span { font-weight: 800; color: #1e3a5f; font-size: 1.1rem; }
+
+  .mcq-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    transition: border-color 0.2s;
+  }
+
+  .mcq-card.correct-card { border-color: var(--correct-border); background: var(--correct); }
+  .mcq-card.wrong-card   { border-color: var(--wrong-border);   background: var(--wrong); }
+
+  .mcq-q {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+    line-height: 1.5;
+    color: #1e293b;
+  }
+
+  .mcq-q .qnum {
+    display: inline-block;
+    background: #1e3a5f;
+    color: #fff;
+    border-radius: 50%;
+    width: 22px; height: 22px;
+    text-align: center;
+    line-height: 22px;
+    font-size: 0.72rem;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .opt-btn {
+    padding: 9px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.82rem;
+    text-align: left;
+    transition: all 0.15s;
+    font-family: var(--font-body);
+    color: var(--text);
+  }
+
+  .opt-btn:hover:not(:disabled) { border-color: #3b82f6; background: #eff6ff; }
+  .opt-btn.correct-opt { background: var(--correct); border-color: var(--correct-border); color: #166534; font-weight: 600; }
+  .opt-btn.wrong-opt   { background: var(--wrong);   border-color: var(--wrong-border);   color: #991b1b; }
+  .opt-btn:disabled { cursor: default; }
+
+  .explanation {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #f0fdf4;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: #166534;
+    border-left: 3px solid #22c55e;
+    display: none;
+  }
+
+  .reset-btn {
+    background: #1e3a5f;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-family: var(--font-body);
+    margin-top: 8px;
+    transition: background 0.15s;
+  }
+
+  .reset-btn:hover { background: #2563eb; }
+
+  /* ─── SEARCH ─── */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 18px;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    padding: 10px 14px 10px 38px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    background: var(--card);
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-wrap input:focus { border-color: #3b82f6; }
+  .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+  /* ─── SECTION HEADER ─── */
+  .section-title {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    color: #1e3a5f;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::before {
+    content: '';
+    width: 4px; height: 20px;
+    background: #2563eb;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* ─── CORRIDOR MAP ─── */
+  .corridor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .corridor-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    border-top: 3px solid;
+  }
+
+  .corridor-item h4 { font-size: 0.85rem; font-weight: 700; color: #1e3a5f; margin-bottom: 6px; }
+  .corridor-item p  { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    #sidebar { width: 200px; min-width: 200px; }
+    #main { margin-left: 200px; padding: 18px 14px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .options-grid { grid-template-columns: 1fr; }
+    .tr-card-body { grid-template-columns: 1fr; }
+    .corridor-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <h1>🌿 UP Wildlife<br>Toolkit</h1>
+    <p>UPPSC 2026 — Top 10 Rank</p>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Overview</div>
+    <button class="nav-btn active" onclick="show('overview')"><span class="nav-icon">📊</span>Quick Stats</button>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Protected Areas</div>
+    <button class="nav-btn" onclick="show('national-park')"><span class="nav-icon">🏞️</span>National Park</button>
+    <button class="nav-btn" onclick="show('wildlife-sanctuaries')"><span class="nav-icon">🐯</span>Wildlife Sanctuaries</button>
+    <button class="nav-btn" onclick="show('bird-sanctuaries')"><span class="nav-icon">🦅</span>Bird Sanctuaries</button>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Tiger Reserves</div>
+    <button class="nav-btn" onclick="show('tiger-reserves')"><span class="nav-icon">🐅</span>All 4 Tiger Reserves</button>
+    <button class="nav-btn" onclick="show('dudhwa-detail')"><span class="nav-icon">🦏</span>Dudhwa — Deep Dive</button>
+    <button class="nav-btn" onclick="show('pilibhit-detail')"><span class="nav-icon">🌾</span>Pilibhit — Deep Dive</button>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Wetlands</div>
+    <button class="nav-btn" onclick="show('ramsar')"><span class="nav-icon">💧</span>Ramsar Sites (13)</button>
+    <button class="nav-btn" onclick="show('biosphere')"><span class="nav-icon">🌏</span>Biosphere Reserves</button>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Exam Prep</div>
+    <button class="nav-btn" onclick="show('mnemonics')"><span class="nav-icon">🧠</span>Mnemonics</button>
+    <button class="nav-btn" onclick="show('recent-news')"><span class="nav-icon">📰</span>Recent News 2025–26</button>
+    <button class="nav-btn" onclick="show('mcq')"><span class="nav-icon">✅</span>10 MCQs</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- ═══════════════════ OVERVIEW ═══════════════════ -->
+  <div id="sec-overview" class="section active">
+    <div class="page-header">
+      <h2>UP Wildlife — At a Glance</h2>
+      <p>Uttar Pradesh Protected Area Network — UPPSC 2026 Ready Reference</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="num" style="color:#166534">1</div>
+        <div class="lbl">National Park</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:#1e40af">25</div>
+        <div class="lbl">Wildlife Sanctuaries</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:#b45309">4</div>
+        <div class="lbl">Tiger Reserves</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" style="color:#7c3aed">13</div>
+        <div class="lbl">Ramsar Sites</div>
+      </div>
+    </div>
+
+    <div class="info-box blue">
+      <h3>🗺️ Key Geographic Context</h3>
+      <ul>
+        <li>UP has <strong>only ONE National Park</strong> — Dudhwa NP (among largest states in India, this is notable)</li>
+        <li>Wildlife is concentrated in <strong>3 belts</strong>: Terai belt (north), Gangetic plains, Vindhyan hills (south)</li>
+        <li>Terai Arc Landscape (TAL) connects UP forests with Nepal's Bardia & Chitwan NPs</li>
+        <li>UP lies on the <strong>Central Asian Flyway</strong> — 13 Ramsar sites support millions of migratory birds</li>
+        <li>All 4 Tiger Reserves lie in <strong>north or south UP</strong> — none in central Ganga plains</li>
+      </ul>
+    </div>
+
+    <div class="stats-row" style="grid-template-columns: repeat(4,1fr);">
+      <div class="stat-card" style="border-top:3px solid #059669">
+        <div class="num" style="color:#059669;font-size:1.4rem">DTR</div>
+        <div class="lbl">Dudhwa Tiger Reserve<br>Lakhimpur Kheri</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid #2563eb">
+        <div class="num" style="color:#2563eb;font-size:1.4rem">PTR</div>
+        <div class="lbl">Pilibhit Tiger Reserve<br>Pilibhit</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid #d97706">
+        <div class="num" style="color:#d97706;font-size:1.4rem">ATR</div>
+        <div class="lbl">Amangarh Tiger Reserve<br>Bijnor</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid #7c3aed">
+        <div class="num" style="color:#7c3aed;font-size:1.4rem">RTR</div>
+        <div class="lbl">Ranipur Tiger Reserve<br>Chitrakoot (53rd TR India)</div>
+      </div>
+    </div>
+
+    <div class="info-box amber">
+      <h3>⚡ UPPSC High-Frequency Facts</h3>
+      <ul>
+        <li>UP ka <strong>ekmatr National Park = Dudhwa</strong> (Lakhimpur Kheri)</li>
+        <li>Dudhwa = <strong>Dudhwa NP + Kishanpur WS + Katerniaghat WS</strong> (Teen parts)</li>
+        <li><strong>Barasingha (Swamp Deer)</strong> = UP ka State Animal = Dudhwa mein milta hai</li>
+        <li>Rhino reintroduction: Dudhwa mein Pobitora Assam se laye gaye the</li>
+        <li>Ranipur = UP ka <strong>pehla Bundelkhand Tiger Reserve</strong> + India ka 53rd TR</li>
+        <li>Amangarh = Jim Corbett TR ka buffer zone tha, 2012 mein alag TR bana</li>
+        <li><strong>Gharial</strong> exclusively in Chambal Sanctuary + Katerniaghat</li>
+        <li>Bakhira = India ka <strong>sabse bada natural floodplain wetland</strong></li>
+        <li>Patna Bird Sanctuary (Etah) — Jan 2026 mein Ramsar site bana</li>
+        <li>Shekha Jheel BS (UP) — April 2026 mein India ka <strong>99th Ramsar site</strong> bana</li>
+        <li>Tamil Nadu (16) ke baad UP (13) = <strong>dusra sabse zyada Ramsar sites</strong> wala state</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ NATIONAL PARK ═══════════════════ -->
+  <div id="sec-national-park" class="section">
+    <div class="page-header">
+      <h2>🏞️ National Parks in UP</h2>
+      <p>Only ONE National Park exists in Uttar Pradesh</p>
+    </div>
+
+    <div class="info-box red">
+      <h3>🔴 Exam Alert: UP mein sirf 1 National Park hai!</h3>
+      <p>Despite being India's most populous state, UP has only <strong>Dudhwa National Park</strong> as its sole National Park. This is a very frequently asked fact in UPPSC exams.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th><th>Type</th><th>District</th><th>Area (km²)</th><th>Key Species</th><th>Est.</th><th>Special Feature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dudhwa National Park</strong></td>
+            <td><span class="tag tag-np">NP</span></td>
+            <td>Lakhimpur Kheri</td>
+            <td>490.3</td>
+            <td>Tiger, Barasingha (Swamp Deer), Rhino, Elephant, Leopard</td>
+            <td>1977</td>
+            <td>Only NP of UP; Part of Dudhwa TR; UNESCO heritage importance; Indo-Nepal border; Rhino reintroduction site</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tr-card">
+      <div class="tr-card-header dudhwa">
+        <div class="tr-icon">🏞️</div>
+        <div>
+          <h3>Dudhwa National Park — Full Profile</h3>
+          <p>UP's only National Park | Terai Arc Landscape</p>
+        </div>
+      </div>
+      <div class="tr-card-body">
+        <div>
+          <div class="tr-detail-row"><dt>Location</dt><dd>Lakhimpur Kheri district, UP–Nepal border</dd></div>
+          <div class="tr-detail-row"><dt>Area</dt><dd>490.3 km² (core) | Part of 2,201 km² Dudhwa TR</dd></div>
+          <div class="tr-detail-row"><dt>Established</dt><dd>1977 (as NP) | Tiger Reserve: 1987</dd></div>
+          <div class="tr-detail-row"><dt>Rivers</dt><dd>Suheli & Mohana (tributaries of Ghaghra)</dd></div>
+          <div class="tr-detail-row"><dt>Vegetation</dt><dd>North Indian Moist Deciduous; finest Sal forests in India; tall grasslands (Terai)</dd></div>
+        </div>
+        <div>
+          <div class="tr-detail-row"><dt>Flora (key)</dt><dd>Sal (dominant), Asna, Haldu, Asidha, Jamun</dd></div>
+          <div class="tr-detail-row"><dt>Flagship Fauna</dt><dd>Bengal Tiger, Swamp Deer (Barasingha), One-Horned Rhino (reintroduced from Pobitora, Assam), Asian Elephant, Leopard, Hispid Hare (rare)</dd></div>
+          <div class="tr-detail-row"><dt>Bird Species</dt><dd>~400 species | Bengal Florican (CR), Black-necked Stork, Sarus Crane</dd></div>
+          <div class="tr-detail-row"><dt>UNESCO/IUCN</dt><dd>Part of Terai Arc Landscape — one of 200 Global Ecoregions</dd></div>
+          <div class="tr-detail-row"><dt>Connects to</dt><dd>Bardia NP (Nepal) via Katerniaghat; Pilibhit TR via forest corridor</dd></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ WILDLIFE SANCTUARIES ═══════════════════ -->
+  <div id="sec-wildlife-sanctuaries" class="section">
+    <div class="page-header">
+      <h2>🐯 Wildlife Sanctuaries in UP</h2>
+      <p>25 Wildlife Sanctuaries — Major ones for UPPSC</p>
+    </div>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="ws-search" placeholder="Search by name, district, species..." oninput="filterTable('ws-table', this.value)">
+    </div>
+
+    <div class="table-wrap">
+      <table id="ws-table">
+        <thead>
+          <tr>
+            <th>#</th><th>Name</th><th>Type</th><th>District</th><th>Area (km²)</th><th>Key Species</th><th>Est. Year</th><th>Special Feature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Kishanpur WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Lakhimpur Kheri</td><td>227</td><td>Tiger, Swamp Deer, Leopard, Bengal Florican (CR)</td><td>1972</td><td>Part of Dudhwa TR; Sarda River separates it from Dudhwa NP</td></tr>
+          <tr><td>2</td><td><strong>Katerniaghat WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Bahraich</td><td>400.09</td><td>Tiger, Gharial (CR), Mugger Croc, Gangetic Dolphin, Barasingha</td><td>1976</td><td>Part of Dudhwa TR; Girwa River = gharial + mugger habitat; Connects Dudhwa↔Bardia (Nepal)</td></tr>
+          <tr><td>3</td><td><strong>Pilibhit WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Pilibhit, Lakhimpur, Shahjahanpur</td><td>602.79</td><td>Tiger, Leopard, Swamp Deer, Hog Deer, Elephants</td><td>2008</td><td>Became Pilibhit TR in 2014; Terai Sal forests + grasslands</td></tr>
+          <tr><td>4</td><td><strong>Suhelwa WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Balrampur, Shravasti, Gonda</td><td>452</td><td>Tiger, Leopard, Elephant, Wild Boar</td><td>1987</td><td>Borders Nepal; NTCA proposed as 5th tiger reserve of UP; Mahadevpuri Forest corridor</td></tr>
+          <tr><td>5</td><td><strong>Hastinapur WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Meerut, Muzaffarnagar, Bijnor, Amroha</td><td>2073</td><td>Swamp Deer, Gharial, Gangetic Dolphin, Smooth-coated Otter, Leopard</td><td>1986</td><td>Largest WS in UP; Western bank of Ganga; Ramsar site (Madhya Ganga Barrage wetland)</td></tr>
+          <tr><td>6</td><td><strong>Chambal WS</strong><br>(National Chambal Sanctuary)</td><td><span class="tag tag-ws">WS</span></td><td>Agra, Etawah (+ MP + Rajasthan)</td><td>635 (UP portion)</td><td>Gharial (CR), Gangetic Dolphin (EN), Mugger Croc, Red-crowned Roof Turtle, Indian Skimmer</td><td>1979</td><td>Tri-state sanctuary (UP+MP+Raj); Famous for gharial; Gangetic dolphin; Clean river ecosystem</td></tr>
+          <tr><td>7</td><td><strong>Sohagbarwa WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Maharajganj</td><td>482</td><td>Tiger, Leopard, Wild Elephant, Swamp Deer</td><td>1987</td><td>7 forest ranges; Nepal border proximity; key corridor</td></tr>
+          <tr><td>8</td><td><strong>Ranipur WS</strong></td><td><span class="tag tag-tr">TR</span></td><td>Chitrakoot (Banda)</td><td>230</td><td>Leopard, Spotted Deer, Sambar, Chinkara; Tigers (from Panna)</td><td>1977</td><td>India's 53rd Tiger Reserve (2022); 1st TR in Bundelkhand; UP's 4th TR; Corridor to Panna TR (MP)</td></tr>
+          <tr><td>9</td><td><strong>Amangarh WS</strong></td><td><span class="tag tag-tr">TR</span></td><td>Bijnor</td><td>80.27 (core) / 95 total</td><td>Tiger, Leopard, Hog Deer, Elephants</td><td>2012</td><td>Former buffer of Jim Corbett TR; UP's 3rd TR; Smaller area TR</td></tr>
+          <tr><td>10</td><td><strong>Bakhira WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Sant Kabir Nagar</td><td>28.94</td><td>Migratory waterfowl (over 100+ species), Sarus Crane</td><td>1990</td><td>Largest natural floodplain wetland in India; Rapti River flows through; Ramsar site (2022)</td></tr>
+          <tr><td>11</td><td><strong>Ramsagar WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Lalitpur</td><td>239.49</td><td>Tiger (occasional), Leopard, Wolf, Nilgai, Sloth Bear</td><td>1990</td><td>Vindhyan hills; Betwa basin</td></tr>
+          <tr><td>12</td><td><strong>Kaimoor WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Mirzapur, Sonbhadra</td><td>501</td><td>Tiger, Leopard, Wolf, Nilgai, Gharial</td><td>1982</td><td>Kaimur range; between Ganga & Son rivers; northern slope of Kaimur Range</td></tr>
+          <tr><td>13</td><td><strong>Chandra Prabha WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Chandauli</td><td>78</td><td>Leopard, Wild Boar, Nilgai, Deer</td><td>1957</td><td>Oldest WS in UP; Waterfall: Rajdari & Devdari falls; Chandra Prabha river</td></tr>
+          <tr><td>14</td><td><strong>Vijai Sagar WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Mahoba</td><td>264.58</td><td>Leopard, Wolf, Nilgai, Sloth Bear</td><td>1990</td><td>Bundelkhand; arid landscape</td></tr>
+          <tr><td>15</td><td><strong>Kimana WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Agra</td><td>—</td><td>Migratory birds, Waterfowl</td><td>—</td><td>Agra wetland area</td></tr>
+          <tr><td>16</td><td><strong>Turtle WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Varanasi</td><td>7</td><td>Ganges Softshell Turtle, Mugger Croc, River Dolphin</td><td>1989</td><td>Smallest WS in UP; Ganga river stretch; Turtle conservation</td></tr>
+          <tr><td>17</td><td><strong>Shukla Phanta WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Bahraich</td><td>—</td><td>Swamp Deer, Tiger, Elephant</td><td>—</td><td>Connects with Nepal forests</td></tr>
+          <tr><td>18</td><td><strong>Reh WS (Nawabganj BS)</strong></td><td><span class="tag tag-bs">BS</span></td><td>Unnao</td><td>2.25</td><td>Migratory birds, Sarus Crane, Waterfowl</td><td>1984</td><td>Near Lucknow; important bird area</td></tr>
+          <tr><td>19</td><td><strong>Sohanagi Bird WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Mainpuri</td><td>—</td><td>Sarus Crane, migratory waterfowl</td><td>—</td><td>Sarus congregation zone</td></tr>
+          <tr><td>20</td><td><strong>Mahavir Swami WS</strong></td><td><span class="tag tag-ws">WS</span></td><td>Lalitpur</td><td>5.4</td><td>Leopard, Chinkara, Nilgai</td><td>1977</td><td>Small WS in Bundelkhand</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ BIRD SANCTUARIES ═══════════════════ -->
+  <div id="sec-bird-sanctuaries" class="section">
+    <div class="page-header">
+      <h2>🦅 Bird Sanctuaries in UP</h2>
+      <p>UP lies on Central Asian Flyway — major migratory bird corridor</p>
+    </div>
+
+    <div class="info-box green">
+      <h3>🌏 Central Asian Flyway (CAF)</h3>
+      <p>UP ke wetlands CAF par sthit hain — yahan Central Asia, Siberia, se crores migratory birds aate hain. Sarus Crane (India ka state bird of UP) bhi isi region mein breed karta hai.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th><th>Type</th><th>District</th><th>Area (ha)</th><th>Key Species</th><th>Est.</th><th>Special Feature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bakhira Bird Sanctuary</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Sant Kabir Nagar</td>
+            <td>2,894</td>
+            <td>Migratory waterfowl (100+ species), Sarus Crane</td>
+            <td>1980</td>
+            <td>Largest natural floodplain wetland in India; Rapti River; Ramsar site 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Samaspur Bird Sanctuary</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Raebareli</td>
+            <td>799</td>
+            <td>Sarus Crane, Migratory waterfowl, Painted Stork</td>
+            <td>1987</td>
+            <td>Ramsar site 2020; oxbow lake formation</td>
+          </tr>
+          <tr>
+            <td><strong>Parvati Arga Bird Sanctuary</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Gonda</td>
+            <td>722</td>
+            <td>Migratory birds, Sarus Crane</td>
+            <td>1990</td>
+            <td>Ramsar site 2020; twin oxbow lakes (Parvati + Arga)</td>
+          </tr>
+          <tr>
+            <td><strong>Saman Bird Sanctuary</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Mainpuri</td>
+            <td>526</td>
+            <td>Bar-headed Goose, Sarus Crane, Common Teal</td>
+            <td>1990</td>
+            <td>Ramsar site 2020; Saman oxbow lake; Sarus congregation</td>
+          </tr>
+          <tr>
+            <td><strong>Sur Sarovar (Keetham Lake)</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Agra</td>
+            <td>431</td>
+            <td>Bar-headed Goose, Painted Stork, Migratory ducks</td>
+            <td>1991</td>
+            <td>Ramsar site 2020; artificial lake; near Taj Mahal; Chambal crocodile rescue</td>
+          </tr>
+          <tr>
+            <td><strong>Lakh Behoshi BS</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Kanpur</td>
+            <td>80.23</td>
+            <td>Migratory ducks, waders, Sarus Crane</td>
+            <td>1988</td>
+            <td>Near Kanpur city; important urban wetland</td>
+          </tr>
+          <tr>
+            <td><strong>Nawabganj Bird Sanctuary</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Unnao</td>
+            <td>224.65</td>
+            <td>Migratory waterfowl, Sarus Crane, Raptors</td>
+            <td>1984</td>
+            <td>Near Lucknow; also known as Reh WS</td>
+          </tr>
+          <tr>
+            <td><strong>Okhla Bird Sanctuary</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Gautam Buddh Nagar (Noida)</td>
+            <td>400+</td>
+            <td>Over 300 bird species; Greater Flamingo, Greylag Goose</td>
+            <td>1990</td>
+            <td>Yamuna wetland; shared with Delhi; Important Bird Area (IBA)</td>
+          </tr>
+          <tr>
+            <td><strong>Dr. Bhimrao Ambedkar BS</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Lucknow</td>
+            <td>—</td>
+            <td>Egyptian Vulture (EN), Pallas's Fish Eagle, Lesser Adjutant</td>
+            <td>—</td>
+            <td>Previously Chandra Shekhar Azad BS; near Lucknow</td>
+          </tr>
+          <tr>
+            <td><strong>Patna Bird Sanctuary</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Etah</td>
+            <td>—</td>
+            <td>Migratory birds; Sarus Crane; CAF species</td>
+            <td>—</td>
+            <td><strong>Ramsar site — January 2026</strong>; smallest BS in UP; Jalesar tehsil; critical CAF stopover</td>
+          </tr>
+          <tr>
+            <td><strong>Shekha Jheel BS</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>Migratory birds</td>
+            <td>—</td>
+            <td><strong>India's 99th Ramsar Site — April 2026</strong> 🆕</td>
+          </tr>
+          <tr>
+            <td><strong>Surha Tal (Jai Prakash Narayan BS)</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Ballia</td>
+            <td>3,432</td>
+            <td>Red-headed Vulture (CR), White-rumped Vulture (CR)</td>
+            <td>—</td>
+            <td>Ramsar site 2026; permanent oxbow lake on Ganga floodplain</td>
+          </tr>
+          <tr>
+            <td><strong>Haiderpur Wetland</strong></td>
+            <td><span class="tag tag-bs">BS</span></td>
+            <td>Bijnor + Muzaffarnagar</td>
+            <td>6,908</td>
+            <td>Waterfowl, Gharial, Gangetic Dolphin, Fish Eagles</td>
+            <td>—</td>
+            <td>Ramsar site 2021; Artificial wetland (Madhya Ganga Barrage); Part of Hastinapur WS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TIGER RESERVES ═══════════════════ -->
+  <div id="sec-tiger-reserves" class="section">
+    <div class="page-header">
+      <h2>🐅 UP ke 4 Tiger Reserves — Complete Table</h2>
+      <p>Chronological order | UPPSC 2026 Exam Focus</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th><th>Type</th><th>District</th><th>Area (km²)</th><th>Key Species</th><th>Est.</th><th>Special Feature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dudhwa Tiger Reserve</strong></td>
+            <td><span class="tag tag-tr">TR</span></td>
+            <td>Lakhimpur Kheri + Bahraich</td>
+            <td>~2,201 (Core: ~884)</td>
+            <td>Tiger, Barasingha, Rhino (reintroduced), Elephant, Leopard, Gharial, Gangetic Dolphin</td>
+            <td>1987 (1st TR of UP)</td>
+            <td>= DNP + Kishanpur WS + Katerniaghat WS; Terai Arc Landscape; Indo-Nepal border; Rhino rewilding 2024–2026</td>
+          </tr>
+          <tr>
+            <td><strong>Amangarh Tiger Reserve</strong></td>
+            <td><span class="tag tag-tr">TR</span></td>
+            <td>Bijnor</td>
+            <td>~95</td>
+            <td>Tiger, Leopard, Hog Deer, Wild Elephant</td>
+            <td>2012 (3rd TR of UP)</td>
+            <td>Former buffer of Jim Corbett TR (Uttarakhand); smallest TR of UP; important corridor for Corbett tigers into UP</td>
+          </tr>
+          <tr>
+            <td><strong>Pilibhit Tiger Reserve</strong></td>
+            <td><span class="tag tag-tr">TR</span></td>
+            <td>Pilibhit + Lakhimpur + Shahjahanpur</td>
+            <td>602.79 (core) / ~1,212 (total)</td>
+            <td>Tiger, Leopard, Swamp Deer, Elephants, Wild Boar</td>
+            <td>2014 (2nd TR of UP after Amangarh)</td>
+            <td>Terai belt; Contiguous with Dudhwa TR; Sharda Sagar Dam; Indo-Nepal border; TX2 Tiger Reserve (doubled tigers)</td>
+          </tr>
+          <tr>
+            <td><strong>Ranipur Tiger Reserve</strong></td>
+            <td><span class="tag tag-tr">TR</span></td>
+            <td>Chitrakoot</td>
+            <td>~530</td>
+            <td>Leopard, Spotted Deer, Sambar, Chinkara, Sloth Bear; Tigers from Panna (MP)</td>
+            <td>2022 (4th TR of UP; India's 53rd TR)</td>
+            <td>FIRST TR in Bundelkhand; 150 km from Panna TR (MP); dry deciduous forest; Vindhyan region</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mnemonic-box">
+      <h4>🧠 Mnemonic — UP Tiger Reserves (Chronological)</h4>
+      <p><strong>D</strong>udhwa (1987) → <strong>A</strong>mangarh (2012) → <strong>P</strong>ilibhit (2014) → <strong>R</strong>anipur (2022)</p>
+      <p style="margin-top:8px">याद करो: <strong>"DAPR"</strong> = <strong>D</strong>adi <strong>A</strong>ge <strong>P</strong>ar <strong>R</strong>oni (Dadi = Dudhwa old → 1987, Youngest = Ranipur 2022)</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ DUDHWA DEEP DIVE ═══════════════════ -->
+  <div id="sec-dudhwa-detail" class="section">
+    <div class="page-header">
+      <h2>🦏 Dudhwa Tiger Reserve — Deep Dive</h2>
+      <p>Most important wildlife area of UP | Highest UPPSC weightage</p>
+    </div>
+
+    <div class="tr-card">
+      <div class="tr-card-header dudhwa">
+        <div class="tr-icon">🦏</div>
+        <div>
+          <h3>Dudhwa Tiger Reserve (DTR)</h3>
+          <p>UP's 1st & largest Tiger Reserve | Est. 1987 | Lakhimpur Kheri + Bahraich</p>
+        </div>
+      </div>
+      <div class="tr-card-body">
+        <div>
+          <div class="tr-detail-row"><dt>Components (3 parts)</dt>
+            <dd>
+              1. <strong>Dudhwa NP</strong> (490.3 km²) — Lakhimpur Kheri<br>
+              2. <strong>Kishanpur WS</strong> (227 km²) — Lakhimpur Kheri<br>
+              3. <strong>Katerniaghat WS</strong> (400 km²) — Bahraich
+            </dd>
+          </div>
+          <div class="tr-detail-row"><dt>Separating Rivers</dt>
+            <dd>
+              • Sarda (Kali) River = Dudhwa NP ↔ Kishanpur WS<br>
+              • Ghaghra (Geruwa) River = Dudhwa NP ↔ Katerniaghat WS
+            </dd>
+          </div>
+          <div class="tr-detail-row"><dt>Total Area</dt><dd>~2,201 km² (Core + Buffer)</dd></div>
+          <div class="tr-detail-row"><dt>Location Context</dt><dd>Indo-Nepal border; Terai belt; Himalayan foothills zone; shares border with Bardia NP (Nepal)</dd></div>
+        </div>
+        <div>
+          <div class="tr-detail-row"><dt>Flagship Species</dt>
+            <dd>
+              🐯 Bengal Tiger<br>
+              🦌 Swamp Deer / Barasingha (UP State Animal — VU)<br>
+              🦏 One-Horned Rhinoceros (reintroduced from Pobitora, Assam)<br>
+              🐘 Asian Elephant<br>
+              🐆 Leopard (198% growth since 2022!)<br>
+              🐊 Gharial (Girwa River, Katerniaghat)<br>
+              🐬 Gangetic Dolphin<br>
+              🐦 Bengal Florican (CR), Black-necked Stork
+            </dd>
+          </div>
+          <div class="tr-detail-row"><dt>Vegetation</dt><dd>North Indian Moist Deciduous; Sal forests (some 150+ year old trees, 70+ feet); Tall grasslands (Terai)</dd></div>
+          <div class="tr-detail-row"><dt>2025 Survey Result</dt><dd>All wildlife populations show "healthy growth"; Leopard population: <strong>+198.91% since 2022</strong>; Dudhwa NP leopards: 34 → 93</dd></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">🦏 Rhino Rewilding — Latest News (2024–2026)</div>
+
+    <div class="news-card">
+      <div>
+        <div class="news-badge">🆕 2026</div>
+      </div>
+      <div>
+        <p><strong>March 2026 Rhino Release:</strong> 4 greater one-horned rhinos (1 male + 3 females) were released into the wild at Dudhwa, taking free-ranging rhino population to 8. Third such operation after Nov 2024 and March 2025 (which released 4 more). Joint team of UP Forest Dept + WWF-India tracking via VHF and satellite signals. Goal: build stable breeding population in Terai landscape.</p>
+        <p class="news-date">Source: The Better India, April 2026</p>
+      </div>
+    </div>
+
+    <div class="info-box green">
+      <h3>🗺️ DTR Connectivity — Terai Arc Landscape</h3>
+      <ul>
+        <li><strong>West:</strong> Pilibhit TR (contiguous forest corridor)</li>
+        <li><strong>North:</strong> Bardia NP, Nepal (via Katerniaghat–Shuklaphanta corridor)</li>
+        <li><strong>East:</strong> Sohagbarwa WS → Nepal forests</li>
+        <li>Part of WHO Global 200 Ecoregions; critical for tiger metapopulation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ PILIBHIT DEEP DIVE ═══════════════════ -->
+  <div id="sec-pilibhit-detail" class="section">
+    <div class="page-header">
+      <h2>🌾 Pilibhit Tiger Reserve — Deep Dive</h2>
+      <p>UP's 2nd Tiger Reserve | TX2 Award Winner | 2014</p>
+    </div>
+
+    <div class="tr-card">
+      <div class="tr-card-header pilibhit">
+        <div class="tr-icon">🐯</div>
+        <div>
+          <h3>Pilibhit Tiger Reserve (PTR)</h3>
+          <p>Terai belt | TX2 Tiger Doubling Reserve | Pilibhit, Lakhimpur, Shahjahanpur</p>
+        </div>
+      </div>
+      <div class="tr-card-body">
+        <div>
+          <div class="tr-detail-row"><dt>Districts</dt><dd>Pilibhit, Lakhimpur Kheri, Shahjahanpur</dd></div>
+          <div class="tr-detail-row"><dt>Core Area</dt><dd>602.79 km²</dd></div>
+          <div class="tr-detail-row"><dt>Total Area</dt><dd>~1,212 km² (core + buffer)</dd></div>
+          <div class="tr-detail-row"><dt>Established</dt><dd>June 9, 2014 (as Tiger Reserve)</dd></div>
+          <div class="tr-detail-row"><dt>Borders</dt><dd>East: Sharda Sagar Dam<br>NE: Sarda River (Indo-Nepal border)<br>West/South: Contiguous with Dudhwa TR</dd></div>
+        </div>
+        <div>
+          <div class="tr-detail-row"><dt>Vegetation</dt><dd>Sal forests, tall Terai grasslands, swamps; Bhabhar & Terai zone</dd></div>
+          <div class="tr-detail-row"><dt>Key Species</dt><dd>Bengal Tiger, Leopard, Swamp Deer (VU), Asian Elephant, Wild Boar, Hog Deer</dd></div>
+          <div class="tr-detail-row"><dt>TX2 Achievement</dt><dd>India ka pahla TR jo TX2 Tiger Doubling target achieve kiya — tigers ka population doubled in stipulated time. Global recognition 2022.</dd></div>
+          <div class="tr-detail-row"><dt>Rivers</dt><dd>Sarda, Khakra, Mala, Chuka rivers flow through</dd></div>
+          <div class="tr-detail-row"><dt>Tourism</dt><dd>2025 mein Dudhwa ke saath eco-tourism expansion; new safari routes added</dd></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box blue">
+      <h3>📌 PTR vs DTR — Comparison for Exam</h3>
+      <table style="width:100%;font-size:0.8rem;margin-top:8px">
+        <thead style="background:#dbeafe">
+          <tr>
+            <th style="padding:6px 10px;color:#1e3a5f">Feature</th>
+            <th style="padding:6px 10px;color:#1e3a5f">Dudhwa TR</th>
+            <th style="padding:6px 10px;color:#1e3a5f">Pilibhit TR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px 10px">Est. Year</td><td style="padding:6px 10px">1987</td><td style="padding:6px 10px">2014</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px 10px">Core District</td><td style="padding:6px 10px">Lakhimpur Kheri</td><td style="padding:6px 10px">Pilibhit</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px 10px">Components</td><td style="padding:6px 10px">3 parts (NP + 2 WS)</td><td style="padding:6px 10px">Single contiguous TR</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px 10px">Rhino</td><td style="padding:6px 10px">Yes (reintroduced)</td><td style="padding:6px 10px">No</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0"><td style="padding:6px 10px">Nepal Border</td><td style="padding:6px 10px">Yes (long stretch)</td><td style="padding:6px 10px">Yes (Sarda River)</td></tr>
+          <tr><td style="padding:6px 10px">Special Award</td><td style="padding:6px 10px">Terai Arc Landscape core</td><td style="padding:6px 10px">TX2 Tiger Doubling</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ RAMSAR SITES ═══════════════════ -->
+  <div id="sec-ramsar" class="section">
+    <div class="page-header">
+      <h2>💧 Ramsar Sites in UP — 13 Wetlands</h2>
+      <p>As of June 2026 | UP = 2nd highest Ramsar sites in India (after Tamil Nadu's 16)</p>
+    </div>
+
+    <div class="info-box amber">
+      <h3>⚡ Key Ramsar Facts for UPPSC</h3>
+      <ul>
+        <li>Total Ramsar sites in UP = <strong>13</strong> (as of June 2026)</li>
+        <li>India total = <strong>100 Ramsar Sites</strong> (June 2026)</li>
+        <li>Tamil Nadu = 1st (16 sites); UP = 2nd (13 sites)</li>
+        <li>Largest Ramsar site in UP = <strong>Upper Ganga River</strong> (26,590 ha)</li>
+        <li>Oldest Ramsar site in UP = <strong>Upper Ganga River</strong> (2006)</li>
+        <li>Latest in UP = <strong>Shekha Jheel BS</strong> (April 2026) — India's 99th Ramsar site</li>
+        <li>Patna BS (Etah) — Jan 2026 mein Ramsar bana — <strong>smallest BS in UP</strong></li>
+        <li>Bakhira = largest natural floodplain wetland in India (even though area 2,894 ha)</li>
+        <li>All these sites lie on <strong>Central Asian Flyway (CAF)</strong></li>
+      </ul>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>Ramsar Site Name</th><th>District(s)</th><th>Area (ha)</th><th>Year</th><th>Type</th><th>Special Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Upper Ganga River</strong></td><td>Hapur, Sambhal, Amroha, Bulandshahr</td><td>26,590</td><td>2006</td><td>River stretch</td><td>🏆 Largest & Oldest Ramsar in UP; Brijghat to Narora stretch; Gangetic Dolphin, Gharial</td></tr>
+          <tr><td>2</td><td><strong>Haiderpur Wetland</strong></td><td>Bijnor, Muzaffarnagar</td><td>6,908</td><td>2021</td><td>Artificial (Barrage)</td><td>Madhya Ganga Barrage wetland; Part of Hastinapur WS; 2nd largest in UP</td></tr>
+          <tr><td>3</td><td><strong>Jai Prakash Narayan BS (Surha Tal)</strong></td><td>Ballia</td><td>3,432</td><td>2026</td><td>Oxbow lake</td><td>Red-headed Vulture (CR) & White-rumped Vulture (CR) sightings; Ganga floodplain</td></tr>
+          <tr><td>4</td><td><strong>Bakhira Wildlife Sanctuary</strong></td><td>Sant Kabir Nagar</td><td>2,894</td><td>2022</td><td>Natural floodplain</td><td>Largest natural floodplain wetland in India; Rapti River; Sarus Crane</td></tr>
+          <tr><td>5</td><td><strong>Samaspur Bird Sanctuary</strong></td><td>Raebareli</td><td>799</td><td>2020</td><td>Oxbow lake</td><td>Migratory waterfowl; Painted Stork; near Lucknow</td></tr>
+          <tr><td>6</td><td><strong>Parvati Arga Bird Sanctuary</strong></td><td>Gonda</td><td>722</td><td>2020</td><td>Twin oxbow lakes</td><td>Parvati + Arga = two oxbow lakes; Saryu River floodplain</td></tr>
+          <tr><td>7</td><td><strong>Saman Bird Sanctuary</strong></td><td>Mainpuri</td><td>526</td><td>2020</td><td>Oxbow lake</td><td>Saman Lake; Sarus Crane congregation zone; Bar-headed Goose</td></tr>
+          <tr><td>8</td><td><strong>Sur Sarovar (Keetham Lake)</strong></td><td>Agra</td><td>431</td><td>2020</td><td>Artificial reservoir</td><td>Near Taj Mahal; Bar-headed Goose, migratory ducks; Chambal crocodile rescue centre nearby</td></tr>
+          <tr><td>9</td><td><strong>Nawabganj Bird Sanctuary</strong></td><td>Unnao</td><td>224.65</td><td>2020</td><td>Natural wetland</td><td>Near Lucknow; Egyptian Vulture (EN), Pallas's Fish Eagle (EN)</td></tr>
+          <tr><td>10</td><td><strong>Sandi Bird Sanctuary</strong></td><td>Hardoi</td><td>309</td><td>2020</td><td>Freshwater lake</td><td>Oxbow lake; Sarus Crane, Bar-headed Goose, Pintail</td></tr>
+          <tr><td>11</td><td><strong>Patna Bird Sanctuary</strong></td><td>Etah</td><td>—</td><td>Jan 2026 🆕</td><td>Bird sanctuary</td><td>Smallest BS in UP; Jalesar tehsil; CAF critical stopover; Sarus congregation</td></tr>
+          <tr><td>12</td><td><strong>Dr. Bhimrao Ambedkar BS</strong></td><td>Lucknow</td><td>—</td><td>2022</td><td>Shallow marsh</td><td>Near Lucknow; renamed from Chandra Shekhar Azad BS; Saryu River oxbow</td></tr>
+          <tr><td>13</td><td><strong>Shekha Jheel Bird Sanctuary</strong></td><td>—</td><td>—</td><td>Apr 2026 🆕</td><td>Jheel (lake)</td><td>India's 99th Ramsar Site; most recent UP addition</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ BIOSPHERE RESERVES ═══════════════════ -->
+  <div id="sec-biosphere" class="section">
+    <div class="page-header">
+      <h2>🌏 Biosphere Reserves Near UP</h2>
+      <p>UP mein koi dedicated Biosphere Reserve nahi hai — but neighbouring/overlapping ones important hain</p>
+    </div>
+
+    <div class="info-box red">
+      <h3>⚠️ Important: UP mein koi Biosphere Reserve nahi hai</h3>
+      <p>Uttar Pradesh mein koi officially designated Biosphere Reserve nahi hai. However, some BRs overlap with or border UP. UPPSC mein often poocha jaata hai — yeh clarify karna zaroori hai.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Biosphere Reserve</th><th>Main State</th><th>UP Connection</th><th>Key Features</th><th>UNESCO Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Nanda Devi BR</strong></td>
+            <td>Uttarakhand</td>
+            <td>Borders UP (Pithoragarh region)</td>
+            <td>Himalayan ecosystems; Snow Leopard, Himalayan Tahr</td>
+            <td>✅ UNESCO MAB</td>
+          </tr>
+          <tr>
+            <td><strong>Pachmarhi BR</strong></td>
+            <td>Madhya Pradesh</td>
+            <td>Near Vindhyan UP border; Satpura range</td>
+            <td>Satpura hills; Tiger, Leopard, Gaur</td>
+            <td>✅ UNESCO MAB</td>
+          </tr>
+          <tr>
+            <td><strong>Panna BR</strong></td>
+            <td>Madhya Pradesh</td>
+            <td>Near Ranipur TR border (Chitrakoot, UP)</td>
+            <td>Ken River; Tiger reintroduction; Vulture habitat</td>
+            <td>❌ Not UNESCO</td>
+          </tr>
+          <tr>
+            <td><strong>Terai Arc Landscape (TAL)</strong></td>
+            <td>Multi-state + Nepal</td>
+            <td>Covers all of UP's Terai (Dudhwa, Pilibhit, Sohagbarwa etc.)</td>
+            <td>Tiger, Elephant, Rhino; transboundary conservation</td>
+            <td>WWF Global 200 Ecoregion</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box blue">
+      <h3>📌 Terai Arc Landscape (TAL) — Most Important for UPPSC</h3>
+      <ul>
+        <li>Stretches from Yamuna River (west) to Bagmati River (east)</li>
+        <li>Covers: Dudhwa TR, Pilibhit TR, Katerniaghat WS, Suhelwa WS, Sohagbarwa WS + Nepal's Bardia, Chitwan, Parsa NPs</li>
+        <li>One of WWF's Global 200 Priority Ecoregions</li>
+        <li>Supports: ~300 tigers, 2000+ Asian elephants, gharial, rhino, Gangetic dolphin</li>
+        <li>Fragmented by sugarcane fields, highways, agriculture — conservation challenge</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MNEMONICS ═══════════════════ -->
+  <div id="sec-mnemonics" class="section">
+    <div class="page-header">
+      <h2>🧠 Mnemonics for UP Wildlife</h2>
+      <p>Exam mein yaad rakhne ke smart tricks</p>
+    </div>
+
+    <div class="mnemonic-box">
+      <h4>🐅 Tiger Reserve Order (Chronological)</h4>
+      <p><strong>"DAPR"</strong> = <strong>D</strong>udhwa (1987) → <strong>A</strong>mangarh (2012) → <strong>P</strong>ilibhit (2014) → <strong>R</strong>anipur (2022)</p>
+      <p style="margin-top:6px">Sentence: <strong>"Dadi Aage Pe Ruki"</strong> (Dadi = oldest = Dudhwa; Ruki = Ranipur = youngest)</p>
+    </div>
+
+    <div class="mnemonic-box">
+      <h4>🦏 Dudhwa TR = 3 Parts</h4>
+      <p><strong>"DKK"</strong> = <strong>D</strong>udhwa NP + <strong>K</strong>ishanpur WS + <strong>K</strong>aterniaghat WS</p>
+      <p style="margin-top:6px">Rivers separating: Sarda = D↔K; Ghaghra = D↔Kater → <strong>"S before G"</strong> (Sarda = Kishanpur side, Ghaghra = Katerniaghat side)</p>
+    </div>
+
+    <div class="mnemonic-box">
+      <h4>💧 Ramsar Sites 2020 Batch (5 in one go!)</h4>
+      <p>2020 mein 5 UP sites ek saath: <strong>"SPSNS"</strong> = <strong>S</strong>amaspur + <strong>P</strong>arvati Arga + <strong>S</strong>aman + <strong>N</strong>awabganj + <strong>S</strong>ur Sarovar</p>
+      <p style="margin-top:6px">Sentence: <strong>"Sab Parhte Saans Nahi Sochte"</strong></p>
+    </div>
+
+    <div class="mnemonic-box">
+      <h4>🐊 Gharial kahan milta hai UP mein?</h4>
+      <p><strong>"CKH"</strong> = <strong>C</strong>hambal WS + <strong>K</strong>aterniaghat WS (Girwa River) + <strong>H</strong>astinapur WS (Ganga stretch)</p>
+      <p style="margin-top:6px">Gharial = CR species; <strong>Girwa River</strong> = Katerniaghat mein sirf gharial aur mugger ek saath milte hain (sympatric)</p>
+    </div>
+
+    <div class="mnemonic-box">
+      <h4>🗺️ North vs South UP Wildlife</h4>
+      <p><strong>NORTH (Terai belt):</strong> Dudhwa TR, Pilibhit TR, Amangarh TR, Suhelwa WS, Sohagbarwa WS, Katerniaghat WS, Kishanpur WS → All forest/grassland/wetland; Tigers + Rhino + Elephant</p>
+      <p style="margin-top:6px"><strong>SOUTH (Vindhyan/Bundelkhand):</strong> Ranipur TR, Kaimoor WS, Ramsagar WS, Chandraprabha WS, Vijai Sagar WS → Dry deciduous; Leopard + Wolf + Chinkara</p>
+    </div>
+
+    <div class="mnemonic-box">
+      <h4>🌟 State Animals / Symbols</h4>
+      <p>UP State Animal = <strong>Barasingha (Swamp Deer)</strong> = found in Dudhwa NP; Vulnerable species</p>
+      <p style="margin-top:4px">UP State Bird = <strong>Sarus Crane</strong> = world's tallest flying bird; found in Ramsar wetlands of UP</p>
+      <p style="margin-top:4px">Sarus Crane ke liye best zones: <strong>Saman BS, Samaspur BS, Nawabganj BS, Bakhira BS</strong></p>
+    </div>
+
+    <div class="mnemonic-box">
+      <h4>📍 Location Trick: Ranipur kahan hai?</h4>
+      <p><strong>Ranipur TR</strong> = Chitrakoot district = Bundelkhand = SOUTH UP</p>
+      <p style="margin-top:6px">Nearby: Panna TR (MP) = 150 km = same tigers come here; Vindhyan dry forest</p>
+      <p style="margin-top:6px">Trick: <strong>"Rani Chitrakoot mein rehti thi"</strong> = Ranipur → Chitrakoot</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ RECENT NEWS ═══════════════════ -->
+  <div id="sec-recent-news" class="section">
+    <div class="page-header">
+      <h2>📰 Recent Wildlife News — UP (2025–2026)</h2>
+      <p>Current affairs angle for UPPSC 2026 — these can appear in prelims!</p>
+    </div>
+
+    <div class="news-card">
+      <div><div class="news-badge">🆕 Apr 2026</div></div>
+      <div>
+        <p><strong>Shekha Jheel BS → India's 99th Ramsar Site:</strong> Shekha Jheel Bird Sanctuary (UP) April 2026 mein India ka 99th Ramsar site bana. UP ab 13 Ramsar sites ke saath Tamil Nadu ke baad 2nd place par hai.</p>
+        <p class="news-date">Source: LotusArise / Ramsar Convention</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div><div class="news-badge">🆕 Mar 2026</div></div>
+      <div>
+        <p><strong>Dudhwa Rhino Rewilding — 4 more released:</strong> March 23-24, 2026 mein 4 greater one-horned rhinos (1 male + 3 females) fenced rehabilitation zone se wild mein release kiye gaye. Free-ranging rhino population ab 8 ho gayi. Nov 2024 aur March 2025 mein bhi 4 release kiye the. UP Forest Dept + WWF-India joint operation; VHF + satellite tracking.</p>
+        <p class="news-date">Source: The Better India, April 2026</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div><div class="news-badge">🆕 Jan 2026</div></div>
+      <div>
+        <p><strong>Patna Bird Sanctuary (Etah) → Ramsar Site:</strong> January 2026 mein Patna BS, Etah district (Jalesar tehsil) Ramsar site bana. India's 97th Ramsar site. UP ka sabse chhota bird sanctuary; Central Asian Flyway ka critical stopover; Sarus Crane congregation zone.</p>
+        <p class="news-date">Source: PWOnlyIAS / Ramsar RSIS</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div><div class="news-badge">📊 2025</div></div>
+      <div>
+        <p><strong>Dudhwa 2025 Wildlife Survey — Explosive Growth:</strong> 2025 triennial survey mein Dudhwa Tiger Reserve mein sabhi wildlife populations mein "healthy growth" confirmed. Leopard population: <strong>+198.91% since 2022</strong> (34 → 93 in Dudhwa NP alone). Tigers, ungulates, aquatic animals sab mein vridhi.</p>
+        <p class="news-date">Source: Hindustan Times, 2025</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div><div class="news-badge">📅 Nov 2025</div></div>
+      <div>
+        <p><strong>Dudhwa Tourism Season Opens Early:</strong> 2025 mein tourist season November 6 se start hua (previously Nov 15 hota tha). New safari routes, affordable accommodations added. Pilibhit TR ke saath UP ka key eco-tourism corridor bana.</p>
+        <p class="news-date">Source: Travel and Tour World, Nov 2025</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div><div class="news-badge">📅 2022</div></div>
+      <div>
+        <p><strong>Ranipur TR — UP's 4th Tiger Reserve:</strong> September 27, 2022 mein UP cabinet ne Ranipur WS (Chitrakoot/Banda) ko India ka 53rd Tiger Reserve declare kiya. UP ka pehla Bundelkhand TR. Area: 530 km². Panna TR (MP) se tigers yahan aate hain.</p>
+        <p class="news-date">Source: NTCA / UP Forest Dept</p>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div><div class="news-badge">📅 Feb 2026</div></div>
+      <div>
+        <p><strong>Tiger Conservation Policy Review:</strong> Union Minister Bhupender Yadav ne NTCA conference mein kaha ki Project Tiger ke 50 years complete hone par policy update zaruri hai. India mein abhi 58 Tiger Reserves hain. New cheetahs (Botswana se) Feb 2026 mein India aane expected the.</p>
+        <p class="news-date">Source: All India Radio, Feb 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MCQ ═══════════════════ -->
+  <div id="sec-mcq" class="section">
+    <div class="page-header">
+      <h2>✅ UP Wildlife MCQs — UPPSC 2026</h2>
+      <p>10 exam-oriented questions | Click to attempt</p>
+    </div>
+
+    <div class="mcq-header">
+      <div class="mcq-score-bar">Score: <span id="score-display">0</span> / <span id="total-display">10</span> &nbsp;|&nbsp; Attempted: <span id="attempted-display">0</span></div>
+      <button class="reset-btn" onclick="resetMCQ()">🔄 Reset Quiz</button>
+    </div>
+
+    <div id="mcq-container"></div>
+  </div>
+
+</main>
+
+<script>
+// ─── NAV ───
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ─── TABLE FILTER ───
+function filterTable(tableId, query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll('#' + tableId + ' tbody tr').forEach(tr => {
+    tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+// ─── MCQ DATA ───
+const mcqs = [
+  {
+    q: "Uttar Pradesh mein kitne National Parks hain?",
+    opts: ["1", "2", "3", "4"],
+    ans: 0,
+    exp: "UP mein sirf 1 National Park hai — Dudhwa National Park, Lakhimpur Kheri. India ka sabse bada state hone ke bawajood UP ke paas sirf ek NP hai — yeh UPPSC ka favourite trick question hai!"
+  },
+  {
+    q: "Dudhwa Tiger Reserve ke teen components kaunse hain?",
+    opts: [
+      "Dudhwa NP + Kishanpur WS + Katerniaghat WS",
+      "Dudhwa NP + Suhelwa WS + Sohagbarwa WS",
+      "Dudhwa NP + Pilibhit WS + Ranipur WS",
+      "Dudhwa NP + Hastinapur WS + Bakhira WS"
+    ],
+    ans: 0,
+    exp: "Dudhwa TR = Dudhwa NP + Kishanpur WS + Katerniaghat WS. Sarda River DNP↔Kishanpur ko alag karti hai; Ghaghra (Geruwa) DNP↔Katerniaghat ko alag karti hai."
+  },
+  {
+    q: "India ka 53rd Tiger Reserve kaunsa hai jo UP mein sthit hai?",
+    opts: ["Pilibhit TR", "Amangarh TR", "Ranipur TR", "Suhelwa TR"],
+    ans: 2,
+    exp: "Ranipur Tiger Reserve (Chitrakoot/Banda) September 2022 mein India ka 53rd TR bana. Yeh UP ka 4th TR hai aur pehla Bundelkhand TR hai. Panna TR (MP) se 150 km door hai."
+  },
+  {
+    q: "Katerniaghat Wildlife Sanctuary mein Girwa River kis cheez ke liye famous hai?",
+    opts: [
+      "Gangetic Dolphin aur Turtle nesting",
+      "Gharial aur Mugger Crocodile ka sympatric habitat",
+      "Sarus Crane ki breeding colony",
+      "Bengal Florican ka ek matr habitat"
+    ],
+    ans: 1,
+    exp: "Katerniaghat mein Girwa River par gharial (CR) aur mugger crocodile (VU) ek saath paye jaate hain — yahi sympatric habitat hai. Yeh ek rare ecological phenomenon hai."
+  },
+  {
+    q: "As of June 2026, Uttar Pradesh mein kitne Ramsar Sites hain?",
+    opts: ["10", "11", "12", "13"],
+    ans: 3,
+    exp: "June 2026 tak UP mein 13 Ramsar sites hain. Sabse recent: Patna BS (Etah) — Jan 2026 aur Shekha Jheel BS — April 2026 (India's 99th Ramsar site). Tamil Nadu (16) ke baad UP 2nd place par hai."
+  },
+  {
+    q: "Dudhwa mein One-Horned Rhinoceros kahan se reintroduce kiye gaye the?",
+    opts: ["Kaziranga NP, Assam", "Pobitora WS, Assam", "Manas NP, Assam", "Orang NP, Assam"],
+    ans: 1,
+    exp: "Dudhwa NP mein rhinoceros ko Pobitora Wildlife Sanctuary, Assam se reintroduce kiya gaya tha. 2024-2026 mein ongoing rewilding operation mein ab 8 free-ranging rhinos hain."
+  },
+  {
+    q: "Bakhira Wildlife Sanctuary (Sant Kabir Nagar) kis cheez ke liye unique hai?",
+    opts: [
+      "UP ka sabse bada Tiger Reserve",
+      "India ka sabse bada natural floodplain wetland",
+      "India ka pehla gharial sanctuary",
+      "UP ka sabse bada national park"
+    ],
+    ans: 1,
+    exp: "Bakhira WS India ka sabse bada natural floodplain wetland hai (2,894 ha). Rapti River iske through flow karti hai. 1980 mein established; 2022 mein Ramsar site bana."
+  },
+  {
+    q: "Pilibhit Tiger Reserve ko TX2 Award kyun mila?",
+    opts: [
+      "Sabse zyada rhinos ke liye",
+      "Sabse bade area wala TR banne ke liye",
+      "Tiger population doubling ke liye",
+      "Pehli bar gharial conservation ke liye"
+    ],
+    ans: 2,
+    exp: "TX2 = Tiger population 2X (doubling) target. Pilibhit TR India ka pehla TR tha jisne TX2 doubling target achieve kiya — stipulated time mein tiger population double ho gayi. Global recognition 2022 mein mili."
+  },
+  {
+    q: "UP mein National Chambal Wildlife Sanctuary kaun se states share karte hain?",
+    opts: [
+      "UP + MP + Rajasthan",
+      "UP + MP + Bihar",
+      "UP + Rajasthan + Haryana",
+      "UP + MP + Maharashtra"
+    ],
+    ans: 0,
+    exp: "National Chambal Sanctuary ek tri-state sanctuary hai — Uttar Pradesh + Madhya Pradesh + Rajasthan isko share karte hain. 1979 mein established; gharial (CR), Gangetic dolphin, red-crowned roof turtle ke liye famous."
+  },
+  {
+    q: "Amangarh Tiger Reserve (UP) ka kya viशeṣ connection hai?",
+    opts: [
+      "Yeh Dudhwa TR ka extension hai",
+      "Yeh Jim Corbett TR (Uttarakhand) ka former buffer zone tha",
+      "Yeh India ka pehla community-managed TR hai",
+      "Yeh Nepal ke Bardia NP se directly connected hai"
+    ],
+    ans: 1,
+    exp: "Amangarh TR, Bijnor district mein hai. Uttarakhand ke Jim Corbett TR ka ye formerly buffer zone tha. 2012 mein alag Tiger Reserve bana. Area ~95 km² — UP ka sabse chhota TR. Corbett tigers isme aate hain."
+  }
+];
+
+let score = 0, attempted = 0;
+const answered = new Array(mcqs.length).fill(false);
+
+function buildMCQ() {
+  const container = document.getElementById('mcq-container');
+  container.innerHTML = '';
+  mcqs.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'mcq-card';
+    card.id = 'mcq-card-' + i;
+
+    const optsHTML = q.opts.map((opt, j) =>
+      `<button class="opt-btn" id="opt-${i}-${j}" onclick="answer(${i}, ${j})" ${answered[i] ? 'disabled' : ''}>${String.fromCharCode(65+j)}. ${opt}</button>`
+    ).join('');
+
+    card.innerHTML = `
+      <div class="mcq-q"><span class="qnum">${i+1}</span>${q.q}</div>
+      <div class="options-grid">${optsHTML}</div>
+      <div class="explanation" id="exp-${i}">✅ ${q.exp}</div>
+    `;
+    container.appendChild(card);
+
+    if (answered[i]) restoreAnswer(i, q);
+  });
+  updateScore();
+}
+
+function answer(qi, selected) {
+  if (answered[qi]) return;
+  answered[qi] = true;
+  const q = mcqs[qi];
+  const card = document.getElementById('mcq-card-' + qi);
+  const exp = document.getElementById('exp-' + qi);
+
+  for (let j = 0; j < q.opts.length; j++) {
+    const btn = document.getElementById(`opt-${qi}-${j}`);
+    btn.disabled = true;
+    if (j === q.ans) btn.classList.add('correct-opt');
+    else if (j === selected) btn.classList.add('wrong-opt');
+  }
+
+  if (selected === q.ans) {
+    score++;
+    card.classList.add('correct-card');
+  } else {
+    card.classList.add('wrong-card');
+  }
+
+  exp.style.display = 'block';
+  attempted++;
+  updateScore();
+}
+
+function restoreAnswer(qi, q) {
+  // just shows disabled state
+}
+
+function updateScore() {
+  document.getElementById('score-display').textContent = score;
+  document.getElementById('attempted-display').textContent = attempted;
+}
+
+function resetMCQ() {
+  score = 0; attempted = 0;
+  for (let i = 0; i < answered.length; i++) answered[i] = false;
+  buildMCQ();
+}
+
+buildMCQ();
+</script>
+</body>
+</html>
