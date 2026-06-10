@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ODOP UP — UPPSC 2026 Complete Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --white: #ffffff;
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --surface2: #f0ede8;
+    --border: #e2ddd7;
+    --border2: #ccc7bf;
+    --text: #1a1714;
+    --muted: #6b6560;
+    --faint: #9c9690;
+
+    --saffron: #e8722a;
+    --saffron-light: #fdf0e8;
+    --saffron-mid: #f5a96a;
+    --green-dark: #2d6a3f;
+    --green-light: #eaf4ee;
+    --green-mid: #6cbd87;
+    --blue-dark: #1a4e8a;
+    --blue-light: #e8f0fb;
+    --blue-mid: #7aaed8;
+    --purple-dark: #4a3590;
+    --purple-light: #eeeafc;
+    --amber-dark: #7d4e0a;
+    --amber-light: #fdf3e0;
+    --red-dark: #8b2020;
+    --red-light: #fdeaea;
+    --teal-dark: #0d5f4e;
+    --teal-light: #e0f5f0;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --shadow: 0 1px 4px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+    --font: 'Inter', sans-serif;
+    --font-deva: 'Noto Sans Devanagari', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Layout ── */
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* ── Hero Banner ── */
+  .hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 28px 32px 22px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #e8722a 0%, #f5c842 35%, #2d6a3f 65%, #1a4e8a 100%);
+  }
+  .hero-top { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 14px; }
+  .hero-icon {
+    width: 52px; height: 52px; border-radius: var(--radius-md);
+    background: var(--saffron-light); border: 1px solid #f5c4a0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+  }
+  .hero-title { font-size: 22px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .hero-subtitle { font-size: 13px; color: var(--muted); margin-top: 3px; font-family: var(--font-deva); }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .htag {
+    font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px;
+    border: 1px solid currentColor; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .htag-saffron { color: var(--saffron); background: var(--saffron-light); border-color: #f5c4a0; }
+  .htag-green { color: var(--green-dark); background: var(--green-light); border-color: #a8d9b8; }
+  .htag-blue { color: var(--blue-dark); background: var(--blue-light); border-color: #b5cff0; }
+  .htag-purple { color: var(--purple-dark); background: var(--purple-light); border-color: #c0b5f0; }
+  .htag-amber { color: var(--amber-dark); background: var(--amber-light); border-color: #f0d090; }
+
+  /* ── Nav Tabs ── */
+  .nav-tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 22px;
+    background: var(--surface);
+    padding: 8px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+  }
+  .nav-tab {
+    padding: 8px 16px; border-radius: var(--radius-md);
+    border: none; background: transparent; cursor: pointer;
+    font-family: var(--font); font-size: 13px; font-weight: 500;
+    color: var(--muted); transition: all .18s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-tab:hover { background: var(--bg); color: var(--text); }
+  .nav-tab.active { background: var(--text); color: var(--white); }
+
+  /* ── Sections ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 20px 22px; margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-size: 15px; font-weight: 600; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title .icon {
+    width: 28px; height: 28px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+  }
+
+  /* ── Stats Grid ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .stat-box {
+    background: var(--bg); border-radius: var(--radius-md);
+    padding: 14px 14px 12px; border: 1px solid var(--border);
+  }
+  .stat-num { font-size: 20px; font-weight: 600; line-height: 1.2; }
+  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.3; }
+  .c-saffron { color: var(--saffron); }
+  .c-green { color: var(--green-dark); }
+  .c-blue { color: var(--blue-dark); }
+  .c-purple { color: var(--purple-dark); }
+  .c-amber { color: var(--amber-dark); }
+  .c-teal { color: var(--teal-dark); }
+  .c-red { color: var(--red-dark); }
+
+  /* ── Info Grid ── */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .info-box {
+    background: var(--bg); border-radius: var(--radius-sm);
+    padding: 10px 12px; border: 1px solid var(--border);
+  }
+  .info-label { font-size: 10px; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px; }
+  .info-val { font-size: 13px; font-weight: 500; }
+
+  /* ── Component 4 Cards ── */
+  .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .comp-card {
+    border-radius: var(--radius-md); padding: 14px 16px;
+    border-left: 3px solid;
+  }
+  .comp-card .comp-title { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+  .comp-card .comp-body { font-size: 12px; line-height: 1.5; }
+  .cc-blue { background: var(--blue-light); border-color: var(--blue-dark); color: var(--blue-dark); }
+  .cc-amber { background: var(--amber-light); border-color: var(--amber-dark); color: var(--amber-dark); }
+  .cc-purple { background: var(--purple-light); border-color: var(--purple-dark); color: var(--purple-dark); }
+  .cc-teal { background: var(--teal-light); border-color: var(--teal-dark); color: var(--teal-dark); }
+
+  /* ── District Section ── */
+  .district-controls {
+    display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .search-input {
+    flex: 1; min-width: 200px; padding: 8px 14px;
+    border: 1px solid var(--border2); border-radius: var(--radius-md);
+    background: var(--surface); color: var(--text);
+    font-family: var(--font); font-size: 13px;
+  }
+  .search-input:focus { outline: none; border-color: var(--blue-dark); }
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .filter-btn {
+    padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border2); background: transparent; cursor: pointer;
+    color: var(--muted); font-family: var(--font); transition: all .15s;
+  }
+  .filter-btn:hover { background: var(--bg); }
+  .filter-btn.active { background: var(--text); color: var(--white); border-color: var(--text); }
+
+  .division-block { margin-bottom: 8px; }
+  .division-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: var(--radius-md);
+    cursor: pointer; border: 1px solid var(--border);
+    background: var(--surface); transition: background .12s;
+    user-select: none;
+  }
+  .division-header:hover { background: var(--bg); }
+  .div-label { font-size: 13px; font-weight: 600; flex: 1; }
+  .div-count { font-size: 11px; color: var(--faint); }
+  .div-arrow { font-size: 11px; color: var(--faint); transition: transform .2s; }
+  .division-header.open .div-arrow { transform: rotate(180deg); }
+
+  .division-table { display: none; border-radius: 0 0 var(--radius-md) var(--radius-md); overflow: hidden; border: 1px solid var(--border); border-top: none; margin-bottom: 4px; }
+  .division-table.show { display: block; }
+  .division-table table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+  .division-table th { background: var(--surface2); font-size: 11px; font-weight: 600; color: var(--muted); padding: 7px 10px; text-align: left; text-transform: uppercase; letter-spacing: .04em; }
+  .division-table td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: middle; }
+  .division-table tr:hover td { background: var(--bg); }
+  .dist-name { font-weight: 500; }
+  .badge-sm {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    padding: 2px 7px; border-radius: 20px; margin: 0 2px;
+  }
+  .badge-gi { background: var(--green-light); color: var(--green-dark); border: 1px solid #a8d9b8; }
+  .badge-textile { background: var(--purple-light); color: var(--purple-dark); }
+  .badge-food { background: var(--amber-light); color: var(--amber-dark); }
+  .badge-metal { background: var(--blue-light); color: var(--blue-dark); }
+  .badge-wood { background: var(--teal-light); color: var(--teal-dark); }
+
+  /* ── GI Tags ── */
+  .gi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+  .gi-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 14px 16px;
+    border-left: 3px solid var(--green-dark);
+  }
+  .gi-name { font-size: 13px; font-weight: 600; margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+  .gi-meta { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
+  .gi-note { font-size: 12px; color: var(--text); line-height: 1.5; }
+
+  /* ── Timeline ── */
+  .timeline { padding-left: 8px; }
+  .tl-item { display: flex; gap: 14px; margin-bottom: 16px; position: relative; }
+  .tl-item::before { content: ''; position: absolute; left: 17px; top: 28px; bottom: -16px; width: 1px; background: var(--border); }
+  .tl-item:last-child::before { display: none; }
+  .tl-dot {
+    width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; border: 2px solid;
+  }
+  .tl-content { flex: 1; padding-top: 2px; }
+  .tl-year { font-size: 11px; color: var(--muted); margin-bottom: 3px; font-weight: 500; }
+  .tl-event { font-size: 13px; line-height: 1.5; }
+  .tl-event strong { color: var(--text); }
+
+  /* ── Progress Bars ── */
+  .prog-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12px; }
+  .prog-label { width: 100px; color: var(--muted); flex-shrink: 0; }
+  .prog-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; }
+  .prog-fill { height: 100%; border-radius: 3px; background: var(--green-dark); transition: width .6s; }
+  .prog-pct { width: 36px; text-align: right; font-weight: 500; color: var(--text); }
+
+  /* ── Challenge Cards ── */
+  .ch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .ch-card { border-radius: var(--radius-md); padding: 12px 14px; border-left: 3px solid; }
+  .ch-red { background: var(--red-light); border-color: var(--red-dark); }
+  .ch-green { background: var(--green-light); border-color: var(--green-dark); }
+  .ch-title { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+  .ch-red .ch-title { color: var(--red-dark); }
+  .ch-green .ch-title { color: var(--green-dark); }
+  .ch-body { font-size: 12px; line-height: 1.5; color: var(--muted); }
+
+  /* ── MCQ Section ── */
+  .score-bar {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 16px 20px;
+    margin-bottom: 16px; display: none;
+  }
+  .score-text { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .score-prog-track { height: 8px; background: var(--border); border-radius: 4px; }
+  .score-prog-fill { height: 100%; border-radius: 4px; background: var(--green-dark); transition: width .5s; }
+
+  .mcq-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 20px 22px; margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+  .mcq-num {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    background: var(--saffron-light); color: var(--saffron);
+    padding: 2px 8px; border-radius: 20px; margin-bottom: 8px;
+    border: 1px solid #f5c4a0;
+  }
+  .mcq-question { font-size: 14px; font-weight: 500; margin-bottom: 14px; line-height: 1.5; }
+  .mcq-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mcq-opt {
+    padding: 9px 12px; border-radius: var(--radius-md);
+    border: 1px solid var(--border2); background: var(--bg);
+    cursor: pointer; font-family: var(--font); font-size: 13px;
+    color: var(--text); text-align: left; transition: all .15s; line-height: 1.4;
+  }
+  .mcq-opt:hover:not(:disabled) { border-color: var(--blue-dark); background: var(--blue-light); }
+  .mcq-opt.correct { background: var(--green-light); border-color: var(--green-dark); color: var(--green-dark); font-weight: 500; }
+  .mcq-opt.wrong { background: var(--red-light); border-color: var(--red-dark); color: var(--red-dark); }
+  .mcq-opt:disabled { cursor: not-allowed; }
+  .mcq-explanation {
+    display: none; margin-top: 12px; padding: 10px 14px;
+    background: var(--bg); border-radius: var(--radius-md);
+    font-size: 12px; color: var(--muted); line-height: 1.6;
+    border-left: 3px solid var(--green-dark);
+  }
+  .mcq-explanation.show { display: block; }
+
+  /* ── Key Facts Box ── */
+  .key-facts {
+    background: linear-gradient(135deg, var(--saffron-light) 0%, var(--blue-light) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 14px;
+  }
+  .key-facts h3 { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+  .key-facts ul { padding-left: 16px; }
+  .key-facts li { font-size: 13px; line-height: 1.8; }
+  .key-facts li strong { color: var(--saffron); }
+
+  /* ── UP Map SVG container ── */
+  .map-wrap {
+    background: var(--bg); border-radius: var(--radius-md);
+    padding: 12px; border: 1px solid var(--border); margin-bottom: 12px;
+  }
+  .map-note { font-size: 11px; color: var(--faint); margin-top: 6px; text-align: center; }
+
+  /* ── Intl card list ── */
+  .intl-list { list-style: none; }
+  .intl-item {
+    display: flex; gap: 12px; padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .intl-item:last-child { border-bottom: none; }
+  .intl-year {
+    font-size: 11px; font-weight: 700; color: var(--saffron);
+    background: var(--saffron-light); border: 1px solid #f5c4a0;
+    border-radius: var(--radius-sm); padding: 3px 8px;
+    height: fit-content; flex-shrink: 0; margin-top: 2px;
+  }
+  .intl-text { font-size: 13px; line-height: 1.5; }
+  .intl-text strong { color: var(--blue-dark); }
+
+  /* ── Scheme compare ── */
+  .scheme-list { display: flex; flex-direction: column; gap: 8px; }
+  .scheme-item {
+    background: var(--bg); border-radius: var(--radius-md);
+    padding: 12px 14px; border: 1px solid var(--border);
+    font-size: 13px; line-height: 1.5;
+  }
+  .scheme-item strong { color: var(--blue-dark); }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
+    text-align: center; font-size: 11px; color: var(--faint);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .info-grid, .comp-grid, .ch-grid, .mcq-options { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .hero-top { flex-direction: column; gap: 12px; }
+    .page-wrap { padding: 16px 14px 40px; }
+    .nav-tabs { gap: 4px; }
+    .nav-tab { padding: 7px 12px; font-size: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-icon">🏛️</div>
+      <div>
+        <div class="hero-title">ODOP — One District One Product</div>
+        <div class="hero-subtitle">एक जनपद एक उत्पाद योजना · UPPSC 2026 Complete Guide (SDM Level)</div>
+      </div>
+    </div>
+    <div class="hero-tags">
+      <span class="htag htag-saffron">📅 Launch: 24 Jan 2018</span>
+      <span class="htag htag-blue">🗺️ 75 Districts</span>
+      <span class="htag htag-green">🏷️ 77+ GI Tags</span>
+      <span class="htag htag-purple">📈 Exports: ₹1.71 lakh cr (FY24)</span>
+      <span class="htag htag-amber">🏆 Rank #1 National ODOP Awards 2024</span>
+    </div>
+  </div>
+
+  <!-- ── NAV TABS ── -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('overview')">📋 Overview</button>
+    <button class="nav-tab" onclick="showTab('districts')">🗺️ 75 Districts</button>
+    <button class="nav-tab" onclick="showTab('gi')">🏷️ GI Tags</button>
+    <button class="nav-tab" onclick="showTab('progress')">📈 Progress</button>
+    <button class="nav-tab" onclick="showTab('international')">🌍 International</button>
+    <button class="nav-tab" onclick="showTab('challenges')">⚡ Challenges</button>
+    <button class="nav-tab" onclick="showTab('mcq')">🎯 MCQs (10)</button>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 1 — OVERVIEW
+  ══════════════════════════════════ -->
+  <div class="section active" id="tab-overview">
+
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--saffron-light)">📋</span> Scheme Background</div>
+      <div class="info-grid">
+        <div class="info-box"><div class="info-label">Launch Date</div><div class="info-val">24 January 2018 (UP Divas / Statehood Day)</div></div>
+        <div class="info-box"><div class="info-label">Launched by</div><div class="info-val">Chief Minister Yogi Adityanath</div></div>
+        <div class="info-box"><div class="info-label">State Nodal Department</div><div class="info-val">MSME &amp; Export Promotion Dept, UP</div></div>
+        <div class="info-box"><div class="info-label">Central Ministry (National)</div><div class="info-val">Commerce &amp; Industry (DPIIT)</div></div>
+        <div class="info-box"><div class="info-label">Official Website</div><div class="info-val">odopup.in</div></div>
+        <div class="info-box"><div class="info-label">Budget Allocation</div><div class="info-val">₹25,000 crore</div></div>
+        <div class="info-box"><div class="info-label">Employment Target</div><div class="info-val">25 lakh youth in 5 years</div></div>
+        <div class="info-box"><div class="info-label">Inspired by</div><div class="info-val">Japan's "One Village One Product" (OVOP)</div></div>
+        <div class="info-box"><div class="info-label">Districts Covered</div><div class="info-val">All 75 districts of Uttar Pradesh</div></div>
+        <div class="info-box"><div class="info-label">GDP Contribution Target</div><div class="info-val">+2% to state GDP</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--green-light)">🎯</span> Core Objectives</div>
+      <ul style="padding-left:18px;font-size:13px;line-height:2.1">
+        <li>Preserve and promote <strong>local crafts, skills, and traditional art forms</strong> district-wise</li>
+        <li>Generate employment for <strong>25 lakh youth</strong> across UP within 5 years</li>
+        <li>Improve artisan income and <strong>reduce rural-to-urban migration</strong></li>
+        <li>Adopt modern technology for <strong>quality improvement</strong> and competitiveness</li>
+        <li>Connect UP's traditional products with <strong>national and international markets</strong></li>
+        <li>Help revive industries on verge of extinction via <strong>GI tagging and branding</strong></li>
+        <li>Contribute <strong>2% increase to state GDP</strong> through MSME growth</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--blue-light)">⚙️</span> Four Components of ODOP Scheme</div>
+      <div class="comp-grid">
+        <div class="comp-card cc-blue">
+          <div class="comp-title">1. Margin Money Scheme</div>
+          <div class="comp-body">25% subsidy on project cost (max ₹25 lakh) for artisans/MSMEs. Apply at diupmsme.upsdc.gov.in. Covers machinery, working capital.</div>
+        </div>
+        <div class="comp-card cc-amber">
+          <div class="comp-title">2. Training &amp; Toolkit Scheme</div>
+          <div class="comp-body">10-day free training + ₹200/day stipend + free advanced toolkit for unskilled artisans. ~20,000 artisans trained per year statewide.</div>
+        </div>
+        <div class="comp-card cc-purple">
+          <div class="comp-title">3. Common Facility Centres (CFCs)</div>
+          <div class="comp-body">200+ CFCs sanctioned with modern machinery for shared use. Reduces individual capital burden. Improves quality standards for exports.</div>
+        </div>
+        <div class="comp-card cc-teal">
+          <div class="comp-title">4. Marketing Assistance</div>
+          <div class="comp-body">ODOP Bazaar, GeM portal, Amazon/Flipkart/eBay MoUs. National &amp; international trade fair participation. ODOP Walls in Singapore, Milan, New York.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-facts">
+      <h3>🔑 Top 10 UPPSC Facts — Memorize These</h3>
+      <ul>
+        <li>Launch: <strong>24 January 2018</strong> (UP Divas) by CM Yogi Adityanath</li>
+        <li>Implementing dept: <strong>MSME &amp; Export Promotion Department, UP</strong></li>
+        <li>Budget: <strong>₹25,000 crore</strong> | Target: <strong>25 lakh youth</strong></li>
+        <li>Exports: <strong>₹88,967 Cr (2018) → ₹1,71,000 Cr (FY24)</strong> — nearly doubled</li>
+        <li>National ranking: <strong>Joint #1 in ODOP Awards 2024</strong> (with AP, Maharashtra, Punjab)</li>
+        <li>GI Tags UP: <strong>77+</strong> | Varanasi alone: <strong>32 GI tags</strong> (max in any Indian city)</li>
+        <li>Kalanamak Rice: <strong>2,000 ha → 20,000 ha</strong> (Siddharthnagar)</li>
+        <li>ODOP Walls: <strong>Singapore, Milan, New York</strong></li>
+        <li>Inspired by: <strong>Japan's "One Village One Product" model</strong></li>
+        <li>GI Registry location: <strong>Chennai</strong> (under DPIIT, Ministry of Commerce)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--blue-light)">🗺️</span> UP Division Map — ODOP Clusters</div>
+      <div class="map-wrap">
+        <svg viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg" style="width:100%">
+          <!-- Meerut NW -->
+          <ellipse cx="148" cy="88" rx="72" ry="48" fill="#e8f0fb" stroke="#1a4e8a" stroke-width="1.3"/>
+          <text x="148" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4e8a" font-family="Inter,sans-serif">Meerut Div.</text>
+          <text x="148" y="99" text-anchor="middle" font-size="9.5" fill="#1a4e8a" font-family="Inter,sans-serif">Sports • Locks • Ceramic</text>
+          <!-- Bareilly -->
+          <ellipse cx="280" cy="78" rx="64" ry="40" fill="#eeeafc" stroke="#4a3590" stroke-width="1.3"/>
+          <text x="280" y="74" text-anchor="middle" font-size="11" font-weight="600" fill="#4a3590" font-family="Inter,sans-serif">Bareilly Div.</text>
+          <text x="280" y="89" text-anchor="middle" font-size="9.5" fill="#4a3590" font-family="Inter,sans-serif">Zari • Bamboo • Flute</text>
+          <!-- Moradabad -->
+          <ellipse cx="188" cy="158" rx="54" ry="38" fill="#fdf3e0" stroke="#7d4e0a" stroke-width="1.3"/>
+          <text x="188" y="154" text-anchor="middle" font-size="11" font-weight="600" fill="#7d4e0a" font-family="Inter,sans-serif">Moradabad</text>
+          <text x="188" y="169" text-anchor="middle" font-size="9.5" fill="#7d4e0a" font-family="Inter,sans-serif">Metal Craft • Attar</text>
+          <!-- Saharanpur -->
+          <ellipse cx="100" cy="50" rx="46" ry="28" fill="#e0f5f0" stroke="#0d5f4e" stroke-width="1.3"/>
+          <text x="100" y="47" text-anchor="middle" font-size="10" font-weight="600" fill="#0d5f4e" font-family="Inter,sans-serif">Saharanpur</text>
+          <text x="100" y="59" text-anchor="middle" font-size="9" fill="#0d5f4e" font-family="Inter,sans-serif">Wood • Jaggery</text>
+          <!-- Agra -->
+          <ellipse cx="148" cy="228" rx="62" ry="44" fill="#fdf0e8" stroke="#e8722a" stroke-width="1.5"/>
+          <text x="148" y="224" text-anchor="middle" font-size="11" font-weight="600" fill="#e8722a" font-family="Inter,sans-serif">Agra Div. ⭐</text>
+          <text x="148" y="239" text-anchor="middle" font-size="9.5" fill="#e8722a" font-family="Inter,sans-serif">Leather • Glassware</text>
+          <!-- Aligarh -->
+          <ellipse cx="268" cy="193" rx="54" ry="36" fill="#e0f5f0" stroke="#0d5f4e" stroke-width="1.3"/>
+          <text x="268" y="189" text-anchor="middle" font-size="11" font-weight="600" fill="#0d5f4e" font-family="Inter,sans-serif">Aligarh Div.</text>
+          <text x="268" y="204" text-anchor="middle" font-size="9.5" fill="#0d5f4e" font-family="Inter,sans-serif">Locks • Brass • Zari</text>
+          <!-- Lucknow ⭐ -->
+          <ellipse cx="352" cy="192" rx="60" ry="40" fill="#eaf4ee" stroke="#2d6a3f" stroke-width="2"/>
+          <text x="352" y="188" text-anchor="middle" font-size="11" font-weight="600" fill="#2d6a3f" font-family="Inter,sans-serif">Lucknow ⭐⭐</text>
+          <text x="352" y="203" text-anchor="middle" font-size="9.5" fill="#2d6a3f" font-family="Inter,sans-serif">Chikankari • Zardozi</text>
+          <!-- Kanpur -->
+          <ellipse cx="255" cy="268" rx="58" ry="40" fill="#fdeaea" stroke="#8b2020" stroke-width="1.3"/>
+          <text x="255" y="264" text-anchor="middle" font-size="11" font-weight="600" fill="#8b2020" font-family="Inter,sans-serif">Kanpur Div.</text>
+          <text x="255" y="279" text-anchor="middle" font-size="9.5" fill="#8b2020" font-family="Inter,sans-serif">Leather • Attar • Textile</text>
+          <!-- Gorakhpur -->
+          <ellipse cx="468" cy="175" rx="62" ry="42" fill="#e0f5f0" stroke="#0d5f4e" stroke-width="1.3"/>
+          <text x="468" y="171" text-anchor="middle" font-size="11" font-weight="600" fill="#0d5f4e" font-family="Inter,sans-serif">Gorakhpur Div.</text>
+          <text x="468" y="186" text-anchor="middle" font-size="9.5" fill="#0d5f4e" font-family="Inter,sans-serif">Terracotta • Kalanamak</text>
+          <!-- Ayodhya -->
+          <ellipse cx="400" cy="226" rx="50" ry="34" fill="#fdf3e0" stroke="#7d4e0a" stroke-width="1.3"/>
+          <text x="400" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#7d4e0a" font-family="Inter,sans-serif">Ayodhya Div.</text>
+          <text x="400" y="237" text-anchor="middle" font-size="9.5" fill="#7d4e0a" font-family="Inter,sans-serif">Jaggery • Moonj</text>
+          <!-- Prayagraj -->
+          <ellipse cx="360" cy="295" rx="54" ry="36" fill="#fdf3e0" stroke="#7d4e0a" stroke-width="1.3"/>
+          <text x="360" y="291" text-anchor="middle" font-size="11" font-weight="600" fill="#7d4e0a" font-family="Inter,sans-serif">Prayagraj Div.</text>
+          <text x="360" y="306" text-anchor="middle" font-size="9.5" fill="#7d4e0a" font-family="Inter,sans-serif">Moonj • Amla • Carpet</text>
+          <!-- Varanasi ⭐ -->
+          <ellipse cx="460" cy="295" rx="62" ry="42" fill="#eeeafc" stroke="#4a3590" stroke-width="2"/>
+          <text x="460" y="291" text-anchor="middle" font-size="11" font-weight="600" fill="#4a3590" font-family="Inter,sans-serif">Varanasi ⭐⭐</text>
+          <text x="460" y="306" text-anchor="middle" font-size="9.5" fill="#4a3590" font-family="Inter,sans-serif">Silk • Meenakari • Carpet</text>
+          <!-- Jhansi -->
+          <ellipse cx="210" cy="340" rx="58" ry="40" fill="#fdeaea" stroke="#8b2020" stroke-width="1.3"/>
+          <text x="210" y="336" text-anchor="middle" font-size="11" font-weight="600" fill="#8b2020" font-family="Inter,sans-serif">Jhansi (Bundelkhand)</text>
+          <text x="210" y="351" text-anchor="middle" font-size="9.5" fill="#8b2020" font-family="Inter,sans-serif">Soft Toys • Stone Craft</text>
+          <!-- Mirzapur -->
+          <ellipse cx="428" cy="375" rx="52" ry="34" fill="#eaf4ee" stroke="#2d6a3f" stroke-width="1.3"/>
+          <text x="428" y="371" text-anchor="middle" font-size="11" font-weight="600" fill="#2d6a3f" font-family="Inter,sans-serif">Mirzapur Div.</text>
+          <text x="428" y="386" text-anchor="middle" font-size="9.5" fill="#2d6a3f" font-family="Inter,sans-serif">Carpets • Bhadohi Dari</text>
+          <!-- Basti -->
+          <ellipse cx="540" cy="118" rx="54" ry="36" fill="#e8f0fb" stroke="#1a4e8a" stroke-width="1.3"/>
+          <text x="540" y="114" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4e8a" font-family="Inter,sans-serif">Basti Div.</text>
+          <text x="540" y="129" text-anchor="middle" font-size="9.5" fill="#1a4e8a" font-family="Inter,sans-serif">Woodcraft • Kalanamak</text>
+          <!-- Azamgarh -->
+          <ellipse cx="545" cy="240" rx="52" ry="35" fill="#fdf3e0" stroke="#7d4e0a" stroke-width="1.3"/>
+          <text x="545" y="236" text-anchor="middle" font-size="11" font-weight="600" fill="#7d4e0a" font-family="Inter,sans-serif">Azamgarh Div.</text>
+          <text x="545" y="251" text-anchor="middle" font-size="9.5" fill="#7d4e0a" font-family="Inter,sans-serif">Black Pottery • Textile</text>
+          <!-- Devipatan -->
+          <ellipse cx="375" cy="130" rx="50" ry="34" fill="#fdeaea" stroke="#8b2020" stroke-width="1.3"/>
+          <text x="375" y="126" text-anchor="middle" font-size="11" font-weight="600" fill="#8b2020" font-family="Inter,sans-serif">Devipatan Div.</text>
+          <text x="375" y="141" text-anchor="middle" font-size="9.5" fill="#8b2020" font-family="Inter,sans-serif">Pulses • Tribal Craft</text>
+          <!-- Chitrakoot -->
+          <ellipse cx="315" cy="370" rx="46" ry="32" fill="#eeeafc" stroke="#4a3590" stroke-width="1.3"/>
+          <text x="315" y="366" text-anchor="middle" font-size="11" font-weight="600" fill="#4a3590" font-family="Inter,sans-serif">Chitrakoot Div.</text>
+          <text x="315" y="381" text-anchor="middle" font-size="9.5" fill="#4a3590" font-family="Inter,sans-serif">Wooden Toys • Paper</text>
+          <!-- Compass -->
+          <text x="30" y="30" font-size="14" fill="#9c9690" font-family="Inter,sans-serif">↑ N</text>
+          <text x="626" y="420" font-size="10" fill="#9c9690" font-family="Inter,sans-serif">UP — 75 Districts</text>
+        </svg>
+      </div>
+      <div class="map-note">⭐⭐ = Nationally famous ODOP clusters | Division-level representation (schematic, not to scale)</div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 2 — 75 DISTRICTS
+  ══════════════════════════════════ -->
+  <div class="section" id="tab-districts">
+    <div class="district-controls">
+      <input type="text" class="search-input" placeholder="🔍  Search district or product..." oninput="filterDist(this.value)" id="dist-search"/>
+    </div>
+    <div class="filter-row" id="filter-row">
+      <button class="filter-btn active" onclick="setCat('all',this)">All Districts</button>
+      <button class="filter-btn" onclick="setCat('textile',this)">🧵 Textile/Craft</button>
+      <button class="filter-btn" onclick="setCat('food',this)">🌾 Food/Agriculture</button>
+      <button class="filter-btn" onclick="setCat('metal',this)">⚙️ Metal/Industry</button>
+      <button class="filter-btn" onclick="setCat('wood',this)">🪵 Wood/Toy</button>
+      <button class="filter-btn" onclick="setCat('gi',this)">🏷️ GI Tagged Only</button>
+    </div>
+    <div id="dist-list"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 3 — GI TAGS
+  ══════════════════════════════════ -->
+  <div class="section" id="tab-gi">
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--green-light)">🏷️</span> GI Tag Summary — Uttar Pradesh</div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num c-green">77+</div><div class="stat-lbl">Total GI Tags in UP (as of 2025)</div></div>
+        <div class="stat-box"><div class="stat-num c-blue">32</div><div class="stat-lbl">Varanasi GI Tags — highest in any Indian city</div></div>
+        <div class="stat-box"><div class="stat-num c-amber">1st</div><div class="stat-lbl">UP's first GI — Allahabad Surkha Guava</div></div>
+        <div class="stat-box"><div class="stat-num c-saffron">Chennai</div><div class="stat-lbl">GI Registry location (under DPIIT)</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--amber-light)">⚖️</span> GI Tag Legal Framework</div>
+      <ul style="padding-left:18px;font-size:13px;line-height:2">
+        <li><strong>Act:</strong> Geographical Indications of Goods (Registration &amp; Protection) Act, 1999</li>
+        <li><strong>Registry:</strong> GI Registry, Chennai (under DPIIT, Ministry of Commerce &amp; Industry)</li>
+        <li><strong>WTO Agreement:</strong> TRIPS (Trade-Related Aspects of Intellectual Property Rights)</li>
+        <li><strong>Purpose:</strong> Certifies product originates from specific region &amp; has qualities attributable to it</li>
+        <li>ODOP scheme and GI tagging work together to protect artisan identity and prevent imitation</li>
+        <li>Moradabad = <strong>"Peetal Nagri"</strong> (Brass City), Kannauj = <strong>"Perfume Capital of India"</strong></li>
+      </ul>
+    </div>
+    <div class="gi-grid" id="gi-grid"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 4 — PROGRESS
+  ══════════════════════════════════ -->
+  <div class="section" id="tab-progress">
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--green-light)">📊</span> Key Achievements (2018–2025)</div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num c-green">₹1.71L Cr</div><div class="stat-lbl">UP Total Exports FY 2023-24</div></div>
+        <div class="stat-box"><div class="stat-num c-muted" style="color:var(--muted)">₹88,967 Cr</div><div class="stat-lbl">UP Exports FY 2017-18 (Base Year)</div></div>
+        <div class="stat-box"><div class="stat-num c-blue">5 Lakh</div><div class="stat-lbl">Youth ventures established via ODOP</div></div>
+        <div class="stat-box"><div class="stat-num c-purple">200+</div><div class="stat-lbl">Common Facility Centres (CFCs) sanctioned</div></div>
+        <div class="stat-box"><div class="stat-num c-teal">1 Lakh+</div><div class="stat-lbl">Artisans trained &amp; equipped</div></div>
+        <div class="stat-box"><div class="stat-num c-saffron">₹2,000 Cr</div><div class="stat-lbl">Annual e-commerce sales (Amazon+Flipkart)</div></div>
+        <div class="stat-box"><div class="stat-num c-amber">20,000</div><div class="stat-lbl">Artisans trained per year</div></div>
+        <div class="stat-box"><div class="stat-num c-green">Joint #1</div><div class="stat-lbl">National ODOP Awards 2024</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--blue-light)">📅</span> Export Growth Timeline</div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--amber-light)">📉</span> UP's Share in India's Sector Exports</div>
+      <div style="margin-top:8px">
+        <div class="prog-row"><div class="prog-label">Handicrafts</div><div class="prog-track"><div class="prog-fill" style="width:44%"></div></div><div class="prog-pct">44%</div></div>
+        <div class="prog-row"><div class="prog-label">Carpets</div><div class="prog-track"><div class="prog-fill" style="width:39%"></div></div><div class="prog-pct">39%</div></div>
+        <div class="prog-row"><div class="prog-label">Leather</div><div class="prog-track"><div class="prog-fill" style="width:26%"></div></div><div class="prog-pct">26%</div></div>
+        <div class="prog-row"><div class="prog-label">Overall Exports</div><div class="prog-track"><div class="prog-fill" style="width:4.73%;background:var(--blue-mid)"></div></div><div class="prog-pct">4.73%</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--faint);margin-top:8px">Source: Government of Uttar Pradesh / ODOP Cell data</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--purple-light)">🛒</span> Digital &amp; E-Commerce Integration</div>
+      <div class="scheme-list">
+        <div class="scheme-item"><strong>Amazon India, Flipkart, eBay</strong> — MoUs signed for artisan direct-selling; ₹2,000 crore annual sales</div>
+        <div class="scheme-item"><strong>GeM Portal</strong> (Government e-Marketplace) — ODOP products listed for government procurement</div>
+        <div class="scheme-item"><strong>ODOP Bazaar</strong> — Dedicated state-level e-commerce platform at odopup.in</div>
+        <div class="scheme-item"><strong>SARAS Aajeevika Stores</strong> — ODOP Wall for rural women SHG products</div>
+        <div class="scheme-item"><strong>Special Postal Covers</strong> — DoP issued covers for Banarasi silk (Varanasi), Bhadohi carpets, Ghazipur jute wall hangings, Jaunpur woollen carpets, Ballia bindi</div>
+        <div class="scheme-item"><strong>Quality Council of India &amp; IIP</strong> — MoUs for quality standards and packaging improvement</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 5 — INTERNATIONAL
+  ══════════════════════════════════ -->
+  <div class="section" id="tab-international">
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--blue-light)">🌍</span> International Promotion Events</div>
+      <ul class="intl-list" id="intl-list"></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--green-light)">🏬</span> ODOP Walls — Global Presence</div>
+      <div class="ch-grid">
+        <div class="ch-card ch-green"><div class="ch-title">Singapore</div><div class="ch-body">Two stores: Mustafa Centre AND Kashmir Heritage Corner, Centre Point Mall. India's largest diaspora retail presence.</div></div>
+        <div class="ch-card ch-green"><div class="ch-title">Milan, Italy</div><div class="ch-body">ODOP Wall established to tap into European luxury craft market. Banarasi silk, Chikankari promoted heavily.</div></div>
+        <div class="ch-card ch-green"><div class="ch-title">New York, USA</div><div class="ch-body">ODOP Wall + Times Square IDY display. Targets NRI market and American craft buyers.</div></div>
+        <div class="ch-card ch-green"><div class="ch-title">18+ Indian Missions Abroad</div><div class="ch-body">Exhibitions, roadshows, roundtables, and gifting campaigns. Bahrain, Japan promotions also undertaken.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 6 — CHALLENGES
+  ══════════════════════════════════ -->
+  <div class="section" id="tab-challenges">
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--red-light)">⚠️</span> Key Challenges</div>
+      <div class="ch-grid">
+        <div class="ch-card ch-red"><div class="ch-title">Quality Standardisation</div><div class="ch-body">Inconsistent product quality across artisans; lack of uniform quality standards for international buyers.</div></div>
+        <div class="ch-card ch-red"><div class="ch-title">Technology Adoption</div><div class="ch-body">Many artisans resist modern tools; digital literacy gaps limit e-commerce access in rural areas.</div></div>
+        <div class="ch-card ch-red"><div class="ch-title">Credit Access Gaps</div><div class="ch-body">Small artisans lack collateral for bank loans; margin money scheme has implementation delays in some districts.</div></div>
+        <div class="ch-card ch-red"><div class="ch-title">Uneven Geographic Spread</div><div class="ch-body">Benefits concentrated in famous clusters (Varanasi, Agra, Lucknow, Moradabad); remote districts underserved.</div></div>
+        <div class="ch-card ch-red"><div class="ch-title">Imitation Products</div><div class="ch-body">Machine-made replicas undercut genuine GI-tagged products. Chikankari, Banarasi silk most affected.</div></div>
+        <div class="ch-card ch-red"><div class="ch-title">Packaging &amp; Branding</div><div class="ch-body">Artisans lack skills in modern packaging and brand storytelling needed for premium/international markets.</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--green-light)">✅</span> Success Stories</div>
+      <div class="ch-grid">
+        <div class="ch-card ch-green"><div class="ch-title">Kalanamak Rice — Siddharthnagar</div><div class="ch-body">Cultivation: 2,000 ha → 20,000 ha. GI-tagged 2013. Gifted at G20 2023. Bronze at ODOP Awards 2024. Farmer income doubled.</div></div>
+        <div class="ch-card ch-green"><div class="ch-title">Chikankari — Lucknow</div><div class="ch-body">Cottage craft → ₹10,000+ crore industry. 2.5 lakh artisans (mostly women). GI-tagged. Exported globally.</div></div>
+        <div class="ch-card ch-green"><div class="ch-title">Terracotta — Gorakhpur</div><div class="ch-body">Near-extinct craft revived under ODOP. National awards. Now exported to Europe and the USA.</div></div>
+        <div class="ch-card ch-green"><div class="ch-title">Sports Goods — Meerut</div><div class="ch-body">~70% of India's cricket bats made here. Major export hub. CFCs with quality-testing labs established.</div></div>
+        <div class="ch-card ch-green"><div class="ch-title">Pilibhit Flute</div><div class="ch-body">90% of India's bamboo flutes from Pilibhit. GI-tagged. Unique identity created via ODOP branding.</div></div>
+        <div class="ch-card ch-green"><div class="ch-title">Banarasi Silk — Varanasi</div><div class="ch-body">500+ year tradition. ~30,000 weavers. GI-tagged. Gifted at G7 and G20 summits by PM Modi.</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--amber-light)">🔗</span> Similar/Related Schemes</div>
+      <div class="scheme-list">
+        <div class="scheme-item"><strong>PM FME (Pradhan Mantri Formalisation of Micro Food Processing Enterprises)</strong> — Central scheme, 35% subsidy on machinery for food processing MSMEs. Complements ODOP food product districts.</div>
+        <div class="scheme-item"><strong>Districts as Export Hubs (DEH)</strong> — DPIIT initiative. ODOP products integrated for export promotion. GI-tagged products prioritised for DEH.</div>
+        <div class="scheme-item"><strong>Cluster Development Programme (CDP)</strong> — Ministry of MSME. Funds soft &amp; hard infrastructure in ODOP clusters. Shared CFCs funded under CDP.</div>
+        <div class="scheme-item"><strong>Vocal for Local / Aatmanirbhar Bharat</strong> — ODOP aligns with PM Modi's vision. ODOP products promoted as symbols of local self-reliance nationally and internationally.</div>
+        <div class="scheme-item"><strong>Similar State Schemes</strong> — Bihar, Madhya Pradesh (Silver 2024), Maharashtra, Punjab, Rajasthan all have ODOP-type initiatives. UP remains the pioneer and model state.</div>
+        <div class="scheme-item"><strong>Japan OVOP Influence</strong> — Japan's "One Village One Product" (Dr. Morihiko Hiramatsu, Oita Prefecture, 1979) is the direct inspiration for India's ODOP.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB 7 — MCQs
+  ══════════════════════════════════ -->
+  <div class="section" id="tab-mcq">
+    <div class="score-bar" id="score-bar">
+      <div class="score-text" id="score-text"></div>
+      <div class="score-prog-track"><div class="score-prog-fill" id="score-fill" style="width:0%"></div></div>
+    </div>
+    <div id="mcq-list"></div>
+  </div>
+
+  <div class="footer">
+    ODOP UP · UPPSC 2026 Guide · Data sourced from odopup.in, DPIIT, Government of Uttar Pradesh &amp; PIB · Last updated June 2026
+  </div>
+
+</div><!-- /page-wrap -->
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────────────────
+
+const DIVISIONS = [
+  { name: "Meerut Division", tc: "#1a4e8a", bg: "#e8f0fb", districts: [
+    { d: "Meerut",          p: "Sports Products",                     cat: "metal",   gi: false },
+    { d: "Ghaziabad",       p: "Engineering Goods",                   cat: "metal",   gi: false },
+    { d: "Baghpat",         p: "Home Furnishing",                     cat: "textile", gi: false },
+    { d: "Hapur",           p: "Home Furnishing",                     cat: "textile", gi: false },
+    { d: "Bulandshahr",     p: "Ceramic Products",                    cat: "metal",   gi: false },
+    { d: "Gautam Buddh Nagar", p: "Readymade Garments",              cat: "textile", gi: false },
+  ]},
+  { name: "Moradabad Division", tc: "#7d4e0a", bg: "#fdf3e0", districts: [
+    { d: "Moradabad",       p: "Metal Craft (Brass / Peetal Nagri)", cat: "metal",   gi: true  },
+    { d: "Rampur",          p: "Applique / Zari Patchwork",           cat: "textile", gi: false },
+    { d: "Amroha",          p: "Musical Instruments",                 cat: "wood",    gi: false },
+    { d: "Sambhal",         p: "Handicraft (Horn-Bone)",              cat: "metal",   gi: false },
+    { d: "Bijnor",          p: "Wood Craft",                          cat: "wood",    gi: false },
+  ]},
+  { name: "Bareilly Division", tc: "#4a3590", bg: "#eeeafc", districts: [
+    { d: "Bareilly",        p: "Zari-Zardozi / Bamboo Products",     cat: "textile", gi: false },
+    { d: "Pilibhit",        p: "Flute (Bansuri)",                    cat: "wood",    gi: true  },
+    { d: "Shahjahanpur",    p: "Zari Zardozi",                        cat: "textile", gi: false },
+    { d: "Badaun",          p: "Zari-Zardozi",                        cat: "textile", gi: false },
+  ]},
+  { name: "Saharanpur Division", tc: "#0d5f4e", bg: "#e0f5f0", districts: [
+    { d: "Saharanpur",      p: "Wood Crafting / Furniture",          cat: "wood",    gi: true  },
+    { d: "Muzaffarnagar",   p: "Jaggery (Gur)",                      cat: "food",    gi: false },
+    { d: "Shamli",          p: "Iron Arts",                           cat: "metal",   gi: false },
+  ]},
+  { name: "Aligarh Division", tc: "#0d5f4e", bg: "#e0f5f0", districts: [
+    { d: "Aligarh",         p: "Locks & Hardware",                   cat: "metal",   gi: false },
+    { d: "Hathras",         p: "Hing (Asafoetida)",                  cat: "food",    gi: false },
+    { d: "Kasganj",         p: "Zari Zardozi",                        cat: "textile", gi: false },
+    { d: "Etah",            p: "Ghungroo (Ankle Bells) & Brass",    cat: "metal",   gi: false },
+  ]},
+  { name: "Agra Division", tc: "#e8722a", bg: "#fdf0e8", districts: [
+    { d: "Agra",            p: "Leather Products",                   cat: "metal",   gi: true  },
+    { d: "Firozabad",       p: "Glassware / Glass Bangles",          cat: "metal",   gi: false },
+    { d: "Mainpuri",        p: "Tarkashi Art (Wire Inlay)",          cat: "wood",    gi: false },
+    { d: "Mathura",         p: "Sanitary Fittings",                  cat: "metal",   gi: false },
+  ]},
+  { name: "Lucknow Division", tc: "#2d6a3f", bg: "#eaf4ee", districts: [
+    { d: "Lucknow",         p: "Chikankari & Zari-Zardozi",         cat: "textile", gi: true  },
+    { d: "Raebareli",       p: "Wood Work",                          cat: "wood",    gi: false },
+    { d: "Sitapur",         p: "Carpet (Dari)",                      cat: "textile", gi: false },
+    { d: "Hardoi",          p: "Handloom",                           cat: "textile", gi: false },
+    { d: "Lakhimpur Kheri", p: "Tribal Craft",                       cat: "textile", gi: false },
+    { d: "Unnao",           p: "Zari Zardozi",                       cat: "textile", gi: false },
+  ]},
+  { name: "Kanpur Division", tc: "#8b2020", bg: "#fdeaea", districts: [
+    { d: "Kanpur Nagar",    p: "Leather Products & Hosiery",        cat: "metal",   gi: true  },
+    { d: "Kanpur Dehat",    p: "Aluminium Utensils",                 cat: "metal",   gi: false },
+    { d: "Etawah",          p: "Textile Products",                   cat: "textile", gi: false },
+    { d: "Farrukhabad",     p: "Textile Printing",                   cat: "textile", gi: false },
+    { d: "Kannauj",         p: "Perfume (Attar) — Perfume Capital", cat: "food",    gi: true  },
+    { d: "Auraiya",         p: "Desi Ghee (Food Processing)",       cat: "food",    gi: false },
+  ]},
+  { name: "Jhansi / Bundelkhand Division", tc: "#8b2020", bg: "#fdeaea", districts: [
+    { d: "Jhansi",          p: "Soft Toys",                          cat: "wood",    gi: false },
+    { d: "Lalitpur",        p: "Zari Silk Sarees",                   cat: "textile", gi: false },
+    { d: "Hamirpur",        p: "Shoes",                              cat: "metal",   gi: false },
+    { d: "Mahoba",          p: "Gaura Stone Craft",                  cat: "metal",   gi: false },
+    { d: "Banda",           p: "Shazar Stone Craft",                 cat: "metal",   gi: false },
+    { d: "Jalaun",          p: "Handmade Paper Art",                 cat: "wood",    gi: false },
+    { d: "Chitrakoot",      p: "Wooden Toys",                        cat: "wood",    gi: false },
+  ]},
+  { name: "Devipatan Division", tc: "#8b2020", bg: "#fdeaea", districts: [
+    { d: "Balrampur",       p: "Food Processing (Pulses)",           cat: "food",    gi: false },
+    { d: "Gonda",           p: "Food Processing (Pulses)",           cat: "food",    gi: false },
+    { d: "Bahraich",        p: "Wheat-Stalk Handicrafts",           cat: "textile", gi: false },
+    { d: "Shravasti",       p: "Tribal Craft",                       cat: "textile", gi: false },
+  ]},
+  { name: "Ayodhya / Faizabad Division", tc: "#7d4e0a", bg: "#fdf3e0", districts: [
+    { d: "Ayodhya",         p: "Jaggery (Gur)",                      cat: "food",    gi: false },
+    { d: "Ambedkar Nagar",  p: "Textile Products (Tanda)",          cat: "textile", gi: false },
+    { d: "Amethi",          p: "Moonj Products",                     cat: "wood",    gi: false },
+    { d: "Sultanpur",       p: "Moonj Products",                     cat: "wood",    gi: false },
+    { d: "Barabanki",       p: "Textile (Stoles/Fabric)",           cat: "textile", gi: false },
+  ]},
+  { name: "Prayagraj / Allahabad Division", tc: "#7d4e0a", bg: "#fdf3e0", districts: [
+    { d: "Prayagraj",       p: "Moonj Products",                     cat: "wood",    gi: false },
+    { d: "Kaushambi",       p: "Food Processing (Banana Products)", cat: "food",    gi: false },
+    { d: "Fatehpur",        p: "Bedsheets & Iron Fabrication",      cat: "metal",   gi: false },
+    { d: "Pratapgarh",      p: "Amla (Gooseberry) Products",       cat: "food",    gi: false },
+  ]},
+  { name: "Basti Division", tc: "#1a4e8a", bg: "#e8f0fb", districts: [
+    { d: "Basti",           p: "Wood Craft / Vinegar Products",     cat: "wood",    gi: false },
+    { d: "Sant Kabir Nagar",p: "Brassware Craft",                   cat: "metal",   gi: false },
+    { d: "Siddharthnagar",  p: "Kala Namak Rice (GI 2013)",        cat: "food",    gi: true  },
+  ]},
+  { name: "Gorakhpur Division", tc: "#0d5f4e", bg: "#e0f5f0", districts: [
+    { d: "Gorakhpur",       p: "Terracotta (Pottery)",              cat: "wood",    gi: true  },
+    { d: "Maharajganj",     p: "Furniture (Wood)",                  cat: "wood",    gi: false },
+    { d: "Kushinagar",      p: "Banana Fiber Products",             cat: "food",    gi: false },
+    { d: "Deoria",          p: "Decorative / Embroidery Products", cat: "textile", gi: false },
+  ]},
+  { name: "Azamgarh Division", tc: "#7d4e0a", bg: "#fdf3e0", districts: [
+    { d: "Azamgarh",        p: "Black Pottery (Kaali Mitti)",       cat: "wood",    gi: false },
+    { d: "Mau",             p: "Powerloom Textile (Sarees)",        cat: "textile", gi: false },
+    { d: "Ballia",          p: "Bindi (Tikuli)",                    cat: "textile", gi: false },
+  ]},
+  { name: "Varanasi Division", tc: "#4a3590", bg: "#eeeafc", districts: [
+    { d: "Varanasi",        p: "Banarasi Silk Saree (500+ yr)",    cat: "textile", gi: true  },
+    { d: "Jaunpur",         p: "Woollen Carpets (Dari)",            cat: "textile", gi: false },
+    { d: "Ghazipur",        p: "Jute Wall Hanging",                 cat: "textile", gi: false },
+    { d: "Chandauli",       p: "Zari-Zardozi / Black Rice",        cat: "textile", gi: false },
+  ]},
+  { name: "Mirzapur / Vindhya Division", tc: "#2d6a3f", bg: "#eaf4ee", districts: [
+    { d: "Mirzapur",        p: "Carpets (Dari)",                    cat: "textile", gi: true  },
+    { d: "Bhadohi",         p: "Carpet (Dari) — Carpet City",      cat: "textile", gi: true  },
+    { d: "Sonbhadra",       p: "Carpets",                           cat: "textile", gi: false },
+  ]},
+];
+
+const GI_PRODUCTS = [
+  { name: "Banarasi Silk Saree",      dist: "Varanasi",        type: "Textile",     note: "500+ year old craft, ~30,000 weavers. One of India's most iconic GI products. Gifted at G7 & G20 by PM Modi." },
+  { name: "Lucknow Chikankari",       dist: "Lucknow",         type: "Embroidery",  note: "2.5 lakh artisans (mostly women), ₹10,000+ crore industry. Global brand with GI protection." },
+  { name: "Kala Namak Rice",          dist: "Siddharthnagar",  type: "Agriculture", note: "GI tagged 2013. Cultivation: 2,000 ha → 20,000 ha. Aromatic heritage rice. Bronze at ODOP Awards 2024." },
+  { name: "Kannauj Attar / Perfume",  dist: "Kannauj",         type: "Perfume",     note: "'Perfume Capital of India'. 5000+ year tradition. Distillation technique unique to Kannauj." },
+  { name: "Moradabad Brass Craft",    dist: "Moradabad",       type: "Metal Craft", note: "'Peetal Nagri' — Brass City. Major global export hub. UP contributes significantly to brass export." },
+  { name: "Agra Petha",               dist: "Agra",            type: "Food",        note: "Famous white sweet made from ash gourd. Unique to Agra's tradition and water quality." },
+  { name: "Dasheri Mango",            dist: "Lucknow/Malihabad", type: "Horticulture", note: "Most famous UP mango variety. Origin: Malihabad, Lucknow. 600+ year cultivation history." },
+  { name: "Bhadohi / Mirzapur Carpet",dist: "Bhadohi/Mirzapur", type: "Carpet",    note: "UP contributes 39% of India's carpet exports. Major export destination: USA, Europe." },
+  { name: "Pilibhit Flute (Bansuri)", dist: "Pilibhit",        type: "Musical Instrument", note: "90% of India's bamboo flutes made here. GI protected craft. ODOP flagship success." },
+  { name: "Saharanpur Wood Carving",  dist: "Saharanpur",      type: "Woodcraft",   note: "Intricate furniture, decorative items. Major export industry." },
+  { name: "Agra Leather Products",    dist: "Agra",            type: "Leather",     note: "UP contributes 26% of India's leather exports. Agra is India's leather goods export hub." },
+  { name: "Gorakhpur Terracotta",     dist: "Gorakhpur",       type: "Pottery",     note: "Near-extinct craft revived under ODOP. Now exported to Europe & USA. National award winner." },
+  { name: "Varanasi Gulabi Meenakari",dist: "Varanasi",        type: "Craft",       note: "Pink enamelwork on gold/silver. Unique art form only practiced in Varanasi. Part of 32 Varanasi GI tags." },
+  { name: "Meerut Sports Goods",      dist: "Meerut",          type: "Industry",    note: "~70% of India's cricket equipment from Meerut. Bats, boxing gloves, hockey sticks." },
+];
+
+const TL_EVENTS = [
+  { year: "Jan 2018", col: "#1a4e8a", bg: "#e8f0fb", text: "ODOP launched on <strong>24 January 2018</strong> (UP Divas) by CM Yogi Adityanath. Budget: ₹25,000 crore. Target: 25 lakh youth employment." },
+  { year: "FY 2017-18", col: "#6b6560", bg: "#f0ede8", text: "Base year exports: <strong>₹88,967 crore</strong>. Scheme launched to revive 75 district-specific traditional industries." },
+  { year: "Aug 2018", col: "#4a3590", bg: "#eeeafc", text: "First ODOP Summit inaugurated by President Ram Nath Kovind at Indira Gandhi Pratishthan, Lucknow. Products from all 75 districts displayed." },
+  { year: "FY 2021-22", col: "#2d6a3f", bg: "#eaf4ee", text: "ODOP exports rose to <strong>₹96,000 crore</strong>. ODOP products now ~62% of UP's total exports. Dubai World Expo participation." },
+  { year: "Jun 2022", col: "#7d4e0a", bg: "#fdf3e0", text: "G7 Summit: PM Modi gifted <strong>ODOP items to G7 world leaders</strong> — Chikankari, Banarasi silk, terracotta products showcased globally." },
+  { year: "Sep 2023", col: "#e8722a", bg: "#fdf0e8", text: "G20 New Delhi Summit: MEA gifted ODOP handicrafts to all delegates with story cards. Varanasi hosted G20 Culture Working Group. Kalanamak rice, Chikankari highlighted." },
+  { year: "2024", col: "#4a3590", bg: "#eeeafc", text: "UP ranked <strong>Joint #1 nationally</strong> at ODOP 2024 Awards (with AP, Maharashtra, Punjab). Siddharthnagar won Bronze for Kalanamak rice." },
+  { year: "FY 2023-24", col: "#2d6a3f", bg: "#eaf4ee", text: "UP exports reach <strong>₹1,71,000 crore</strong> — nearly doubled from 2018 baseline. ODOP Walls opened in Singapore (2 stores), Milan, New York." },
+  { year: "May 2025", col: "#e8722a", bg: "#fdf0e8", text: "12 new products added to ODOP. Total products = <strong>74 under scheme</strong>. 18+ Indian Missions abroad actively promoting ODOP. ODOP now in Bahrain, Japan." },
+];
+
+const INTL_EVENTS = [
+  { year: "2021", text: "<strong>Dubai World Expo 2020–21:</strong> UP ODOP products showcased — leather, brass, carpets, glassware. Introduced scheme to global trade audience." },
+  { year: "Jun 2022", text: "<strong>G7 Summit (Germany):</strong> PM Modi gifted UP ODOP items to G7 leaders including PM Boris Johnson, President Biden, PM Draghi. Global media coverage." },
+  { year: "Jun 2022", text: "<strong>International Day of Yoga — New York:</strong> ODOP products promoted at Times Square during IDY. Reaches NRI and American market." },
+  { year: "Sep 2023", text: "<strong>G20 New Delhi Summit:</strong> MEA curated ODOP gifts with story cards for all G20 delegates. Kalanamak rice, Varanasi silk, Gorakhpur terracotta gifted." },
+  { year: "2023–24", text: "<strong>ODOP Walls opened globally:</strong> Singapore (Mustafa Centre + Kashmir Heritage Corner, Centre Point Mall), Milan (Italy), New York (USA). Permanent retail presence." },
+  { year: "2024", text: "<strong>National ODOP Awards 2024:</strong> 641 applications from 587 districts. 23 entries from Indian Missions abroad. UP ranked Joint #1. 34 awards across 3 categories." },
+  { year: "2024–25", text: "<strong>18+ Indian Missions abroad</strong> conducting exhibitions, roadshows, roundtables, gifting campaigns. Bahrain, Japan promotions added to ODOP international push." },
+  { year: "2025", text: "<strong>ODOP Walls — New markets:</strong> DPIIT announced new guidelines to promote first-time exporters. Skilling tie-ups with NID (National Institute of Design) and IITs." },
+];
+
+const MCQS = [
+  { q: "ODOP scheme was launched in Uttar Pradesh on which date?", opts: ["15 August 2017", "26 January 2017", "24 January 2018", "1 April 2018"], ans: 2, exp: "ODOP was launched on 24 January 2018 (UP Divas / Statehood Day) by CM Yogi Adityanath. This is one of the most asked UPPSC facts about the scheme." },
+  { q: "Which district of UP is associated with 'Kala Namak Rice' under ODOP?", opts: ["Gorakhpur", "Varanasi", "Siddharthnagar", "Kushinagar"], ans: 2, exp: "Siddharthnagar's Kala Namak rice is GI-tagged (2013). Under ODOP, cultivation grew from 2,000 to 20,000 hectares. It won Bronze at National ODOP Awards 2024." },
+  { q: "ODOP scheme is inspired by which country's model?", opts: ["China — One Town One Product", "Japan — One Village One Product (OVOP)", "Germany — Regional Craft Policy", "South Korea — Rural Revival Scheme"], ans: 1, exp: "ODOP is inspired by Japan's 'One Village One Product' (OVOP) movement started in 1979 by Dr. Morihiko Hiramatsu in Oita Prefecture, Japan." },
+  { q: "Which city in UP is known as 'Peetal Nagri' (Brass City of India)?", opts: ["Firozabad", "Varanasi", "Kannauj", "Moradabad"], ans: 3, exp: "Moradabad is called 'Peetal Nagri' (Brass City of India). Its metal craft is a GI-tagged ODOP product and a major global export item." },
+  { q: "UP's total exports of ODOP products in FY 2023–24 reached approximately:", opts: ["₹58,000 crore", "₹96,000 crore", "₹1,71,000 crore", "₹2,50,000 crore"], ans: 2, exp: "UP exports grew from ₹88,967 crore (FY 2017-18) to ₹1,71,000 crore (FY 2023-24) — nearly doubled. ODOP products contribute ~62% of UP's total exports." },
+  { q: "Which district's ODOP product is 'Chikankari' embroidery?", opts: ["Agra", "Lucknow", "Varanasi", "Moradabad"], ans: 1, exp: "Chikankari (hand embroidery) is Lucknow's ODOP product. GI-tagged, employs ~2.5 lakh artisans (mostly women), and is a ₹10,000+ crore industry." },
+  { q: "ODOP scheme is implemented under which state department of UP?", opts: ["Textile Department", "Agriculture Department", "MSME & Export Promotion Department", "Industries & Commerce Department"], ans: 2, exp: "ODOP is implemented by UP's Micro, Small and Medium Enterprises (MSME) & Export Promotion Department. Official website: odopup.in" },
+  { q: "Which district is known for 'Perfume/Attar' as its ODOP product?", opts: ["Hathras", "Kannauj", "Mathura", "Ayodhya"], ans: 1, exp: "Kannauj is known as the 'Perfume Capital of India' with 5,000+ year old attar tradition. GI-tagged perfumes are exported globally from Kannauj." },
+  { q: "UP's rank in National ODOP Awards 2024 was:", opts: ["Second (after Andhra Pradesh)", "Joint First (with AP, Maharashtra & Punjab)", "Third place", "Fourth place"], ans: 1, exp: "UP ranked Joint #1 nationally in ODOP 2024 Awards alongside Andhra Pradesh, Maharashtra, and Punjab. Siddharthnagar won Bronze for Kalanamak rice revival." },
+  { q: "Which district's ODOP product is the 'Flute (Bansuri)'?", opts: ["Varanasi", "Amroha", "Pilibhit", "Bijnor"], ans: 2, exp: "Pilibhit (Bareilly Division) is famous for bamboo flutes — approximately 90% of India's bamboo flutes are produced here. It is the GI-tagged ODOP product of Pilibhit district." },
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let currentCat = 'all';
+let searchQ = '';
+const answered = {};
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  [...document.querySelectorAll('.nav-tab')].find(t => t.getAttribute('onclick').includes("'" + id + "'")).classList.add('active');
+  if (id === 'districts') renderDistricts();
+  if (id === 'gi') renderGI();
+  if (id === 'progress') renderTimeline();
+  if (id === 'international') renderIntl();
+  if (id === 'mcq') renderMCQ();
+}
+
+function renderDistricts() {
+  const container = document.getElementById('dist-list');
+  container.innerHTML = '';
+  const q = searchQ.toLowerCase();
+
+  DIVISIONS.forEach((div, di) => {
+    const rows = div.districts.filter(d => {
+      const matchSearch = !q || d.d.toLowerCase().includes(q) || d.p.toLowerCase().includes(q);
+      const matchCat = currentCat === 'all' || (currentCat === 'gi' ? d.gi : d.cat === currentCat);
+      return matchSearch && matchCat;
+    });
+    if (!rows.length) return;
+
+    const block = document.createElement('div');
+    block.className = 'division-block';
+
+    const hdr = document.createElement('div');
+    hdr.className = 'division-header';
+    hdr.style.borderLeft = `3px solid ${div.tc}`;
+    hdr.innerHTML = `<span class="div-label" style="color:${div.tc}">📦 ${div.name}</span><span class="div-count">${rows.length} district${rows.length > 1 ? 's' : ''}</span><span class="div-arrow">▾</span>`;
+
+    const tbl = document.createElement('div');
+    tbl.className = 'division-table';
+    tbl.innerHTML = `<table>
+      <thead><tr>
+        <th style="width:28%">District</th>
+        <th style="width:52%">ODOP Product</th>
+        <th style="width:20%">Category</th>
+      </tr></thead>
+      <tbody>
+        ${rows.map(d => `<tr>
+          <td class="dist-name">${d.d}</td>
+          <td>${d.p}</td>
+          <td>
+            ${d.gi ? '<span class="badge-sm badge-gi">GI</span>' : ''}
+            <span class="badge-sm badge-${d.cat}">${d.cat}</span>
+          </td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+    hdr.onclick = () => { hdr.classList.toggle('open'); tbl.classList.toggle('show'); };
+    block.appendChild(hdr);
+    block.appendChild(tbl);
+    container.appendChild(block);
+
+    if (q || currentCat !== 'all') { hdr.classList.add('open'); tbl.classList.add('show'); }
+  });
+}
+
+function filterDist(v) { searchQ = v; renderDistricts(); }
+
+function setCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDistricts();
+}
+
+function renderGI() {
+  const grid = document.getElementById('gi-grid');
+  if (grid.children.length) return;
+  GI_PRODUCTS.forEach(g => {
+    const c = document.createElement('div');
+    c.className = 'gi-card';
+    c.innerHTML = `<div class="gi-name">🏷️ ${g.name} <span class="badge-sm badge-gi">GI Tagged</span></div>
+      <div class="gi-meta">${g.dist} · ${g.type}</div>
+      <div class="gi-note">${g.note}</div>`;
+    grid.appendChild(c);
+  });
+}
+
+function renderTimeline() {
+  const tl = document.getElementById('timeline');
+  if (tl.children.length) return;
+  TL_EVENTS.forEach(ev => {
+    const item = document.createElement('div');
+    item.className = 'tl-item';
+    item.innerHTML = `<div class="tl-dot" style="background:${ev.bg};color:${ev.col};border-color:${ev.col}">${ev.year.slice(-2)}</div>
+      <div class="tl-content">
+        <div class="tl-year">${ev.year}</div>
+        <div class="tl-event">${ev.text}</div>
+      </div>`;
+    tl.appendChild(item);
+  });
+}
+
+function renderIntl() {
+  const list = document.getElementById('intl-list');
+  if (list.children.length) return;
+  INTL_EVENTS.forEach(ev => {
+    const li = document.createElement('li');
+    li.className = 'intl-item';
+    li.innerHTML = `<span class="intl-year">${ev.year}</span><div class="intl-text">${ev.text}</div>`;
+    list.appendChild(li);
+  });
+}
+
+function renderMCQ() {
+  const container = document.getElementById('mcq-list');
+  if (container.children.length) return;
+  MCQS.forEach((m, i) => {
+    const card = document.createElement('div');
+    card.className = 'mcq-card';
+    card.innerHTML = `<div class="mcq-num">Q ${i + 1} of ${MCQS.length}</div>
+      <div class="mcq-question">${m.q}</div>
+      <div class="mcq-options">
+        ${m.opts.map((o, j) => `<button class="mcq-opt" id="opt-${i}-${j}" onclick="checkAns(${i},${j})">${String.fromCharCode(65 + j)}) ${o}</button>`).join('')}
+      </div>
+      <div class="mcq-explanation" id="exp-${i}">💡 ${m.exp}</div>`;
+    container.appendChild(card);
+  });
+}
+
+function checkAns(qi, ci) {
+  if (answered[qi] !== undefined) return;
+  answered[qi] = ci;
+  const correct = MCQS[qi].ans;
+  document.querySelectorAll(`[id^="opt-${qi}-"]`).forEach((b, j) => {
+    b.disabled = true;
+    if (j === correct) b.classList.add('correct');
+    else if (j === ci && ci !== correct) b.classList.add('wrong');
+  });
+  document.getElementById(`exp-${qi}`).classList.add('show');
+  updateScore();
+}
+
+function updateScore() {
+  const done = Object.keys(answered).length;
+  const correct = Object.entries(answered).filter(([k, v]) => MCQS[k].ans === Number(v)).length;
+  const bar = document.getElementById('score-bar');
+  bar.style.display = 'block';
+  document.getElementById('score-text').textContent = `Score: ${correct} / ${done} answered correctly (${MCQS.length} total questions)`;
+  document.getElementById('score-fill').style.width = (correct / MCQS.length * 100).toFixed(0) + '%';
+}
+
+// Init districts on page load
+renderDistricts();
+</script>
+</body>
+</html>
