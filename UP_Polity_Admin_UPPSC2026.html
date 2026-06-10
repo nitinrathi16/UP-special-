@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="hi-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UP Polity & Administration — UPPSC 2026 Complete Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --saffron: #FF6B00;
+    --saffron-lt: #FFF3E8;
+    --saffron-md: #FFD4A8;
+    --green: #006B3C;
+    --green-lt: #E6F4EE;
+    --green-md: #99D4BA;
+    --navy: #1A2E4A;
+    --navy-lt: #E8EDF5;
+    --steel: #4A6080;
+    --gold: #C9943A;
+    --gold-lt: #FBF4E6;
+    --red: #C0392B;
+    --red-lt: #FDECEA;
+    --purple: #6B3FA0;
+    --purple-lt: #F2EAFB;
+    --teal: #007A8C;
+    --teal-lt: #E5F5F8;
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --border: #E2E4E8;
+    --text: #1A2535;
+    --text-md: #4A5568;
+    --text-lt: #718096;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+
+  /* ─── HEADER ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #243B55 60%, #1A4570 100%);
+    color: #fff; padding: 40px 32px 32px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,107,0,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 220px; height: 220px; background: radial-gradient(circle, rgba(0,107,60,0.20) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,107,0,0.18); border: 1px solid rgba(255,107,0,0.4); color: #FFB07A; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+  .hero h1 { font-family: 'Noto Serif', serif; font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+  .hero h1 span { color: var(--saffron); }
+  .hero-sub { color: rgba(255,255,255,0.72); font-size: 14px; margin-bottom: 20px; }
+  .hero-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 600; color: var(--saffron); display: block; }
+  .hero-stat-lbl { font-size: 11px; color: rgba(255,255,255,0.60); text-transform: uppercase; letter-spacing: 0.8px; }
+
+  /* ─── NAV ─── */
+  .toc-nav { background: var(--surface); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+  .toc-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-link { display: flex; align-items: center; gap: 6px; padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--text-md); text-decoration: none; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; letter-spacing: 0.3px; }
+  .toc-link:hover, .toc-link.active { color: var(--navy); border-bottom-color: var(--saffron); }
+  .toc-link .emoji { font-size: 14px; }
+
+  /* ─── MAIN LAYOUT ─── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--border); }
+  .section-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .section-header h2 { font-family: 'Noto Serif', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); }
+  .section-header .sub { font-size: 12px; color: var(--text-lt); font-weight: 400; display: block; }
+
+  /* ─── CARDS ─── */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: var(--shadow); }
+  .card-grid { display: grid; gap: 16px; }
+  .card-grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .card-grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+  /* ─── INFO CHIPS ─── */
+  .chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 600; }
+  .chip-orange { background: var(--saffron-lt); color: var(--saffron); }
+  .chip-green { background: var(--green-lt); color: var(--green); }
+  .chip-blue { background: var(--navy-lt); color: var(--navy); }
+  .chip-gold { background: var(--gold-lt); color: var(--gold); }
+  .chip-red { background: var(--red-lt); color: var(--red); }
+  .chip-purple { background: var(--purple-lt); color: var(--purple); }
+  .chip-teal { background: var(--teal-lt); color: var(--teal); }
+
+  /* ─── PERSON CARDS ─── */
+  .person-card { border-radius: 14px; padding: 18px; display: flex; gap: 14px; align-items: flex-start; }
+  .person-avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .person-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 2px; }
+  .person-role { font-size: 12px; color: var(--text-lt); margin-bottom: 8px; }
+  .person-meta { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  /* ─── TABLES ─── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .data-table th { background: var(--navy); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .data-table th:first-child { border-radius: 8px 0 0 0; }
+  .data-table th:last-child { border-radius: 0 8px 0 0; }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #F7F9FC; }
+  .data-table tr:hover td { background: var(--navy-lt); }
+  .table-wrap { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
+
+  /* ─── HIERARCHY ─── */
+  .hierarchy { display: flex; flex-direction: column; gap: 2px; }
+  .h-level { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 8px; position: relative; }
+  .h-level::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; }
+  .h-l1::before { background: var(--saffron); }
+  .h-l2::before { background: var(--navy); }
+  .h-l3::before { background: var(--green); }
+  .h-l4::before { background: var(--gold); }
+  .h-l5::before { background: var(--purple); }
+  .h-l6::before { background: var(--teal); }
+  .h-l1 { background: var(--saffron-lt); }
+  .h-l2 { background: var(--navy-lt); margin-left: 20px; }
+  .h-l3 { background: var(--green-lt); margin-left: 40px; }
+  .h-l4 { background: var(--gold-lt); margin-left: 60px; }
+  .h-l5 { background: var(--purple-lt); margin-left: 80px; }
+  .h-l6 { background: var(--teal-lt); margin-left: 100px; }
+  .h-icon { font-size: 18px; width: 28px; text-align: center; }
+  .h-title { font-weight: 700; font-size: 13.5px; }
+  .h-note { font-size: 12px; color: var(--text-lt); margin-left: auto; }
+
+  /* ─── HIGHLIGHT BOXES ─── */
+  .info-box { border-radius: 10px; padding: 14px 16px; margin: 10px 0; border-left: 4px solid; }
+  .info-box.orange { background: var(--saffron-lt); border-color: var(--saffron); }
+  .info-box.green { background: var(--green-lt); border-color: var(--green); }
+  .info-box.blue { background: var(--navy-lt); border-color: var(--navy); }
+  .info-box.gold { background: var(--gold-lt); border-color: var(--gold); }
+  .info-box.red { background: var(--red-lt); border-color: var(--red); }
+  .info-box.purple { background: var(--purple-lt); border-color: var(--purple); }
+  .info-box-title { font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+
+  /* ─── STATS ROW ─── */
+  .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat-box { flex: 1; min-width: 120px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; box-shadow: var(--shadow); }
+  .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 700; display: block; }
+  .stat-lbl { font-size: 11px; color: var(--text-lt); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  /* ─── MCQ SECTION ─── */
+  .mcq-card { border-radius: 12px; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--border); }
+  .mcq-q { background: var(--navy); color: #fff; padding: 14px 18px; font-weight: 600; font-size: 14px; display: flex; gap: 10px; }
+  .mcq-qnum { background: var(--saffron); color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .mcq-opts { background: var(--surface); padding: 14px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .mcq-opt { padding: 8px 12px; border-radius: 6px; font-size: 13px; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; display: flex; gap: 8px; align-items: flex-start; }
+  .mcq-opt:hover { background: var(--navy-lt); border-color: var(--navy); }
+  .mcq-opt.correct { background: var(--green-lt) !important; border-color: var(--green) !important; color: var(--green); font-weight: 600; }
+  .mcq-opt.wrong { background: var(--red-lt) !important; border-color: var(--red) !important; color: var(--red); }
+  .mcq-opt-lbl { font-weight: 700; color: var(--text-lt); flex-shrink: 0; }
+  .mcq-explain { background: #F0FDF4; border-top: 1px solid var(--border); padding: 10px 18px; font-size: 12.5px; color: var(--green); display: none; }
+  .mcq-explain.show { display: block; }
+
+  /* ─── DIVISION GRID ─── */
+  .div-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+  .div-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; border-top: 3px solid var(--navy); }
+  .div-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-lt); font-weight: 600; margin-bottom: 4px; }
+  .div-name { font-weight: 700; font-size: 13px; color: var(--navy); margin-bottom: 4px; }
+  .div-hq { font-size: 12px; color: var(--saffron); font-weight: 600; }
+  .div-districts { font-size: 11px; color: var(--text-lt); margin-top: 3px; }
+  .div-special { font-size: 10.5px; color: var(--red); font-weight: 600; margin-top: 3px; }
+
+  /* ─── POLICE ZONES ─── */
+  .zone-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .zone-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 12.5px; }
+  .zone-name { font-weight: 700; color: var(--navy); }
+  .zone-hq { font-size: 11px; color: var(--text-lt); }
+
+  /* ─── PANCHAYATI RAJ PYRAMID ─── */
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px; }
+  .p-level { border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 14px 20px; }
+  .p-title { font-weight: 700; font-size: 14px; }
+  .p-sub { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+  .p-arrow { font-size: 18px; color: var(--text-lt); }
+
+  ul.feat-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  ul.feat-list li { display: flex; gap: 8px; font-size: 13.5px; }
+  ul.feat-list li::before { content: '▸'; color: var(--saffron); font-size: 12px; margin-top: 3px; flex-shrink: 0; }
+
+  .tag { display: inline-block; background: var(--saffron-lt); color: var(--saffron); font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-left: 4px; }
+  .tag.green { background: var(--green-lt); color: var(--green); }
+  .tag.blue { background: var(--navy-lt); color: var(--navy); }
+  .tag.red { background: var(--red-lt); color: var(--red); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    .mcq-opts { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.5rem; }
+    .div-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* footer */
+  footer { background: var(--navy); color: rgba(255,255,255,0.6); text-align: center; padding: 20px; font-size: 12px; margin-top: 40px; }
+
+  /* scroll reveal */
+  .section { opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🎯 UPPSC 2026 Preparation · Top 10 Rank</div>
+    <h1>उत्तर प्रदेश <span>Polity & Administration</span><br/>Complete Study Guide</h1>
+    <p class="hero-sub">Vidhan Sabha · Governor · CM Cabinet · 18 Divisions · District Admin · Panchayati Raj · High Court · Police Structure</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-num">403</span><span class="hero-stat-lbl">Vidhan Sabha Seats</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">100</span><span class="hero-stat-lbl">Vidhan Parishad</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">18</span><span class="hero-stat-lbl">Mandals</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">75</span><span class="hero-stat-lbl">Districts</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">821</span><span class="hero-stat-lbl">Vikaskhand</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="toc-nav">
+  <div class="toc-inner">
+    <a class="toc-link" href="#vidhan-sabha"><span class="emoji">🏛️</span>Vidhan Sabha</a>
+    <a class="toc-link" href="#vidhan-parishad"><span class="emoji">📜</span>Vidhan Parishad</a>
+    <a class="toc-link" href="#governor"><span class="emoji">👤</span>Governor</a>
+    <a class="toc-link" href="#cm-cabinet"><span class="emoji">🗳️</span>CM & Cabinet</a>
+    <a class="toc-link" href="#divisions"><span class="emoji">🗺️</span>18 Divisions</a>
+    <a class="toc-link" href="#district-admin"><span class="emoji">📋</span>District Admin</a>
+    <a class="toc-link" href="#panchayati-raj"><span class="emoji">🌾</span>Panchayati Raj</a>
+    <a class="toc-link" href="#urban-bodies"><span class="emoji">🏙️</span>Urban Bodies</a>
+    <a class="toc-link" href="#high-court"><span class="emoji">⚖️</span>High Court</a>
+    <a class="toc-link" href="#police"><span class="emoji">🚔</span>Police</a>
+    <a class="toc-link" href="#mcq"><span class="emoji">✅</span>MCQs</a>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ══════════ 1. VIDHAN SABHA ══════════ -->
+<section class="section" id="vidhan-sabha">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--saffron-lt)">🏛️</div>
+    <div>
+      <h2>UP Vidhan Sabha — विधान सभा</h2>
+      <span class="sub">Lower House of UP Legislature · 18th Assembly (2022–2027)</span>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><span class="stat-num" style="color:var(--saffron)">403</span><span class="stat-lbl">Total Seats</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--navy)">84</span><span class="stat-lbl">SC Reserved</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--green)">2</span><span class="stat-lbl">ST Reserved</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--gold)">317</span><span class="stat-lbl">General Seats</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--purple)">5</span><span class="stat-lbl">Years Term</span></div>
+  </div>
+
+  <div class="card-grid cols-2">
+    <!-- Current Office Holders -->
+    <div class="card">
+      <div class="info-box orange" style="margin-bottom:14px">
+        <div class="info-box-title">🟠 वर्तमान पदाधिकारी (Current Officials)</div>
+      </div>
+      <div class="hierarchy">
+        <div class="h-level h-l1">
+          <span class="h-icon">🎙️</span>
+          <div>
+            <div class="h-title">Speaker — Satish Mahana</div>
+            <div style="font-size:12px;color:var(--text-lt)">BJP · Maharajpur (Kanpur) · 8-time MLA · Since 29 Mar 2022</div>
+          </div>
+          <span class="h-note"><span class="chip chip-orange">23rd Speaker</span></span>
+        </div>
+        <div class="h-level h-l2">
+          <span class="h-icon">🪑</span>
+          <div>
+            <div class="h-title">Deputy Speaker — Vacant</div>
+          </div>
+        </div>
+        <div class="h-level h-l2">
+          <span class="h-icon">👑</span>
+          <div>
+            <div class="h-title">Leader of House — Yogi Adityanath (CM)</div>
+            <div style="font-size:12px;color:var(--text-lt)">Gorakhpur Urban constituency</div>
+          </div>
+        </div>
+        <div class="h-level h-l3">
+          <span class="h-icon">⚔️</span>
+          <div>
+            <div class="h-title">Leader of Opposition — Mata Prasad Pandey</div>
+            <div style="font-size:12px;color:var(--text-lt)">SP · Itwa · Since 28 July 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Party Position -->
+    <div class="card">
+      <div class="info-box blue" style="margin-bottom:14px">
+        <div class="info-box-title">📊 Party Strength (2022 Election)</div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Party / Alliance</th><th>Seats</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>NDA Total</strong></td><td><strong>294</strong></td><td><span class="chip chip-orange">Govt</span></td></tr>
+          <tr><td>&nbsp;&nbsp;BJP</td><td>257</td><td>—</td></tr>
+          <tr><td>&nbsp;&nbsp;Apna Dal (S)</td><td>13</td><td>—</td></tr>
+          <tr><td>&nbsp;&nbsp;RLD</td><td>9</td><td>—</td></tr>
+          <tr><td>&nbsp;&nbsp;SBSP</td><td>6</td><td>—</td></tr>
+          <tr><td>&nbsp;&nbsp;NISHAD Party</td><td>5</td><td>—</td></tr>
+          <tr><td><strong>SP+</strong></td><td><strong>101+2</strong></td><td><span class="chip chip-blue">Opp</span></td></tr>
+          <tr><td>BSP</td><td>1</td><td>—</td></tr>
+          <tr><td>JD(L)</td><td>2</td><td>—</td></tr>
+          <tr><td>Vacant</td><td>3</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="info-box gold" style="margin-bottom:12px">
+      <div class="info-box-title">📚 Key UPPSC Facts — Speaker History</div>
+    </div>
+    <div class="two-col">
+      <ul class="feat-list">
+        <li>प्रथम Speaker: <strong>Purushottam Das Tandon</strong> (1937, United Provinces Legislative Assembly)</li>
+        <li>Satish Mahana = <strong>23rd Speaker</strong> (but 18th person to hold post)</li>
+        <li>First UP Vidhan Sabha after independence: <strong>1952</strong></li>
+        <li>Total seats till 1967: <strong>431</strong> (reduced to 403 after delimitation)</li>
+        <li>Anglo-Indian reserved seat: <strong>Abolished by 104th Amendment, 2019</strong></li>
+      </ul>
+      <ul class="feat-list">
+        <li>UP has <strong>80 Lok Sabha</strong> seats — highest in India</li>
+        <li>Reserved: 17 SC + 0 ST Lok Sabha seats</li>
+        <li>Assembly election: <strong>First Past The Post</strong> system</li>
+        <li>Next election due: <strong>2027</strong></li>
+        <li>Pro-tem Speaker 2022: <strong>Ramapati Shastri</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 2. VIDHAN PARISHAD ══════════ -->
+<section class="section" id="vidhan-parishad">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--navy-lt)">📜</div>
+    <div>
+      <h2>UP Vidhan Parishad — विधान परिषद</h2>
+      <span class="sub">Upper House · Permanent Body · 100 Members</span>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><span class="stat-num" style="color:var(--navy)">100</span><span class="stat-lbl">Total Members</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--saffron)">90</span><span class="stat-lbl">Elected</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--green)">10</span><span class="stat-lbl">Nominated (Gov.)</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--gold)">6</span><span class="stat-lbl">Years Term</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--purple)">1/3</span><span class="stat-lbl">Retire Every 2yr</span></div>
+  </div>
+
+  <div class="card-grid cols-2">
+    <div class="card">
+      <div class="info-box blue" style="margin-bottom:12px">
+        <div class="info-box-title">🏷️ Composition Breakdown</div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Category</th><th>Members</th><th>Electorate</th></tr></thead>
+        <tbody>
+          <tr><td>By Vidhan Sabha MLAs</td><td><strong>36</strong></td><td>All elected MLAs</td></tr>
+          <tr><td>By Local Bodies</td><td><strong>36</strong></td><td>Zila Parishad, etc.</td></tr>
+          <tr><td>By Graduates</td><td><strong>9</strong></td><td>Graduates (3yr+)</td></tr>
+          <tr><td>By Teachers</td><td><strong>9</strong></td><td>Secondary+ teachers</td></tr>
+          <tr><td>By Governor (Nominated)</td><td><strong>10</strong></td><td>Literature, science, art, etc.</td></tr>
+          <tr style="background:var(--gold-lt)"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="info-box orange" style="margin-bottom:12px">
+        <div class="info-box-title">👤 Current Officials</div>
+      </div>
+      <div class="hierarchy">
+        <div class="h-level h-l1">
+          <span class="h-icon">🎙️</span>
+          <div>
+            <div class="h-title">Chairman — Kunwar Manvendra Singh</div>
+            <div style="font-size:12px;color:var(--text-lt)">BJP · Since 31 Jan 2021</div>
+          </div>
+        </div>
+        <div class="h-level h-l2">
+          <span class="h-icon">🪑</span>
+          <div><div class="h-title">Deputy Chairman — Vacant</div></div>
+        </div>
+        <div class="h-level h-l2">
+          <span class="h-icon">👑</span>
+          <div>
+            <div class="h-title">Leader of House — Keshav Prasad Maurya</div>
+            <div style="font-size:12px;color:var(--text-lt)">Deputy CM · Since Aug 2022</div>
+          </div>
+        </div>
+        <div class="h-level h-l3">
+          <span class="h-icon">⚔️</span>
+          <div>
+            <div class="h-title">Leader of Opposition — Lal Bihari Yadav</div>
+            <div style="font-size:12px;color:var(--text-lt)">SP · Since 22 July 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="info-box green" style="margin-top:12px">
+        <div class="info-box-title">📊 Current Strength</div>
+        <div style="font-size:12.5px">NDA: <strong>83</strong> (BJP 79 + allies) | SP: 10 | Others: 6 | Vacant: 1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="info-box purple" style="margin-bottom:10px">
+      <div class="info-box-title">📚 Constitutional Provisions — Article 168–212</div>
+    </div>
+    <div class="two-col">
+      <ul class="feat-list">
+        <li>UP is one of <strong>6 states with Vidhan Parishad</strong> (AN Pradesh, Bihar, Karnataka, Maharashtra, Telangana, UP)</li>
+        <li>Max members = <strong>1/3rd of Vidhan Sabha</strong> (not less than 40) — Art. 171</li>
+        <li>Established by <strong>Government of India Act, 1935</strong></li>
+        <li>First session: <strong>29 July 1937</strong></li>
+      </ul>
+      <ul class="feat-list">
+        <li>First Chairman: <strong>Sir Sitaram</strong> (1937); First Vice-Chairperson: <strong>Begum Aijaz Rasul</strong></li>
+        <li>Parishad cannot be dissolved — <strong>permanent body</strong></li>
+        <li>Money Bill: Parishad has <strong>no veto</strong> — can delay 14 days only</li>
+        <li>Principal Secretary: <strong>Dr. Rajesh Singh, IAS</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 3. GOVERNOR ══════════ -->
+<section class="section" id="governor">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--gold-lt)">👤</div>
+    <div>
+      <h2>UP Governor — राज्यपाल</h2>
+      <span class="sub">Constitutional Head of State · Articles 153–162</span>
+    </div>
+  </div>
+
+  <!-- Current Governor Card -->
+  <div class="card" style="border-top:4px solid var(--gold); margin-bottom:16px">
+    <div class="person-card" style="padding:0">
+      <div class="person-avatar" style="background:var(--gold-lt); font-size:36px; width:70px; height:70px;">🎖️</div>
+      <div>
+        <div class="person-name" style="font-size:18px">Smt. Anandiben Mafatbhai Patel</div>
+        <div class="person-role">20th Governor of Uttar Pradesh</div>
+        <div class="person-meta">
+          <span class="chip chip-orange">In Office: 29 July 2019</span>
+          <span class="chip chip-green">Longest-serving UP Governor</span>
+          <span class="chip chip-gold">BJP Leader</span>
+          <span class="chip chip-blue">Ex-CM Gujarat (2014–16)</span>
+        </div>
+        <div style="margin-top:10px; font-size:13px; color:var(--text-md)">
+          ✦ First & only woman CM of Gujarat &nbsp;|&nbsp; Born: 21 Nov 1941 (Age ~84) &nbsp;|&nbsp; Preceded by: Ram Naik<br/>
+          ✦ Became <strong>longest-serving UP Governor</strong> on 29 July 2025 (6 years completed)<br/>
+          ✦ Also served as Governor of MP (2018–19) and Chhattisgarh (2018–19)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-grid cols-2">
+    <div class="card">
+      <div class="info-box blue" style="margin-bottom:12px">
+        <div class="info-box-title">⚡ Constitutional Role (Art. 153–162)</div>
+      </div>
+      <ul class="feat-list">
+        <li><strong>Executive Power:</strong> All executive actions in name of Governor; appoints CM, Ministers, AG, etc.</li>
+        <li><strong>Legislative Power:</strong> Summons/prorogues/dissolves Vidhan Sabha; addresses both Houses; nominates 10 MLC members</li>
+        <li><strong>Discretionary Power:</strong> Reserve Bill for President's assent; dismiss ministry on losing majority; Art. 356 (President's Rule)</li>
+        <li><strong>Ordinance Power:</strong> Art. 213 — when Legislature not in session</li>
+        <li><strong>Judicial:</strong> Pardons/commutes sentences in state list offences (Art. 161)</li>
+        <li><strong>Chancellor:</strong> Ex-officio Chancellor of all state universities in UP</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="info-box orange" style="margin-bottom:12px">
+        <div class="info-box-title">📋 Recent Governors of UP</div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>#</th><th>Name</th><th>Tenure</th></tr></thead>
+        <tbody>
+          <tr><td>16</td><td>T.V. Rajeswar</td><td>2004–2009</td></tr>
+          <tr><td>17</td><td>B.L. Joshi</td><td>2009–2014</td></tr>
+          <tr><td>18</td><td>Ram Naik</td><td>2014–2019</td></tr>
+          <tr style="background:var(--gold-lt)"><td><strong>20</strong></td><td><strong>Anandiben Patel</strong></td><td><strong>2019–Present</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="info-box red" style="margin-top:10px">
+        <div class="info-box-title">⚠️ Important Note</div>
+        <div style="font-size:12.5px">Governor's term = 5 years BUT continues till successor takes charge. Anandiben's 5-year term ended July 2024; still in office June 2026 as no successor appointed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 4. CM & CABINET ══════════ -->
+<section class="section" id="cm-cabinet">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--saffron-lt)">🗳️</div>
+    <div>
+      <h2>Chief Minister & Cabinet — मुख्यमंत्री व मंत्रिमंडल</h2>
+      <span class="sub">Second Yogi Adityanath Ministry (2022–2027)</span>
+    </div>
+  </div>
+
+  <!-- CM Card -->
+  <div class="card" style="border-top:4px solid var(--saffron); margin-bottom:16px">
+    <div class="person-card" style="padding:0">
+      <div class="person-avatar" style="background:var(--saffron-lt); font-size:36px; width:70px; height:70px;">👑</div>
+      <div>
+        <div class="person-name" style="font-size:18px">Yogi Adityanath</div>
+        <div class="person-role">22nd Chief Minister of Uttar Pradesh · BJP · Gorakhpur Urban MLA</div>
+        <div class="person-meta">
+          <span class="chip chip-orange">1st Term: Mar 2017 – Mar 2022</span>
+          <span class="chip chip-orange">2nd Term: 25 Mar 2022 – Present</span>
+          <span class="chip chip-blue">Home & Revenue (Self)</span>
+          <span class="chip chip-red">PWD (Self)</span>
+        </div>
+        <div style="margin-top:10px; font-size:13px; color:var(--text-md)">
+          ✦ Head of Gorakhnath Math, Gorakhpur &nbsp;|&nbsp; MP from Gorakhpur 1998–2017 (5 terms)<br/>
+          ✦ <strong>Key Decisions:</strong> Anti-Romeo squads, Ayodhya Ram Mandir support, UP Investors Summit, Mission Shakti, Bulldozer action, UP Defence Corridor<br/>
+          ✦ Retains: Home, Revenue, PWD, Housing, Mining departments
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deputy CMs & Key Ministers -->
+  <div class="card-grid cols-2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="info-box blue" style="margin-bottom:12px">
+        <div class="info-box-title">🥈 Deputy Chief Ministers</div>
+      </div>
+      <div class="hierarchy">
+        <div class="h-level h-l2">
+          <span class="h-icon">🧑‍💼</span>
+          <div>
+            <div class="h-title">Keshav Prasad Maurya</div>
+            <div style="font-size:12px;color:var(--text-lt)">PWD · Leader of House in Vidhan Parishad</div>
+          </div>
+        </div>
+        <div class="h-level h-l2">
+          <span class="h-icon">👨‍⚕️</span>
+          <div>
+            <div class="h-title">Brajesh Pathak</div>
+            <div style="font-size:12px;color:var(--text-lt)">Health & Family Welfare · Medical Education · Lucknow Cantonment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="info-box orange" style="margin-bottom:12px">
+        <div class="info-box-title">📋 Key Cabinet Ministers (2022+)</div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Minister</th><th>Portfolio</th></tr></thead>
+        <tbody>
+          <tr><td>Suresh Kumar Khanna</td><td>Finance · Legislative Affairs</td></tr>
+          <tr><td>Swatantra Dev Singh</td><td>Jal Shakti · Disaster Mgmt</td></tr>
+          <tr><td>Nand Gopal Gupta 'Nandi'</td><td>Industrial Dev · Export Promotion · NRI</td></tr>
+          <tr><td>Bhupendra Chaudhary</td><td>MSME <span class="tag">New May 2026</span></td></tr>
+          <tr><td>Manoj Kumar Pandey</td><td>Food & Civil Supplies <span class="tag">New May 2026</span></td></tr>
+          <tr><td>Jitin Prasada</td><td>Technical Education</td></tr>
+          <tr><td>Dara Singh Chauhan</td><td>Prison</td></tr>
+          <tr><td>Satish Mahana</td><td>Speaker (was Industrial Dev)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="info-box gold">
+    <div class="info-box-title">📌 Cabinet Expansion May 2026 — Key Points for UPPSC</div>
+    <ul class="feat-list">
+      <li>On <strong>10 May 2026</strong>, CM Yogi inducted 6 new ministers (2 Cabinet + 4 MoS)</li>
+      <li>Former BJP State President <strong>Bhupendra Chaudhary</strong> → MSME; Ex-SP leader <strong>Manoj Pandey</strong> → Food & Civil Supplies</li>
+      <li>Yogi retains <strong>Home + PWD</strong> — "second most powerful ministry after Home"</li>
+      <li>Cabinet structure: <strong>25 Cabinet Ministers + 9 MoS (I/C) + 13 MoS</strong> (as of 2022)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ 5. 18 DIVISIONS ══════════ -->
+<section class="section" id="divisions">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--green-lt)">🗺️</div>
+    <div>
+      <h2>18 Administrative Divisions — मण्डल</h2>
+      <span class="sub">18 Mandals · 75 Districts · 821 Vikaskhand</span>
+    </div>
+  </div>
+
+  <div class="info-box orange" style="margin-bottom:16px">
+    <div class="info-box-title">⚠️ UPPSC Trick Questions — याद रखो!</div>
+    <ul class="feat-list">
+      <li><strong>Chitrakoot Mandal HQ = Banda</strong> (NOT Chitrakoot town) — Most common trick question!</li>
+      <li><strong>Devipatan Mandal HQ = Gonda</strong> (NOT Devipatan) — Named after Devipatan temple in Balrampur</li>
+      <li>Lucknow, Kanpur & Meerut Mandals have <strong>most districts (6 each)</strong></li>
+      <li>Jhansi, Azamgarh, Basti, Mirzapur, Saharanpur have <strong>fewest districts (3 each)</strong></li>
+      <li>Largest Mandal by area: <strong>Lucknow Mandal</strong></li>
+    </ul>
+  </div>
+
+  <div class="div-grid">
+    <div class="div-card">
+      <div class="div-num">01</div>
+      <div class="div-name">Agra</div>
+      <div class="div-hq">🏛️ Agra</div>
+      <div class="div-districts">Agra, Mathura, Firozabad, Mainpuri</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">02</div>
+      <div class="div-name">Aligarh</div>
+      <div class="div-hq">🏛️ Aligarh</div>
+      <div class="div-districts">Aligarh, Hathras, Mathura, Kasganj, Etah</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">03</div>
+      <div class="div-name">Prayagraj</div>
+      <div class="div-hq">🏛️ Prayagraj</div>
+      <div class="div-districts">Prayagraj, Kaushambi, Fatehpur, Pratapgarh</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">04</div>
+      <div class="div-name">Azamgarh</div>
+      <div class="div-hq">🏛️ Azamgarh</div>
+      <div class="div-districts">Azamgarh, Mau, Ballia</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">05</div>
+      <div class="div-name">Basti</div>
+      <div class="div-hq">🏛️ Basti</div>
+      <div class="div-districts">Basti, Sant Kabir Nagar, Siddharth Nagar</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">06</div>
+      <div class="div-name">Chitrakoot</div>
+      <div class="div-hq" style="color:var(--red)">🏛️ Banda <span class="tag red">≠Chitrakoot!</span></div>
+      <div class="div-districts">Banda, Chitrakoot, Hamirpur, Mahoba</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">07</div>
+      <div class="div-name">Devipatan</div>
+      <div class="div-hq" style="color:var(--red)">🏛️ Gonda <span class="tag red">≠Devipatan!</span></div>
+      <div class="div-districts">Gonda, Balrampur, Bahraich, Shravasti</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">08</div>
+      <div class="div-name">Faizabad</div>
+      <div class="div-hq">🏛️ Ayodhya</div>
+      <div class="div-districts">Ayodhya, Ambedkar Nagar, Sultanpur, Amethi, Barabanki</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">09</div>
+      <div class="div-name">Gorakhpur</div>
+      <div class="div-hq">🏛️ Gorakhpur</div>
+      <div class="div-districts">Gorakhpur, Maharajganj, Kushinagar, Deoria</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">10</div>
+      <div class="div-name">Jhansi</div>
+      <div class="div-hq">🏛️ Jhansi</div>
+      <div class="div-districts">Jhansi, Lalitpur, Jalaun</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">11</div>
+      <div class="div-name">Kanpur</div>
+      <div class="div-hq">🏛️ Kanpur</div>
+      <div class="div-districts">Kanpur Nagar, Kanpur Dehat, Etawah, Farrukhabad, Auraiya, Kannauj</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">12</div>
+      <div class="div-name">Lucknow</div>
+      <div class="div-hq">🏛️ Lucknow</div>
+      <div class="div-districts">Lucknow, Hardoi, Lakhimpur Kheri, Rae Bareli, Sitapur, Unnao</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">13</div>
+      <div class="div-name">Meerut</div>
+      <div class="div-hq">🏛️ Meerut</div>
+      <div class="div-districts">Meerut, Baghpat, Bulandshahr, Ghaziabad, Hapur, Gautam Buddha Nagar</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">14</div>
+      <div class="div-name">Mirzapur</div>
+      <div class="div-hq">🏛️ Mirzapur</div>
+      <div class="div-districts">Mirzapur, Sonbhadra, Bhadohi</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">15</div>
+      <div class="div-name">Moradabad</div>
+      <div class="div-hq">🏛️ Moradabad</div>
+      <div class="div-districts">Moradabad, Amroha, Bijnor, Rampur, Sambhal</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">16</div>
+      <div class="div-name">Saharanpur</div>
+      <div class="div-hq">🏛️ Saharanpur</div>
+      <div class="div-districts">Saharanpur, Shamli, Muzaffarnagar</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">17</div>
+      <div class="div-name">Varanasi</div>
+      <div class="div-hq">🏛️ Varanasi</div>
+      <div class="div-districts">Varanasi, Jaunpur, Ghazipur, Chandauli</div>
+    </div>
+    <div class="div-card">
+      <div class="div-num">18</div>
+      <div class="div-name">Bareilly</div>
+      <div class="div-hq">🏛️ Bareilly</div>
+      <div class="div-districts">Bareilly, Badaun, Pilibhit, Shahjahanpur</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 6. DISTRICT ADMINISTRATION ══════════ -->
+<section class="section" id="district-admin">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--navy-lt)">📋</div>
+    <div>
+      <h2>District Administration — जिला प्रशासन</h2>
+      <span class="sub">75 Districts · Commissioner System · DM–SP Structure</span>
+    </div>
+  </div>
+
+  <div class="card-grid cols-2">
+    <div class="card">
+      <div class="info-box orange" style="margin-bottom:12px">
+        <div class="info-box-title">🏗️ Administrative Hierarchy (UP)</div>
+      </div>
+      <div class="hierarchy">
+        <div class="h-level h-l1">
+          <span class="h-icon">🏢</span>
+          <div>
+            <div class="h-title">Mandal (Division)</div>
+            <div style="font-size:12px;color:var(--text-lt)">Divisional Commissioner (IAS)</div>
+          </div>
+          <span class="h-note"><span class="chip chip-orange">18 Mandals</span></span>
+        </div>
+        <div class="h-level h-l2">
+          <span class="h-icon">🏙️</span>
+          <div>
+            <div class="h-title">District (Jila)</div>
+            <div style="font-size:12px;color:var(--text-lt)">District Magistrate / Collector (IAS)</div>
+          </div>
+          <span class="h-note"><span class="chip chip-blue">75 Districts</span></span>
+        </div>
+        <div class="h-level h-l3">
+          <span class="h-icon">🗂️</span>
+          <div>
+            <div class="h-title">Tehsil / Taluka</div>
+            <div style="font-size:12px;color:var(--text-lt)">Sub-Divisional Magistrate — SDM (PCS)</div>
+          </div>
+          <span class="h-note"><span class="chip chip-green">~316 Tehsils</span></span>
+        </div>
+        <div class="h-level h-l4">
+          <span class="h-icon">📌</span>
+          <div>
+            <div class="h-title">Parganah / Block</div>
+            <div style="font-size:12px;color:var(--text-lt)">Block Development Officer (BDO)</div>
+          </div>
+          <span class="h-note"><span class="chip chip-gold">821 Blocks</span></span>
+        </div>
+        <div class="h-level h-l5">
+          <span class="h-icon">🌾</span>
+          <div>
+            <div class="h-title">Gram Panchayat</div>
+            <div style="font-size:12px;color:var(--text-lt)">Gram Pradhan / Panchayat Sachiv</div>
+          </div>
+          <span class="h-note"><span class="chip chip-purple">~58,000 GPs</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="info-box blue" style="margin-bottom:12px">
+        <div class="info-box-title">👥 Key Officials & Their Roles</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:var(--saffron-lt)">
+          <div style="font-weight:700; color:var(--navy)">🏅 District Magistrate (DM) / Collector</div>
+          <div style="font-size:12.5px; margin-top:6px; color:var(--text-md)">
+            IAS officer · Head of district civil administration · Law & order + Revenue + Development coordination · Presides over DCC (District Coordination Committee) · Election Returning Officer · Chairman District Disaster Management Authority
+          </div>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:var(--navy-lt)">
+          <div style="font-weight:700; color:var(--navy)">🚔 Superintendent of Police (SP)</div>
+          <div style="font-size:12.5px; margin-top:6px; color:var(--text-md)">
+            IPS officer · Head of district police · Law & order, crime prevention · Reports to DIG/IG of Range · In major cities: Commissioner of Police system (Lucknow, Kanpur, Agra, Varanasi, Prayagraj, Ghaziabad, Noida)
+          </div>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:var(--green-lt)">
+          <div style="font-weight:700; color:var(--navy)">📋 SDM (Sub-Divisional Magistrate)</div>
+          <div style="font-size:12.5px; margin-top:6px; color:var(--text-md)">
+            PCS officer · Executive Magistrate powers · Revenue matters at tehsil level · Land records, mutation, jamabandi · Conducts local body elections at tehsil level · <strong>Direct career entry point for UPPSC candidates!</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="info-box gold" style="margin-bottom:12px">
+      <div class="info-box-title">🏛️ Commissioner System in UP — Divisional Commissioner</div>
+    </div>
+    <div class="two-col">
+      <ul class="feat-list">
+        <li>IAS officer of Joint Secretary rank or above</li>
+        <li>Heads the <strong>Mandal (Division)</strong> — supervisory authority over DMs</li>
+        <li>Hears revision/appeals against DM orders (Revenue cases)</li>
+        <li>Appellate authority for land acquisition, land records disputes</li>
+        <li>Coordinates law & order at divisional level with DIG Police</li>
+      </ul>
+      <ul class="feat-list">
+        <li>Commissioner = <strong>Mandlayukt</strong> in Hindi</li>
+        <li>Has additional charge of various development boards in division</li>
+        <li>Real power center: DM has more day-to-day authority</li>
+        <li>Commissioner of Police (Urban): Separate system in 8 major cities</li>
+        <li>UP uses Commissioner + DM parallel system (not Commissioner-only like Delhi)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 7. PANCHAYATI RAJ ══════════ -->
+<section class="section" id="panchayati-raj">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--green-lt)">🌾</div>
+    <div>
+      <h2>UP Panchayati Raj — पंचायती राज</h2>
+      <span class="sub">73rd Amendment · UP Panchayati Raj Act 1947 · 3-Tier System</span>
+    </div>
+  </div>
+
+  <!-- 3-Tier Pyramid -->
+  <div class="card" style="margin-bottom:16px">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:8px; padding:10px 0">
+      <div style="background:var(--saffron); color:#fff; border-radius:10px; padding:14px 60px; text-align:center; width:fit-content">
+        <div style="font-weight:700; font-size:15px">🏰 ZILA PANCHAYAT (जिला पंचायत)</div>
+        <div style="font-size:12px; opacity:0.85">3rd Tier · District Level · 75 ZPs</div>
+        <div style="font-size:11px; opacity:0.75; margin-top:3px">Adhyaksh (President) + CEO (IAS/PCS)</div>
+      </div>
+      <div style="font-size:22px; color:var(--text-lt)">▼</div>
+      <div style="background:var(--navy); color:#fff; border-radius:10px; padding:14px 80px; text-align:center; width:fit-content">
+        <div style="font-weight:700; font-size:15px">🏘️ KSHETTRA PANCHAYAT (क्षेत्र पंचायत)</div>
+        <div style="font-size:12px; opacity:0.85">2nd Tier · Block Level · 821 KPs</div>
+        <div style="font-size:11px; opacity:0.75; margin-top:3px">Pramukh (President) + BDO (Ex-Officio Secy.)</div>
+      </div>
+      <div style="font-size:22px; color:var(--text-lt)">▼</div>
+      <div style="background:var(--green); color:#fff; border-radius:10px; padding:14px 100px; text-align:center; width:fit-content">
+        <div style="font-weight:700; font-size:15px">🌱 GRAM PANCHAYAT (ग्राम पंचायत)</div>
+        <div style="font-size:12px; opacity:0.85">1st Tier · Village Level · ~58,067 GPs</div>
+        <div style="font-size:11px; opacity:0.75; margin-top:3px">Gram Pradhan + Panchayat Sachiv (appointed)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-grid cols-2">
+    <div class="card">
+      <div class="info-box orange" style="margin-bottom:12px">
+        <div class="info-box-title">📜 73rd Amendment & UP Context</div>
+      </div>
+      <ul class="feat-list">
+        <li><strong>73rd CAA 1992</strong> → Art. 243A–243O: Constitutional status to PRIs</li>
+        <li>UP amended UP Panchayat Raj Act accordingly in <strong>1994</strong></li>
+        <li><strong>UP Panchayati Raj Act, 1947</strong>: Principal legislation</li>
+        <li><strong>UP Kshettra Panchayats & Zila Panchayats Adhiniyam, 1961</strong>: Governs 2nd & 3rd tiers</li>
+        <li>Election conducted by: <strong>UP State Election Commission</strong></li>
+        <li>Reservations: <strong>1/3rd for women</strong> (UP has 33% minimum; many areas 50%)</li>
+        <li>OBC reservation: <strong>Rotating basis</strong>, max 27%</li>
+        <li>SC/ST: <strong>Proportionate to population</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="info-box green" style="margin-bottom:12px">
+        <div class="info-box-title">📊 UP Panchayati Raj Facts 2025</div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Tier</th><th>Units</th><th>Key Official</th></tr></thead>
+        <tbody>
+          <tr><td>Gram Panchayat</td><td>~58,067</td><td>Gram Pradhan</td></tr>
+          <tr><td>Kshettra Panchayat</td><td>821</td><td>Pramukh</td></tr>
+          <tr><td>Zila Panchayat</td><td>75</td><td>Adhyaksh</td></tr>
+          <tr><td>Gram Sabha</td><td>~97,000</td><td>Voters (village)</td></tr>
+        </tbody>
+      </table>
+      <div class="info-box blue" style="margin-top:10px">
+        <div class="info-box-title">⚠️ 11th Schedule (Art. 243G)</div>
+        <div style="font-size:12.5px">29 subjects transferred to PRIs. UP has devolved most including agriculture, rural roads, minor irrigation, social welfare, education, etc.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 8. URBAN LOCAL BODIES ══════════ -->
+<section class="section" id="urban-bodies">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--teal-lt)">🏙️</div>
+    <div>
+      <h2>Urban Local Bodies — नगर निकाय</h2>
+      <span class="sub">74th Amendment · UP Nagar Palika Adhiniyam 1916 (amended 1994)</span>
+    </div>
+  </div>
+
+  <div class="card-grid cols-3">
+    <div class="card" style="border-top:4px solid var(--saffron)">
+      <div style="font-size:28px; text-align:center; margin-bottom:8px">🏙️</div>
+      <div style="font-weight:800; font-size:16px; text-align:center; color:var(--navy)">NAGAR NIGAM</div>
+      <div style="text-align:center; font-size:12px; color:var(--text-lt); margin-bottom:10px">Municipal Corporation</div>
+      <ul class="feat-list">
+        <li>Population: <strong>>3 Lakh</strong></li>
+        <li>Head: <strong>Mayor</strong> (directly elected)</li>
+        <li>CEO: <strong>Nagar Ayukt (IAS)</strong></li>
+        <li>Body: <strong>General Board</strong></li>
+        <li>UP has <strong>17 Nagar Nigams</strong></li>
+        <li>Largest: <strong>Kanpur Nagar Nigam</strong></li>
+        <li>Powers: All municipal functions incl. town planning</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--navy)">
+      <div style="font-size:28px; text-align:center; margin-bottom:8px">🏘️</div>
+      <div style="font-weight:800; font-size:16px; text-align:center; color:var(--navy)">NAGAR PALIKA PARISHAD</div>
+      <div style="text-align:center; font-size:12px; color:var(--text-lt); margin-bottom:10px">Municipal Council</div>
+      <ul class="feat-list">
+        <li>Population: <strong>30,000–3 Lakh</strong></li>
+        <li>Head: <strong>Adhyaksh</strong> (directly elected)</li>
+        <li>CEO: <strong>Executive Officer (EO)</strong></li>
+        <li>UP has <strong>200 NPPs</strong> approx.</li>
+        <li>Medium-sized towns</li>
+        <li>Limited town planning powers</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--green)">
+      <div style="font-size:28px; text-align:center; margin-bottom:8px">🏡</div>
+      <div style="font-weight:800; font-size:16px; text-align:center; color:var(--navy)">NAGAR PANCHAYAT</div>
+      <div style="text-align:center; font-size:12px; color:var(--text-lt); margin-bottom:10px">Town Area Committee</div>
+      <ul class="feat-list">
+        <li>Population: <strong>11,000–30,000</strong></li>
+        <li>Head: <strong>Adhyaksh</strong></li>
+        <li>CEO: <strong>Executive Officer</strong></li>
+        <li>UP has <strong>~438 Nagar Panchayats</strong></li>
+        <li>Transitional areas (rural-to-urban)</li>
+        <li>Basic civic services only</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="info-box gold" style="margin-bottom:12px">
+      <div class="info-box-title">📚 Important ULB Facts for UPPSC</div>
+    </div>
+    <div class="two-col">
+      <ul class="feat-list">
+        <li><strong>74th Amendment 1992:</strong> Art. 243P–243ZG — Constitutional status to ULBs</li>
+        <li><strong>12th Schedule:</strong> 18 functions for ULBs</li>
+        <li>Election: <strong>UP State Election Commission</strong></li>
+        <li>UP's 17 Nagar Nigams include: Lucknow, Kanpur, Agra, Varanasi, Prayagraj, Meerut, Bareilly, Aligarh, Moradabad, Ghaziabad, Gorakhpur, Firozabad, Saharanpur, Mathura-Vrindavan, Jhansi, Ayodhya, Noida</li>
+      </ul>
+      <ul class="feat-list">
+        <li><strong>Cantonment Boards:</strong> Under Union Government (not state)</li>
+        <li><strong>Development Authorities:</strong> LDA (Lucknow), ADA (Agra), VDA (Varanasi) — Town planning bodies</li>
+        <li><strong>UIDA:</strong> UP Industrial Development Authority</li>
+        <li>Special provisions: <strong>Smart City Mission</strong> covers Lucknow, Varanasi, Kanpur, Agra, Bareilly, Aligarh, Saharanpur, Moradabad</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 9. HIGH COURT ══════════ -->
+<section class="section" id="high-court">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--gold-lt)">⚖️</div>
+    <div>
+      <h2>Allahabad High Court — इलाहाबाद उच्च न्यायालय</h2>
+      <span class="sub">Established 17 March 1866 · Largest HC in India by Sanctioned Strength</span>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><span class="stat-num" style="color:var(--gold)">1866</span><span class="stat-lbl">Established</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--navy)">160</span><span class="stat-lbl">Sanctioned Judges</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--saffron)">75</span><span class="stat-lbl">Districts Jurisd.</span></div>
+    <div class="stat-box"><span class="stat-num" style="color:var(--green)">2</span><span class="stat-lbl">Benches</span></div>
+  </div>
+
+  <div class="card-grid cols-2">
+    <div class="card">
+      <div class="info-box orange" style="margin-bottom:12px">
+        <div class="info-box-title">⚖️ Key Facts</div>
+      </div>
+      <ul class="feat-list">
+        <li><strong>Official Name:</strong> High Court of Judicature at Allahabad</li>
+        <li><strong>Principal Seat:</strong> Prayagraj (Allahabad) — covers ~60 districts</li>
+        <li><strong>Permanent Bench:</strong> Lucknow — covers ~15 districts (Lucknow, Hardoi, Kheri, Rae Bareli, Sitapur, Unnao, Faizabad/Ayodhya, Ambedkar Nagar, Bahraich, Shravasti, Barabanki, Gonda, Balrampur, Pratapgarh, Sultanpur)</li>
+        <li><strong>Jurisdiction:</strong> Entire UP (75 districts) + Lucknow bench specific districts</li>
+        <li>Largest HC in India by sanctioned judge strength: <strong>160 judges</strong></li>
+        <li>Mandatory retirement age: <strong>62 years</strong></li>
+        <li>Established originally in <strong>Agra</strong>, moved to Allahabad in <strong>1869</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="info-box blue" style="margin-bottom:12px">
+        <div class="info-box-title">👤 Current Chief Justice</div>
+      </div>
+      <div class="person-card" style="padding:0; margin-bottom:14px">
+        <div class="person-avatar" style="background:var(--gold-lt); font-size:28px; width:52px; height:52px;">⚖️</div>
+        <div>
+          <div class="person-name">Justice Arun Bhansali</div>
+          <div class="person-role">Chief Justice, Allahabad High Court</div>
+          <div class="person-meta">
+            <span class="chip chip-gold">Since 5 Feb 2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-box green">
+        <div class="info-box-title">📚 Lucknow Bench Origin</div>
+        <div style="font-size:12.5px">Lucknow Bench established by <strong>Oudh Civil Courts Act, 1925</strong>. The Chief Court of Oudh was merged with Allahabad HC on <strong>25 February 1948</strong>. Lucknow bench is a <strong>permanent circuit bench</strong>, not a separate High Court.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="info-box purple" style="margin-bottom:12px">
+      <div class="info-box-title">📜 Constitutional Provisions (Art. 214–231)</div>
+    </div>
+    <div class="two-col">
+      <ul class="feat-list">
+        <li>Art. 214: Every state shall have an HC</li>
+        <li>Art. 215: HC is Court of Record</li>
+        <li>Art. 217: Appointment of HC judges — President consults CJI + Governor + HC Chief Justice</li>
+        <li>Art. 226: Writ jurisdiction (broader than SC's Art. 32)</li>
+        <li>Art. 227: Superintendence over all courts in state</li>
+      </ul>
+      <ul class="feat-list">
+        <li>Uttarakhand was under Allahabad HC before 2000; <strong>Uttarakhand HC established 9 Nov 2000</strong></li>
+        <li>Allahabad HC has jurisdiction over <strong>all civil, criminal, revenue courts</strong> in UP</li>
+        <li>Important judgments on UP: Babri Masjid (2010), IAS transfers, Panchayati Raj elections, UPPSC exam matters</li>
+        <li>UP State Law Commission advises on legal reforms</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 10. UP POLICE ══════════ -->
+<section class="section" id="police">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--navy-lt)">🚔</div>
+    <div>
+      <h2>UP Police Structure — उत्तर प्रदेश पुलिस</h2>
+      <span class="sub">Largest State Police Force in India · UP Police Act 1861/2007</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="info-box orange" style="margin-bottom:12px">
+      <div class="info-box-title">🏗️ UP Police Hierarchy</div>
+    </div>
+    <div class="hierarchy">
+      <div class="h-level h-l1">
+        <span class="h-icon">⭐</span>
+        <div><div class="h-title">Director General of Police (DGP)</div><div style="font-size:12px;color:var(--text-lt)">IPS · Head of UP Police · State HQ: Lucknow</div></div>
+        <span class="h-note"><span class="chip chip-orange">Apex Level</span></span>
+      </div>
+      <div class="h-level h-l2">
+        <span class="h-icon">🎖️</span>
+        <div><div class="h-title">Additional DGP / Special DGP</div><div style="font-size:12px;color:var(--text-lt)">Various specialized forces & departments</div></div>
+      </div>
+      <div class="h-level h-l3">
+        <span class="h-icon">🗺️</span>
+        <div><div class="h-title">Inspector General (IG) / Zone</div><div style="font-size:12px;color:var(--text-lt)">Heads a Zone (2-3 Ranges)</div></div>
+        <span class="h-note"><span class="chip chip-green">9 Zones</span></span>
+      </div>
+      <div class="h-level h-l4">
+        <span class="h-icon">📍</span>
+        <div><div class="h-title">Deputy IG (DIG) / Range</div><div style="font-size:12px;color:var(--text-lt)">Heads a Range (3-5 districts)</div></div>
+        <span class="h-note"><span class="chip chip-gold">18 Ranges</span></span>
+      </div>
+      <div class="h-level h-l5">
+        <span class="h-icon">🏙️</span>
+        <div><div class="h-title">SP / SSP / Commissioner of Police</div><div style="font-size:12px;color:var(--text-lt)">District Police Head</div></div>
+        <span class="h-note"><span class="chip chip-purple">75 Districts</span></span>
+      </div>
+      <div class="h-level h-l6">
+        <span class="h-icon">🏠</span>
+        <div><div class="h-title">CO / DSP → SI → Constable</div><div style="font-size:12px;color:var(--text-lt)">Circle Officer → Sub-Inspector → Constable</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-grid cols-2">
+    <div class="card">
+      <div class="info-box blue" style="margin-bottom:12px">
+        <div class="info-box-title">🗺️ Police Zones (9 Zones)</div>
+      </div>
+      <div class="zone-row">
+        <div class="zone-pill"><div class="zone-name">Lucknow Zone</div><div class="zone-hq">HQ: Lucknow</div></div>
+        <div class="zone-pill"><div class="zone-name">Agra Zone</div><div class="zone-hq">HQ: Agra</div></div>
+        <div class="zone-pill"><div class="zone-name">Kanpur Zone</div><div class="zone-hq">HQ: Kanpur</div></div>
+        <div class="zone-pill"><div class="zone-name">Varanasi Zone</div><div class="zone-hq">HQ: Varanasi</div></div>
+        <div class="zone-pill"><div class="zone-name">Gorakhpur Zone</div><div class="zone-hq">HQ: Gorakhpur</div></div>
+        <div class="zone-pill"><div class="zone-name">Meerut Zone</div><div class="zone-hq">HQ: Meerut</div></div>
+        <div class="zone-pill"><div class="zone-name">Bareilly Zone</div><div class="zone-hq">HQ: Bareilly</div></div>
+        <div class="zone-pill"><div class="zone-name">Prayagraj Zone</div><div class="zone-hq">HQ: Prayagraj</div></div>
+        <div class="zone-pill"><div class="zone-name">Azamgarh Zone</div><div class="zone-hq">HQ: Azamgarh</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="info-box green" style="margin-bottom:12px">
+        <div class="info-box-title">🔵 Commissionerate System (Urban)</div>
+      </div>
+      <ul class="feat-list">
+        <li>8 cities have <strong>Commissioner of Police</strong> system: Lucknow, Kanpur, Agra, Varanasi, Prayagraj, Ghaziabad, Gautam Buddha Nagar (Noida), Gorakhpur</li>
+        <li>Commissioner = SP equivalent but with <strong>more executive magistrate powers</strong></li>
+        <li>Reduces DM's role in urban law & order</li>
+        <li>Under <strong>UP Police Act, 1861</strong> (colonial) — UP Police Regulation</li>
+        <li><strong>PAC</strong> (Provincial Armed Constabulary) — UP's armed police reserve</li>
+        <li><strong>STF</strong> (Special Task Force) — Organized crime, NDPS</li>
+        <li><strong>ATS</strong> (Anti-Terrorism Squad) — Counter-terrorism</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box orange" style="margin-top:12px">
+    <div class="info-box-title">🔴 Recent UP Police Reforms (Yogi Govt. 2017–2026)</div>
+    <div class="two-col">
+      <ul class="feat-list">
+        <li><strong>UP Police Act 2007</strong> — modernized policing framework</li>
+        <li>Expansion of Commissionerate System to 8 cities</li>
+        <li>Anti-Romeo Squads launched 2017</li>
+        <li>1090 Women Power Line strengthened</li>
+      </ul>
+      <ul class="feat-list">
+        <li>CCTNS (Crime & Criminal Tracking Network) implementation</li>
+        <li>DIAL 112 — Emergency Response Support System</li>
+        <li>UP Police Bhavan — new HQ, Lucknow</li>
+        <li>UPCOP App for FIR filing & citizen services</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 11. MCQ SECTION ══════════ -->
+<section class="section" id="mcq">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--saffron-lt)">✅</div>
+    <div>
+      <h2>UPPSC Practice MCQs — UP Polity & Administration</h2>
+      <span class="sub">10 UPPSC-Level Questions with Explanations · Click to reveal answers</span>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">1</div>UP Vidhan Sabha में कुल कितनी सीटें हैं, तथा SC के लिए कितनी सीटें आरक्षित हैं?</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-1')"><span class="mcq-opt-lbl">(A)</span> 400 सीटें, 80 SC आरक्षित</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-1')"><span class="mcq-opt-lbl">(B)</span> 403 सीटें, 84 SC आरक्षित</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-1')"><span class="mcq-opt-lbl">(C)</span> 403 सीटें, 90 SC आरक्षित</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-1')"><span class="mcq-opt-lbl">(D)</span> 404 सीटें, 84 SC आरक्षित</div>
+    </div>
+    <div class="mcq-explain" id="explain-1">✅ <strong>सही उत्तर: (B)</strong> — UP Vidhan Sabha में 403 निर्वाचित सदस्य हैं। 84 सीटें SC के लिए और 2 सीटें ST के लिए आरक्षित हैं। 1967 तक 431 सीटें थीं। 104वें संविधान संशोधन से Anglo-Indian आरक्षित सीट समाप्त की गई।</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">2</div>UP Vidhan Parishad के वर्तमान सभापति (Chairman) कौन हैं? (2025 तक)</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-2')"><span class="mcq-opt-lbl">(A)</span> Dinesh Sharma</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-2')"><span class="mcq-opt-lbl">(B)</span> Ramesh Dwivedi</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-2')"><span class="mcq-opt-lbl">(C)</span> Kunwar Manvendra Singh</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-2')"><span class="mcq-opt-lbl">(D)</span> Suresh Khanna</div>
+    </div>
+    <div class="mcq-explain" id="explain-2">✅ <strong>सही उत्तर: (C)</strong> — Kunwar Manvendra Singh (BJP) UP Vidhan Parishad के Chairman हैं। वे 30 January 2021 से इस पद पर हैं। वर्तमान में Deputy Chairman पद रिक्त है।</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">3</div>Chitrakoot Mandal का मुख्यालय कहाँ है?</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-3')"><span class="mcq-opt-lbl">(A)</span> Chitrakoot</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-3')"><span class="mcq-opt-lbl">(B)</span> Hamirpur</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-3')"><span class="mcq-opt-lbl">(C)</span> Banda</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-3')"><span class="mcq-opt-lbl">(D)</span> Mahoba</div>
+    </div>
+    <div class="mcq-explain" id="explain-3">✅ <strong>सही उत्तर: (C)</strong> — UPPSC में सबसे अधिक पूछा जाने वाला tricky प्रश्न! Chitrakoot Mandal का HQ <strong>Banda</strong> है, Chitrakoot नहीं। इसी तरह Devipatan Mandal का HQ <strong>Gonda</strong> है, Devipatan नहीं।</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">4</div>UP Vidhan Sabha के वर्तमान Speaker और उनकी Constituency कौन सी है?</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-4')"><span class="mcq-opt-lbl">(A)</span> Hriday Narayan Dikshit — Unnao</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-4')"><span class="mcq-opt-lbl">(B)</span> Ramapati Shastri — Shahjahanpur</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-4')"><span class="mcq-opt-lbl">(C)</span> Satish Mahana — Maharajpur (Kanpur)</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-4')"><span class="mcq-opt-lbl">(D)</span> Suresh Khanna — Shahjahanpur</div>
+    </div>
+    <div class="mcq-explain" id="explain-4">✅ <strong>सही उत्तर: (C)</strong> — Satish Mahana (BJP) 29 March 2022 को UP Vidhan Sabha के Speaker चुने गए। वे Maharajpur (Kanpur) से 8वीं बार MLA हैं और UP के 23वें Speaker (18वें व्यक्ति) हैं। UP के पहले Speaker: Purushottam Das Tandon।</div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">5</div>Allahabad High Court का Lucknow Bench किस अधिनियम के तहत स्थापित किया गया?</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-5')"><span class="mcq-opt-lbl">(A)</span> UP Civil Courts Act, 1950</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-5')"><span class="mcq-opt-lbl">(B)</span> Oudh Civil Courts Act, 1925</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-5')"><span class="mcq-opt-lbl">(C)</span> Government of India Act, 1935</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-5')"><span class="mcq-opt-lbl">(D)</span> Indian High Courts Act, 1861</div>
+    </div>
+    <div class="mcq-explain" id="explain-5">✅ <strong>सही उत्तर: (B)</strong> — Lucknow Bench, Allahabad High Court की <strong>Oudh Civil Courts Act, 1925</strong> के तहत स्थापित की गई। Chief Court of Oudh का Allahabad HC में विलय <strong>25 Feb 1948</strong> को हुआ। Allahabad HC स्थापना: 17 March 1866। Sanctioned strength 160 — भारत में सर्वाधिक।</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">6</div>UP की 3-Tier Panchayati Raj व्यवस्था में Block-Level body का क्या नाम है?</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-6')"><span class="mcq-opt-lbl">(A)</span> Gram Panchayat</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-6')"><span class="mcq-opt-lbl">(B)</span> Zila Panchayat</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-6')"><span class="mcq-opt-lbl">(C)</span> Kshettra Panchayat</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-6')"><span class="mcq-opt-lbl">(D)</span> Panchayat Samiti</div>
+    </div>
+    <div class="mcq-explain" id="explain-6">✅ <strong>सही उत्तर: (C)</strong> — UP में Block Level की body का नाम <strong>Kshettra Panchayat</strong> है (जिसे अन्य राज्यों में Panchayat Samiti/Mandal Panchayat कहते हैं)। इसके प्रमुख को <strong>Pramukh</strong> कहते हैं। UP में कुल 821 Kshettra Panchayats हैं।</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">7</div>UP Vidhan Parishad में Governor द्वारा कितने सदस्य मनोनीत किए जाते हैं?</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-7')"><span class="mcq-opt-lbl">(A)</span> 6 सदस्य</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-7')"><span class="mcq-opt-lbl">(B)</span> 12 सदस्य</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-7')"><span class="mcq-opt-lbl">(C)</span> 10 सदस्य</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-7')"><span class="mcq-opt-lbl">(D)</span> 15 सदस्य</div>
+    </div>
+    <div class="mcq-explain" id="explain-7">✅ <strong>सही उत्तर: (C)</strong> — UP Vidhan Parishad में Governor द्वारा <strong>10 सदस्य</strong> मनोनीत किए जाते हैं — साहित्य, विज्ञान, कला, सहकारी आंदोलन में विशिष्ट योगदान वाले व्यक्ति। कुल 100 में से: 36 (MLA elected) + 36 (Local bodies) + 9 (Graduates) + 9 (Teachers) + 10 (Nominated) = 100।</div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">8</div>UP में कितने Nagar Nigam (Municipal Corporation) हैं? (2025 तक)</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-8')"><span class="mcq-opt-lbl">(A)</span> 12</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-8')"><span class="mcq-opt-lbl">(B)</span> 14</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-8')"><span class="mcq-opt-lbl">(C)</span> 17</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-8')"><span class="mcq-opt-lbl">(D)</span> 20</div>
+    </div>
+    <div class="mcq-explain" id="explain-8">✅ <strong>सही उत्तर: (C)</strong> — UP में <strong>17 Nagar Nigams</strong> हैं: Lucknow, Kanpur, Agra, Varanasi, Prayagraj, Meerut, Bareilly, Aligarh, Moradabad, Ghaziabad, Gorakhpur, Firozabad, Saharanpur, Mathura-Vrindavan, Jhansi, Ayodhya (2017 में बना), और Noida। Nagar Nigam के प्रमुख को <strong>Mayor</strong> कहते हैं।</div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">9</div>UP की वर्तमान Governor Anandiben Patel UP के किस Governor नंबर पर हैं?</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-9')"><span class="mcq-opt-lbl">(A)</span> 18वीं Governor</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-9')"><span class="mcq-opt-lbl">(B)</span> 19वीं Governor</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-9')"><span class="mcq-opt-lbl">(C)</span> 20वीं Governor</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-9')"><span class="mcq-opt-lbl">(D)</span> 21वीं Governor</div>
+    </div>
+    <div class="mcq-explain" id="explain-9">✅ <strong>सही उत्तर: (C)</strong> — Anandiben Patel UP की <strong>20वीं Governor</strong> हैं। वे 29 July 2019 से पद पर हैं। 29 July 2025 को UP के इतिहास की सबसे लंबे समय तक Governor बनीं (6 वर्ष)। उनसे पहले: Ram Naik (17वें Governor, 2014–2019)। वे Gujarat की पहली और एकमात्र महिला CM भी रही हैं।</div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="mcq-card">
+    <div class="mcq-q"><div class="mcq-qnum">10</div>UP में कितने Administrative Divisions (Mandals) और Districts हैं? तथा Vikaskhands की संख्या क्या है?</div>
+    <div class="mcq-opts">
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-10')"><span class="mcq-opt-lbl">(A)</span> 17 Mandals, 75 Districts, 800 Blocks</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-10')"><span class="mcq-opt-lbl">(B)</span> 18 Mandals, 72 Districts, 821 Blocks</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, true, 'explain-10')"><span class="mcq-opt-lbl">(C)</span> 18 Mandals, 75 Districts, 821 Blocks</div>
+      <div class="mcq-opt" onclick="checkMCQ(this, false, 'explain-10')"><span class="mcq-opt-lbl">(D)</span> 18 Mandals, 75 Districts, 850 Blocks</div>
+    </div>
+    <div class="mcq-explain" id="explain-10">✅ <strong>सही उत्तर: (C)</strong> — UP की Administrative structure: <strong>18 Mandals (Divisions) → 75 Districts → 821 Development Blocks (Vikaskhands) → ~58,067 Gram Panchayats</strong>। यह 18-75-821 का trio UPPSC में बहुत अधिक पूछा जाता है। Divisional Commissioner (IAS) Mandal का प्रमुख होता है।</div>
+  </div>
+
+  <div class="info-box gold" style="margin-top:20px">
+    <div class="info-box-title">🎯 Quick Revision — Top 15 Must-Remember Facts for UPPSC 2026</div>
+    <div class="two-col">
+      <ul class="feat-list">
+        <li>UP Vidhan Sabha: <strong>403 seats</strong>, 84 SC reserved, 2 ST reserved</li>
+        <li>UP Vidhan Parishad: <strong>100 members</strong> (90 elected + 10 nominated)</li>
+        <li>Current Speaker: <strong>Satish Mahana</strong> (23rd Speaker, 18th person)</li>
+        <li>Current Chairman VP: <strong>Kunwar Manvendra Singh</strong></li>
+        <li>Current Governor: <strong>Anandiben Patel</strong> (20th, since 29 Jul 2019)</li>
+        <li>Current CM: <strong>Yogi Adityanath</strong> (since 2017, 2nd term 2022)</li>
+        <li>Deputy CMs: <strong>Keshav Prasad Maurya + Brajesh Pathak</strong></li>
+        <li>18 Mandals, <strong>Chitrakoot HQ = Banda</strong></li>
+      </ul>
+      <ul class="feat-list">
+        <li><strong>Devipatan HQ = Gonda</strong> (Not Devipatan)</li>
+        <li>Allahabad HC: Established <strong>17 March 1866</strong>, 160 judges (largest)</li>
+        <li>Current CJ Allahabad HC: <strong>Justice Arun Bhansali</strong> (since 5 Feb 2024)</li>
+        <li>UP has <strong>17 Nagar Nigams</strong></li>
+        <li>UP Panchayati Raj 3-tier: GP → Kshettra Panchayat → Zila Panchayat</li>
+        <li>UP Police: 9 Zones, 18 Ranges, 8 Commissionerate cities</li>
+        <li>Key trio: <strong>18 Mandals – 75 Districts – 821 Blocks</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div><!-- /main -->
+
+<footer>
+  📚 UPPSC 2026 Preparation Guide — UP Polity & Administration | Data verified June 2026 | Top 10 Rank Target (SDM) | Created for serious aspirants
+</footer>
+
+<script>
+function checkMCQ(el, isCorrect, explainId) {
+  const opts = el.parentElement.querySelectorAll('.mcq-opt');
+  opts.forEach(o => {
+    o.style.pointerEvents = 'none';
+    o.classList.remove('correct','wrong');
+  });
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(o => {
+      if (o.getAttribute('onclick') && o.getAttribute('onclick').includes('true')) {
+        o.classList.add('correct');
+      }
+    });
+  }
+  const explain = document.getElementById(explainId);
+  if (explain) explain.classList.add('show');
+}
+
+// Staggered animations
+document.querySelectorAll('.section').forEach((s, i) => {
+  s.style.animationDelay = (i * 0.07) + 's';
+});
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('.section[id]');
+const links = document.querySelectorAll('.toc-link');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.toc-link[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.2 });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
