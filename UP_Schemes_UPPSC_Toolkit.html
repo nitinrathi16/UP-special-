@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Government Schemes — UPPSC Master Toolkit 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --saffron: #FF6B00;
+    --saffron-light: #FFF3E8;
+    --green: #2D7A40;
+    --green-light: #EAF7EE;
+    --navy: #1A2B4B;
+    --navy-mid: #2E4072;
+    --sky: #E8F4FD;
+    --sky-mid: #B8DCFA;
+    --gold: #C8990A;
+    --gold-light: #FDF8E6;
+    --rose: #D63B6A;
+    --rose-light: #FFF0F5;
+    --teal: #0F7B8C;
+    --teal-light: #E5F7F9;
+    --purple: #6B3FA0;
+    --purple-light: #F4EEFF;
+    --bg: #F7F8FA;
+    --white: #FFFFFF;
+    --text: #1A2535;
+    --muted: #6B7280;
+    --border: #E3E8F0;
+    --shadow: 0 2px 12px rgba(26,43,75,0.08);
+    --shadow-hover: 0 6px 24px rgba(26,43,75,0.14);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #3A5A9F 100%);
+    color: white;
+    padding: 36px 32px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-inner { position:relative; max-width:1100px; margin:0 auto; }
+  .hero-flag { display:flex; gap:4px; margin-bottom:14px; }
+  .flag-stripe { height:5px; border-radius:2px; }
+  .flag-stripe.s { background:#FF9933; width:40px; }
+  .flag-stripe.w { background:#FFFFFF; width:40px; }
+  .flag-stripe.g { background:#138808; width:40px; }
+  .hero h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; line-height:1.2; }
+  .hero h1 span { color: #FFCC44; }
+  .hero-sub { margin-top: 8px; font-size:14px; color: rgba(255,255,255,0.78); }
+  .hero-badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight:600;
+  }
+  .badge.hot { background: rgba(255,107,0,0.6); border-color:rgba(255,107,0,0.8); }
+
+  /* ── NAV ── */
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 0 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; gap:0; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display:none; }
+  .nav-btn {
+    padding: 14px 16px; font-size:13px; font-weight:600;
+    color: var(--muted); border:none; background:none; cursor:pointer;
+    white-space:nowrap; border-bottom: 3px solid transparent;
+    transition: all 0.2s; display:flex; align-items:center; gap:6px;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    color: var(--navy); border-bottom-color: var(--saffron);
+  }
+  .nav-icon { font-size:15px; }
+
+  /* ── MAIN ── */
+  main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin: 32px 0 18px;
+  }
+  .section-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 20px; font-weight: 700; color: var(--navy); }
+  .section-header p { font-size: 13px; color: var(--muted); margin-top:2px; }
+
+  /* ── BUDGET BOX ── */
+  .budget-box {
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: white; border-radius: 16px; padding: 24px;
+    margin-bottom: 24px;
+  }
+  .budget-box h3 { font-size: 15px; color: rgba(255,255,255,0.7); font-weight:500; }
+  .budget-big { font-size: 38px; font-weight: 800; color: #FFCC44; line-height:1.1; margin:4px 0; }
+  .budget-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 16px; }
+  .bstat { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 12px 14px; }
+  .bstat-val { font-size: 18px; font-weight: 700; color: #9EE6B0; }
+  .bstat-label { font-size: 11px; color: rgba(255,255,255,0.65); margin-top:2px; }
+
+  /* ── SCHEME CARD ── */
+  .scheme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 14px; }
+
+  .scheme-card {
+    background: var(--white); border-radius: 14px;
+    border: 1px solid var(--border); padding: 18px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .scheme-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+
+  .card-head { display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; }
+  .card-icon { font-size: 26px; flex-shrink:0; margin-top:2px; }
+  .card-title { font-size: 14px; font-weight: 700; color: var(--navy); line-height:1.3; }
+  .card-year { font-size: 11px; color: var(--muted); margin-top:3px; }
+
+  .card-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
+  .tag {
+    font-size: 10px; font-weight: 600; padding: 2px 8px;
+    border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .tag-women   { background: var(--rose-light);   color: var(--rose); }
+  .tag-farmer  { background: var(--green-light);  color: var(--green); }
+  .tag-youth   { background: var(--purple-light); color: var(--purple); }
+  .tag-infra   { background: var(--sky);          color: var(--teal); }
+  .tag-health  { background: #FFF0F0;             color: #C0392B; }
+  .tag-edu     { background: var(--gold-light);   color: var(--gold); }
+  .tag-urban   { background: var(--teal-light);   color: var(--teal); }
+  .tag-central { background: var(--saffron-light);color: var(--saffron); }
+  .tag-new     { background: #ECFDF5; color: #065F46; }
+
+  .card-rows { display:flex; flex-direction:column; gap:5px; }
+  .card-row { display:flex; gap:6px; font-size: 12.5px; }
+  .row-key { color: var(--muted); min-width: 80px; font-weight:500; flex-shrink:0; }
+  .row-val { color: var(--text); font-weight:500; }
+
+  .card-highlight {
+    margin-top: 10px; padding: 8px 10px;
+    background: var(--sky); border-radius: 8px;
+    font-size: 12px; color: var(--teal);
+    border-left: 3px solid var(--teal);
+  }
+
+  /* ── ODOP TABLE ── */
+  .odop-intro {
+    background: linear-gradient(135deg, #FF6B00, #E84393);
+    color: white; border-radius: 14px; padding:20px 24px; margin-bottom:18px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .odop-intro-icon { font-size:40px; }
+  .odop-intro h3 { font-size:18px; font-weight:700; }
+  .odop-intro p { font-size:13px; opacity:0.85; margin-top:3px; }
+
+  .odop-stats { display:grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-bottom:18px; }
+  .odop-stat {
+    background:white; border-radius:10px; padding:12px 14px;
+    border:1px solid var(--border); text-align:center;
+  }
+  .odop-stat-num { font-size:22px; font-weight:800; color:var(--saffron); }
+  .odop-stat-label { font-size:11px; color:var(--muted); margin-top:2px; }
+
+  .odop-search {
+    width:100%; padding:10px 14px; border:1.5px solid var(--border);
+    border-radius:8px; font-size:14px; background:white; margin-bottom:14px;
+    font-family:inherit; outline:none; transition: border-color 0.2s;
+  }
+  .odop-search:focus { border-color: var(--saffron); }
+
+  .odop-table { width:100%; border-collapse:collapse; }
+  .odop-table thead th {
+    background: var(--navy); color:white; padding: 10px 12px;
+    font-size:12px; font-weight:600; text-align:left;
+    position: sticky; top: 52px;
+  }
+  .odop-table tbody tr:nth-child(even) { background: var(--bg); }
+  .odop-table tbody tr:hover { background: var(--saffron-light); }
+  .odop-table td { padding: 8px 12px; font-size:12.5px; border-bottom:1px solid var(--border); }
+  .odop-cat { font-size:10px; font-weight:600; padding:2px 6px; border-radius:3px; }
+  .odop-cat.craft   { background:#F3E8FF; color:#7C3AED; }
+  .odop-cat.food    { background:#ECFDF5; color:#065F46; }
+  .odop-cat.textile { background:#FFF7ED; color:#C2410C; }
+  .odop-cat.metal   { background:#EFF6FF; color:#1E40AF; }
+  .odop-cat.other   { background:#F9FAFB; color:#4B5563; }
+  .table-wrap { overflow:auto; max-height:520px; border-radius:10px; border:1px solid var(--border); }
+
+  /* ── EXPRESSWAY TIMELINE ── */
+  .express-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 14px; }
+  .express-card {
+    background: white; border-radius: 14px; border:1px solid var(--border);
+    overflow: hidden; box-shadow: var(--shadow);
+  }
+  .express-head {
+    padding: 14px 16px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: white;
+  }
+  .express-head h3 { font-size:14px; font-weight:700; }
+  .express-head .elen { font-size:11px; color: rgba(255,255,255,0.65); margin-top:2px; }
+  .express-body { padding: 14px 16px; }
+  .express-row { display:flex; justify-content:space-between; font-size:12.5px; padding:5px 0; border-bottom:1px solid var(--border); }
+  .express-row:last-child { border:none; }
+  .express-row span:first-child { color:var(--muted); }
+  .express-row span:last-child { font-weight:600; color:var(--navy); }
+  .status-pill {
+    font-size: 10px; font-weight:700; padding: 2px 8px; border-radius:10px;
+    text-transform:uppercase; letter-spacing:0.3px;
+  }
+  .st-open { background:#ECFDF5; color:#065F46; }
+  .st-const { background:#FFF7ED; color:#C2410C; }
+
+  /* ── MCQ SECTION ── */
+  .mcq-header {
+    background: linear-gradient(135deg, var(--purple), #9B59B6);
+    color:white; border-radius: 14px; padding: 20px 24px; margin-bottom:18px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .mcq-header h2 { font-size:18px; font-weight:700; }
+  .mcq-header p { font-size:13px; opacity:0.8; margin-top:2px; }
+
+  .mcq-list { display:flex; flex-direction:column; gap:14px; }
+  .mcq-item {
+    background: white; border-radius: 12px; padding: 18px;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+  .mcq-q { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:12px; line-height:1.5; }
+  .mcq-q-num { color:var(--saffron); font-weight:800; margin-right:4px; }
+  .mcq-opts { display:grid; grid-template-columns: 1fr 1fr; gap:6px; }
+  .mcq-opt {
+    padding: 8px 12px; border-radius:8px; font-size:13px;
+    border: 1.5px solid var(--border); background: var(--bg);
+    cursor:pointer; transition: all 0.15s; font-family:inherit;
+    text-align:left; color: var(--text);
+  }
+  .mcq-opt:hover { border-color: var(--navy-mid); background: var(--sky); }
+  .mcq-opt.correct { background:#ECFDF5 !important; border-color:#22C55E !important; color:#065F46 !important; font-weight:600; }
+  .mcq-opt.wrong   { background:#FFF0F0 !important; border-color:#EF4444 !important; color:#991B1B !important; }
+  .mcq-explain {
+    margin-top: 10px; padding: 10px 12px;
+    background: var(--gold-light); border-radius:8px;
+    font-size:12.5px; color:#78530A; display:none;
+    border-left: 3px solid var(--gold);
+  }
+  .mcq-explain.show { display:block; }
+
+  /* ── SCORE BOX ── */
+  .score-box {
+    position:fixed; bottom:20px; right:20px;
+    background: var(--navy); color:white;
+    padding: 10px 18px; border-radius: 30px;
+    font-size:13px; font-weight:600;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index:200;
+  }
+  .score-box span { color: #FFCC44; }
+
+  /* ── KEY FACTS BOX ── */
+  .facts-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap:12px; margin-bottom:20px; }
+  .fact-card {
+    background:white; border-radius:12px; padding:16px;
+    border:1px solid var(--border); box-shadow: var(--shadow);
+    display:flex; align-items:flex-start; gap:12px;
+  }
+  .fact-icon { font-size:24px; flex-shrink:0; }
+  .fact-num { font-size:20px; font-weight:800; color:var(--saffron); line-height:1.1; }
+  .fact-label { font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px){
+    .mcq-opts { grid-template-columns:1fr; }
+    .hero h1 { font-size:20px; }
+    main { padding:16px 14px 60px; }
+  }
+
+  /* ── SECTION VISIBILITY ── */
+  .section-pane { display:none; }
+  .section-pane.active { display:block; }
+
+  /* ── CENTRAL SCHEME STRIP ── */
+  .central-badge {
+    display:inline-flex; align-items:center; gap:5px;
+    background:var(--saffron-light); border:1px solid #FFD0A8;
+    color:var(--saffron); font-size:10px; font-weight:700;
+    padding:2px 8px; border-radius:4px; text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-flag">
+      <div class="flag-stripe s"></div>
+      <div class="flag-stripe w"></div>
+      <div class="flag-stripe g"></div>
+    </div>
+    <h1>🏛️ UP Government Schemes<br><span>UPPSC 2026 Master Toolkit</span></h1>
+    <p class="hero-sub">उत्तर प्रदेश सरकारी योजनाएं • 2017–2026 • SDM Rank तैयारी</p>
+    <div class="hero-badges">
+      <span class="badge">📋 75+ Schemes</span>
+      <span class="badge">🗺️ ODOP 75 Districts</span>
+      <span class="badge">🛣️ 6 Expressways</span>
+      <span class="badge hot">🔥 Budget 2025-26</span>
+      <span class="badge">✅ 10 MCQs</span>
+      <span class="badge">Updated: June 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showTab('budget')" id="btn-budget"><span class="nav-icon">💰</span>Budget 2025-26</button>
+    <button class="nav-btn" onclick="showTab('women')" id="btn-women"><span class="nav-icon">👩</span>Women & Child</button>
+    <button class="nav-btn" onclick="showTab('farmer')" id="btn-farmer"><span class="nav-icon">🌾</span>Farmer</button>
+    <button class="nav-btn" onclick="showTab('youth')" id="btn-youth"><span class="nav-icon">🎓</span>Youth & Employment</button>
+    <button class="nav-btn" onclick="showTab('health')" id="btn-health"><span class="nav-icon">🏥</span>Health</button>
+    <button class="nav-btn" onclick="showTab('infra')" id="btn-infra"><span class="nav-icon">🛣️</span>Infrastructure</button>
+    <button class="nav-btn" onclick="showTab('urban')" id="btn-urban"><span class="nav-icon">🏙️</span>Urban Dev</button>
+    <button class="nav-btn" onclick="showTab('odop')" id="btn-odop"><span class="nav-icon">🎨</span>ODOP</button>
+    <button class="nav-btn" onclick="showTab('mcq')" id="btn-mcq"><span class="nav-icon">📝</span>MCQs</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════
+     TAB 1: BUDGET 2025-26
+══════════════════════════════════════ -->
+<div class="section-pane active" id="tab-budget">
+
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--navy);color:white;">💰</div>
+    <div>
+      <h2>UP Budget 2025-26 Highlights</h2>
+      <p>Presented by Finance Minister Suresh Kumar Khanna on 20 February 2025</p>
+    </div>
+  </div>
+
+  <div class="budget-box">
+    <h3>कुल बजट आकार</h3>
+    <div class="budget-big">₹8,08,736 करोड़</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.65);">पिछले वर्ष से 9.8% अधिक | GDP लक्ष्य: $1 Trillion Economy by 2029</div>
+    <div class="budget-stats">
+      <div class="bstat"><div class="bstat-val">₹22,490 Cr</div><div class="bstat-label">🛣️ Expressways & Roads</div></div>
+      <div class="bstat"><div class="bstat-val">₹1,050 Cr</div><div class="bstat-label">🌾 CM Kisan Durghatna Kalyan</div></div>
+      <div class="bstat"><div class="bstat-val">₹5,500 Cr</div><div class="bstat-label">👩 Widow Pensions & Women Security</div></div>
+      <div class="bstat"><div class="bstat-val">₹3,000 Cr</div><div class="bstat-label">🔥 Ujjwala Yojana LPG Cylinders</div></div>
+      <div class="bstat"><div class="bstat-val">11%</div><div class="bstat-label">🌾 Agriculture & Allied Services</div></div>
+      <div class="bstat"><div class="bstat-val">₹509 Cr</div><div class="bstat-label">☀️ PM Kusum Solar Pumps</div></div>
+    </div>
+  </div>
+
+  <div class="facts-grid">
+    <div class="fact-card"><div class="fact-icon">📈</div><div><div class="fact-num">₹27.51 L Cr</div><div class="fact-label">UP GDP 2024-25 (2017-18 में ₹12.89 L Cr था)</div></div></div>
+    <div class="fact-card"><div class="fact-icon">🏫</div><div><div class="fact-num">₹77,622 Cr</div><div class="fact-label">Basic Education — सर्वाधिक आवंटन</div></div></div>
+    <div class="fact-card"><div class="fact-icon">🏥</div><div><div class="fact-num">₹14,997 Cr</div><div class="fact-label">Medical Education Budget</div></div></div>
+    <div class="fact-card"><div class="fact-icon">🌿</div><div><div class="fact-num">₹124 Cr</div><div class="fact-label">Natural Farming — सभी जिलों में</div></div></div>
+    <div class="fact-card"><div class="fact-icon">🌱</div><div><div class="fact-num">₹251 Cr</div><div class="fact-label">UP Seed Self-Reliance Policy 2024 — Seed Park</div></div></div>
+    <div class="fact-card"><div class="fact-icon">🏦</div><div><div class="fact-num">₹200 Cr</div><div class="fact-label">World Bank-aided UP AgriEase Project</div></div></div>
+  </div>
+
+  <!-- Budget 2026-27 Update -->
+  <div style="background:linear-gradient(135deg,#0F7B8C,#1A5F6A);color:white;border-radius:14px;padding:20px 24px;margin-top:8px;">
+    <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.65);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">🆕 Latest Update — Budget 2026-27</div>
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:10px;">₹9,12,696 करोड़ — 12.9% वृद्धि</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;font-size:13px;">
+      <div>📚 14 नए Medical Colleges (₹1,023 Cr)</div>
+      <div>🏥 Cancer Institute Lucknow (₹315 Cr)</div>
+      <div>🏫 75 जिलों में CM Model Composite Schools</div>
+      <div>💻 AI Labs in ITIs — Vocational Ed +88%</div>
+      <div>👩‍🏫 Private School Teachers को Cashless Medical (₹89 Cr)</div>
+      <div>🎓 Student Mental Health Policy in Higher Ed</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: WOMEN & CHILD
+══════════════════════════════════════ -->
+<div class="section-pane" id="tab-women">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--rose-light);color:var(--rose);">👩</div>
+    <div><h2>महिला एवं बाल कल्याण योजनाएं</h2><p>Women & Child Welfare Schemes — UP + Central</p></div>
+  </div>
+  <div class="scheme-grid">
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🛵</div><div>
+        <div class="card-title">CM Rani Laxmibai Mahila Evam Bal Samman Kosh</div>
+        <div class="card-year">📅 2017 | उत्तर प्रदेश</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">महिला</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">महिला सुरक्षा, सम्मान एवं कल्याण</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">महिलाएं एवं बालिकाएं</span></div>
+        <div class="card-row"><span class="row-key">💰 कोष</span><span class="row-val">₹100 Cr initial corpus</span></div>
+      </div>
+      <div class="card-highlight">💡 महिलाओं के खिलाफ अपराध पर मुआवजा और पुनर्वास</div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🛵</div><div>
+        <div class="card-title">Free Scooty Scheme (Meritorious Girls)</div>
+        <div class="card-year">📅 2025-26 Budget Announcement | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">महिला</span><span class="tag tag-edu">शिक्षा</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">मेधावी छात्राओं को शिक्षा प्रोत्साहन</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">UP की मेधावी छात्राएं</span></div>
+      </div>
+      <div class="card-highlight">💡 Budget 2025-26 में घोषित | Working Women Hostel भी प्रमुख शहरों में</div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">💍</div><div>
+        <div class="card-title">Mukhyamantri Samuhik Vivah Yojana</div>
+        <div class="card-year">📅 2017 | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">महिला</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">गरीब परिवारों की बेटियों का विवाह</span></div>
+        <div class="card-row"><span class="row-key">💰 सहायता</span><span class="row-val">₹51,000 प्रति जोड़ा (₹35,000 खाते में)</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">BPL, SC/ST, अल्पसंख्यक परिवार</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">💵</div><div>
+        <div class="card-title">UP Vidhwa Pension Yojana</div>
+        <div class="card-year">📅 चालू | ₹5,500 Cr — Budget 2025-26</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">महिला</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 पेंशन</span><span class="row-val">₹500/माह (18-60 वर्ष)</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">विधवा महिलाएं (BPL)</span></div>
+        <div class="card-row"><span class="row-key">🌐 पोर्टल</span><span class="row-val">sspy-up.gov.in</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🍼</div><div>
+        <div class="card-title">Mission Shakti (UP)</div>
+        <div class="card-year">📅 2020 | UP — Phase III & IV चल रही</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">महिला</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">महिला सुरक्षा, सशक्तीकरण, आत्मनिर्भरता</span></div>
+        <div class="card-row"><span class="row-key">📌 विशेषता</span><span class="row-val">Mission Shakti Bus, 1090 Helpline</span></div>
+        <div class="card-row"><span class="row-key">💼 रोजगार</span><span class="row-val">UP में 1 Cr+ महिलाओं को SHG से जोड़ा</span></div>
+      </div>
+      <div class="card-highlight">💡 Central Mission Shakti का UP-specific implementation</div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🤱</div><div>
+        <div class="card-title">Pradhan Mantri Matru Vandana Yojana (PMMVY)</div>
+        <div class="card-year">📅 2017 | Central — UP में लागू</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">महिला</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 लाभ</span><span class="row-val">₹6,500 (पहले बच्चे पर ₹5,000 + ₹1,500)</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">पहली बार गर्भवती/स्तनपान कराने वाली</span></div>
+        <div class="card-row"><span class="row-key">📅 Revision</span><span class="row-val">2022 में ₹6,500 revised</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🌸</div><div>
+        <div class="card-title">Beti Bachao Beti Padhao — UP Focus</div>
+        <div class="card-year">📅 2015 (Panipat Launch) | Central — UP में विस्तार</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">महिला</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Sex-ratio सुधार, बालिका शिक्षा</span></div>
+        <div class="card-row"><span class="row-key">📌 UP Status</span><span class="row-val">सभी 75 जिलों में लागू</span></div>
+      </div>
+      <div class="card-highlight">💡 UP में Sex Ratio at Birth: 2017 के 889 से 2023 में 914 हुआ</div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🍱</div><div>
+        <div class="card-title">Anganwadi Strengthening — Budget 2025-26</div>
+        <div class="card-year">📅 2025-26 | UP Budget</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">बाल</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Anganwadi centers को मजबूत करना</span></div>
+        <div class="card-row"><span class="row-key">📌 विशेषता</span><span class="row-val">Nutrition programs for women & children</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">📋</div><div>
+        <div class="card-title">UP Shadi Anudan Yojana</div>
+        <div class="card-year">📅 2016 | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-women">महिला</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 सहायता</span><span class="row-val">₹20,000 (General), ₹20,000 (SC/ST)</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">गरीब परिवार की बेटी (18+ वर्ष)</span></div>
+        <div class="card-row"><span class="row-key">🌐 पोर्टल</span><span class="row-val">shadianudan.upsdc.gov.in</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: FARMER SCHEMES
+══════════════════════════════════════ -->
+<div class="section-pane" id="tab-farmer">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--green-light);color:var(--green);">🌾</div>
+    <div><h2>किसान कल्याण योजनाएं</h2><p>Farmer & Agriculture Schemes 2017–2026</p></div>
+  </div>
+  <div class="scheme-grid">
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">💸</div><div>
+        <div class="card-title">PM Kisan Samman Nidhi (PM-KISAN)</div>
+        <div class="card-year">📅 2019 | Central — UP सबसे बड़ा लाभार्थी राज्य</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">किसान</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 लाभ</span><span class="row-val">₹6,000/वर्ष (₹2,000 x 3 किस्त)</span></div>
+        <div class="card-row"><span class="row-key">👥 UP लाभार्थी</span><span class="row-val">2.5 Cr+ किसान</span></div>
+        <div class="card-row"><span class="row-key">📌 DBT</span><span class="row-val">Direct Bank Transfer</span></div>
+      </div>
+      <div class="card-highlight">💡 UP देश का सर्वाधिक PM-KISAN लाभार्थी राज्य</div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🌾</div><div>
+        <div class="card-title">Fasal Rin Mochan Yojana (कर्ज माफी)</div>
+        <div class="card-year">📅 2017 | UP — Yogi सरकार की पहली बड़ी घोषणा</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">किसान</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 माफी</span><span class="row-val">₹1 लाख तक कृषि ऋण माफ</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">86 लाख+ सीमांत किसान</span></div>
+        <div class="card-row"><span class="row-key">💰 बजट</span><span class="row-val">₹36,000 Cr</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🐄</div><div>
+        <div class="card-title">Nandini Krishak Samridhi Yojana</div>
+        <div class="card-year">📅 2023 | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">किसान</span><span class="tag tag-new">New</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">25 देशी नस्ल की गाएं देकर डेयरी खोलना</span></div>
+        <div class="card-row"><span class="row-key">💰 Unit Cost</span><span class="row-val">₹62.5 लाख (Unit of 25 cows)</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">किसान एवं पशुपालक</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">💀</div><div>
+        <div class="card-title">CM Krishak Durghatna Kalyan Yojana</div>
+        <div class="card-year">📅 2019 (पूर्व: किसान एवं सर्वहित बीमा योजना)</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">किसान</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 मुआवजा</span><span class="row-val">मृत्यु पर ₹5 लाख, विकलांगता पर ₹2 लाख</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">UP के सभी किसान परिवार</span></div>
+        <div class="card-row"><span class="row-key">💰 Budget 2025</span><span class="row-val">₹1,050 Cr allocated</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">☀️</div><div>
+        <div class="card-title">PM Kusum Yojana (UP Implementation)</div>
+        <div class="card-year">📅 2019 | Central — UP में ₹509 Cr 2025-26</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">किसान</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Solar pump सिंचाई</span></div>
+        <div class="card-row"><span class="row-key">💰 subsidy</span><span class="row-val">60% सब्सिडी (30% Central + 30% State)</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🌿</div><div>
+        <div class="card-title">Paramparagat Krishi Vikas Yojana (PKVY)</div>
+        <div class="card-year">📅 2015 | Central — UP में Natural Farming Push 2025</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">किसान</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Organic/natural farming प्रोत्साहन</span></div>
+        <div class="card-row"><span class="row-key">💰 Budget 2025</span><span class="row-val">₹124 Cr (UP Budget)</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🌱</div><div>
+        <div class="card-title">UP Seed Self-Reliance Policy 2024</div>
+        <div class="card-year">📅 2024 | UP — NEW</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">किसान</span><span class="tag tag-new">New 2024</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Seed Parks विकास, बीज आत्मनिर्भरता</span></div>
+        <div class="card-row"><span class="row-key">💰 Budget</span><span class="row-val">₹251 Cr (2025-26)</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🌧️</div><div>
+        <div class="card-title">PM Fasal Bima Yojana (PMFBY)</div>
+        <div class="card-year">📅 2016 | Central — UP में व्यापक कवरेज</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">किसान</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 Premium</span><span class="row-val">खरीफ 2%, रबी 1.5%, बागवानी 5%</span></div>
+        <div class="card-row"><span class="row-key">👥 UP Coverage</span><span class="row-val">1 Cr+ किसान</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 4: YOUTH & EMPLOYMENT
+══════════════════════════════════════ -->
+<div class="section-pane" id="tab-youth">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--purple-light);color:var(--purple);">🎓</div>
+    <div><h2>युवा एवं रोजगार योजनाएं</h2><p>Youth, Education & Skill Development Schemes</p></div>
+  </div>
+  <div class="scheme-grid">
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">📱</div><div>
+        <div class="card-title">Free Tablet/Smartphone Yojana (Digishakti)</div>
+        <div class="card-year">📅 2021 | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-youth">युवा</span><span class="tag tag-edu">शिक्षा</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">डिजिटल शिक्षा एवं कौशल विकास</span></div>
+        <div class="card-row"><span class="row-key">👥 लक्ष्य</span><span class="row-val">1 Cr युवा — Tablet + Smartphone</span></div>
+        <div class="card-row"><span class="row-key">💰 बजट</span><span class="row-val">₹3,000 Cr+</span></div>
+      </div>
+      <div class="card-highlight">💡 Class 10-12 pass + Graduate students को लाभ</div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🏭</div><div>
+        <div class="card-title">Vishwakarma Shram Samman Yojana</div>
+        <div class="card-year">📅 2017 | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-youth">कारीगर</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">पारंपरिक कारीगरों का कौशल उन्नयन</span></div>
+        <div class="card-row"><span class="row-key">💰 Toolkit</span><span class="row-val">₹10,000 toolkit grant</span></div>
+        <div class="card-row"><span class="row-key">👥 Categories</span><span class="row-val">18 पारंपरिक व्यवसाय (बढ़ई, दर्जी आदि)</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🔧</div><div>
+        <div class="card-title">PM Vishwakarma Yojana (Central)</div>
+        <div class="card-year">📅 Sep 2023 | Central — PM Modi</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-youth">कारीगर</span><span class="tag tag-central">Central</span><span class="tag tag-new">New</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 ऋण</span><span class="row-val">₹1 लाख (Phase 1) + ₹2 लाख (Phase 2)</span></div>
+        <div class="card-row"><span class="row-key">💰 Subsidy</span><span class="row-val">5% ब्याज पर ऋण, ₹15,000 toolkit</span></div>
+        <div class="card-row"><span class="row-key">👥 Target</span><span class="row-val">18 vocations — 30 lakh artisans</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">💼</div><div>
+        <div class="card-title">UP Skill Development Mission (UPSDM)</div>
+        <div class="card-year">📅 2013 (Upgraded 2017) | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-youth">कौशल</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Skill training & placement</span></div>
+        <div class="card-row"><span class="row-key">👥 Target</span><span class="row-val">2 Cr युवा trained by 2025</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🏗️</div><div>
+        <div class="card-title">Mukhyamantri Yuva Swarozgar Yojana</div>
+        <div class="card-year">📅 2018 | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-youth">स्वरोजगार</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 ऋण</span><span class="row-val">Industry: ₹25 L, Service: ₹10 L</span></div>
+        <div class="card-row"><span class="row-key">💰 Margin</span><span class="row-val">25% margin money subsidy</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">18-40 वर्ष शिक्षित बेरोजगार</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🎒</div><div>
+        <div class="card-title">Atal Residential Schools (UP)</div>
+        <div class="card-year">📅 2021 | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-edu">शिक्षा</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">श्रमिक बच्चों को गुणवत्तापूर्ण शिक्षा</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">BOCW registered workers' children</span></div>
+        <div class="card-row"><span class="row-key">📌 Target</span><span class="row-val">18 मंडल में आवासीय विद्यालय</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🌐</div><div>
+        <div class="card-title">Invest UP — 5 Industrial Hubs Scheme</div>
+        <div class="card-year">📅 Oct 2025 | UP — NEW</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-youth">रोजगार</span><span class="tag tag-new">New 2025</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">UP में निवेश — 5 Industrial Hubs</span></div>
+        <div class="card-row"><span class="row-key">📌 विशेषता</span><span class="row-val">Bengaluru, Mumbai में Invest UP offices</span></div>
+      </div>
+      <div class="card-highlight">💡 UP बिना यात्रा के बाहर से निवेश आकर्षित करेगा</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: HEALTH
+══════════════════════════════════════ -->
+<div class="section-pane" id="tab-health">
+  <div class="section-header">
+    <div class="section-icon" style="background:#FFF0F0;color:#C0392B;">🏥</div>
+    <div><h2>स्वास्थ्य योजनाएं</h2><p>Health Schemes — UP & Central</p></div>
+  </div>
+  <div class="scheme-grid">
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🏥</div><div>
+        <div class="card-title">Ayushman Bharat — PM Jan Arogya Yojana (PMJAY)</div>
+        <div class="card-year">📅 2018 | Central — UP में बड़ा कवरेज</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-health">स्वास्थ्य</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 कवरेज</span><span class="row-val">₹5 लाख/परिवार/वर्ष</span></div>
+        <div class="card-row"><span class="row-key">👥 UP Coverage</span><span class="row-val">6 Cr+ लाभार्थी</span></div>
+        <div class="card-row"><span class="row-key">🏥 Hospitals</span><span class="row-val">2,000+ empanelled in UP</span></div>
+      </div>
+      <div class="card-highlight">💡 UP में "Ayushman UP" के नाम से state top-up भी है</div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">💊</div><div>
+        <div class="card-title">CM Jan Arogya Abhiyan (UP)</div>
+        <div class="card-year">📅 2019 | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-health">स्वास्थ्य</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 कवरेज</span><span class="row-val">₹5 लाख तक मुफ्त इलाज</span></div>
+        <div class="card-row"><span class="row-key">👥 लाभार्थी</span><span class="row-val">Home Guards, PRD, शिक्षामित्र</span></div>
+        <div class="card-row"><span class="row-key">📌 2025 Update</span><span class="row-val">Village Watchmen, Honorarium Teachers भी</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🏥</div><div>
+        <div class="card-title">14 New Medical Colleges — UP Budget 2026-27</div>
+        <div class="card-year">📅 2026-27 Budget | UP — LATEST</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-health">स्वास्थ्य</span><span class="tag tag-new">New 2026</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 Budget</span><span class="row-val">₹1,023 Cr (14 Medical Colleges)</span></div>
+        <div class="card-row"><span class="row-key">🏥 Cancer Inst.</span><span class="row-val">₹315 Cr — Lucknow</span></div>
+        <div class="card-row"><span class="row-key">💰 Medical Edu</span><span class="row-val">₹14,997 Cr total allocation</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🩺</div><div>
+        <div class="card-title">National Health Mission (NHM) — UP</div>
+        <div class="card-year">📅 2005 (Revised 2013) | Central — UP में largest</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-health">स्वास्थ्य</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">📌 Components</span><span class="row-val">NHM, NUHM, RNTCP, RKSK</span></div>
+        <div class="card-row"><span class="row-key">👥 UP Focus</span><span class="row-val">UP में IMR, MMR कम करना प्राथमिकता</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🚑</div><div>
+        <div class="card-title">UP 108 Emergency Ambulance Service</div>
+        <div class="card-year">📅 2012 (Upgraded) | UP</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-health">आपातकाल</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🚑 Fleet</span><span class="row-val">3,000+ Ambulances</span></div>
+        <div class="card-row"><span class="row-key">📌 UP विस्तार</span><span class="row-val">102 — Maternal transport, 108 — Emergency</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">💉</div><div>
+        <div class="card-title">Mission Indradhanush (UP)</div>
+        <div class="card-year">📅 2014 | Central — Intensified Mission 2017</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-health">टीकाकरण</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Universal Immunization — 12 vaccines</span></div>
+        <div class="card-row"><span class="row-key">👥 UP Target</span><span class="row-val">Lucknow, Varanasi, Agra — High Priority</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 6: INFRASTRUCTURE
+══════════════════════════════════════ -->
+<div class="section-pane" id="tab-infra">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--sky);color:var(--teal);">🛣️</div>
+    <div><h2>बुनियादी ढांचा — Expressways & Infrastructure</h2><p>UP Expressway Network — India's Largest State Expressway Network</p></div>
+  </div>
+
+  <div class="facts-grid" style="margin-bottom:20px;">
+    <div class="fact-card"><div class="fact-icon">🛣️</div><div><div class="fact-num">6</div><div class="fact-label">Operational/Under-Construction Expressways (2017 में 2 थे)</div></div></div>
+    <div class="fact-card"><div class="fact-icon">📏</div><div><div class="fact-num">1,200+ km</div><div class="fact-label">Operational Expressway Length (UP)</div></div></div>
+    <div class="fact-card"><div class="fact-icon">✈️</div><div><div class="fact-num">5</div><div class="fact-label">Emergency Airstrips on Expressways (IAF use)</div></div></div>
+    <div class="fact-card"><div class="fact-icon">🏭</div><div><div class="fact-num">₹4,000 Cr</div><div class="fact-label">Industrial Corridors along Expressways</div></div></div>
+  </div>
+
+  <div class="express-grid">
+
+    <div class="express-card">
+      <div class="express-head">
+        <h3>🛣️ Yamuna Expressway</h3>
+        <div class="elen">Greater Noida → Agra</div>
+      </div>
+      <div class="express-body">
+        <div class="express-row"><span>लंबाई</span><span>165 km</span></div>
+        <div class="express-row"><span>Lanes</span><span>6 (expandable to 8)</span></div>
+        <div class="express-row"><span>Inaugurated</span><span>2012</span></div>
+        <div class="express-row"><span>Status</span><span><span class="status-pill st-open">✅ Operational</span></span></div>
+        <div class="express-row"><span>Special</span><span>Emergency Airstrip</span></div>
+      </div>
+    </div>
+
+    <div class="express-card">
+      <div class="express-head">
+        <h3>🛣️ Agra-Lucknow Expressway</h3>
+        <div class="elen">Agra → Lucknow</div>
+      </div>
+      <div class="express-body">
+        <div class="express-row"><span>लंबाई</span><span>302 km</span></div>
+        <div class="express-row"><span>Lanes</span><span>6</span></div>
+        <div class="express-row"><span>Inaugurated</span><span>2016 (SP Govt)</span></div>
+        <div class="express-row"><span>Status</span><span><span class="status-pill st-open">✅ Operational</span></span></div>
+        <div class="express-row"><span>Special</span><span>3.2 km IAF Airstrip</span></div>
+      </div>
+    </div>
+
+    <div class="express-card">
+      <div class="express-head">
+        <h3>🛣️ Purvanchal Expressway</h3>
+        <div class="elen">Lucknow → Ghazipur</div>
+      </div>
+      <div class="express-body">
+        <div class="express-row"><span>लंबाई</span><span>341 km</span></div>
+        <div class="express-row"><span>Lanes</span><span>6 (expandable 8)</span></div>
+        <div class="express-row"><span>Inaugurated</span><span>Nov 2021 — PM Modi</span></div>
+        <div class="express-row"><span>Cost</span><span>₹22,497 Cr</span></div>
+        <div class="express-row"><span>Status</span><span><span class="status-pill st-open">✅ Operational</span></span></div>
+        <div class="express-row"><span>Districts</span><span>9 जिलों से गुजरता है</span></div>
+      </div>
+    </div>
+
+    <div class="express-card">
+      <div class="express-head">
+        <h3>🛣️ Bundelkhand Expressway</h3>
+        <div class="elen">Bharatkund → Agra-Lucknow EW</div>
+      </div>
+      <div class="express-body">
+        <div class="express-row"><span>लंबाई</span><span>296 km</span></div>
+        <div class="express-row"><span>Lanes</span><span>4 (expandable 6)</span></div>
+        <div class="express-row"><span>Inaugurated</span><span>July 2022 — PM Modi</span></div>
+        <div class="express-row"><span>Status</span><span><span class="status-pill st-open">✅ Operational</span></span></div>
+        <div class="express-row"><span>Special</span><span>Bundelkhand region connectivity</span></div>
+      </div>
+    </div>
+
+    <div class="express-card">
+      <div class="express-head">
+        <h3>🛣️ Gorakhpur Link Expressway</h3>
+        <div class="elen">Gorakhpur → Purvanchal EW</div>
+      </div>
+      <div class="express-body">
+        <div class="express-row"><span>लंबाई</span><span>91 km</span></div>
+        <div class="express-row"><span>Lanes</span><span>4</span></div>
+        <div class="express-row"><span>Inaugurated</span><span>Dec 2021</span></div>
+        <div class="express-row"><span>Status</span><span><span class="status-pill st-open">✅ Operational</span></span></div>
+        <div class="express-row"><span>CM Yogi</span><span>Hometown connectivity</span></div>
+      </div>
+    </div>
+
+    <div class="express-card">
+      <div class="express-head" style="background:linear-gradient(135deg,#C2410C,#EA580C);">
+        <h3>🚧 Ganga Expressway [FLAGSHIP]</h3>
+        <div class="elen">Meerut → Prayagraj</div>
+      </div>
+      <div class="express-body">
+        <div class="express-row"><span>लंबाई</span><span>594 km (Phase 1)</span></div>
+        <div class="express-row"><span>Lanes</span><span>6 (expandable 8)</span></div>
+        <div class="express-row"><span>Foundation Stone</span><span>Dec 2021 — PM Modi</span></div>
+        <div class="express-row"><span>Phase 1 Opens</span><span>April 2026 ✅</span></div>
+        <div class="express-row"><span>Full Target</span><span>June 2026 (1,049 km)</span></div>
+        <div class="express-row"><span>Special</span><span>3.5 km Airstrip, Shahjahanpur</span></div>
+        <div class="express-row"><span>Cost</span><span>₹36,230 Cr (Phase 1)</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Other Infra -->
+  <div class="section-header" style="margin-top:28px;">
+    <div class="section-icon" style="background:var(--teal-light);color:var(--teal);">🏗️</div>
+    <div><h2>अन्य प्रमुख बुनियादी ढांचा परियोजनाएं</h2></div>
+  </div>
+  <div class="scheme-grid">
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">✈️</div><div>
+        <div class="card-title">Jewar (Noida International) Airport</div>
+        <div class="card-year">📅 2021 Foundation | Target 2025 Phase 1</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-infra">Infrastructure</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">NCR का 2nd International Airport</span></div>
+        <div class="card-row"><span class="row-key">📌 Operator</span><span class="row-val">Zurich Airport International AG</span></div>
+        <div class="card-row"><span class="row-key">💰 Cost</span><span class="row-val">₹29,560 Cr (Phase 1)</span></div>
+      </div>
+    </div>
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🚇</div><div>
+        <div class="card-title">UP Metro Expansion</div>
+        <div class="card-year">📅 चालू | Lucknow, Kanpur, Agra, Varanasi</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-urban">Urban</span><span class="tag tag-infra">Infrastructure</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🚇 Lucknow</span><span class="row-val">Operational — Phase 2 underway</span></div>
+        <div class="card-row"><span class="row-key">🚇 Kanpur</span><span class="row-val">Phase 1 under construction</span></div>
+        <div class="card-row"><span class="row-key">🚇 Agra</span><span class="row-val">Under construction</span></div>
+      </div>
+    </div>
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🕌</div><div>
+        <div class="card-title">Kashi Vishwanath Corridor</div>
+        <div class="card-year">📅 Dec 2021 Inauguration | Varanasi</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-infra">Infrastructure</span><span class="tag tag-urban">Tourism</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 Cost</span><span class="row-val">₹800 Cr+</span></div>
+        <div class="card-row"><span class="row-key">📌 Impact</span><span class="row-val">Ganga Ghat से सीधा मंदिर कनेक्शन</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 7: URBAN DEVELOPMENT
+══════════════════════════════════════ -->
+<div class="section-pane" id="tab-urban">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--teal-light);color:var(--teal);">🏙️</div>
+    <div><h2>शहरी विकास योजनाएं</h2><p>Urban Development Schemes — UP & Central</p></div>
+  </div>
+  <div class="scheme-grid">
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🏠</div><div>
+        <div class="card-title">PM Awas Yojana — Urban (PMAY-U)</div>
+        <div class="card-year">📅 2015 | Central — UP में 20 lakh+ houses</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-urban">आवास</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 Subsidy</span><span class="row-val">₹1.5 L – ₹2.67 L (income-based)</span></div>
+        <div class="card-row"><span class="row-key">👥 UP Status</span><span class="row-val">20 lakh+ houses sanctioned</span></div>
+        <div class="card-row"><span class="row-key">📅 PMAY 2.0</span><span class="row-val">2024 में 1 Cr houses target revised</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🏡</div><div>
+        <div class="card-title">PM Awas Yojana — Gramin (PMAY-G)</div>
+        <div class="card-year">📅 2016 | Central — UP मे सर्वाधिक houses</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-farmer">ग्रामीण</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">💰 Subsidy</span><span class="row-val">₹1.20 L (Plains), ₹1.30 L (Hills)</span></div>
+        <div class="card-row"><span class="row-key">👥 UP Coverage</span><span class="row-val">40+ lakh houses built</span></div>
+      </div>
+      <div class="card-highlight">💡 UP देश में PMAY-G में अग्रणी राज्य</div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🌆</div><div>
+        <div class="card-title">AMRUT 2.0 (UP Cities)</div>
+        <div class="card-year">📅 2021 | Central — 10 UP Cities</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-urban">Urban</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Water security, urban green spaces</span></div>
+        <div class="card-row"><span class="row-key">👥 UP Cities</span><span class="row-val">Lucknow, Agra, Varanasi, Kanpur आदि</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🏘️</div><div>
+        <div class="card-title">DDU Urban Livelihood Scheme (Pilot UP)</div>
+        <div class="card-year">📅 2024-25 | UP — Pilot in 3 Districts</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-urban">Urban</span><span class="tag tag-new">Pilot</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">📌 Districts</span><span class="row-val">Lucknow, Agra, Varanasi</span></div>
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Urban poor को रोजगार + entitlements</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">💡</div><div>
+        <div class="card-title">Swachh Bharat Mission — Urban (UP)</div>
+        <div class="card-year">📅 2014 | Central — UP में ODF status</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-urban">Sanitation</span><span class="tag tag-central">Central</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">📌 UP Status</span><span class="row-val">ODF+ — Open Defecation Free</span></div>
+        <div class="card-row"><span class="row-key">💰 Toilets</span><span class="row-val">1 Cr+ household toilets built</span></div>
+      </div>
+    </div>
+
+    <div class="scheme-card">
+      <div class="card-head"><div class="card-icon">🏛️</div><div>
+        <div class="card-title">Ambedkar Memorial & Cultural Centre</div>
+        <div class="card-year">📅 Budget 2025-26 | Lucknow</div>
+      </div></div>
+      <div class="card-tags"><span class="tag tag-urban">Cultural</span><span class="tag tag-new">New</span></div>
+      <div class="card-rows">
+        <div class="card-row"><span class="row-key">📌 Location</span><span class="row-val">Lucknow</span></div>
+        <div class="card-row"><span class="row-key">🎯 उद्देश्य</span><span class="row-val">Baba Saheb की विरासत को सम्मान</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 8: ODOP
+══════════════════════════════════════ -->
+<div class="section-pane" id="tab-odop">
+
+  <div class="odop-intro">
+    <div class="odop-intro-icon">🎨</div>
+    <div>
+      <h3>ODOP — One District One Product</h3>
+      <p>एक जिला एक उत्पाद | Launch: 24 January 2018 | CM Yogi Adityanath | 75 Districts</p>
+    </div>
+  </div>
+
+  <div class="odop-stats">
+    <div class="odop-stat"><div class="odop-stat-num">75</div><div class="odop-stat-label">Districts Covered</div></div>
+    <div class="odop-stat"><div class="odop-stat-num">25 L</div><div class="odop-stat-label">Employment Target</div></div>
+    <div class="odop-stat"><div class="odop-stat-num">₹2 L Cr</div><div class="odop-stat-label">ODOP Exports (2024)</div></div>
+    <div class="odop-stat"><div class="odop-stat-num">2%</div><div class="odop-stat-label">GDP Addition Target</div></div>
+    <div class="odop-stat"><div class="odop-stat-num">2018</div><div class="odop-stat-label">Launch Year</div></div>
+    <div class="odop-stat"><div class="odop-stat-num">G20</div><div class="odop-stat-label">Products gifted to World Leaders</div></div>
+  </div>
+
+  <input class="odop-search" type="text" id="odopSearch" placeholder="🔍 Search district or product... (e.g., Agra, Carpet, Kalanamak)" oninput="filterODOP()">
+
+  <div class="table-wrap">
+  <table class="odop-table" id="odopTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>जिला (District)</th>
+        <th>उत्पाद (Product)</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody id="odopBody">
+      <!-- Populated by JS -->
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 9: MCQs
+══════════════════════════════════════ -->
+<div class="section-pane" id="tab-mcq">
+
+  <div class="mcq-header">
+    <div style="font-size:36px;">📝</div>
+    <div>
+      <h2>UP Schemes — MCQ Practice</h2>
+      <p>UPPSC Mains + Prelims level | Tap to attempt — Answer reveal करें</p>
+    </div>
+  </div>
+
+  <div id="mcqScore" style="background:var(--gold-light);border:1px solid #E6C040;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:14px;font-weight:600;color:#78530A;display:none;">
+    🏆 Score: <span id="scoreText">0/0</span> | Accuracy: <span id="accuracy">-</span>
+  </div>
+
+  <div class="mcq-list" id="mcqList">
+    <!-- populated by JS -->
+  </div>
+
+</div>
+
+</main>
+
+<!-- Score floating badge -->
+<div class="score-box" id="floatScore" style="display:none;">
+  MCQ: <span id="floatScoreText">0/0</span>
+</div>
+
+<script>
+// ── TAB SWITCH ──
+function showTab(id) {
+  document.querySelectorAll('.section-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.getElementById('btn-' + id).classList.add('active');
+  window.scrollTo({ top: 60, behavior: 'smooth' });
+}
+
+// ── ODOP DATA ──
+const odopData = [
+  ['Agra','Leather Goods','craft'],
+  ['Aligarh','Locks & Hardware','metal'],
+  ['Ambedkar Nagar','Textile (Tanda)','textile'],
+  ['Amethi','Moong Dal','food'],
+  ['Amroha','Musical Instruments (Dholak)','craft'],
+  ['Auraiya','Desi Ghee','food'],
+  ['Ayodhya','Textile (Khadi)','textile'],
+  ['Azamgarh','Black Pottery','craft'],
+  ['Baghpat','Home Furnishing','textile'],
+  ['Bahraich','Wheat Straw Craft','craft'],
+  ['Ballia','Bindaul Bindi (Tilkut)','food'],
+  ['Balrampur','Chyawanprash','food'],
+  ['Banda','Shajr Stone Craft','craft'],
+  ['Barabanki','Textile (Handloom)','textile'],
+  ['Bareilly','Zari-Zardozi (Surahi)','craft'],
+  ['Basti','Wood Craft','craft'],
+  ['Bijnor','Paper Mache (Craft)','craft'],
+  ['Budaun','Zari-Zardozi','craft'],
+  ['Bulandshahr','Pottery','craft'],
+  ['Chandauli','Kalanamak Rice','food'],
+  ['Chitrakoot','Wood Craft','craft'],
+  ['Deoria','Banana Fiber Craft','craft'],
+  ['Etah','Surajmukhi (Milk Products)','food'],
+  ['Etawah','Leather & Suede','craft'],
+  ['Farrukhabad','Zari-Zardozi Printing','craft'],
+  ['Fatehpur','Bindi (Textile)','textile'],
+  ['Firozabad','Glass Bangles','craft'],
+  ['Gautam Buddha Nagar','Readymade Garments','textile'],
+  ['Ghaziabad','Engineering Goods','metal'],
+  ['Ghazipur','Jute Wall Hanging','craft'],
+  ['Gonda','Dal Processing','food'],
+  ['Gorakhpur','Terracotta','craft'],
+  ['Hamirpur','Khadi & Gram Udyog','textile'],
+  ['Hapur','Home Furnishing','textile'],
+  ['Hardoi','Handloom (Saree)','textile'],
+  ['Hathras','Hing (Asafoetida)','food'],
+  ['Jalaun','Handmade Paper Art','craft'],
+  ['Jaunpur','Woollen Carpets','textile'],
+  ['Jhansi','Soft Toys','craft'],
+  ['Kannauj','Perfume (Attar)','other'],
+  ['Kanpur Dehat','Aluminium Utensils','metal'],
+  ['Kanpur Nagar','Leather Products','craft'],
+  ['Kasganj','Zari-Zardozi','craft'],
+  ['Kaushambi','Banana Craft','craft'],
+  ['Kushinagar','Banana Fiber Products','craft'],
+  ['Lakhimpur Kheri','Textile (Tharu)','textile'],
+  ['Lalitpur','Dhurrie (Carpet)','textile'],
+  ['Lucknow','Chikankari & Zari-Zardozi','craft'],
+  ['Maharajganj','Furniture (Wood)','craft'],
+  ['Mahoba','Gaura Stone Craft','craft'],
+  ['Mainpuri','Tarkashi (Wooden Inlay)','craft'],
+  ['Mathura','Sanitary Fittings','metal'],
+  ['Mau','Textile (Silk Saree)','textile'],
+  ['Meerut','Sports Goods','craft'],
+  ['Mirzapur','Carpet','textile'],
+  ['Moradabad','Brass Craft (Metal Work)','metal'],
+  ['Muzaffarnagar','Gur (Jaggery)','food'],
+  ['Pilibhit','Flute (Musical)','craft'],
+  ['Prayagraj','Moonj Craft','craft'],
+  ['Pratapgarh','Awala (Amla Products)','food'],
+  ['Rae Bareli','Optical Goods','metal'],
+  ['Rampur','Rampur Raza Library / Patchwork','craft'],
+  ['Saharanpur','Wood Craft','craft'],
+  ['Sambhal','Horn-Bone Craft','craft'],
+  ['Sant Kabir Nagar','Brass Craft','metal'],
+  ['Shahjahanpur','Zari-Zardozi','craft'],
+  ['Shamli','Jaggery Processing','food'],
+  ['Shravasti','Banana Fiber','craft'],
+  ['Siddharthnagar','Kalanamak Rice','food'],
+  ['Sitapur','Dari (Carpet)','textile'],
+  ['Sonbhadra','Carpet','textile'],
+  ['Sultanpur','Moonj Craft','craft'],
+  ['Unnao','Leather (Zari Work)','craft'],
+  ['Varanasi','Banarasi Silk Saree','textile'],
+];
+
+function getCatClass(cat) {
+  const map = { craft:'craft', food:'food', textile:'textile', metal:'metal', other:'other' };
+  return map[cat] || 'other';
+}
+
+function renderODOP(data) {
+  const body = document.getElementById('odopBody');
+  body.innerHTML = data.map((r, i) => `
+    <tr>
+      <td style="color:var(--muted);font-size:11px;">${i+1}</td>
+      <td style="font-weight:600;">${r[0]}</td>
+      <td>${r[1]}</td>
+      <td><span class="odop-cat ${getCatClass(r[2])}">${r[2]}</span></td>
+    </tr>
+  `).join('');
+}
+
+function filterODOP() {
+  const q = document.getElementById('odopSearch').value.toLowerCase();
+  const filtered = odopData.filter(r => r[0].toLowerCase().includes(q) || r[1].toLowerCase().includes(q) || r[2].toLowerCase().includes(q));
+  renderODOP(filtered);
+}
+
+renderODOP(odopData);
+
+// ── MCQ DATA ──
+const mcqs = [
+  {
+    q: "ODOP (One District One Product) योजना UP में कब शुरू हुई?",
+    opts: ["January 2017", "January 2018", "March 2019", "October 2020"],
+    ans: 1,
+    explain: "CM Yogi Adityanath ने 24 January 2018 को ODOP launch किया। यह UP के 75 जिलों को cover करता है।"
+  },
+  {
+    q: "UP Budget 2025-26 का कुल आकार कितना था?",
+    opts: ["₹6,15,000 Cr", "₹7,36,437 Cr", "₹8,08,736 Cr", "₹9,12,696 Cr"],
+    ans: 2,
+    explain: "₹8,08,736 Cr (₹8.08 lakh crore) — Finance Minister Suresh Kumar Khanna ने 20 February 2025 को पेश किया। यह 9.8% बढ़ोतरी थी।"
+  },
+  {
+    q: "Purvanchal Expressway (341 km) का उद्घाटन कब और किसने किया?",
+    opts: ["July 2020 — CM Yogi", "Nov 2021 — PM Modi", "Dec 2022 — CM Yogi", "Jan 2019 — PM Modi"],
+    ans: 1,
+    explain: "16 November 2021 को PM Narendra Modi ने Purvanchal Expressway का उद्घाटन किया। यह Lucknow से Ghazipur को जोड़ता है।"
+  },
+  {
+    q: "Ganga Expressway (Phase 1) किन दो शहरों को जोड़ता है?",
+    opts: ["Noida-Ballia", "Meerut-Prayagraj", "Lucknow-Gorakhpur", "Agra-Varanasi"],
+    ans: 1,
+    explain: "594 km का Ganga Expressway Meerut (NH-334) से Prayagraj (NH-19) को connect करता है। Phase 1 April 2026 में open हुआ।"
+  },
+  {
+    q: "UP की CM Krishak Durghatna Kalyan Yojana में मृत्यु पर कितनी सहायता मिलती है?",
+    opts: ["₹2 लाख", "₹3 लाख", "₹5 लाख", "₹10 लाख"],
+    ans: 2,
+    explain: "CM Krishak Durghatna Kalyan Yojana में मृत्यु पर ₹5 लाख और विकलांगता पर ₹2 लाख मुआवजा। Budget 2025-26 में ₹1,050 Cr allocated।"
+  },
+  {
+    q: "Kannauj जिले का ODOP उत्पाद क्या है?",
+    opts: ["Glass Bangles", "Brass Craft", "Attar (Perfume)", "Soft Toys"],
+    ans: 2,
+    explain: "Kannauj विश्व प्रसिद्ध Attar (Perfume/इत्र) के लिए जाना जाता है। यही उसका ODOP product है।"
+  },
+  {
+    q: "Mission Shakti UP में किस helpline number से संबंधित है?",
+    opts: ["100", "1090", "181", "112"],
+    ans: 1,
+    explain: "1090 — Women Power Line. Mission Shakti में 1090 helpline महिला सुरक्षा के लिए। 112 — Police/Emergency, 181 — Mahila Helpline Central."
+  },
+  {
+    q: "PM-KISAN योजना में किसानों को कितनी वार्षिक सहायता मिलती है?",
+    opts: ["₹4,000", "₹5,000", "₹6,000", "₹8,000"],
+    ans: 2,
+    explain: "₹6,000/वर्ष (₹2,000 x 3 किस्त) — 2019 से। UP में 2.5 Cr+ किसान लाभार्थी। Latest: KCC loan limit ₹3L से ₹5L हुई (Budget 2025-26)।"
+  },
+  {
+    q: "Varanasi का ODOP उत्पाद क्या है?",
+    opts: ["Chikankari", "Banarasi Silk Saree", "Terracotta", "Black Pottery"],
+    ans: 1,
+    explain: "Varanasi का ODOP — Banarasi Silk Saree। Lucknow का ODOP — Chikankari & Zari-Zardozi। Gorakhpur — Terracotta। Azamgarh — Black Pottery।"
+  },
+  {
+    q: "UP Budget 2025-26 में GDP लक्ष्य क्या है?",
+    opts: ["$500 Billion by 2027", "$1 Trillion by 2029", "$750 Billion by 2030", "$2 Trillion by 2035"],
+    ans: 1,
+    explain: "$1 Trillion Economy by 2029 — UP का महत्वाकांक्षी लक्ष्य। UP की GDP 2017-18 में ₹12.89 L Cr थी जो 2024-25 में ₹27.51 L Cr हो गई।"
+  }
+];
+
+let scores = new Array(mcqs.length).fill(null);
+
+function renderMCQs() {
+  const container = document.getElementById('mcqList');
+  container.innerHTML = mcqs.map((q, qi) => `
+    <div class="mcq-item" id="mcq-${qi}">
+      <div class="mcq-q"><span class="mcq-q-num">Q${qi+1}.</span> ${q.q}</div>
+      <div class="mcq-opts">
+        ${q.opts.map((opt, oi) => `
+          <button class="mcq-opt" id="opt-${qi}-${oi}" onclick="checkAns(${qi},${oi})">
+            <span style="font-weight:700;margin-right:5px;">${['A','B','C','D'][oi]})</span> ${opt}
+          </button>
+        `).join('')}
+      </div>
+      <div class="mcq-explain" id="explain-${qi}">
+        💡 <strong>Explanation:</strong> ${q.explain}
+      </div>
+    </div>
+  `).join('');
+}
+
+function checkAns(qi, oi) {
+  if (scores[qi] !== null) return; // already answered
+  const correct = mcqs[qi].ans;
+  scores[qi] = (oi === correct) ? 1 : 0;
+
+  // Style options
+  mcqs[qi].opts.forEach((_, idx) => {
+    const btn = document.getElementById(`opt-${qi}-${idx}`);
+    if (idx === correct) btn.classList.add('correct');
+    else if (idx === oi && oi !== correct) btn.classList.add('wrong');
+    btn.style.pointerEvents = 'none';
+  });
+
+  // Show explanation
+  document.getElementById(`explain-${qi}`).classList.add('show');
+
+  updateScore();
+}
+
+function updateScore() {
+  const answered = scores.filter(s => s !== null).length;
+  const correct = scores.filter(s => s === 1).length;
+  if (answered === 0) return;
+  const pct = Math.round((correct / answered) * 100);
+  document.getElementById('mcqScore').style.display = 'block';
+  document.getElementById('scoreText').textContent = `${correct}/${answered}`;
+  document.getElementById('accuracy').textContent = `${pct}%`;
+  document.getElementById('floatScore').style.display = 'block';
+  document.getElementById('floatScoreText').textContent = `${correct}/${answered}`;
+}
+
+renderMCQs();
+</script>
+
+</body>
+</html>
