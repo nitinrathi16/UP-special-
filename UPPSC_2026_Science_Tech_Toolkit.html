@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 · Science & Tech Toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F2;
+    --ink:#15203A;
+    --ink-soft:#44506E;
+    --saffron:#E85A0C;
+    --saffron-soft:#FDEADD;
+    --green:#1B7A43;
+    --green-soft:#E2F2E8;
+    --red:#B3261E;
+    --red-soft:#F9E5E4;
+    --line:#D8D3C5;
+    --card:#FFFFFF;
+    --navy:#1B2B5C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    line-height:1.55;
+    font-size:15.5px;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px 80px}
+
+  /* ===== Masthead: exam-paper dossier ===== */
+  header{
+    border-bottom:3px double var(--ink);
+    padding:34px 0 20px;
+    margin-bottom:8px;
+  }
+  .stamp-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--saffron);font-weight:500;
+  }
+  h1{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:800;font-size:clamp(30px,5.4vw,46px);
+    line-height:1.04;letter-spacing:-.015em;margin:8px 0 10px;
+  }
+  h1 .accent{color:var(--saffron)}
+  .sub{color:var(--ink-soft);max-width:560px;font-size:14.5px}
+  .booklet{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.7;
+    border:1.5px solid var(--ink);padding:8px 12px;color:var(--ink);
+    text-align:right;background:var(--card);
+    transform:rotate(1.2deg);
+  }
+  .booklet b{color:var(--saffron)}
+
+  /* ===== Score bar ===== */
+  .scorebar{
+    position:sticky;top:0;z-index:50;
+    background:var(--ink);color:#F2EFE6;
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    padding:10px 16px;margin:18px -18px 26px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+  }
+  @media(min-width:920px){.scorebar{margin:18px 0 26px;border-radius:6px}}
+  .scorebar .dot{width:8px;height:8px;border-radius:50%;background:var(--saffron);flex:none}
+  .scorebar .grow{flex:1;min-width:120px}
+  .meter{height:6px;background:#33405F;border-radius:3px;overflow:hidden}
+  .meter i{display:block;height:100%;width:0%;background:var(--saffron);transition:width .35s ease}
+  .scorebar button{
+    background:none;border:1px solid #586288;color:#F2EFE6;
+    font-family:inherit;font-size:11.5px;padding:5px 12px;border-radius:4px;cursor:pointer;
+  }
+  .scorebar button:hover{border-color:var(--saffron);color:var(--saffron)}
+
+  /* ===== Nav tabs ===== */
+  nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+  nav a{
+    text-decoration:none;color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;
+    border:1px solid var(--line);padding:7px 14px;border-radius:99px;background:var(--card);
+  }
+  nav a:hover{border-color:var(--saffron);color:var(--saffron)}
+
+  /* ===== Section headings ===== */
+  h2{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(21px,3.2vw,27px);letter-spacing:-.01em;
+    margin:52px 0 6px;scroll-margin-top:70px;
+  }
+  .h2-kicker{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--saffron);font-weight:500;
+  }
+  .h2-note{color:var(--ink-soft);font-size:13.5px;margin-bottom:20px}
+
+  /* ===== Key facts cards ===== */
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  @media(max-width:680px){.facts{grid-template-columns:1fr}}
+  .fact{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:16px 18px;position:relative;overflow:hidden;
+  }
+  .fact::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--saffron)}
+  .fact h3{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15.5px;margin-bottom:8px;
+  }
+  .fact ul{list-style:none}
+  .fact li{
+    padding-left:16px;position:relative;font-size:13.5px;color:var(--ink-soft);margin-bottom:6px;
+  }
+  .fact li::before{content:"▸";position:absolute;left:0;color:var(--saffron);font-size:11px;top:2px}
+  .fact li b{color:var(--ink)}
+
+  /* ===== Filter chips ===== */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 24px}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.04em;
+    border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+    padding:6px 13px;border-radius:99px;cursor:pointer;transition:all .15s;
+  }
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip:hover:not(.on){border-color:var(--saffron);color:var(--saffron)}
+
+  /* ===== MCQ card with OMR bubbles ===== */
+  .mcq{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:20px 22px;margin-bottom:18px;
+  }
+  .mcq.hide{display:none}
+  .mcq-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:10px}
+  .qno{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--saffron);font-weight:500;letter-spacing:.08em;
+  }
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);border:1px solid var(--line);border-radius:99px;padding:2px 9px;flex:none;
+  }
+  .qtext{font-weight:500;margin-bottom:6px}
+  .stmts{margin:6px 0 12px;padding-left:4px}
+  .stmts div{font-size:14px;color:var(--ink-soft);margin-bottom:3px}
+  .opts{display:grid;gap:8px;margin-top:12px}
+  .opt{
+    display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
+    background:none;border:1px solid var(--line);border-radius:8px;
+    padding:10px 13px;cursor:pointer;font:inherit;font-size:14.5px;color:var(--ink);
+    transition:border-color .15s, background .15s;
+  }
+  .opt:hover:not(:disabled){border-color:var(--saffron);background:var(--saffron-soft)}
+  .opt:disabled{cursor:default}
+  .bubble{
+    flex:none;width:22px;height:22px;border-radius:50%;
+    border:1.8px solid var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+    display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
+    margin-top:1px;transition:all .15s;
+  }
+  .opt.correct{border-color:var(--green);background:var(--green-soft)}
+  .opt.correct .bubble{background:var(--green);border-color:var(--green);color:#fff}
+  .opt.wrong{border-color:var(--red);background:var(--red-soft)}
+  .opt.wrong .bubble{background:var(--red);border-color:var(--red);color:#fff}
+  .opt.dim{opacity:.45}
+  .explain{
+    display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;
+    font-size:13.5px;color:var(--ink-soft);
+  }
+  .explain.show{display:block;animation:fadeUp .3s ease}
+  .explain .verdict{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;font-weight:500;margin-bottom:5px;
+  }
+  .explain .verdict.ok{color:var(--green)}
+  .explain .verdict.no{color:var(--red)}
+  .explain b{color:var(--ink)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  /* ===== Top 5 expected topics ===== */
+  .topic{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:18px 20px;margin-bottom:14px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .topic .rank{
+    flex:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:30px;color:var(--saffron);line-height:1;min-width:34px;
+  }
+  .topic h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15.5px;margin-bottom:5px}
+  .topic p{font-size:13.5px;color:var(--ink-soft)}
+  .topic p b{color:var(--ink)}
+
+  .strategy{
+    margin-top:26px;background:var(--ink);color:#E9E6DC;border-radius:10px;padding:20px 22px;
+  }
+  .strategy .h2-kicker{color:var(--saffron)}
+  .strategy p{font-size:14px;margin-top:8px}
+  .strategy b{color:#fff}
+
+  footer{
+    margin-top:60px;border-top:1px solid var(--line);padding-top:16px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);
+    display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .opt:focus-visible,.chip:focus-visible,nav a:focus-visible,button:focus-visible{
+    outline:2px solid var(--saffron);outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="stamp-row">
+    <div>
+      <div class="eyebrow">UPPSC PCS 2026 · GS Paper-I · Mains Top-10 Track</div>
+      <h1>Science &amp; Tech<br><span class="accent">Practice Toolkit</span></h1>
+      <p class="sub">ISRO · DRDO · Nuclear · Semiconductor · Awards — June 2026 current affairs par based 25 exam-pattern MCQs, OMR-style practice ke saath.</p>
+    </div>
+    <div class="booklet">
+      BOOKLET SERIES: <b>S&amp;T-01</b><br>
+      QUESTIONS: 25<br>
+      UPDATED: 12 JUN 2026<br>
+      MEDIUM: HINGLISH
+    </div>
+  </div>
+</header>
+
+<div class="scorebar" id="scorebar">
+  <span class="dot"></span>
+  <span id="scoretext">Score: 0 / 0 attempted</span>
+  <div class="grow"><div class="meter"><i id="meterfill"></i></div></div>
+  <button onclick="resetAll()">Reset Test</button>
+</div>
+
+<nav>
+  <a href="#facts">Key Facts</a>
+  <a href="#mcqs">25 MCQs</a>
+  <a href="#topics">Top 5 Expected Topics</a>
+</nav>
+
+<!-- ================= KEY FACTS ================= -->
+<div class="h2-kicker" id="facts">Section 01 · Revision Capsule</div>
+<h2>Key Facts — pehle yeh ratta maro</h2>
+<p class="h2-note">Har fact niche MCQs mein test hoga. Numbers aur years par focus — UPPSC yahi trap lagata hai.</p>
+
+<div class="facts">
+  <div class="fact">
+    <h3>🚀 ISRO 2025–26</h3>
+    <ul>
+      <li><b>27 missions</b> planned FY 2026-27; 4 Gaganyaan ke liye</li>
+      <li><b>Gaganyaan G1</b> (uncrewed): HLVM3 rocket + Vyommitra robot</li>
+      <li><b>H1 crewed</b> 2027 — 3 astronauts; budget <b>₹20,193 cr</b></li>
+      <li>Bharatiya Antariksha Station target: <b>2035</b></li>
+      <li><b>PSLV-C62</b> (12 Jan 2026): EOS-N1 + 15 satellites — NSIL ka 9th commercial mission</li>
+      <li><b>NISAR</b> = NASA-ISRO SAR, dual-band (L &amp; S)</li>
+      <li><b>IRNSS-1F</b> ne 10-saal mission life complete ki (NavIC: 7 satellites, ~1500 km coverage)</li>
+    </ul>
+  </div>
+  <div class="fact">
+    <h3>🎯 DRDO</h3>
+    <ul>
+      <li><b>RudraM-II</b>: air-to-surface; Jun 2026 test, Su-30 MKI, ITR Chandipur</li>
+      <li><b>Astra</b>: BVR air-to-air, 100+ km, <b>indigenous seeker</b> (Jul 2025)</li>
+      <li><b>Hypersonic missile</b>: 1500+ km, Nov 2024, Dr APJ Abdul Kalam Island</li>
+      <li><b>ULPGM-V3</b>: drone-launched PGM; RCI Hyderabad nodal lab (May 2026)</li>
+      <li><b>BrahMos</b> → Philippines export Apr 2024; range 290 km</li>
+      <li><b>UP Defence Corridor</b>: 6 nodes — Lucknow (BrahMos unit), Kanpur, Agra, Aligarh, Jhansi, Chitrakoot</li>
+    </ul>
+  </div>
+  <div class="fact">
+    <h3>⚛️ Nuclear Energy</h3>
+    <ul>
+      <li><b>Nuclear Energy Mission</b> (Budget 2025-26): ₹20,000 cr; <b>100 GWe by 2047</b>; 5 SMRs by 2033</li>
+      <li>SMR trio: <b>BSMR-200, SMR-55</b>, HTGC reactor (hydrogen)</li>
+      <li><b>SHANTI Act</b>: nuclear sector mein private participation</li>
+      <li><b>PFBR Kalpakkam</b>: criticality <b>April 2026</b> — 3-stage programme ki <b>2nd stage</b></li>
+      <li>3 stages: PHWR → Fast Breeder (Pu) → <b>Thorium</b> reactors</li>
+    </ul>
+  </div>
+  <div class="fact">
+    <h3>💾 Semiconductor · AI · Awards</h3>
+    <ul>
+      <li><b>ISM 2.0</b> (Budget 2026-27): ₹8,000 cr; equipment + materials + IP</li>
+      <li><b>Micron Sanand ATMP</b>: inaugurated 28 Feb 2026 — pehli operational facility</li>
+      <li><b>Tata–PSMC Dholera fab</b>: ₹91,000 cr; 28–110nm; first silicon Dec 2026</li>
+      <li><b>IndiaAI Mission</b>: ~₹10,300 cr; MeitY; GPU compute + foundation models</li>
+      <li><b>Vigyan Ratna 2025</b>: Prof. Jayant Narlikar (posthumous) — Hoyle-Narlikar theory</li>
+      <li><b>Vigyan Team 2025</b>: CSIR Aroma Mission — Purple Revolution (lavender, J&amp;K)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= MCQS ================= -->
+<div class="h2-kicker" id="mcqs">Section 02 · Practice Test</div>
+<h2>25 UPPSC-Pattern MCQs</h2>
+<p class="h2-note">Bubble par click karo — turant answer + explanation milega. Sticky bar mein score track hota rahega.</p>
+
+<div class="filters" id="filters">
+  <button class="chip on" data-f="all">All · 25</button>
+  <button class="chip" data-f="isro">ISRO · 7</button>
+  <button class="chip" data-f="drdo">DRDO · 6</button>
+  <button class="chip" data-f="nuclear">Nuclear · 5</button>
+  <button class="chip" data-f="tech">AI/Semicon · 4</button>
+  <button class="chip" data-f="awards">Awards · 3</button>
+</div>
+
+<div id="quiz"></div>
+
+<!-- ================= TOP 5 TOPICS ================= -->
+<div class="h2-kicker" id="topics">Section 03 · Forecast</div>
+<h2>UPPSC 2026 ke Top 5 Most Expected Topics</h2>
+<p class="h2-note">PYQ pattern + 2026 current affairs ke base par — yeh 5 topics non-negotiable hain.</p>
+
+<div class="topic"><div class="rank">1</div><div>
+  <h3>Gaganyaan G1 + Vyommitra</h3>
+  <p>Agar prelims se pehle launch hua, statement-based question almost guaranteed. Yaad rakho: <b>HLVM3</b> rocket, <b>Vyommitra</b> robot, H1 = 2027 (3 astronauts), BAS = 2035, budget <b>₹20,193 cr</b>.</p>
+</div></div>
+
+<div class="topic"><div class="rank">2</div><div>
+  <h3>PFBR Kalpakkam Criticality (April 2026)</h3>
+  <p>Three-stage programme ke saath A-R ya statement question banega. Trap: PFBR <b>2nd stage</b> hai, 3rd nahi. Thorium reserves (Kerala monazite) saath revise karo.</p>
+</div></div>
+
+<div class="topic"><div class="rank">3</div><div>
+  <h3>Nuclear Energy Mission + SHANTI Act + SMRs</h3>
+  <p>Budget-linked schemes UPPSC ki favourite. Numbers: <b>₹20,000 cr</b>, 100 GW by 2047, 5 SMRs by 2033, <b>BSMR-200 / SMR-55</b>.</p>
+</div></div>
+
+<div class="topic"><div class="rank">4</div><div>
+  <h3>UP Defence Corridor + BrahMos Lucknow</h3>
+  <p>UP-specific angle = differentiator marks. <b>6 nodes</b> ka matching question, Lucknow BrahMos unit (May 2025). RudraM-II 2024 mein aa chuka — 2026 test ke saath repeat possible.</p>
+</div></div>
+
+<div class="topic"><div class="rank">5</div><div>
+  <h3>Semiconductor Mission + Rashtriya Vigyan Puraskar 2025</h3>
+  <p>"First operational facility = <b>Micron Sanand</b>" aur "Vigyan Ratna = <b>Narlikar</b>" — perfect single-statement MCQ candidates. Tata Dholera fab (₹91,000 cr) bhi note karo.</p>
+</div></div>
+
+<div class="strategy">
+  <div class="h2-kicker">Topper Strategy</div>
+  <p>PYQ pattern se clear hai — UPPSC missile questions mein <b>type</b> (air-to-air vs air-to-surface) aur <b>test month/year</b> par trap lagata hai (RudraM-II 2024 ka question exactly yahi tha). Har defence system ke liye ek table maintain karo: <b>type · range · launch platform</b>. Science current affairs = differentiator marks for Top-10 rank.</p>
+</div>
+
+<footer>
+  <span>UPPSC 2026 S&amp;T TOOLKIT · BOOKLET S&amp;T-01</span>
+  <span>SOURCE-VERIFIED · JUN 2026</span>
+</footer>
+
+</div>
+
+<script>
+const QUESTIONS = [
+/* ============ ISRO (7) ============ */
+{cat:'isro',tag:'ISRO',
+ q:'Gaganyaan ke pehle uncrewed mission (G1) ke sandarbh mein nimn kathano par vichar kijiye:',
+ stmts:['1. Ismein Vyommitra naamak half-humanoid robot bheja jayega.','2. Iska launch vehicle PSLV ka human-rated version hai.'],
+ opts:['Keval 1','Keval 2','1 aur 2 dono','Na 1, na 2'], ans:0,
+ ex:'Vyommitra G1 mein jayegi (kathan 1 sahi), lekin launch vehicle <b>HLVM3</b> hai — LVM3 ka human-rated version — PSLV nahi (kathan 2 galat).'},
+
+{cat:'isro',tag:'ISRO',
+ q:'Assertion (A): Bharat ka pehla crewed Gaganyaan mission (H1) 2027 mein teen astronauts ko low Earth orbit mein bhejega.<br>Reason (R): Gaganyaan programme ka long-term lakshya 2035 tak Bharatiya Antariksha Station sthapit karna hai.',
+ stmts:[],
+ opts:['A aur R dono sahi, R sahi vyakhya hai','A aur R dono sahi, R sahi vyakhya nahi hai','A sahi, R galat','A galat, R sahi'], ans:1,
+ ex:'Dono tathya alag-alag sahi hain, par BAS-2035 H1 mission ka <b>karan nahi</b> hai — isliye R sahi vyakhya nahi.'},
+
+{cat:'isro',tag:'ISRO',
+ q:'January 2026 mein PSLV-C62 ne kaun-sa primary satellite launch kiya?',
+ stmts:[],
+ opts:['Oceansat-3A','EOS-N1','CMS-03','NISAR'], ans:1,
+ ex:'<b>EOS-N1</b> (earth observation) + 15 co-passenger satellites, 12 Jan 2026 — NSIL ka 9th dedicated commercial mission. CMS-03 ko LVM3-M5 ne launch kiya tha (Navy communication satellite).'},
+
+{cat:'isro',tag:'ISRO',
+ q:'NISAR mission ke sandarbh mein kaun-sa kathan sahi hai?',
+ stmts:[],
+ opts:['Yeh ISRO-ESA joint mission hai','Yeh ISRO-NASA joint Earth observation (SAR) mission hai','Yeh ek solar observatory mission hai','Yeh lunar sample return mission hai'], ans:1,
+ ex:'NISAR = <b>NASA-ISRO Synthetic Aperture Radar</b>; 2025 mein GSLV se launch; duniya ka pehla dual-band (L &amp; S) radar imaging mission.'},
+
+{cat:'isro',tag:'ISRO',
+ q:'Chandrayaan-4 ke baare mein sahi kathan chuniye:',
+ stmts:['1. Yeh lunar sample return mission hai.','2. Ismein ascender aur re-entry modules shamil honge.'],
+ opts:['Keval 1','Keval 2','Dono sahi','Koi nahi'], ans:2,
+ ex:'Chandrayaan-4 (planned ~2027) transfer, lander, <b>ascender, re-entry</b> modules ke saath Moon se samples wapas layega — dono kathan sahi.'},
+
+{cat:'isro',tag:'ISRO',
+ q:'Aditya-L1 kis Lagrange point par sthit hai aur iska mukhya uddeshya kya hai?',
+ stmts:[],
+ opts:['L2 — deep space astronomy','L1 — Surya ka adhyayan (corona, solar wind)','L4 — asteroid observation','L5 — Earth observation'], ans:1,
+ ex:'Sun-Earth <b>L1</b> point (~1.5 million km door); PSLV-C57 se Sep 2023 launch; <b>VELC</b> mukhya payload (corona study).'},
+
+{cat:'isro',tag:'ISRO',
+ q:'NavIC (IRNSS) ke sandarbh mein kathan dekhiye:',
+ stmts:['1. Yeh 7-satellite regional navigation system hai.','2. Iska coverage Bharat aur aas-paas ~1,500 km tak hai.','3. IRNSS-1F ne haal mein apna 10-varsh mission life poora kiya.'],
+ opts:['1 aur 2','2 aur 3','1 aur 3','1, 2 aur 3'], ans:3,
+ ex:'Teeno sahi. IRNSS-1F (2016 launch) ne 2026 mein <b>10 saal</b> ka mission life complete kiya — recent ISRO update.'},
+
+/* ============ DRDO (6) ============ */
+{cat:'drdo',tag:'DRDO',
+ q:'RudraM-II missile ke sandarbh mein sahi kathan:',
+ stmts:['1. Yeh air-to-surface missile hai.','2. June 2026 mein iska Su-30 MKI se safal pareekshan hua.'],
+ opts:['Keval 1','Keval 2','Dono sahi','Koi nahi'], ans:2,
+ ex:'<b>UPPSC 2024 mein yahi missile poocha gaya tha!</b> Air-to-surface, anti-radiation; Jun 2026 test Su-30 MKI se, ITR Chandipur (Odisha) range instrumentation ke saath.'},
+
+{cat:'drdo',tag:'DRDO',
+ q:'Astra missile ke baare mein kaun-sa kathan GALAT hai?',
+ stmts:[],
+ opts:['Yeh Beyond Visual Range air-to-air missile hai','Iski range 100 km se adhik hai','July 2025 ke test mein videshi seeker ka prayog hua','Yeh Su-30 MKI se integrate hai'], ans:2,
+ ex:'July 2025 test ki khaas baat <b>indigenous seeker</b> thi — videshi nahi. Yahi exam point hai. Baaki teen kathan sahi hain.'},
+
+{cat:'drdo',tag:'DRDO',
+ q:'November 2024 mein test hui Bharat ki pehli long-range hypersonic missile ki range kitni hai?',
+ stmts:[],
+ opts:['500 km se adhik','1,000 km','1,500 km se adhik','3,000 km'], ans:2,
+ ex:'<b>1,500+ km</b>; Dr APJ Abdul Kalam Island se test; India select hypersonic-capable nations mein shamil hua.'},
+
+{cat:'drdo',tag:'DRDO',
+ q:'BrahMos ke sandarbh mein:',
+ stmts:['1. Yeh supersonic cruise missile hai (India-Russia joint venture).','2. April 2024 mein iski pehli export delivery Philippines ko hui.','3. Iski manufacturing unit UP Defence Corridor ke Lucknow node mein hai.'],
+ opts:['1 aur 2','2 aur 3','1 aur 3','1, 2 aur 3'], ans:3,
+ ex:'Teeno sahi. UPPSC 2024 mein A-R format mein aaya tha — range <b>290 km</b> hai (490 nahi, wahi trap tha). Lucknow BrahMos unit May 2025 mein inaugurate — UP-special angle.'},
+
+{cat:'drdo',tag:'DRDO',
+ q:'UP Defence Industrial Corridor ke 6 nodes mein kaun shamil NAHI hai?',
+ stmts:[],
+ opts:['Jhansi','Chitrakoot','Varanasi','Aligarh'], ans:2,
+ ex:'6 nodes: <b>Lucknow, Kanpur, Agra, Aligarh, Jhansi, Chitrakoot</b>. Varanasi shamil nahi. UPPSC iska matching question bana sakta hai.'},
+
+{cat:'drdo',tag:'DRDO',
+ q:'ULPGM-V3 ke sandarbh mein sahi kathan:',
+ stmts:[],
+ opts:['Yeh submarine-launched ballistic missile hai','Yeh UAV/drone se launch hone wali precision guided missile hai','Yeh anti-satellite weapon hai','Yeh torpedo system hai'], ans:1,
+ ex:'May 2026 mein development trials complete; <b>Research Centre Imarat, Hyderabad</b> nodal lab; air-to-ground aur air-to-air dono modes test hue; poori tarah indigenous supply chain.'},
+
+/* ============ NUCLEAR (5) ============ */
+{cat:'nuclear',tag:'Nuclear',
+ q:'Nuclear Energy Mission ke sandarbh mein:',
+ stmts:['1. Yeh Union Budget 2025-26 mein announce hua.','2. Lakshya: 2047 tak 100 GWe nuclear capacity.','3. 2033 tak paanch indigenous SMRs operational karna.'],
+ opts:['1 aur 2','2 aur 3','1, 2 aur 3','Keval 1'], ans:2,
+ ex:'Teeno sahi; SMR R&amp;D ke liye <b>₹20,000 crore</b> allocated. Current nuclear capacity ~9 GW se 100 GW tak jaana hai.'},
+
+{cat:'nuclear',tag:'Nuclear',
+ q:'Kalpakkam ke PFBR (Prototype Fast Breeder Reactor) ke sandarbh mein kaun-sa kathan sahi hai?',
+ stmts:['1. Isne April 2026 mein criticality praapt ki.','2. Yeh Bharat ke three-stage nuclear programme ki teesri stage hai.'],
+ opts:['Keval 1','Keval 2','Dono sahi','Koi nahi'], ans:0,
+ ex:'PFBR <b>second stage</b> hai (fast breeder, plutonium-based) — third stage thorium reactors hai. Yeh trap UPPSC zaroor lagayega. Criticality April 2026 = 2026 ka biggest nuclear news.'},
+
+{cat:'nuclear',tag:'Nuclear',
+ q:'Bharat ke three-stage nuclear programme ka sahi kram kya hai?',
+ stmts:[],
+ opts:['PHWR (natural uranium) → Fast Breeder (Pu) → Thorium-based reactors','Thorium → PHWR → Fast Breeder','LWR → Thorium → PHWR','Fast Breeder → PHWR → Thorium'], ans:0,
+ ex:'<b>Homi Bhabha</b> ka vision. Bharat ke paas world ke sabse bade <b>thorium reserves</b> hain (monazite sands, Kerala coast) — isliye third stage thorium-based.'},
+
+{cat:'nuclear',tag:'Nuclear',
+ q:'Indigenous SMR designs mein kaun shamil hai?',
+ stmts:['1. BSMR-200 (~200 MWe)','2. SMR-55 (55 MWe)','3. High-temperature gas-cooled reactor (hydrogen production)'],
+ opts:['1 aur 2','1 aur 3','2 aur 3','1, 2 aur 3'], ans:3,
+ ex:'Teeno designs <b>BARC/DAE</b> develop kar raha hai. HTGC reactor specifically hydrogen generation ke liye — green hydrogen link bhi yaad rakho.'},
+
+{cat:'nuclear',tag:'Nuclear',
+ q:'SHANTI Act ka sambandh kis kshetra se hai?',
+ stmts:[],
+ opts:['Space sector reforms','Nuclear sector mein public-private participation enable karna','Semiconductor incentives','AI regulation'], ans:1,
+ ex:'Nuclear Energy Mission ke under <b>wider public-private participation</b> ke liye SHANTI Act enact hua — Atomic Energy Act/civil liability reforms se juda 2026 hot topic.'},
+
+/* ============ TECH (4) ============ */
+{cat:'tech',tag:'Semicon',
+ q:'India Semiconductor Mission ke sandarbh mein:',
+ stmts:['1. ISM 2.0 Union Budget 2026-27 mein announce hua.','2. Micron ka Sanand (Gujarat) ATMP plant Feb 2026 mein inaugurate hua — mission ki pehli operational facility.'],
+ opts:['Keval 1','Keval 2','Dono sahi','Koi nahi'], ans:2,
+ ex:'Dono sahi. ISM 2.0 focus: <b>equipment manufacturing, materials, domestic IP</b>; Budget 2026-27 allocation ₹8,000 cr. Micron Sanand 28 Feb 2026 ko PM ne inaugurate kiya.'},
+
+{cat:'tech',tag:'Semicon',
+ q:'Tata Electronics ka mega semiconductor fab kahan ban raha hai, aur partner kaun hai?',
+ stmts:[],
+ opts:['Sanand — Micron','Dholera — PSMC (Taiwan)','Noida — Foxconn','Mysuru — TSMC'], ans:1,
+ ex:'<b>Dholera fab</b>: 300mm wafers, 28–110nm nodes, <b>₹91,000 crore</b> investment, first silicon Dec 2026 target. India ki pehli commercial fab.'},
+
+{cat:'tech',tag:'AI',
+ q:'IndiaAI Mission ke sandarbh mein sahi kathan:',
+ stmts:[],
+ opts:['Budget outlay ~₹10,300 crore; indigenous GPU compute capacity shamil','Yeh keval defence AI ke liye hai','Yeh NITI Aayog ke under hai','Private sector ki bhoomika nahi hai'], ans:0,
+ ex:'Cabinet approval March 2024; <b>MeitY</b> implement karta hai. Pillars: AI compute, foundation models (BharatGen), datasets platform (AIKosh), application development.'},
+
+{cat:'tech',tag:'Space Policy',
+ q:'IN-SPACe ke baare mein kaun-sa kathan sahi hai?',
+ stmts:[],
+ opts:['Yeh ISRO ka launch vehicle hai','Yeh space sector mein private/non-government entities ko promote-authorize karne wali nodal agency hai','Yeh DRDO ki lab hai','Yeh ek navigation satellite hai'], ans:1,
+ ex:'Indian National Space Promotion and Authorization Centre (2020), <b>Ahmedabad HQ</b>; Indian Space Policy 2023 ne single-window role formalize ki. Skyroot, Agnikul — private launches isi ke under.'},
+
+/* ============ AWARDS (3) ============ */
+{cat:'awards',tag:'Awards',
+ q:'Rashtriya Vigyan Puraskar 2025 mein Vigyan Ratna (lifetime achievement) kise diya gaya?',
+ stmts:[],
+ opts:['Dr. K. Thangaraj','Prof. Jayant Vishnu Narlikar (posthumous)','Dr. Samir V. Kamat','Prof. Mahan Maharaj'], ans:1,
+ ex:'<b>Hoyle-Narlikar theory</b> (steady-state cosmology) ke liye prasiddh astrophysicist; May 2025 mein nidhan. Note: UPPSC 2018 mein Narlikar par question aa chuka hai — pattern repeat hota hai!'},
+
+{cat:'awards',tag:'Awards',
+ q:'Vigyan Team Award 2025 kis team ko mila aur kis upalabdhi ke liye?',
+ stmts:[],
+ opts:['ISRO Chandrayaan-3 team — lunar landing','CSIR Aroma Mission team — "Purple Revolution" (lavender kheti)','DRDO Agni team — missile development','BARC team — PFBR criticality'], ans:1,
+ ex:'J&amp;K (Bhaderwah/Doda) mein lavender entrepreneurship = <b>Purple Revolution</b>; CSIR-IIIM Jammu lead lab. President ne 23 Dec 2025 ko confer kiya.'},
+
+{cat:'awards',tag:'Awards',
+ q:'Rashtriya Vigyan Puraskar ke sandarbh mein kathan dekhiye:',
+ stmts:['1. Yeh 4 categories mein diya jata hai — Vigyan Ratna, Vigyan Shri, Vigyan Yuva-SSB, Vigyan Team.','2. Vigyan Yuva award 45 varsh tak ke scientists ke liye hai.','3. Iski pehli edition 2024 mein hui thi.'],
+ opts:['1 aur 2','1 aur 3','2 aur 3','1, 2 aur 3'], ans:3,
+ ex:'Teeno sahi; purane Shanti Swarup Bhatnagar awards ki jagah <b>new national awards architecture</b>; President confer karte hain; 2025 second edition thi (24 awardees).'},
+];
+
+const LETTERS = ['a','b','c','d'];
+let attempted = 0, correct = 0;
+const total = QUESTIONS.length;
+
+function build(){
+  const quiz = document.getElementById('quiz');
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'mcq';
+    card.dataset.cat = item.cat;
+    let stmtsHtml = '';
+    if(item.stmts.length){
+      stmtsHtml = '<div class="stmts">' + item.stmts.map(s=>'<div>'+s+'</div>').join('') + '</div>';
+    }
+    card.innerHTML =
+      '<div class="mcq-top"><span class="qno">PRASHNA '+String(qi+1).padStart(2,'0')+'</span><span class="tag">'+item.tag+'</span></div>'+
+      '<div class="qtext">'+item.q+'</div>'+ stmtsHtml +
+      '<div class="opts">'+
+        item.opts.map((o,oi)=>'<button class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="bubble">'+LETTERS[oi]+'</span><span>'+o+'</span></button>').join('')+
+      '</div>'+
+      '<div class="explain" id="ex'+qi+'"></div>';
+    quiz.appendChild(card);
+  });
+  quiz.addEventListener('click', e=>{
+    const btn = e.target.closest('.opt');
+    if(!btn || btn.disabled) return;
+    answer(parseInt(btn.dataset.q), parseInt(btn.dataset.o), btn);
+  });
+}
+
+function answer(qi, oi, btn){
+  const item = QUESTIONS[qi];
+  const card = btn.closest('.mcq');
+  const opts = card.querySelectorAll('.opt');
+  opts.forEach(o=>{ o.disabled = true; });
+  const isRight = oi === item.ans;
+  opts.forEach((o,idx)=>{
+    if(idx === item.ans) o.classList.add('correct');
+    else if(idx === oi && !isRight) o.classList.add('wrong');
+    else o.classList.add('dim');
+  });
+  attempted++; if(isRight) correct++;
+  updateScore();
+  const ex = document.getElementById('ex'+qi);
+  ex.innerHTML = '<div class="verdict '+(isRight?'ok':'no')+'">'+(isRight?'✓ Sahi uttar':'✗ Sahi uttar: ('+LETTERS[item.ans]+')')+'</div>'+item.ex;
+  ex.classList.add('show');
+}
+
+function updateScore(){
+  document.getElementById('scoretext').textContent = 'Score: '+correct+' / '+attempted+' attempted · '+total+' total';
+  document.getElementById('meterfill').style.width = (attempted? (correct/total*100):0)+'%';
+}
+
+function resetAll(){
+  attempted = 0; correct = 0;
+  document.getElementById('quiz').innerHTML = '';
+  build();
+  updateScore();
+  document.getElementById('mcqs').scrollIntoView();
+}
+
+document.getElementById('filters').addEventListener('click', e=>{
+  const chip = e.target.closest('.chip');
+  if(!chip) return;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  chip.classList.add('on');
+  const f = chip.dataset.f;
+  document.querySelectorAll('.mcq').forEach(m=>{
+    m.classList.toggle('hide', f!=='all' && m.dataset.cat!==f);
+  });
+});
+
+build();
+updateScore();
+</script>
+</body>
+</html>
