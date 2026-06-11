@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="hi-IN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Handicrafts & GI Tags — UPPSC 2026 Master Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+
+  :root {
+    --saffron:    #E85D04;
+    --saffron-lt: #FFF4EE;
+    --green:      #1A6B3C;
+    --green-lt:   #EEF7F2;
+    --blue:       #1B4F8C;
+    --blue-lt:    #EEF3FB;
+    --gold:       #B8860B;
+    --gold-lt:    #FFFBEA;
+    --ink:        #1A1A2E;
+    --slate:      #4A5568;
+    --mist:       #F8F7F4;
+    --border:     #E8E0D5;
+    --white:      #FFFFFF;
+    --radius:     10px;
+    --shadow:     0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--mist);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+    color: white;
+    padding: 52px 40px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 20 L50 20 L38 29 L43 44 L30 35 L17 44 L22 29 L10 20 L25 20 Z' fill='none' stroke='rgba(232,93,4,0.12)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+    opacity: 0.6;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--saffron);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .hero h1 span { color: #F9A03F; }
+  .hero p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.72);
+    max-width: 640px;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #F9A03F;
+    display: block;
+    line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* ── NAV TABS ── */
+  .nav-wrap {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate);
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .nav-tab:hover { color: var(--saffron); }
+  .nav-tab.active { color: var(--saffron); border-bottom-color: var(--saffron); }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  section {
+    padding: 48px 0 32px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .sec-icon {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .sec-icon.saffron { background: var(--saffron-lt); }
+  .sec-icon.green   { background: var(--green-lt); }
+  .sec-icon.blue    { background: var(--blue-lt); }
+  .sec-icon.gold    { background: var(--gold-lt); }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--ink); }
+  .sec-sub   { font-size: 13px; color: var(--slate); margin-top: 2px; }
+
+  /* ── CRAFT CARDS ── */
+  .craft-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .craft-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .craft-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  }
+  .craft-header {
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .craft-emoji { font-size: 36px; line-height: 1; flex-shrink: 0; }
+  .craft-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .craft-district {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--saffron-lt);
+    color: var(--saffron);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .craft-body { padding: 16px 20px; }
+  .craft-nickname {
+    background: var(--gold-lt);
+    border-left: 3px solid var(--gold);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .craft-facts { list-style: none; }
+  .craft-facts li {
+    padding: 6px 0;
+    font-size: 13.5px;
+    color: var(--ink);
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    gap: 8px;
+  }
+  .craft-facts li:last-child { border-bottom: none; }
+  .craft-facts li .ico { flex-shrink: 0; width: 18px; }
+  .craft-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--green-lt);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 12px;
+  }
+
+  /* ── GI TABLE ── */
+  .gi-section { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border); }
+  .gi-toolbar {
+    padding: 16px 20px;
+    background: var(--blue-lt);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .gi-toolbar input {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+  }
+  .gi-toolbar input:focus { border-color: var(--blue); }
+  .filter-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    background: white;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    color: var(--slate);
+  }
+  .filter-btn.active, .filter-btn:hover { background: var(--blue); color: white; border-color: var(--blue); }
+  
+  .gi-table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: var(--ink); color: white; }
+  thead th { padding: 12px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  tbody tr:hover { background: var(--mist); }
+  tbody td { padding: 10px 14px; vertical-align: middle; }
+  .gi-num { font-weight: 700; color: var(--saffron); width: 36px; }
+  .gi-prod { font-weight: 600; color: var(--ink); }
+  .gi-dist { color: var(--blue); font-weight: 500; }
+  .gi-cat {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .cat-textile   { background: #FEF3C7; color: #92400E; }
+  .cat-food      { background: #DCFCE7; color: #166534; }
+  .cat-metal     { background: #DBEAFE; color: #1E40AF; }
+  .cat-craft     { background: #F3E8FF; color: #6B21A8; }
+  .cat-perfume   { background: #FCE7F3; color: #9D174D; }
+  .cat-pottery   { background: #FEF9C3; color: #713F12; }
+  .cat-music     { background: #E0F2FE; color: #0C4A6E; }
+  .cat-natural   { background: #F0FDF4; color: #14532D; }
+  .cat-carpet    { background: #FFF7ED; color: #9A3412; }
+  .cat-art       { background: #F5F3FF; color: #4C1D95; }
+  .gi-new {
+    display: inline-block;
+    background: var(--saffron);
+    color: white;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+  .gi-special { font-size: 12px; color: var(--slate); }
+  .gi-export  { font-size: 12px; color: var(--green); font-weight: 500; }
+
+  /* ── DISTRICT BADGES ── */
+  .district-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .dist-card {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s;
+  }
+  .dist-card:hover { transform: translateY(-2px); }
+  .dist-count {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--saffron);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .dist-count.v14 { background: #1A1A2E; }
+  .dist-count.v3  { background: var(--blue); }
+  .dist-count.v2  { background: var(--green); }
+  .dist-name { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .dist-items { font-size: 11.5px; color: var(--slate); margin-top: 2px; }
+
+  /* ── MCQ SECTION ── */
+  .mcq-section { background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
+  .mcq-header {
+    background: linear-gradient(135deg, var(--ink), #1A6B8A);
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .mcq-header h3 { font-family: 'Playfair Display', serif; font-size: 22px; }
+  .mcq-header p  { font-size: 13px; opacity: 0.75; margin-top: 2px; }
+  .mcq-score-box {
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 10px 18px;
+    margin-left: auto;
+    text-align: center;
+  }
+  .mcq-score-box .score { font-size: 24px; font-weight: 900; font-family: 'Playfair Display', serif; }
+  .mcq-score-box .lbl  { font-size: 10px; opacity: 0.7; }
+
+  .mcq-list { padding: 20px 24px; }
+  .mcq-item { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px dashed var(--border); }
+  .mcq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .mcq-q {
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+    font-size: 14.5px;
+    display: flex;
+    gap: 10px;
+  }
+  .mcq-qnum {
+    background: var(--saffron);
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .mcq-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-left: 36px; }
+  .mcq-opt {
+    padding: 8px 14px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: white;
+    text-align: left;
+    font-family: inherit;
+    color: var(--ink);
+  }
+  .mcq-opt:hover { border-color: var(--saffron); background: var(--saffron-lt); }
+  .mcq-opt.correct { border-color: var(--green); background: var(--green-lt); color: var(--green); font-weight: 700; }
+  .mcq-opt.wrong   { border-color: #DC2626; background: #FEF2F2; color: #DC2626; }
+  .mcq-opt.disabled { pointer-events: none; }
+  .mcq-explain {
+    margin-left: 36px;
+    margin-top: 10px;
+    background: var(--gold-lt);
+    border-left: 3px solid var(--gold);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: var(--ink);
+    display: none;
+  }
+  .mcq-explain.show { display: block; }
+  .mcq-explain strong { color: var(--gold); }
+
+  .mcq-submit-btn {
+    margin: 0 24px 24px;
+    padding: 12px 28px;
+    background: var(--saffron);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .mcq-submit-btn:hover { background: #C44D02; }
+
+  /* ── KEY FACTS CALLOUT ── */
+  .callout {
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .callout.saffron { background: var(--saffron-lt); border-left: 4px solid var(--saffron); }
+  .callout.green   { background: var(--green-lt);   border-left: 4px solid var(--green); }
+  .callout.blue    { background: var(--blue-lt);    border-left: 4px solid var(--blue); }
+  .callout.gold    { background: var(--gold-lt);    border-left: 4px solid var(--gold); }
+  .callout-icon { font-size: 22px; flex-shrink: 0; }
+  .callout-text { font-size: 13.5px; line-height: 1.6; }
+  .callout-text strong { font-weight: 700; }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table { width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .compare-table th { background: var(--ink); color: white; padding: 12px 16px; font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; }
+  .compare-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); font-size: 13.5px; vertical-align: top; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: var(--mist); }
+  .compare-table .hl { color: var(--saffron); font-weight: 700; }
+  .compare-table .gr { color: var(--green); font-weight: 600; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 12px;
+    margin-top: 48px;
+  }
+  footer strong { color: var(--saffron); }
+
+  /* ── PROGRESS ── */
+  .progress-bar {
+    background: var(--border);
+    border-radius: 6px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--saffron), #F9A03F);
+    transition: width 0.4s ease;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero { padding: 36px 20px 32px; }
+    .mcq-opts { grid-template-columns: 1fr; }
+    .craft-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+  }
+
+  /* ── hidden rows for filter ── */
+  .hidden-row { display: none; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🎯 UPPSC 2026 — Top 10 Rank Series</div>
+  <h1>UP Handicrafts &amp; <span>GI Tagged Products</span><br>Master Guide</h1>
+  <p>District-wise mapping · GI complete list · Chikankari vs Zardozi · Craft nicknames · 10 UPPSC MCQs</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">77+</span><span class="lbl">GI Tags in UP</span></div>
+    <div class="hero-stat"><span class="num">#1</span><span class="lbl">State in India</span></div>
+    <div class="hero-stat"><span class="num">14</span><span class="lbl">Varanasi GI Tags</span></div>
+    <div class="hero-stat"><span class="num">2008</span><span class="lbl">First GI Tag Year</span></div>
+    <div class="hero-stat"><span class="num">49</span><span class="lbl">Key Products Mapped</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#gi-concept">🏷️ GI Concept</a>
+    <a class="nav-tab" href="#major-crafts">🎨 Major Crafts</a>
+    <a class="nav-tab" href="#gi-table">📋 GI Table</a>
+    <a class="nav-tab" href="#district-map">🗺️ District Map</a>
+    <a class="nav-tab" href="#chikankari">🪡 Chikankari vs Zardozi</a>
+    <a class="nav-tab" href="#banarasi">🥻 Banarasi Silk</a>
+    <a class="nav-tab" href="#mcq">📝 10 MCQs</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — GI CONCEPT
+══════════════════════════════════════════════ -->
+<section id="gi-concept">
+  <div class="sec-head">
+    <div class="sec-icon saffron">🏷️</div>
+    <div>
+      <div class="sec-title">GI Tag — Concept &amp; Legal Basis</div>
+      <div class="sec-sub">UPPSC में GI Tag से हर साल 2-3 MCQs आते हैं</div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-icon">⚡</div>
+    <div class="callout-text">
+      <strong>UPPSC परीक्षा में सबसे ज़्यादा पूछे जाने वाले GI तथ्य:</strong><br>
+      UP में सर्वाधिक GI Tags (~77) · पहला GI Tag: <strong>Allahabad Surkha Guava (2008-09)</strong> · सर्वाधिक GI Tags वाला शहर: <strong>Varanasi (14)</strong> · कानूनी आधार: <strong>GI Act, 1999</strong>
+    </div>
+  </div>
+
+  <table class="compare-table" style="margin-bottom:20px">
+    <thead><tr><th>पहलू</th><th>विवरण</th></tr></thead>
+    <tbody>
+      <tr><td><strong>GI क्या है?</strong></td><td>Geographical Indication — किसी उत्पाद की विशिष्ट भौगोलिक उत्पत्ति से जुड़ी बौद्धिक संपदा (IP) सुरक्षा</td></tr>
+      <tr><td><strong>कानूनी आधार</strong></td><td>GI of Goods (Registration &amp; Protection) Act, 1999 · WTO TRIPS Agreement अनुपालन</td></tr>
+      <tr><td><strong>वैधता</strong></td><td>10 वर्ष (नवीकरणीय) · Registry: Chennai (IP India)</td></tr>
+      <tr><td><strong>UP की स्थिति</strong></td><td class="hl">भारत में सर्वाधिक ~77 GI Tags (2025 तक)</td></tr>
+      <tr><td><strong>UP का पहला GI Tag</strong></td><td class="gr">Allahabad Surkha Guava · Prayagraj · 2008-09</td></tr>
+      <tr><td><strong>सर्वाधिक GI वाला जिला</strong></td><td class="hl">Varanasi — 14 GI-tagged products</td></tr>
+      <tr><td><strong>2025 में नए Tags</strong></td><td>Banaras Thandai, Banaras Shehnai, Banarasi Tirangi Barfi, Pilkhuwa Hand Block Print, Tharu Embroidery, Mathura Sanjhi Craft आदि</td></tr>
+      <tr><td><strong>लाभ</strong></td><td>20-30% अधिक मूल्य · नकल से सुरक्षा · Export advantage · कारीगरों को सीधा लाभ</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — MAJOR CRAFTS (DETAIL CARDS)
+══════════════════════════════════════════════ -->
+<section id="major-crafts">
+  <div class="sec-head">
+    <div class="sec-icon saffron">🎨</div>
+    <div>
+      <div class="sec-title">UP के प्रमुख हस्तशिल्प — विस्तृत विवरण</div>
+      <div class="sec-sub">Art Form → Origin District → Key Facts → Export Market</div>
+    </div>
+  </div>
+
+  <div class="craft-grid">
+
+    <!-- Chikankari -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🪡</div>
+        <div>
+          <div class="craft-name">Chikankari</div>
+          <div class="craft-district">📍 Lucknow</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">"City of Nawabs" की शान — सफेद धागे पर सफेद कढ़ाई</div>
+        <ul class="craft-facts">
+          <li><span class="ico">📜</span><span>मुगल काल में नूरजहाँ द्वारा प्रवर्तित (17वीं सदी)</span></li>
+          <li><span class="ico">🧵</span><span>32+ प्रकार की टाँकें — Tepchi, Murri, Phanda, Bakhiya, Jali</span></li>
+          <li><span class="ico">👕</span><span>मलमल, चिकन, शिफॉन, जॉर्जेट, कॉटन पर काम</span></li>
+          <li><span class="ico">👩</span><span>2.5 लाख+ कारीगर (अधिकतर महिलाएं)</span></li>
+          <li><span class="ico">💰</span><span>₹10,000 करोड़+ वार्षिक उद्योग · USA, UK, UAE को निर्यात</span></li>
+          <li><span class="ico">⚖️</span><span><strong>GI Tag</strong> — Lucknow Chikankari</span></li>
+        </ul>
+        <span class="craft-tag">✅ GI Tagged · Embroidery Category</span>
+      </div>
+    </div>
+
+    <!-- Zardozi -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">✨</div>
+        <div>
+          <div class="craft-name">Zardozi</div>
+          <div class="craft-district">📍 Lucknow</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">सोने-चाँदी के धागों की शाही कढ़ाई</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🥇</span><span>Zar = Gold (Persian) · Dozi = Embroidery · शाही पोशाक में प्रयोग</span></li>
+          <li><span class="ico">🔑</span><span><strong>Chikankari से अंतर:</strong> सफेद धागे की बजाय सोने-चाँदी के तार, जरी, मोती, अभ्रक</span></li>
+          <li><span class="ico">⚒️</span><span>Ari/Hook tool से काम · Heavy fabric (velvet, silk) पर</span></li>
+          <li><span class="ico">🕌</span><span>मुगल काल से · अकबर के दरबार में लोकप्रिय</span></li>
+          <li><span class="ico">💼</span><span>Bridal wear, stage costumes, bags — global market</span></li>
+        </ul>
+        <span class="craft-tag">✅ GI Tagged · Lucknow Zardozi</span>
+      </div>
+    </div>
+
+    <!-- Banarasi Silk -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🥻</div>
+        <div>
+          <div class="craft-name">Banarasi Silk</div>
+          <div class="craft-district">📍 Varanasi</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">"Kashi की परंपरा" — विश्व प्रसिद्ध बनारसी साड़ी</div>
+        <ul class="craft-facts">
+          <li><span class="ico">📋</span><span>4 प्रकार: Katan, Organza (Kora), Georgette, Shattir</span></li>
+          <li><span class="ico">🌸</span><span>Motifs: Butidar (टूटी बूटी), Jangla (घना), Tanchoi, Cutwork</span></li>
+          <li><span class="ico">⚙️</span><span>Jacquard Loom + हाथ से बुनाई · 2-6 सप्ताह एक साड़ी</span></li>
+          <li><span class="ico">🌍</span><span>USA, France, Italy को निर्यात · ₹2,000 करोड़+ उद्योग</span></li>
+          <li><span class="ico">🏅</span><span>UNESCO Intangible Cultural Heritage की माँग</span></li>
+        </ul>
+        <span class="craft-tag">✅ GI Tagged · Banarasi Brocades &amp; Sarees</span>
+      </div>
+    </div>
+
+    <!-- Moradabad Brassware -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🔔</div>
+        <div>
+          <div class="craft-name">Moradabad Brassware</div>
+          <div class="craft-district">📍 Moradabad</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">🏭 "पीतल नगरी" — Brass City of India</div>
+        <ul class="craft-facts">
+          <li><span class="ico">⚙️</span><span>पीतल (Brass = Copper 70% + Zinc 30%) पर नक्काशी</span></li>
+          <li><span class="ico">📅</span><span>17वीं सदी में रुस्तम खान के शासन में विकास</span></li>
+          <li><span class="ico">🌍</span><span>भारत का 40% brass export अकेले Moradabad से</span></li>
+          <li><span class="ico">🛒</span><span>USA, UK, Germany, UAE — प्रमुख बाज़ार</span></li>
+          <li><span class="ico">👷</span><span>3 लाख+ कारीगर · Thekedar System में काम</span></li>
+        </ul>
+        <span class="craft-tag">✅ GI Tagged · Metal Craft Category</span>
+      </div>
+    </div>
+
+    <!-- Firozabad Glass -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">💎</div>
+        <div>
+          <div class="craft-name">Firozabad Glass</div>
+          <div class="craft-district">📍 Firozabad</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">💍 "सुहाग नगरी" — Bangle &amp; Glass City</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🏭</span><span>India का 70% काँच चूड़ी उत्पादन Firozabad से</span></li>
+          <li><span class="ico">🔥</span><span>1200°C पर सिलिका को पिघलाकर आकार देना</span></li>
+          <li><span class="ico">🎨</span><span>चूड़ियाँ, झूमर, सजावटी सामान — 400+ उत्पाद</span></li>
+          <li><span class="ico">👩</span><span>2.5 लाख+ कारीगर (बच्चे श्रम की समस्या)</span></li>
+          <li><span class="ico">🌍</span><span>Middle East, Europe, Southeast Asia को निर्यात</span></li>
+        </ul>
+        <span class="craft-tag">✅ GI Tagged · Glassware Category</span>
+      </div>
+    </div>
+
+    <!-- Bhadohi Carpet -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🪆</div>
+        <div>
+          <div class="craft-name">Bhadohi Carpet</div>
+          <div class="craft-district">📍 Bhadohi / Mirzapur</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">🌍 "कालीन नगरी" — Carpet Capital of the World</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🏆</span><span>विश्व का सबसे बड़ा Hand-Knotted Carpet Cluster</span></li>
+          <li><span class="ico">🧶</span><span>Material: Wool, Silk, Cotton · Persian &amp; Indian patterns</span></li>
+          <li><span class="ico">💵</span><span>India का 85% carpet export इसी cluster से</span></li>
+          <li><span class="ico">🌍</span><span>USA (35%), Germany, UK — प्रमुख निर्यात बाज़ार</span></li>
+          <li><span class="ico">📅</span><span>16वीं सदी में अकबर ने फारसी कारीगर बुलाए</span></li>
+        </ul>
+        <span class="craft-tag">✅ GI Tagged · Bhadohi Hand-Knotted Carpets</span>
+      </div>
+    </div>
+
+    <!-- Saharanpur Wood -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🪵</div>
+        <div>
+          <div class="craft-name">Saharanpur Wood Carving</div>
+          <div class="craft-district">📍 Saharanpur</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">🪑 "शीशम नगरी" — Wood Craft Hub of North India</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🌳</span><span>Sheesham (Rosewood), Mango wood — प्राथमिक कच्चा माल</span></li>
+          <li><span class="ico">⚒️</span><span>Jali work, floral motifs, arabesque patterns</span></li>
+          <li><span class="ico">🛋️</span><span>Furniture, decorative panels, screens, toys</span></li>
+          <li><span class="ico">🌍</span><span>Europe, USA, Australia — बड़े बाज़ार</span></li>
+          <li><span class="ico">💰</span><span>₹1,500 करोड़+ वार्षिक उद्योग</span></li>
+        </ul>
+        <span class="craft-tag">✅ GI Tagged · Wood Craft Category</span>
+      </div>
+    </div>
+
+    <!-- Kannauj Perfume -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🌹</div>
+        <div>
+          <div class="craft-name">Kannauj Attar (Perfume)</div>
+          <div class="craft-district">📍 Kannauj</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">🌸 "इत्र नगरी" — Perfume City of India</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🏺</span><span>Deg-Bhapka (देग-भपका) — पारंपरिक Hydro-Distillation विधि</span></li>
+          <li><span class="ico">🌺</span><span>Rose, Jasmine, Kewra, Hina, Mitti Attar — प्रमुख</span></li>
+          <li><span class="ico">🌧️</span><span><strong>Mitti Attar</strong> — मिट्टी की सोंधी खुशबू (petrichor) · UNESCO-listed</span></li>
+          <li><span class="ico">🕌</span><span>मुगल काल से 5,000+ वर्ष पुरानी परंपरा</span></li>
+          <li><span class="ico">🇸🇦</span><span>Saudi Arabia, UAE, France — बड़े निर्यात बाज़ार</span></li>
+        </ul>
+        <span class="craft-tag">✅ 3 GI Tags: Kannauj Perfume, Rose Water, Gulab Attar</span>
+      </div>
+    </div>
+
+    <!-- Aligarh Lock -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🔐</div>
+        <div>
+          <div class="craft-name">Aligarh Lock Industry</div>
+          <div class="craft-district">📍 Aligarh</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">🔑 "ताला नगरी" — Lock Capital of India</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🏭</span><span>India का 80%+ lock production अकेले Aligarh से</span></li>
+          <li><span class="ico">📅</span><span>British काल में East India Company ने शुरुआत</span></li>
+          <li><span class="ico">🔩</span><span>Brass &amp; Iron locks · 1,000+ varieties</span></li>
+          <li><span class="ico">👷</span><span>2 लाख+ कारीगर · ODOP Scheme में शामिल</span></li>
+          <li><span class="ico">🌍</span><span>Middle East, Africa, Southeast Asia को निर्यात</span></li>
+        </ul>
+        <div style="margin-top:10px; padding:8px 10px; background:#FEF2F2; border-radius:6px; font-size:12px; color:#DC2626;">⚠️ GI Tag अभी pending — UPPSC में पूछा जा सकता है</div>
+      </div>
+    </div>
+
+    <!-- Agra Shoe -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">👞</div>
+        <div>
+          <div class="craft-name">Agra Shoe Industry</div>
+          <div class="craft-district">📍 Agra</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">👟 "जूता नगरी" — Shoe Capital of India</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🏭</span><span>India का सबसे बड़ा footwear cluster</span></li>
+          <li><span class="ico">💼</span><span>Leather chappals, formal shoes, Petha भी प्रसिद्ध</span></li>
+          <li><span class="ico">💰</span><span>₹5,000+ करोड़ वार्षिक उद्योग</span></li>
+          <li><span class="ico">🌍</span><span>USA, Germany, UK — प्रमुख बाज़ार</span></li>
+          <li><span class="ico">🍬</span><span><strong>Agra Petha</strong> को GI Tag मिला है</span></li>
+        </ul>
+        <span class="craft-tag">✅ Agra Petha — GI Tagged</span>
+      </div>
+    </div>
+
+    <!-- Varanasi Wooden Toys -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🪆</div>
+        <div>
+          <div class="craft-name">Varanasi Wooden Toys</div>
+          <div class="craft-district">📍 Varanasi</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">🎠 Eco-friendly काष्ठ खिलौने — Golu Doll परंपरा</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🌳</span><span>Soft wood (Sponge wood / Semal) पर प्राकृतिक रंग</span></li>
+          <li><span class="ico">🎨</span><span>Bright colors, mythological themes (Krishna, Radha)</span></li>
+          <li><span class="ico">♻️</span><span>100% eco-friendly · Chemical-free dyes</span></li>
+          <li><span class="ico">🏆</span><span>PM Modi ने Vocal for Local में विशेष उल्लेख किया</span></li>
+          <li><span class="ico">🌍</span><span>Europe, Japan, Australia को निर्यात</span></li>
+        </ul>
+        <span class="craft-tag">🔰 ODOP Product — Varanasi</span>
+      </div>
+    </div>
+
+    <!-- Gorakhpur Terracotta -->
+    <div class="craft-card">
+      <div class="craft-header">
+        <div class="craft-emoji">🏺</div>
+        <div>
+          <div class="craft-name">Gorakhpur Terracotta</div>
+          <div class="craft-district">📍 Gorakhpur</div>
+        </div>
+      </div>
+      <div class="craft-body">
+        <div class="craft-nickname">🐘 Auraiya घोड़े — लोक संस्कृति की मिट्टी कला</div>
+        <ul class="craft-facts">
+          <li><span class="ico">🐴</span><span>Terracotta horse (Auraiya/Jungle horse) — symbol of Gorakhpur</span></li>
+          <li><span class="ico">🏺</span><span>बिना चाक के हाथ से बनाई जाती है</span></li>
+          <li><span class="ico">🎨</span><span>Natural pigments — ochre, white clay</span></li>
+          <li><span class="ico">🧑‍🎨</span><span>Prajapati community द्वारा पीढ़ियों से निर्मित</span></li>
+          <li><span class="ico">🌍</span><span>Germany, France में प्रदर्शनी में जगह मिली</span></li>
+        </ul>
+        <span class="craft-tag">✅ GI Tagged · Terracotta Category</span>
+      </div>
+    </div>
+
+  </div><!-- /craft-grid -->
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — CHIKANKARI vs ZARDOZI
+══════════════════════════════════════════════ -->
+<section id="chikankari">
+  <div class="sec-head">
+    <div class="sec-icon green">🪡</div>
+    <div>
+      <div class="sec-title">Chikankari vs Zardozi — Key Differences</div>
+      <div class="sec-sub">UPPSC Mains & Prelims दोनों में पूछा जाता है</div>
+    </div>
+  </div>
+
+  <div class="callout saffron">
+    <div class="callout-icon">🎯</div>
+    <div class="callout-text">
+      <strong>Trick to Remember:</strong> "Chikankari = सफेद पर सफेद (humble elegance)" | "Zardozi = Golden धागों की शाही कढ़ाई (royal opulence)"<br>
+      दोनों Lucknow की विरासत हैं — दोनों को GI Tag मिला है।
+    </div>
+  </div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>पहलू</th>
+        <th>🪡 Chikankari</th>
+        <th>✨ Zardozi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>अर्थ</strong></td>
+        <td>Persian: Chikan = Embroidery</td>
+        <td>Persian: Zar = Gold · Dozi = Embroidery</td>
+      </tr>
+      <tr>
+        <td><strong>धागा</strong></td>
+        <td class="gr">White cotton/silk thread पर white work</td>
+        <td class="hl">Gold/Silver metallic thread (Zari), beads, sequins</td>
+      </tr>
+      <tr>
+        <td><strong>कपड़ा</strong></td>
+        <td>Mulmul, Chiffon, Georgette, Cotton (light fabrics)</td>
+        <td>Velvet, Silk, Satin (heavy fabrics)</td>
+      </tr>
+      <tr>
+        <td><strong>Tools</strong></td>
+        <td>Needle only (हाथ से सुई चलाना)</td>
+        <td>Ari (hook/aari) — curved needle tool</td>
+      </tr>
+      <tr>
+        <td><strong>Stitches</strong></td>
+        <td>32+ stitches: Tepchi, Murri, Phanda, Bakhiya, Jali work</td>
+        <td>Zardozi, Karchobi, Mukaish/Kamdani techniques</td>
+      </tr>
+      <tr>
+        <td><strong>प्रयोग</strong></td>
+        <td>Everyday wear, Kurtas, Sarees, Dupatta</td>
+        <td>Bridal wear, Sherwani, Stage costume, Bags</td>
+      </tr>
+      <tr>
+        <td><strong>इतिहास</strong></td>
+        <td>Mughal period · Noor Jahan से जुड़ी परंपरा</td>
+        <td>Mughal period · Akbar's court artisans से आया</td>
+      </tr>
+      <tr>
+        <td><strong>GI Tag</strong></td>
+        <td class="gr">Lucknow Chikankari</td>
+        <td class="gr">Lucknow Zardozi</td>
+      </tr>
+      <tr>
+        <td><strong>Market</strong></td>
+        <td>Mass market + high fashion · ₹10,000 Cr+ industry</td>
+        <td>Niche luxury market · Export to Gulf countries</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — BANARASI SILK DETAIL
+══════════════════════════════════════════════ -->
+<section id="banarasi">
+  <div class="sec-head">
+    <div class="sec-icon gold">🥻</div>
+    <div>
+      <div class="sec-title">Banarasi Silk — Types, History &amp; UNESCO</div>
+      <div class="sec-sub">Varanasi के 14 GI Tags में यह सबसे महत्वपूर्ण</div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-icon">💡</div>
+    <div class="callout-text">
+      <strong>UPPSC Key Facts:</strong> Banarasi Silk को 2009 में GI Tag मिला। इसकी बुनाई 16वीं सदी से। UNESCO Intangible Heritage की श्रेणी में nomination की मांग होती रही है। 4 प्रकार की साड़ियाँ।
+    </div>
+  </div>
+
+  <table class="compare-table" style="margin-bottom: 20px;">
+    <thead><tr><th>प्रकार</th><th>विशेषता</th><th>मूल्य स्तर</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="hl"><strong>Katan Silk</strong></td>
+        <td>Pure silk warp &amp; weft · सबसे शुद्ध · भारी</td>
+        <td>★★★★★ (Premium)</td>
+      </tr>
+      <tr>
+        <td class="hl"><strong>Organza (Kora)</strong></td>
+        <td>Lightweight silk · Transparent feel · शादी में लोकप्रिय</td>
+        <td>★★★★</td>
+      </tr>
+      <tr>
+        <td class="hl"><strong>Georgette</strong></td>
+        <td>Crinkled texture · Casual &amp; semi-formal</td>
+        <td>★★★</td>
+      </tr>
+      <tr>
+        <td class="hl"><strong>Shattir</strong></td>
+        <td>Cotton base · सबसे affordable · रोज़मर्रा</td>
+        <td>★★</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="compare-table">
+    <thead><tr><th>Motif/Design</th><th>विवरण</th></tr></thead>
+    <tbody>
+      <tr><td class="hl">Butidar</td><td>Scattered small floral/leaf motifs (छोटी बूटियाँ) throughout</td></tr>
+      <tr><td class="hl">Jangla</td><td>Dense jungle pattern — entire fabric covered with vine/leaf designs</td></tr>
+      <tr><td class="hl">Tanchoi</td><td>Chinese influence · Multi-colored weft pattern · No extra threads</td></tr>
+      <tr><td class="hl">Cutwork (Jamdani-style)</td><td>Open weave with geometric cutouts · Varanasi की खास पहचान</td></tr>
+      <tr><td class="hl">Meenakari</td><td>Enamel-like colored patterns · Gulabi (Pink) Meenakari — GI Tagged</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — GI TABLE (INTERACTIVE)
+══════════════════════════════════════════════ -->
+<section id="gi-table">
+  <div class="sec-head">
+    <div class="sec-icon blue">📋</div>
+    <div>
+      <div class="sec-title">UP GI Tagged Products — Complete Table</div>
+      <div class="sec-sub">77+ Products · Search &amp; Filter करें</div>
+    </div>
+  </div>
+
+  <div class="gi-section">
+    <div class="gi-toolbar">
+      <input type="text" id="searchInput" placeholder="🔍 Product या District search करें..." oninput="filterTable()">
+      <button class="filter-btn active" onclick="filterCat('all', this)">All (49)</button>
+      <button class="filter-btn" onclick="filterCat('varanasi', this)">🕌 Varanasi (14)</button>
+      <button class="filter-btn" onclick="filterCat('lucknow', this)">🏛️ Lucknow (3)</button>
+      <button class="filter-btn" onclick="filterCat('food', this)">🍎 Food</button>
+      <button class="filter-btn" onclick="filterCat('textile', this)">🥻 Textile</button>
+      <button class="filter-btn" onclick="filterCat('new2025', this)">🆕 2025 New</button>
+    </div>
+    <div class="gi-table-wrap">
+      <table id="giTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>District</th>
+            <th>Category</th>
+            <th>Special Feature</th>
+            <th>Export Market</th>
+          </tr>
+        </thead>
+        <tbody id="giBody">
+          <!-- Rows injected by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 6 — DISTRICT MAP
+══════════════════════════════════════════════ -->
+<section id="district-map">
+  <div class="sec-head">
+    <div class="sec-icon saffron">🗺️</div>
+    <div>
+      <div class="sec-title">District-wise GI Distribution</div>
+      <div class="sec-sub">UPPSC में district ↔ craft mapping बहुत महत्वपूर्ण</div>
+    </div>
+  </div>
+
+  <div class="district-grid">
+    <div class="dist-card">
+      <div class="dist-count v14">14</div>
+      <div><div class="dist-name">🕌 Varanasi</div><div class="dist-items">Silk, Paan, Thandai, Tabla, Shehnai, Meenakari, Mural Painting…</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count v3">3</div>
+      <div><div class="dist-name">🏛️ Lucknow</div><div class="dist-items">Chikankari · Zardozi · Dasheri Mango</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count v3">3</div>
+      <div><div class="dist-name">🌹 Kannauj</div><div class="dist-items">Perfume (Attar) · Rose Water · Gulab Attar</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count v3">3</div>
+      <div><div class="dist-name">🕍 Mathura</div><div class="dist-items">Peda · Sanjhi Craft · Zari Poshak</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count v2" style="background:#8B5CF6">2</div>
+      <div><div class="dist-name">📿 Azamgarh</div><div class="dist-items">Black Pottery · Mubarakpur Silk Sarees</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count v2" style="background:#0891B2">2</div>
+      <div><div class="dist-name">🪆 Mirzapur</div><div class="dist-items">Handmade Dari · Chunar Sandstone</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count v2" style="background:#0891B2">2</div>
+      <div><div class="dist-name">⚙️ Meerut</div><div class="dist-items">Scissors · Bugle (NEW 2025)</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:var(--saffron)">1</div>
+      <div><div class="dist-name">🔔 Moradabad</div><div class="dist-items">Metal Craft (Brassware) — "Pital Nagari"</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:var(--saffron)">1</div>
+      <div><div class="dist-name">💎 Firozabad</div><div class="dist-items">Glass — "Suhag Nagari"</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:var(--saffron)">1</div>
+      <div><div class="dist-name">🪵 Saharanpur</div><div class="dist-items">Wood Carving — "Sheesham Nagri"</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:var(--saffron)">1</div>
+      <div><div class="dist-name">🪆 Bhadohi</div><div class="dist-items">Hand-Knotted Carpets — "Carpet City"</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:var(--saffron)">1</div>
+      <div><div class="dist-name">🍬 Agra</div><div class="dist-items">Petha — "Petha Nagri" + Shoe City</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:var(--saffron)">1</div>
+      <div><div class="dist-name">🍃 Prayagraj</div><div class="dist-items">Allahabad Surkha Guava (पहला GI Tag 2008-09)</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:#B45309">1</div>
+      <div><div class="dist-name">🏺 Gorakhpur</div><div class="dist-items">Terracotta — Auraiya घोड़े</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:#B45309">1</div>
+      <div><div class="dist-name">🍚 Siddharth Nagar</div><div class="dist-items">Kalanamak Rice (Black Rice)</div></div>
+    </div>
+    <div class="dist-card">
+      <div class="dist-count" style="background:#B45309">1</div>
+      <div><div class="dist-name">🎨 Farrukhabad</div><div class="dist-items">Block Print Textile</div></div>
+    </div>
+  </div>
+
+  <!-- Nicknames Quick Reference -->
+  <div style="margin-top: 28px;">
+    <div class="sec-head">
+      <div class="sec-icon gold">🏷️</div>
+      <div>
+        <div class="sec-title" style="font-size:20px">City Nicknames — UPPSC में अवश्य पूछे जाते हैं</div>
+      </div>
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Nickname</th><th>City/District</th><th>कारण</th></tr></thead>
+      <tbody>
+        <tr><td class="hl">🔔 पीतल नगरी (Pital Nagari)</td><td>Moradabad</td><td>India का 40% brass export यहाँ से</td></tr>
+        <tr><td class="hl">💍 सुहाग नगरी (Suhag Nagari)</td><td>Firozabad</td><td>चूड़ियाँ (bangles) का प्रमुख केंद्र</td></tr>
+        <tr><td class="hl">🌹 इत्र नगरी (Itr Nagari)</td><td>Kannauj</td><td>Perfume/Attar का ऐतिहासिक केंद्र</td></tr>
+        <tr><td class="hl">🪵 शीशम नगरी</td><td>Saharanpur</td><td>Sheesham wood carving उद्योग</td></tr>
+        <tr><td class="hl">🪆 कालीन नगरी</td><td>Bhadohi</td><td>World's largest carpet cluster</td></tr>
+        <tr><td class="hl">🔐 ताला नगरी (Tala Nagari)</td><td>Aligarh</td><td>India का 80% lock यहाँ बनता है</td></tr>
+        <tr><td class="hl">👞 जूता नगरी</td><td>Agra</td><td>India's largest footwear cluster</td></tr>
+        <tr><td class="hl">🍬 पेठा नगरी</td><td>Agra</td><td>Agra Petha — GI Tagged मिठाई</td></tr>
+        <tr><td class="hl">🧵 नवाबों की नगरी</td><td>Lucknow</td><td>Chikankari, Zardozi का केंद्र</td></tr>
+        <tr><td class="hl">🥻 साड़ी नगरी</td><td>Varanasi</td><td>Banarasi Silk — 14 GI Tags</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 7 — MCQ
+══════════════════════════════════════════════ -->
+<section id="mcq">
+  <div class="sec-head">
+    <div class="sec-icon saffron">📝</div>
+    <div>
+      <div class="sec-title">10 UPPSC MCQs — UP Handicrafts &amp; GI Tags</div>
+      <div class="sec-sub">Practice करें · सही जवाब के लिए क्लिक करें</div>
+    </div>
+  </div>
+
+  <div class="mcq-section">
+    <div class="mcq-header">
+      <div>
+        <h3>📝 Practice MCQs</h3>
+        <p>SDM level preparation · Explanation सहित</p>
+      </div>
+      <div class="mcq-score-box">
+        <div class="score" id="scoreDisplay">0/10</div>
+        <div class="lbl">SCORE</div>
+      </div>
+    </div>
+
+    <div class="mcq-list" id="mcqList">
+      <!-- injected by JS -->
+    </div>
+    <button class="mcq-submit-btn" onclick="resetMCQ()">🔄 Reset All Questions</button>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<footer>
+  <p>🎯 <strong>UPPSC 2026 — TOP 10 RANK SERIES</strong> · UP Handicrafts &amp; GI Tags Master Guide</p>
+  <p style="margin-top:6px">Data sources: IP India GI Registry · ODOP Portal · Agridots · Ministry of Textiles · Last updated: 2025</p>
+</footer>
+
+<script>
+// ══════════════ GI DATA ══════════════
+const giData = [
+  { id:1,  name:"Agra Petha",                       dist:"Agra",            cat:"food",    catLabel:"🍬 Food",       special:"पेठे की प्रसिद्ध मिठाई",           export:"India-wide, NRI market",       isNew:false, distKey:"agra" },
+  { id:2,  name:"Amroha Dholak",                    dist:"Amroha",          cat:"music",   catLabel:"🥁 Music",      special:"Mango/Jackfruit wood + goatskin",   export:"South Asia",                   isNew:false, distKey:"" },
+  { id:3,  name:"Nizamabad Black Pottery",          dist:"Azamgarh",        cat:"pottery", catLabel:"🏺 Pottery",    special:"काली मिट्टी + silver motifs",       export:"Home décor market",            isNew:false, distKey:"" },
+  { id:4,  name:"Mubarakpur Silk Sarees",           dist:"Azamgarh",        cat:"textile", catLabel:"🥻 Textile",    special:"Pure silk weaving — Ansari community",export:"Domestic + Gulf",             isNew:false, distKey:"" },
+  { id:5,  name:"Rataul Mango",                     dist:"Baghpat",         cat:"food",    catLabel:"🥭 Food",       special:"दुनिया का सबसे मीठा आम किस्म",      export:"Gulf, Europe",                 isNew:false, distKey:"" },
+  { id:6,  name:"Bareilly Cane & Bamboo Craft",     dist:"Bareilly",        cat:"craft",   catLabel:"🎋 Craft",      special:"Eco-friendly bamboo products",      export:"South Asia",                   isNew:true,  distKey:"" },
+  { id:7,  name:"Bhadohi Hand-Knotted Carpets",     dist:"Bhadohi",         cat:"carpet",  catLabel:"🪆 Carpet",     special:"World's largest carpet cluster",    export:"USA 35%, Germany, UK",         isNew:false, distKey:"" },
+  { id:8,  name:"Khurja Pottery",                   dist:"Bulandshahr",     cat:"pottery", catLabel:"🏺 Pottery",    special:"Ceramic/Glazed pottery hub",        export:"Middle East, Europe",          isNew:false, distKey:"" },
+  { id:9,  name:"Farrukhabad Block Print",          dist:"Farrukhabad",     cat:"textile", catLabel:"🥻 Textile",    special:"Traditional hand block printing",   export:"Europe, USA",                  isNew:false, distKey:"" },
+  { id:10, name:"Firozabad Glass",                  dist:"Firozabad",       cat:"craft",   catLabel:"💎 Glass",      special:'"सुहाग नगरी" — 70% India bangles',  export:"Middle East, SE Asia",         isNew:false, distKey:"" },
+  { id:11, name:"Gorakhpur Terracotta",             dist:"Gorakhpur",       cat:"craft",   catLabel:"🏺 Terracotta", special:"Auraiya घोड़ा — पीढ़ी पुरानी कला",  export:"Germany, France (expos)",      isNew:false, distKey:"" },
+  { id:12, name:"Pilkhuwa Hand Block Print",        dist:"Hapur",           cat:"textile", catLabel:"🥻 Textile",    special:"Hand block printed bed sheets",     export:"USA, UK",                      isNew:true,  distKey:"new2025" },
+  { id:13, name:"Hathras Hing (Asafoetida)",        dist:"Hathras",         cat:"food",    catLabel:"🧄 Food",       special:"Processing hub of India's hing",    export:"Domestic + South Asia",        isNew:false, distKey:"" },
+  { id:14, name:"Kalpi Handmade Paper",             dist:"Jalaun",          cat:"craft",   catLabel:"📜 Paper",      special:"Eco-friendly hand-made paper since Mughal era",export:"Domestic",         isNew:false, distKey:"" },
+  { id:15, name:"Kannauj Perfume (Attar)",          dist:"Kannauj",         cat:"perfume", catLabel:"🌹 Perfume",    special:'"इत्र नगरी" — Deg-Bhapka method',   export:"Saudi Arabia, UAE, France",    isNew:false, distKey:"kannauj" },
+  { id:16, name:"Kannauj Rose Water",               dist:"Kannauj",         cat:"perfume", catLabel:"🌹 Perfume",    special:"Pure rose steam distillation",      export:"Middle East",                  isNew:false, distKey:"kannauj" },
+  { id:17, name:"Gulab Attar of Kannauj",           dist:"Kannauj",         cat:"perfume", catLabel:"🌹 Perfume",    special:"Rose (Gulab) base attar — most prized",export:"Gulf, France",              isNew:false, distKey:"kannauj" },
+  { id:18, name:"Tharu Embroidery",                 dist:"Lakhimpur Kheri", cat:"craft",   catLabel:"🪡 Embroidery", special:"Tribal community craft — forest motifs",export:"Ethnic fashion market",     isNew:true,  distKey:"new2025" },
+  { id:19, name:"Lucknow Chikankari",               dist:"Lucknow",         cat:"textile", catLabel:"🪡 Embroidery", special:"32+ stitch types · 2.5L artisans",  export:"USA, UK, UAE",                 isNew:false, distKey:"lucknow" },
+  { id:20, name:"Lucknow Zardozi",                  dist:"Lucknow",         cat:"textile", catLabel:"✨ Embroidery", special:"Gold/Silver thread metallic embroidery",export:"Gulf, Europe",              isNew:false, distKey:"lucknow" },
+  { id:21, name:"Malihabadi Dasheri Mango",         dist:"Lucknow",         cat:"food",    catLabel:"🥭 Food",       special:"World's best Alphonso-equivalent UP mango",export:"Europe, USA, Gulf",      isNew:false, distKey:"lucknow" },
+  { id:22, name:"Mainpuri Tarkashi",                dist:"Mainpuri",        cat:"craft",   catLabel:"🎨 Inlay",      special:"Wire inlay on wood — unique geometric",export:"Domestic handicraft market",isNew:false, distKey:"" },
+  { id:23, name:"Mathura Sanjhi Craft",             dist:"Mathura",         cat:"art",     catLabel:"🎨 Art",        special:"Paper-cut art for Krishna festivals",export:"Religious tourism market",     isNew:true,  distKey:"new2025" },
+  { id:24, name:"Mathura Zari Poshak",              dist:"Mathura",         cat:"textile", catLabel:"🥻 Textile",    special:"Deity costumes — Zari embellishment",export:"Domestic temple market",       isNew:true,  distKey:"new2025" },
+  { id:25, name:"Mathura Peda (Lal Peda)",          dist:"Mathura",         cat:"food",    catLabel:"🍬 Food",       special:"Krishna's prasad — milk-based sweet",export:"India-wide, NRI",             isNew:false, distKey:"" },
+  { id:26, name:"Meerut Scissors",                  dist:"Meerut",          cat:"craft",   catLabel:"✂️ Metal",      special:"Sports goods + scissors hub",       export:"South Asia, Middle East",      isNew:false, distKey:"" },
+  { id:27, name:"Meerut Bugle",                     dist:"Meerut",          cat:"music",   catLabel:"🎺 Music",      special:"Military band instrument manufacturing",export:"Defense sector",            isNew:true,  distKey:"new2025" },
+  { id:28, name:"Mirzapur Handmade Dari",           dist:"Mirzapur",        cat:"carpet",  catLabel:"🪆 Carpet",     special:"Flatweave cotton dari — affordable",export:"Domestic + Europe",            isNew:false, distKey:"" },
+  { id:29, name:"Chunar Balua Patthar",             dist:"Mirzapur",        cat:"natural", catLabel:"🪨 Natural",    special:"2nd GI in natural category · Ashoka Pillar stone",export:"Architecture",  isNew:false, distKey:"" },
+  { id:30, name:"Moradabad Metal Craft",            dist:"Moradabad",       cat:"craft",   catLabel:"🔔 Metal",      special:'"पीतल नगरी" — 40% India brass export',export:"USA, UK, Germany, UAE",       isNew:false, distKey:"" },
+  { id:31, name:"Pratapgarh Aonla",                 dist:"Pratapgarh",      cat:"food",    catLabel:"🫐 Food",       special:"India's largest amla growing district",export:"Ayurvedic market global",    isNew:false, distKey:"" },
+  { id:32, name:"Allahabad Surkha Guava",           dist:"Prayagraj",       cat:"food",    catLabel:"🍈 Food",       special:"UP का पहला GI Tag — 2008-09",       export:"Domestic + NRI",               isNew:false, distKey:"" },
+  { id:33, name:"Saharanpur Wood Carving",          dist:"Saharanpur",      cat:"craft",   catLabel:"🪵 Wood",       special:"Sheesham/Rosewood · Jali work",     export:"Europe, USA, Australia",       isNew:false, distKey:"" },
+  { id:34, name:"Sambhal Horn Craft",               dist:"Sambhal",         cat:"craft",   catLabel:"🦌 Horn",       special:"Buffalo horn · Comb, ornament making",export:"Domestic + Southeast Asia",  isNew:false, distKey:"" },
+  { id:35, name:"Kalanamak Rice",                   dist:"Siddharth Nagar", cat:"food",    catLabel:"🍚 Food",       special:'"Black Rice" — Buddha's favourite grain',export:"Japan, USA (premium)",     isNew:false, distKey:"" },
+  { id:36, name:"Banarasi Brocades & Sarees",       dist:"Varanasi",        cat:"textile", catLabel:"🥻 Textile",    special:"Silk+Gold/Silver thread · 4 types",  export:"USA, France, Italy",          isNew:false, distKey:"varanasi" },
+  { id:37, name:"Banaras Gulabi Meenakari",         dist:"Varanasi",        cat:"craft",   catLabel:"💗 Metalware",  special:"Pink enamel on gold — Sikh artisans",export:"Luxury jewelry market",       isNew:false, distKey:"varanasi" },
+  { id:38, name:"Banarasi Langda Mango",            dist:"Varanasi",        cat:"food",    catLabel:"🥭 Food",       special:"Fiber-less, sweet mango variety",   export:"Gulf, Europe",                 isNew:false, distKey:"varanasi" },
+  { id:39, name:"Banarasi Thandai",                 dist:"Varanasi",        cat:"food",    catLabel:"🥛 Food",       special:"Holi/Mahashivratri की पारंपरिक ठंडाई",export:"Diaspora market",             isNew:true,  distKey:"varanasi new2025" },
+  { id:40, name:"Banarasi Tirangi Barfi",           dist:"Varanasi",        cat:"food",    catLabel:"🍬 Food",       special:"Freedom fighter symbol — Quit India Movement",export:"NRI market",         isNew:true,  distKey:"varanasi new2025" },
+  { id:41, name:"Banarasi Bharwan Mirch",           dist:"Varanasi",        cat:"food",    catLabel:"🌶️ Food",       special:"Stuffed chili pickle — Kashi specialty",export:"Domestic",               isNew:true,  distKey:"varanasi new2025" },
+  { id:42, name:"Banarasi Lal Peda",                dist:"Varanasi",        cat:"food",    catLabel:"🍬 Food",       special:"Red/caramelized milk sweet — Kashi prasad",export:"Domestic + NRI",        isNew:true,  distKey:"varanasi new2025" },
+  { id:43, name:"Banarasi Paan",                    dist:"Varanasi",        cat:"food",    catLabel:"🌿 Food",       special:"World-famous betel leaf — digestive",export:"Gulf, SE Asia, NRI",          isNew:false, distKey:"varanasi" },
+  { id:44, name:"Karonda of Chirgaon",              dist:"Varanasi",        cat:"food",    catLabel:"🍓 Food",       special:"Medicinal berry — Ayurvedic market",export:"Domestic herbal",              isNew:true,  distKey:"varanasi new2025" },
+  { id:45, name:"Banaras Tabla",                    dist:"Varanasi",        cat:"music",   catLabel:"🥁 Music",      special:"Classical percussion — Banaras Gharana",export:"Classical music global",     isNew:false, distKey:"varanasi" },
+  { id:46, name:"Banarasi Shehnai",                 dist:"Varanasi",        cat:"music",   catLabel:"🎵 Music",      special:"Bismillah Khan's legacy instrument",export:"Classical music global",       isNew:true,  distKey:"varanasi new2025" },
+  { id:47, name:"Banarasi Metal Casting Craft",     dist:"Varanasi",        cat:"craft",   catLabel:"⚙️ Metal",      special:"Dhokra/lost-wax metal casting",     export:"Craft export market",          isNew:true,  distKey:"varanasi new2025" },
+  { id:48, name:"Banarasi Mural Painting",          dist:"Varanasi",        cat:"art",     catLabel:"🎨 Art",        special:"Kashi Vishwanath ghat mural tradition",export:"Art collectors globally",    isNew:true,  distKey:"varanasi new2025" },
+  { id:49, name:"Banaras Metal Repousse Craft",     dist:"Varanasi",        cat:"craft",   catLabel:"🔨 Metal",      special:"Hammering/embossing on metal sheets",export:"Domestic + export",           isNew:false, distKey:"varanasi" },
+];
+
+function getCatClass(cat) {
+  const m = { food:'cat-food', textile:'cat-textile', craft:'cat-craft', perfume:'cat-perfume', pottery:'cat-pottery', music:'cat-music', natural:'cat-natural', carpet:'cat-carpet', art:'cat-art', metal:'cat-textile' };
+  return m[cat] || 'cat-craft';
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('giBody');
+  tbody.innerHTML = '';
+  data.forEach((r, idx) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="gi-num">${idx+1}</td>
+      <td class="gi-prod">${r.name}${r.isNew ? '<span class="gi-new">NEW</span>' : ''}</td>
+      <td class="gi-dist">${r.dist}</td>
+      <td><span class="gi-cat ${getCatClass(r.cat)}">${r.catLabel}</span></td>
+      <td class="gi-special">${r.special}</td>
+      <td class="gi-export">${r.export}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+function filterTable() {
+  currentSearch = document.getElementById('searchInput').value.toLowerCase();
+  applyFilters();
+}
+
+function filterCat(key, btn) {
+  currentFilter = key;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  let data = giData;
+  if (currentFilter === 'varanasi') data = data.filter(r => r.distKey.includes('varanasi'));
+  else if (currentFilter === 'lucknow') data = data.filter(r => r.distKey.includes('lucknow'));
+  else if (currentFilter === 'food') data = data.filter(r => r.cat === 'food');
+  else if (currentFilter === 'textile') data = data.filter(r => r.cat === 'textile');
+  else if (currentFilter === 'new2025') data = data.filter(r => r.isNew);
+  if (currentSearch) {
+    data = data.filter(r => r.name.toLowerCase().includes(currentSearch) || r.dist.toLowerCase().includes(currentSearch) || r.special.toLowerCase().includes(currentSearch));
+  }
+  renderTable(data);
+}
+
+renderTable(giData);
+
+// ══════════════ MCQ DATA ══════════════
+const mcqs = [
+  {
+    q: "UP का पहला GI Tag किस उत्पाद को मिला?",
+    opts: ["Lucknow Chikankari", "Allahabad Surkha Guava", "Banarasi Silk", "Moradabad Brassware"],
+    ans: 1,
+    explain: "Allahabad Surkha Guava को 2008-09 में UP का पहला GI Tag मिला। यह Prayagraj (तत्कालीन Allahabad) की प्रसिद्ध अमरूद किस्म है।"
+  },
+  {
+    q: "Moradabad को किस उपनाम से जाना जाता है?",
+    opts: ["सुहाग नगरी", "इत्र नगरी", "पीतल नगरी", "कालीन नगरी"],
+    ans: 2,
+    explain: "Moradabad को 'पीतल नगरी (Pital Nagari)' या 'Brass City of India' कहते हैं क्योंकि यहाँ से भारत का लगभग 40% brass export होता है।"
+  },
+  {
+    q: "Chikankari और Zardozi में मुख्य अंतर क्या है?",
+    opts: ["दोनों में cotton thread का उपयोग होता है", "Chikankari में white thread, Zardozi में gold/silver metallic thread", "Zardozi केवल cotton fabric पर होती है", "दोनों एक ही हैं"],
+    ans: 1,
+    explain: "Chikankari में सफेद धागे से सफेद कढ़ाई (white-on-white) होती है, जबकि Zardozi में सोने-चाँदी के धागों (Zari) से भारी metallic embroidery होती है। दोनों Lucknow की विरासत हैं।"
+  },
+  {
+    q: "विश्व का सबसे बड़ा Hand-Knotted Carpet Cluster किस जिले में है?",
+    opts: ["Mirzapur", "Agra", "Bhadohi", "Varanasi"],
+    ans: 2,
+    explain: "Bhadohi (संत रविदास नगर) को 'कालीन नगरी' कहते हैं। यह विश्व का सबसे बड़ा hand-knotted carpet cluster है। भारत का 85% carpet export यहीं से होता है।"
+  },
+  {
+    q: "Kannauj में Attar बनाने की पारंपरिक विधि को क्या कहते हैं?",
+    opts: ["Steam Distillation", "Deg-Bhapka Method", "Cold Pressing", "Maceration"],
+    ans: 1,
+    explain: "Kannauj में 'देग-भपका (Deg-Bhapka)' विधि से Attar बनाया जाता है। यह Hydro-Distillation की परंपरागत विधि है। Mitti Attar (petrichor) इसी की देन है।"
+  },
+  {
+    q: "Firozabad को 'सुहाग नगरी' क्यों कहते हैं?",
+    opts: ["यहाँ ज़्यादा विवाह होते हैं", "यहाँ भारत की 70% काँच चूड़ियाँ बनती हैं", "यहाँ Zardozi बनती है", "यहाँ Silver jewelry बनती है"],
+    ans: 1,
+    explain: "Firozabad को 'सुहाग नगरी' इसलिए कहते हैं क्योंकि यहाँ भारत की लगभग 70% काँच की चूड़ियाँ (bangles) बनती हैं। चूड़ियाँ सुहाग (सौभाग्य) की निशानी हैं।"
+  },
+  {
+    q: "Banarasi Silk की कितनी प्रमुख किस्में हैं?",
+    opts: ["2", "3", "4", "6"],
+    ans: 2,
+    explain: "Banarasi Silk की 4 प्रमुख किस्में हैं: (1) Katan (सबसे शुद्ध), (2) Organza/Kora (lightweight), (3) Georgette (crinkled), (4) Shattir (cotton base)।"
+  },
+  {
+    q: "GI Tags की दृष्टि से UP का भारत में कौन-सा स्थान है (2025 तक)?",
+    opts: ["दूसरा (Tamil Nadu के बाद)", "पहला (सर्वाधिक ~77)", "तीसरा", "चौथा"],
+    ans: 1,
+    explain: "2025 तक Uttar Pradesh भारत में GI Tags की संख्या में पहले स्थान पर है (~77 GI Tags)। Tamil Nadu दूसरे और Karnataka तीसरे स्थान पर हैं।"
+  },
+  {
+    q: "Kalanamak Rice किस जिले की GI Tagged उपज है?",
+    opts: ["Varanasi", "Gorakhpur", "Siddharth Nagar", "Kushinagar"],
+    ans: 2,
+    explain: "Kalanamak Rice (Black Rice) Siddharth Nagar जिले की GI-tagged उपज है। इसे 'Buddha Rice' भी कहते हैं क्योंकि यह गौतम बुद्ध के क्षेत्र से जुड़ी है।"
+  },
+  {
+    q: "Banarasi Tirangi Barfi का इतिहास किससे जुड़ा है?",
+    opts: ["मुगल काल से", "Quit India Movement से", "1857 की क्रांति से", "1947 स्वतंत्रता दिवस से"],
+    ans: 1,
+    explain: "Banarasi Tirangi Barfi (तिरंगी बर्फी) Quit India Movement (1942) से जुड़ी है। स्वतंत्रता सेनानियों ने राष्ट्रीय भावना व्यक्त करने के लिए यह तिरंगी मिठाई बनाई थी। 2025 में इसे GI Tag मिला।"
+  }
+];
+
+let score = 0;
+let answered = 0;
+
+function renderMCQ() {
+  const container = document.getElementById('mcqList');
+  container.innerHTML = '';
+  mcqs.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'mcq-item';
+    div.id = `mcq-${qi}`;
+    div.innerHTML = `
+      <div class="mcq-q">
+        <span class="mcq-qnum">${qi+1}</span>
+        <span>${q.q}</span>
+      </div>
+      <div class="mcq-opts">
+        ${q.opts.map((o, oi) => `<button class="mcq-opt" onclick="checkAns(${qi},${oi})">(${String.fromCharCode(65+oi)}) ${o}</button>`).join('')}
+      </div>
+      <div class="mcq-explain" id="explain-${qi}">
+        ✅ <strong>Explanation:</strong> ${q.explain}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function checkAns(qi, oi) {
+  const item = document.getElementById(`mcq-${qi}`);
+  const opts = item.querySelectorAll('.mcq-opt');
+  if (opts[0].classList.contains('disabled')) return;
+  opts.forEach((o, i) => {
+    o.classList.add('disabled');
+    if (i === mcqs[qi].ans) o.classList.add('correct');
+    else if (i === oi && oi !== mcqs[qi].ans) o.classList.add('wrong');
+  });
+  document.getElementById(`explain-${qi}`).classList.add('show');
+  if (oi === mcqs[qi].ans) score++;
+  answered++;
+  document.getElementById('scoreDisplay').textContent = `${score}/${answered}`;
+}
+
+function resetMCQ() {
+  score = 0; answered = 0;
+  document.getElementById('scoreDisplay').textContent = '0/10';
+  renderMCQ();
+}
+
+renderMCQ();
+
+// ── Smooth scroll for nav ──
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ── Update active nav on scroll ──
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id]');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    t.classList.toggle('active', t.getAttribute('href') === '#'+current);
+  });
+});
+</script>
+</body>
+</html>
