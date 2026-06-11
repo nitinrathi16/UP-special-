@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protected Area Network of India · UPPSC 2026 Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Spline+Sans+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f4ec;
+    --paper-2:#efe9da;
+    --ink:#1f2a24;
+    --ink-soft:#46554c;
+    --forest:#1f5c43;
+    --forest-deep:#123a2a;
+    --moss:#5d8a4e;
+    --clay:#c0612f;
+    --clay-deep:#9c4720;
+    --gold:#d9a635;
+    --sky:#3a7ca5;
+    --line:#d8cfba;
+    --line-strong:#bfb293;
+    --card:#fffdf8;
+    --shadow:0 1px 2px rgba(31,42,36,.06),0 8px 26px rgba(31,42,36,.07);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(217,166,53,.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(31,92,67,.08), transparent 55%),
+      var(--paper);
+    color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;overflow:hidden;
+    background:linear-gradient(160deg,var(--forest-deep) 0%,var(--forest) 60%,#206b4c 100%);
+    color:#f3efe2;
+    border-bottom:5px solid var(--gold);
+  }
+  .hero-foliage{position:absolute;inset:0;opacity:.16;pointer-events:none}
+  .hero .wrap{position:relative;padding:54px 22px 60px}
+  .eyebrow{
+    font-family:"Spline Sans Mono",monospace;font-weight:600;
+    letter-spacing:.32em;text-transform:uppercase;font-size:12px;
+    color:var(--gold);margin:0 0 16px
+  }
+  .hero h1{
+    font-family:"Fraunces",serif;font-weight:900;
+    font-size:clamp(2.3rem,6vw,4.1rem);line-height:1.02;
+    margin:0 0 14px;letter-spacing:-.01em
+  }
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero p.lede{
+    max-width:620px;font-size:clamp(1rem,2.2vw,1.18rem);
+    color:#dfe8df;margin:0 0 26px
+  }
+  .stat-strip{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .stat{
+    background:rgba(255,253,248,.10);border:1px solid rgba(243,239,226,.22);
+    border-radius:14px;padding:12px 16px;min-width:120px;backdrop-filter:blur(2px)
+  }
+  .stat .n{font-family:"Fraunces",serif;font-weight:700;font-size:1.7rem;line-height:1;color:#fff}
+  .stat .l{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:#bcd2c2;margin-top:5px}
+
+  /* ---------- TOC ---------- */
+  nav.toc{
+    background:var(--paper-2);border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:40;
+  }
+  nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding:11px 22px;scrollbar-width:thin}
+  nav.toc a{
+    flex:0 0 auto;text-decoration:none;color:var(--ink-soft);
+    font-size:.82rem;font-weight:600;padding:7px 13px;border-radius:999px;
+    border:1px solid transparent;transition:.18s;white-space:nowrap
+  }
+  nav.toc a:hover{background:#fff;color:var(--forest);border-color:var(--line)}
+
+  /* ---------- SECTION ---------- */
+  section{padding:46px 0 8px}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:8px}
+  .sec-num{
+    font-family:"Spline Sans Mono",monospace;font-weight:600;
+    font-size:.84rem;color:var(--clay);border:1.5px solid var(--clay);
+    border-radius:10px;padding:5px 9px;margin-top:8px;flex:0 0 auto
+  }
+  .sec-head h2{
+    font-family:"Fraunces",serif;font-weight:700;
+    font-size:clamp(1.55rem,3.6vw,2.3rem);line-height:1.1;margin:0;letter-spacing:-.01em
+  }
+  .sec-head .ico{font-size:1.7rem;line-height:1.6;margin-left:auto}
+  .sub{color:var(--ink-soft);max-width:760px;margin:2px 0 22px}
+  .rule{height:2px;background:linear-gradient(90deg,var(--gold),transparent);border:0;margin:0 0 26px}
+
+  /* ---------- CARDS ---------- */
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px;box-shadow:var(--shadow);position:relative;overflow:hidden
+  }
+  .card h3{font-family:"Fraunces",serif;font-size:1.18rem;margin:0 0 4px;color:var(--forest-deep)}
+  .card h3 .emoji{margin-right:7px}
+  .card .meta{font-size:.76rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--clay);margin-bottom:8px}
+  .card p{margin:0 0 8px;font-size:.92rem;color:var(--ink-soft)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:600;background:var(--paper-2);color:var(--forest);
+    border:1px solid var(--line);border-radius:999px;padding:3px 10px;margin:3px 4px 0 0}
+
+  /* type comparison cards top stripe */
+  .ptype{border-top:5px solid var(--moss)}
+  .ptype.np{border-top-color:var(--forest)}
+  .ptype.ws{border-top-color:var(--moss)}
+  .ptype.br{border-top-color:var(--gold)}
+  .ptype.tr{border-top-color:var(--clay)}
+  .ptype .badge{
+    position:absolute;top:14px;right:14px;font-size:1.5rem
+  }
+  .kv{display:flex;gap:8px;font-size:.86rem;padding:7px 0;border-top:1px dashed var(--line)}
+  .kv:first-of-type{border-top:0}
+  .kv b{flex:0 0 116px;color:var(--ink);font-weight:600}
+  .kv span{color:var(--ink-soft)}
+
+  /* ---------- TABLE ---------- */
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);background:var(--card)}
+  table{border-collapse:collapse;width:100%;min-width:620px;font-size:.9rem}
+  thead th{
+    background:var(--forest-deep);color:#f2ede0;text-align:left;
+    font-family:"Inter",sans-serif;font-weight:600;font-size:.78rem;
+    letter-spacing:.06em;text-transform:uppercase;padding:13px 15px;position:sticky;top:0
+  }
+  tbody td{padding:12px 15px;border-top:1px solid var(--line)}
+  tbody tr:nth-child(even){background:#faf7f0}
+  tbody tr:hover{background:#f3efe2}
+  td .sp{color:var(--clay-deep);font-weight:600}
+  .ttype{font-family:"Spline Sans Mono",monospace;font-size:.78rem;font-weight:600;padding:2px 8px;border-radius:6px}
+  .t-np{background:#e3efe7;color:var(--forest)}
+  .t-ws{background:#eaf1e0;color:#4f7a3c}
+  .t-br{background:#f7eccd;color:var(--clay-deep)}
+  .t-tr{background:#f5e2d4;color:var(--clay-deep)}
+  .t-rm{background:#dceaf2;color:var(--sky)}
+
+  /* ---------- IMAGE PLATE ---------- */
+  .plate{
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper-2);
+    box-shadow:var(--shadow);position:relative;aspect-ratio:4/3
+  }
+  .plate img{width:100%;height:100%;object-fit:cover;display:block}
+  .plate .cap{
+    position:absolute;left:0;right:0;bottom:0;
+    background:linear-gradient(transparent,rgba(18,58,42,.86));
+    color:#fff;font-size:.8rem;font-weight:600;padding:24px 12px 9px
+  }
+  /* fallback when image fails: svg shows underneath */
+  .plate .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+
+  /* ---------- CALLOUT ---------- */
+  .callout{
+    background:linear-gradient(180deg,#fff8e9,#fdf3da);
+    border:1px solid var(--line-strong);border-left:5px solid var(--gold);
+    border-radius:14px;padding:16px 18px;margin:6px 0;font-size:.92rem
+  }
+  .callout b{color:var(--clay-deep)}
+  .callout.green{background:linear-gradient(180deg,#eef6ef,#e6f1e7);border-left-color:var(--forest)}
+  .callout.green b{color:var(--forest-deep)}
+
+  .mnemonic{font-family:"Spline Sans Mono",monospace;font-weight:600;color:var(--clay-deep)}
+
+  /* ---------- MCQ ---------- */
+  .mcq{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 22px;margin-bottom:14px;box-shadow:var(--shadow)
+  }
+  .mcq .q{font-weight:600;font-size:1rem;margin:0 0 14px;color:var(--ink)}
+  .mcq .q .num{font-family:"Spline Sans Mono",monospace;color:var(--clay);margin-right:8px}
+  .opts{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:8px}
+  .opts li{
+    border:1px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer;
+    font-size:.92rem;transition:.15s;background:#fff;display:flex;gap:10px;align-items:flex-start
+  }
+  .opts li .k{font-weight:700;color:var(--ink-soft);flex:0 0 18px}
+  .opts li:hover{border-color:var(--moss);background:#f6faf2}
+  .opts li.correct{background:#e6f4ea;border-color:var(--forest);color:var(--forest-deep);font-weight:600}
+  .opts li.wrong{background:#fbeae3;border-color:var(--clay);color:var(--clay-deep)}
+  .reveal{
+    border:0;background:var(--forest);color:#fff;font-weight:600;font-size:.82rem;
+    padding:8px 16px;border-radius:999px;cursor:pointer;font-family:inherit;letter-spacing:.03em
+  }
+  .reveal:hover{background:var(--forest-deep)}
+  .ans{margin-top:12px;font-size:.88rem;color:var(--ink-soft);background:var(--paper-2);
+    border-radius:10px;padding:11px 14px;display:none}
+  .ans.show{display:block}
+  .ans b{color:var(--forest-deep)}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:50px;background:var(--forest-deep);color:#cdddd2;
+    border-top:5px solid var(--gold);padding:30px 0
+  }
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+  footer b{color:#fff;font-family:"Fraunces",serif}
+  footer .small{font-size:.78rem;color:#9fb8a9;max-width:560px}
+
+  @media(max-width:860px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}.sec-head .ico{display:none}.kv b{flex-basis:96px}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="hero-foliage" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="#ffffff">
+      <path d="M120 400c0-90 30-150 0-220 40 40 70 110 70 220z"/>
+      <path d="M1080 400c0-110 40-180 0-260 50 50 80 140 80 260z"/>
+      <circle cx="980" cy="70" r="46"/>
+      <path d="M300 400c10-70-20-130 20-190-10 70 40 120 30 190z"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow">UPPSC 2026 · Environment &amp; Ecology · Field Guide</p>
+    <h1>India's <em>Protected&nbsp;Area</em> Network</h1>
+    <p class="lede">Parks, sanctuaries, tiger reserves, biosphere reserves &amp; Ramsar wetlands — every fact organised for the exam, with a Uttar&nbsp;Pradesh spotlight and 10 practice MCQs. Figures verified to June&nbsp;2026.</p>
+    <div class="stat-strip">
+      <div class="stat"><div class="n">58</div><div class="l">Tiger Reserves</div></div>
+      <div class="stat"><div class="n">18</div><div class="l">Biosphere Reserves</div></div>
+      <div class="stat"><div class="n">100</div><div class="l">Ramsar Sites</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">Biodiversity Hotspots</div></div>
+      <div class="stat"><div class="n">12</div><div class="l">UP Ramsar Sites</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TOC ============ -->
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#types">① Types &amp; Legal Status</a>
+    <a href="#parks">② National Parks</a>
+    <a href="#tigers">③ Tiger Reserves</a>
+    <a href="#biosphere">④ Biosphere Reserves</a>
+    <a href="#ramsar">⑤ Ramsar Wetlands</a>
+    <a href="#species">⑥ Species Projects</a>
+    <a href="#hotspots">⑦ Biodiversity Hotspots</a>
+    <a href="#master">⑧ Master Table</a>
+    <a href="#mcq">⑨ MCQs</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ====== 1. TYPES ====== -->
+<section id="types">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>Categories of Protected Areas &mdash; legal status &amp; human activity</h2>
+    <span class="ico">🛡️</span>
+  </div>
+  <p class="sub">Four overlapping designations form India's conservation backbone. The first two are <b>legal categories</b> under the Wild Life (Protection) Act, 1972; the latter two are <b>conservation frameworks</b> that overlay existing protected areas.</p>
+  <hr class="rule">
+
+  <div class="grid g4">
+    <div class="card ptype np">
+      <span class="badge">🌲</span>
+      <div class="meta">Legal · WLPA 1972</div>
+      <h3>National Park</h3>
+      <div class="kv"><b>Declared by</b><span>State Govt (notification)</span></div>
+      <div class="kv"><b>Protection</b><span>Highest / strictest</span></div>
+      <div class="kv"><b>Human activity</b><span>No grazing, no rights; tightly regulated</span></div>
+      <div class="kv"><b>Boundaries</b><span>Fixed &amp; legally defined</span></div>
+      <div class="kv"><b>First</b><span>Hailey (now Jim Corbett), 1936</span></div>
+    </div>
+
+    <div class="card ptype ws">
+      <span class="badge">🦌</span>
+      <div class="meta">Legal · WLPA 1972</div>
+      <h3>Wildlife Sanctuary</h3>
+      <div class="kv"><b>Declared by</b><span>State Govt</span></div>
+      <div class="kv"><b>Protection</b><span>High, but more flexible than NP</span></div>
+      <div class="kv"><b>Human activity</b><span>Limited rights / grazing may be permitted</span></div>
+      <div class="kv"><b>Boundaries</b><span>Not as strictly fixed</span></div>
+      <div class="kv"><b>Note</b><span>A sanctuary can be upgraded to an NP</span></div>
+    </div>
+
+    <div class="card ptype br">
+      <span class="badge">🌍</span>
+      <div class="meta">Framework · UNESCO MAB</div>
+      <h3>Biosphere Reserve</h3>
+      <div class="kv"><b>Recognised by</b><span>Govt of India; UNESCO (MAB)</span></div>
+      <div class="kv"><b>Protection</b><span>Zoned: core / buffer / transition</span></div>
+      <div class="kv"><b>Human activity</b><span>None in core; allowed in buffer &amp; transition</span></div>
+      <div class="kv"><b>Aim</b><span>Conservation + sustainable development + research</span></div>
+      <div class="kv"><b>Largest unit</b><span>Encloses NPs &amp; sanctuaries</span></div>
+    </div>
+
+    <div class="card ptype tr">
+      <span class="badge">🐅</span>
+      <div class="meta">Framework · Project Tiger</div>
+      <h3>Tiger Reserve</h3>
+      <div class="kv"><b>Notified by</b><span>State, on NTCA recommendation</span></div>
+      <div class="kv"><b>Protection</b><span>Core (inviolate) + buffer (multi-use)</span></div>
+      <div class="kv"><b>Human activity</b><span>None in core/CTH; regulated in buffer</span></div>
+      <div class="kv"><b>Legal hook</b><span>WLPA 1972 (2006 amendment) + NTCA</span></div>
+      <div class="kv"><b>Started</b><span>Project Tiger, 1973</span></div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:18px">
+    <b>One-line memory hook:</b> Sanctuary&nbsp;→ species-focused &amp; flexible · National&nbsp;Park&nbsp;→ ecosystem-focused &amp; strict · Biosphere&nbsp;Reserve&nbsp;→ people + nature, zoned · Tiger&nbsp;Reserve&nbsp;→ a management overlay with an inviolate core.
+  </div>
+  <div class="callout">
+    <b>Exam trap:</b> A Biosphere Reserve has <b>no independent legal status</b> of its own — the legal protection comes from the National Parks and Sanctuaries that sit <i>inside</i> it. Similarly, a <b>Ramsar tag is an international recognition, not domestic law</b>.
+  </div>
+</section>
+
+<!-- ====== 2. NATIONAL PARKS ====== -->
+<section id="parks">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>National Parks &mdash; state-wise high-yield list</h2>
+    <span class="ico">🏞️</span>
+  </div>
+  <p class="sub">India has <b>106+ National Parks</b>. You don't need all of them — you need the ones examiners repeat. Grouped by state below; the UP set is flagged in clay.</p>
+  <hr class="rule">
+
+  <div class="grid g2" style="margin-bottom:16px">
+    <div class="plate">
+      <div class="fallback">
+        <svg width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" fill="#e3efe7"/>
+          <path d="M20 75c8-26 18-40 30-40s22 14 30 40z" fill="#5d8a4e"/>
+          <circle cx="50" cy="30" r="9" fill="#d9a635"/>
+        </svg>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/800px-Walking_tiger_female.jpg" alt="Bengal tiger walking" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+      <div class="cap">🐅 Jim Corbett (Uttarakhand) — India's oldest National Park, 1936</div>
+    </div>
+    <div class="plate">
+      <div class="fallback">
+        <svg width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" fill="#eaf1e0"/>
+          <ellipse cx="50" cy="64" rx="30" ry="14" fill="#9c8a5a"/>
+          <path d="M30 60c4-12 12-18 20-18s16 6 20 18z" fill="#5d8a4e"/>
+        </svg>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Indian_Rhinoceros.jpg/800px-Indian_Rhinoceros.jpg" alt="One-horned rhinoceros" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+      <div class="cap">🦏 Kaziranga (Assam) — two-thirds of the world's one-horned rhinos</div>
+    </div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card">
+      <div class="meta">Uttar Pradesh 🟧</div>
+      <h3>UP &amp; the North</h3>
+      <p><b>Dudhwa NP</b> (UP) — only NP in UP, swamp deer &amp; tiger.<br>
+      <b>Jim Corbett</b> (Uttarakhand) — first NP, highest tiger density.<br>
+      <b>Nanda Devi &amp; Valley of Flowers</b> (Uttarakhand) — UNESCO sites.<br>
+      <b>Rajaji NP</b> (Uttarakhand) — elephants.</p>
+      <span class="tag">Dudhwa = UP's only NP</span>
+    </div>
+    <div class="card">
+      <div class="meta">Central India</div>
+      <h3>Madhya Pradesh &amp; nearby</h3>
+      <p><b>Kanha</b> — barasingha, inspired <i>The Jungle Book</i>.<br>
+      <b>Bandhavgarh</b> — highest tiger density in MP.<br>
+      <b>Pench, Satpura, Panna</b> — Panna also a Biosphere.<br>
+      <b>Sanjay-Dubri, Madhav</b> — Madhav now 58th tiger reserve.</p>
+      <span class="tag">MP = most tiger reserves (9)</span>
+    </div>
+    <div class="card">
+      <div class="meta">West &amp; Desert</div>
+      <h3>Rajasthan &amp; Gujarat</h3>
+      <p><b>Ranthambore, Sariska</b> (Raj) — tigers in the Aravallis.<br>
+      <b>Keoladeo / Bharatpur</b> (Raj) — bird park + Ramsar + WHS.<br>
+      <b>Gir NP</b> (Gujarat) — last refuge of the Asiatic lion.<br>
+      <b>Blackbuck NP, Velavadar</b> (Gujarat).</p>
+      <span class="tag">Gir = only Asiatic lion home</span>
+    </div>
+    <div class="card">
+      <div class="meta">South India</div>
+      <h3>Peninsular South</h3>
+      <p><b>Bandipur, Nagarhole</b> (Karnataka) — elephants &amp; tigers.<br>
+      <b>Periyar</b> (Kerala) — elephant reserve, lake.<br>
+      <b>Silent Valley</b> (Kerala) — lion-tailed macaque.<br>
+      <b>Mudumalai</b> (Tamil Nadu), <b>Eravikulam</b> — Nilgiri tahr.</p>
+      <span class="tag">Western Ghats core</span>
+    </div>
+    <div class="card">
+      <div class="meta">East &amp; Coast</div>
+      <h3>East India</h3>
+      <p><b>Sundarbans NP</b> (WB) — mangrove, Royal Bengal tiger.<br>
+      <b>Simlipal</b> (Odisha) — Biosphere + tiger reserve.<br>
+      <b>Bhitarkanika</b> (Odisha) — saltwater crocodile, Ramsar.<br>
+      <b>Betla / Palamau</b> (Jharkhand) — first tiger reserve, 1973.</p>
+      <span class="tag">Sundarbans = largest mangrove</span>
+    </div>
+    <div class="card">
+      <div class="meta">NE &amp; Islands</div>
+      <h3>Northeast &amp; Andamans</h3>
+      <p><b>Kaziranga, Manas, Orang</b> (Assam) — rhino landscape.<br>
+      <b>Namdapha</b> (Arunachal) — 4 big cats coexist.<br>
+      <b>Keibul Lamjao</b> (Manipur) — world's only floating NP, sangai deer.<br>
+      <b>Mahatma Gandhi Marine NP</b> (A&amp;N Islands).</p>
+      <span class="tag">Keibul Lamjao = floating park</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 3. TIGER RESERVES ====== -->
+<section id="tigers">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>Tiger Reserves &amp; Project Tiger</h2>
+    <span class="ico">🐅</span>
+  </div>
+  <p class="sub">Project Tiger launched in <b>1973</b> with 9 reserves. It is administered by the <b>National Tiger Conservation Authority (NTCA)</b>, a statutory body under the WLPA (2006 amendment), within the Ministry of Environment, Forest &amp; Climate Change.</p>
+  <hr class="rule">
+
+  <div class="grid g4" style="margin-bottom:20px">
+    <div class="card" style="text-align:center"><div class="n" style="font-family:Fraunces;font-size:2.2rem;color:var(--clay)">58</div><div class="meta" style="color:var(--ink-soft)">Tiger Reserves (2026)</div></div>
+    <div class="card" style="text-align:center"><div class="n" style="font-family:Fraunces;font-size:2.2rem;color:var(--clay)">1973</div><div class="meta" style="color:var(--ink-soft)">Project Tiger launched</div></div>
+    <div class="card" style="text-align:center"><div class="n" style="font-family:Fraunces;font-size:2.2rem;color:var(--clay)">3,682</div><div class="meta" style="color:var(--ink-soft)">Tigers (2022 census)</div></div>
+    <div class="card" style="text-align:center"><div class="n" style="font-family:Fraunces;font-size:2.2rem;color:var(--clay)">~75%</div><div class="meta" style="color:var(--ink-soft)">Of world's wild tigers</div></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="callout green">
+      <b>Headline facts (verify-fresh, June 2026):</b><br>
+      • <b>Total:</b> 58 tiger reserves across ~18 states.<br>
+      • <b>First:</b> Palamau (Jharkhand) era of 1973; <b>Latest:</b> Madhav (MP), notified March 2025 as the 58th.<br>
+      • <b>Largest:</b> Nagarjunsagar-Srisailam (Andhra Pradesh).<br>
+      • <b>Most reserves in a state:</b> Madhya Pradesh (9) — the "Tiger State".<br>
+      • <b>Highest tiger population (2022):</b> Madhya Pradesh (785).
+    </div>
+    <div class="callout">
+      <b>Structure of a tiger reserve:</b> a <b>core / Critical Tiger Habitat (CTH)</b> kept inviolate, surrounded by a <b>buffer</b> permitting regulated human use. Census uses the <b>"double sampling"</b> method — ground signs (pugmarks, scat) plus <b>camera-trap</b> stripe-pattern ID, since every tiger's stripes are unique. The 6th cycle of the All-India Tiger Estimation is underway in 2026.
+    </div>
+  </div>
+
+  <h3 style="font-family:Fraunces;font-size:1.3rem;color:var(--forest-deep);margin:28px 0 6px">🟧 Uttar Pradesh's Tiger Reserves</h3>
+  <p class="sub" style="margin-bottom:16px">UP has <b>three</b> tiger reserves: <b>Dudhwa</b>, <b>Pilibhit</b>, and the newer <b>Ranipur</b> (Chitrakoot). Dudhwa and Pilibhit are the exam staples.</p>
+
+  <div class="grid g2">
+    <div class="card ptype tr">
+      <span class="badge">🐅</span>
+      <div class="meta">Terai · Lakhimpur Kheri</div>
+      <h3>Dudhwa Tiger Reserve</h3>
+      <p>Created by clubbing <b>Dudhwa NP + Kishanpur &amp; Katarniaghat sanctuaries</b>. Lies in the Terai grasslands along the Indo-Nepal border, watered by the Sharda, Suheli &amp; Mohana rivers.</p>
+      <div class="kv"><b>Flagship species</b><span>Tiger, <span class="sp">swamp deer (barasingha)</span>, one-horned rhino (reintroduced)</span></div>
+      <div class="kv"><b>Ecosystem</b><span>Terai grassland + sal forest + wetlands</span></div>
+      <div class="kv"><b>Special</b><span>Successful rhino reintroduction programme</span></div>
+    </div>
+    <div class="card ptype tr">
+      <span class="badge">🐅</span>
+      <div class="meta">Terai · Pilibhit district</div>
+      <h3>Pilibhit Tiger Reserve</h3>
+      <p>Notified in <b>2014</b> on the Indo-Nepal border, part of the <b>Terai Arc Landscape</b>. Drained by the Sharda &amp; Gomti rivers and the Sharda Sagar reservoir.</p>
+      <div class="kv"><b>Flagship species</b><span>Tiger, swamp deer, leopard, hispid hare</span></div>
+      <div class="kv"><b>Award</b><span>First-ever <span class="sp">TX2 Award</span> (2020) for doubling tigers</span></div>
+      <div class="kv"><b>Ecosystem</b><span>Terai grassland + plantation sal forest</span></div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <b>UP quick-fire:</b> Dudhwa = UP's <i>only</i> National Park &amp; oldest tiger reserve · Pilibhit = TX2 award winner · Ranipur (Chitrakoot) = UP's newest (notified 2022) · All three sit in or near the <b>Terai Arc Landscape</b>, a tiger-corridor shared with Nepal.
+  </div>
+</section>
+
+<!-- ====== 4. BIOSPHERE RESERVES ====== -->
+<section id="biosphere">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>Biosphere Reserves &amp; UNESCO recognition</h2>
+    <span class="ico">🌍</span>
+  </div>
+  <p class="sub">India has <b>18 notified Biosphere Reserves</b>. <b>12</b> are internationally recognised under UNESCO's <b>Man and the Biosphere (MAB)</b> World Network — with <b>Cold Desert (HP)</b> the most recent addition, which some 2026 sources count to take the UNESCO tally toward 13. Each reserve is zoned into <b>core, buffer &amp; transition</b>.</p>
+  <hr class="rule">
+
+  <div class="grid g3">
+    <div class="card"><div class="meta">UNESCO · 2000 (1st)</div><h3>🏔️ Nilgiri</h3><p>TN–Kerala–Karnataka. India's <b>first</b> Biosphere Reserve (1986) &amp; first UNESCO-listed. Nilgiri tahr, lion-tailed macaque.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2001</div><h3>🐠 Gulf of Mannar</h3><p>Tamil Nadu. India's <b>first marine</b> Biosphere Reserve — coral reefs, seagrass, dugong.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2001</div><h3>🌊 Sundarbans</h3><p>West Bengal. World's largest mangrove; Royal Bengal tiger, also a Ramsar site &amp; WHS.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2001</div><h3>🦏 Manas</h3><p>Assam. Tiger reserve + WHS + Biosphere; golden langur, pygmy hog.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2004</div><h3>⛰️ Nanda Devi</h3><p>Uttarakhand. High-Himalayan; snow leopard, Himalayan musk deer.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2009</div><h3>🌳 Pachmarhi</h3><p>Madhya Pradesh (Satpura). Sal &amp; teak; tiger, Indian giant squirrel.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2009</div><h3>🌿 Nokrek</h3><p>Meghalaya. Red panda, citrus-indica gene pool.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2009</div><h3>🐅 Simlipal</h3><p>Odisha. Tiger reserve; melanistic (black) tigers.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2012</div><h3>🌺 Agasthyamalai</h3><p>Kerala–Tamil Nadu (W. Ghats). Endemic flora, tiger.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2013</div><h3>🏞️ Great Nicobar</h3><p>A&amp;N Islands. Leatherback turtle, Nicobar megapode.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2016</div><h3>🌲 Amarkantak</h3><p>Achanakmar–Amarkantak (MP–Chhattisgarh). Source of the Narmada.</p></div>
+    <div class="card"><div class="meta">UNESCO · 2018</div><h3>🏔️ Khangchendzonga</h3><p>Sikkim. Snow leopard, red panda; also a mixed WHS.</p></div>
+  </div>
+
+  <div class="callout green" style="margin-top:16px">
+    <span class="mnemonic">First four UNESCO BRs (all 2000–01):</span> <b>N</b>ilgiri · <b>G</b>ulf of Mannar · <b>S</b>undarbans · <b>M</b>anas → mnemonic <b>"Nilgiri Gobbles Sunlit Mangoes."</b>
+  </div>
+  <div class="callout">
+    <b>Not yet UNESCO-listed (notified only):</b> Dibru-Saikhowa (Assam), Dehang-Debang (Arunachal), Great Rann of Kutch (Gujarat — largest by area), Seshachalam (AP), Panna (MP) &amp; Cold Desert (HP). <b>Watch list:</b> dates and UNESCO-status pairings are a favourite UPPSC trap — Cold Desert's 2025 recognition is the newest update.
+  </div>
+</section>
+
+<!-- ====== 5. RAMSAR ====== -->
+<section id="ramsar">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>Ramsar Wetlands of International Importance</h2>
+    <span class="ico">🦩</span>
+  </div>
+  <p class="sub">The <b>Ramsar Convention</b> (signed 1971, Ramsar, Iran; in force 1975) protects wetlands. India acceded on <b>1 Feb 1982</b>. As of <b>June 2026 India has 100 Ramsar sites</b> — the 100th being <b>Surha Tal / Jai Prakash Narayan Bird Sanctuary, Ballia (UP)</b>. India ranks <b>3rd in the world</b> (after UK &amp; Mexico) and 1st in Asia.</p>
+  <hr class="rule">
+
+  <div class="grid g4" style="margin-bottom:20px">
+    <div class="card" style="text-align:center"><div class="n" style="font-family:Fraunces;font-size:2.1rem;color:var(--sky)">100</div><div class="meta" style="color:var(--ink-soft)">Ramsar sites (India)</div></div>
+    <div class="card" style="text-align:center"><div class="n" style="font-family:Fraunces;font-size:2.1rem;color:var(--sky)">20</div><div class="meta" style="color:var(--ink-soft)">Tamil Nadu — most</div></div>
+    <div class="card" style="text-align:center"><div class="n" style="font-family:Fraunces;font-size:2.1rem;color:var(--sky)">12</div><div class="meta" style="color:var(--ink-soft)">Uttar Pradesh — 2nd</div></div>
+    <div class="card" style="text-align:center"><div class="n" style="font-family:Fraunces;font-size:2.1rem;color:var(--sky)">1982</div><div class="meta" style="color:var(--ink-soft)">India acceded</div></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="meta">National superlatives</div>
+      <h3>💧 Key all-India facts</h3>
+      <div class="kv"><b>First sites (1981)</b><span>Chilika (Odisha) &amp; Keoladeo (Rajasthan)</span></div>
+      <div class="kv"><b>Largest</b><span>Sundarban Wetland (West Bengal)</span></div>
+      <div class="kv"><b>Smallest</b><span>Renuka Lake (HP) / Vembannur (TN)</span></div>
+      <div class="kv"><b>Highest-altitude</b><span>Tsomoriri &amp; Tso Kar (Ladakh)</span></div>
+      <div class="kv"><b>Montreux Record</b><span>Keoladeo &amp; Loktak (threatened sites)</span></div>
+    </div>
+    <div class="card ptype br">
+      <div class="meta">🟧 Uttar Pradesh — 12 Ramsar sites</div>
+      <h3>🦆 UP's wetlands</h3>
+      <p style="font-size:.88rem">Upper Ganga (Brijghat), <b>Haiderpur</b> (Hastinapur WLS — gharial, hog deer), <b>Nawabganj</b> (renamed Chandra Shekhar Azad), <b>Sandi</b>, <b>Saman</b>, <b>Samaspur</b>, <b>Sarsai Nawar</b> (Sarus crane), <b>Parvati Arga</b> (twin oxbow lakes), <b>Bakhira</b>, <b>Patna BS (Etah)</b>, <b>Shekha Jheel (Aligarh)</b>, and <b>Surha Tal / Surha Tal (Ballia) — India's 100th</b>.</p>
+      <span class="tag">Surha Tal = India's 100th (2026)</span>
+      <span class="tag">UP 2nd only to Tamil Nadu</span>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <b>Concept trap:</b> A Ramsar designation is an <b>international label, not a domestic legal protection</b>. The site is protected only if it is <i>also</i> notified under Indian law (e.g., as a sanctuary). Keoladeo, for instance, is a National Park <i>and</i> a Ramsar site <i>and</i> a World Heritage Site.
+  </div>
+</section>
+
+<!-- ====== 6. SPECIES PROJECTS ====== -->
+<section id="species">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>Flagship-species programmes</h2>
+    <span class="ico">🐘</span>
+  </div>
+  <p class="sub">Beyond Project Tiger, India runs species-specific conservation drives. Know the launch year, the lead species, and the signature sites.</p>
+  <hr class="rule">
+
+  <div class="grid g3">
+    <div class="card ptype" style="border-top-color:#7b6240">
+      <span class="badge">🐘</span>
+      <div class="meta">Project Elephant · 1992</div>
+      <h3>Elephant Reserves</h3>
+      <p>33+ Elephant Reserves. The elephant is India's <b>National Heritage Animal</b>. <b>MIKE</b> programme monitors illegal killing.</p>
+      <div class="kv"><b>Key sites</b><span>Singhbhum (Jharkhand), Nilgiri, Mayurbhanj, Rajaji-Corbett, Shivalik</span></div>
+      <div class="kv"><b>UP</b><span>Shivalik / Terai elephant range in the north</span></div>
+    </div>
+
+    <div class="card ptype" style="border-top-color:var(--sky)">
+      <span class="badge">🐊</span>
+      <div class="meta">Crocodile Project · 1975</div>
+      <h3>Crocodile Conservation</h3>
+      <p>Three species: <b>Gharial</b> (CR), <b>Mugger</b>, <b>Saltwater croc</b>. Began with UNDP/FAO support.</p>
+      <div class="kv"><b>Gharial</b><span><span class="sp">National Chambal Sanctuary</span> (UP–MP–Raj), Katarniaghat (UP)</span></div>
+      <div class="kv"><b>Saltwater</b><span>Bhitarkanika (Odisha) — largest population</span></div>
+    </div>
+
+    <div class="card ptype" style="border-top-color:var(--moss)">
+      <span class="badge">🦏</span>
+      <div class="meta">Rhino · DNA & Vision 2020</div>
+      <h3>One-horned Rhino</h3>
+      <p>The Greater one-horned rhino is <b>Vulnerable</b> (recovered from near-extinction). "New Bonn Challenge" &amp; <b>DNA profiling</b> (RhoDIS).</p>
+      <div class="kv"><b>Strongholds</b><span><span class="sp">Kaziranga</span>, Orang, Pobitora, Manas (Assam); Jaldapara &amp; Gorumara (WB)</span></div>
+      <div class="kv"><b>UP link</b><span>Reintroduced at <b>Dudhwa</b></span></div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="plate">
+      <div class="fallback">
+        <svg width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" fill="#ece6d2"/>
+          <ellipse cx="50" cy="60" rx="34" ry="20" fill="#8a8a7a"/>
+          <circle cx="50" cy="42" r="14" fill="#8a8a7a"/>
+        </svg>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Elephas_maximus_%28Bandipur%29.jpg/800px-Elephas_maximus_%28Bandipur%29.jpg" alt="Asian elephant" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+      <div class="cap">🐘 Asian elephant — National Heritage Animal (Project Elephant, 1992)</div>
+    </div>
+    <div class="plate">
+      <div class="fallback">
+        <svg width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" fill="#dceaf2"/>
+          <path d="M12 58c25-6 50-6 76 0-26 8-51 8-76 0z" fill="#5d7d5a"/>
+          <circle cx="78" cy="55" r="4" fill="#123a2a"/>
+        </svg>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Gharial_Crocodile.jpg/800px-Gharial_Crocodile.jpg" alt="Gharial" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+      <div class="cap">🐊 Gharial — flagship of the National Chambal Sanctuary (UP–MP–Rajasthan)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 7. HOTSPOTS ====== -->
+<section id="hotspots">
+  <div class="sec-head">
+    <span class="sec-num">07</span>
+    <h2>Biodiversity Hotspots in India</h2>
+    <span class="ico">🌺</span>
+  </div>
+  <p class="sub">A "biodiversity hotspot" (Norman Myers' criteria) needs <b>&ge;1,500 endemic plant species</b> and must have <b>lost &ge;70% of its original habitat</b>. India falls within <b>four</b> of the world's 36 hotspots.</p>
+  <hr class="rule">
+
+  <div class="grid g2">
+    <div class="card ptype" style="border-top-color:var(--forest)">
+      <span class="badge">⛰️</span>
+      <div class="meta">Hotspot 1</div>
+      <h3>The Himalayas</h3>
+      <p>Eastern + Western Himalaya. Snow leopard, red panda, Himalayan musk deer, blue poppy. Spans Uttarakhand, Sikkim, Arunachal.</p>
+    </div>
+    <div class="card ptype" style="border-top-color:var(--moss)">
+      <span class="badge">🌴</span>
+      <div class="meta">Hotspot 2</div>
+      <h3>Western Ghats &amp; Sri Lanka</h3>
+      <p>Highest endemism in India — lion-tailed macaque, Nilgiri tahr, Malabar civet. A UNESCO World Heritage region.</p>
+    </div>
+    <div class="card ptype" style="border-top-color:var(--clay)">
+      <span class="badge">🌿</span>
+      <div class="meta">Hotspot 3</div>
+      <h3>Indo-Burma</h3>
+      <p>India's Northeast (beyond the Himalaya) into Myanmar. Hoolock gibbon, pygmy hog, many freshwater turtles. Largest of the four.</p>
+    </div>
+    <div class="card ptype" style="border-top-color:var(--sky)">
+      <span class="badge">🏝️</span>
+      <div class="meta">Hotspot 4</div>
+      <h3>Sundaland (Nicobar Islands)</h3>
+      <p>The <b>Nicobar Islands</b> fall in Sundaland. Nicobar megapode, leatherback turtle, saltwater crocodile.</p>
+    </div>
+  </div>
+  <div class="callout green" style="margin-top:16px">
+    <span class="mnemonic">Mnemonic — "HI-WIN":</span> <b>H</b>imalaya · <b>I</b>ndo-Burma · <b>W</b>estern Ghats · sundalan<b>d</b> (Nicobar). Remember: <b>Andaman Islands are NOT a separate hotspot</b> — only the <b>Nicobar</b> Islands (Sundaland) qualify.
+  </div>
+</section>
+
+<!-- ====== 8. MASTER TABLE ====== -->
+<section id="master">
+  <div class="sec-head">
+    <span class="sec-num">08</span>
+    <h2>Master revision table</h2>
+    <span class="ico">📋</span>
+  </div>
+  <p class="sub">One scroll, every category. <span class="ttype t-np">NP</span> National Park · <span class="ttype t-ws">WS</span> Sanctuary · <span class="ttype t-tr">TR</span> Tiger Reserve · <span class="ttype t-br">BR</span> Biosphere · <span class="ttype t-rm">RM</span> Ramsar.</p>
+  <hr class="rule">
+
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>Name</th><th>Type</th><th>State</th><th>Key species / note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Jim Corbett</td><td><span class="ttype t-tr">TR</span></td><td>Uttarakhand</td><td><span class="sp">Tiger</span> — first NP (1936), highest density</td></tr>
+        <tr><td>Dudhwa</td><td><span class="ttype t-np">NP</span>/<span class="ttype t-tr">TR</span></td><td>Uttar Pradesh</td><td>Swamp deer, tiger, reintroduced rhino — UP's only NP</td></tr>
+        <tr><td>Pilibhit</td><td><span class="ttype t-tr">TR</span></td><td>Uttar Pradesh</td><td>Tiger — TX2 Award (2020), Terai Arc</td></tr>
+        <tr><td>National Chambal</td><td><span class="ttype t-ws">WS</span></td><td>UP–MP–Rajasthan</td><td><span class="sp">Gharial</span>, gangetic dolphin, turtles</td></tr>
+        <tr><td>Kaziranga</td><td><span class="ttype t-np">NP</span>/<span class="ttype t-tr">TR</span></td><td>Assam</td><td><span class="sp">One-horned rhino</span>, wild buffalo; WHS</td></tr>
+        <tr><td>Manas</td><td><span class="ttype t-br">BR</span>/<span class="ttype t-tr">TR</span></td><td>Assam</td><td>Pygmy hog, golden langur; WHS + Ramsar</td></tr>
+        <tr><td>Gir</td><td><span class="ttype t-np">NP</span></td><td>Gujarat</td><td><span class="sp">Asiatic lion</span> — only wild population</td></tr>
+        <tr><td>Kanha</td><td><span class="ttype t-tr">TR</span></td><td>Madhya Pradesh</td><td>Barasingha, tiger — "Jungle Book" land</td></tr>
+        <tr><td>Bandhavgarh</td><td><span class="ttype t-tr">TR</span></td><td>Madhya Pradesh</td><td>Highest tiger density in MP</td></tr>
+        <tr><td>Ranthambore</td><td><span class="ttype t-tr">TR</span></td><td>Rajasthan</td><td>Tiger in the Aravallis</td></tr>
+        <tr><td>Keoladeo (Bharatpur)</td><td><span class="ttype t-np">NP</span>/<span class="ttype t-rm">RM</span></td><td>Rajasthan</td><td>Migratory birds — 1st Ramsar (1981) + WHS</td></tr>
+        <tr><td>Sundarbans</td><td><span class="ttype t-np">NP</span>/<span class="ttype t-br">BR</span>/<span class="ttype t-rm">RM</span></td><td>West Bengal</td><td>Royal Bengal tiger; largest mangrove + WHS</td></tr>
+        <tr><td>Nilgiri</td><td><span class="ttype t-br">BR</span></td><td>TN/Kerala/Karnataka</td><td>Nilgiri tahr, lion-tailed macaque — 1st BR</td></tr>
+        <tr><td>Gulf of Mannar</td><td><span class="ttype t-br">BR</span></td><td>Tamil Nadu</td><td>Dugong, coral — first marine BR</td></tr>
+        <tr><td>Nanda Devi</td><td><span class="ttype t-br">BR</span>/<span class="ttype t-np">NP</span></td><td>Uttarakhand</td><td>Snow leopard; WHS</td></tr>
+        <tr><td>Bhitarkanika</td><td><span class="ttype t-np">NP</span>/<span class="ttype t-rm">RM</span></td><td>Odisha</td><td><span class="sp">Saltwater crocodile</span>, mangrove</td></tr>
+        <tr><td>Simlipal</td><td><span class="ttype t-br">BR</span>/<span class="ttype t-tr">TR</span></td><td>Odisha</td><td>Melanistic (black) tigers</td></tr>
+        <tr><td>Keibul Lamjao</td><td><span class="ttype t-np">NP</span></td><td>Manipur</td><td>Sangai deer — world's only floating NP (Loktak)</td></tr>
+        <tr><td>Chilika</td><td><span class="ttype t-rm">RM</span></td><td>Odisha</td><td>Irrawaddy dolphin; 1st Ramsar (1981), largest brackish lagoon</td></tr>
+        <tr><td>Surha Tal</td><td><span class="ttype t-rm">RM</span></td><td>Uttar Pradesh</td><td>Migratory birds — India's <span class="sp">100th Ramsar (2026)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ====== 9. MCQs ====== -->
+<section id="mcq">
+  <div class="sec-head">
+    <span class="sec-num">09</span>
+    <h2>10 practice MCQs &mdash; UP focus</h2>
+    <span class="ico">✍️</span>
+  </div>
+  <p class="sub">Tap an option to check, or hit <b>Reveal answer</b> for the explanation. Mix of UP-specific and all-India current-affairs questions.</p>
+  <hr class="rule">
+
+  <div id="quiz"></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b style="font-size:1.15rem">🐅 Protected Area Network · UPPSC 2026</b>
+      <p class="small">Figures (58 tiger reserves · 18 biosphere reserves · 100 Ramsar sites) verified to June 2026. Current-affairs numbers shift — always cross-check the latest NTCA / MoEFCC / Wetlands India figures close to your exam date.</p>
+    </div>
+    <div class="small">Self-study revision aid · not an official government document</div>
+  </div>
+</footer>
+
+<script>
+const questions = [
+  {
+    q: "Which is the only National Park located in Uttar Pradesh?",
+    opts: ["Pilibhit National Park","Dudhwa National Park","Hastinapur National Park","Ranipur National Park"],
+    correct: 1,
+    exp: "Dudhwa is UP's only National Park. Pilibhit and Ranipur are Tiger Reserves; Hastinapur is a Wildlife Sanctuary (it contains the Haiderpur Ramsar wetland)."
+  },
+  {
+    q: "India's 100th Ramsar site, announced in June 2026, is located in which state?",
+    opts: ["Gujarat","Tamil Nadu","Uttar Pradesh","Bihar"],
+    correct: 2,
+    exp: "Surha Tal (Jai Prakash Narayan Bird Sanctuary), Ballia — in Uttar Pradesh — was designated India's 100th Ramsar site in 2026."
+  },
+  {
+    q: "Which UP Tiger Reserve won the first-ever international TX2 Award (2020) for doubling its tiger population?",
+    opts: ["Dudhwa","Ranipur","Pilibhit","Amangarh"],
+    correct: 2,
+    exp: "Pilibhit Tiger Reserve received the inaugural TX2 Award in 2020 for doubling tigers ahead of the global target year."
+  },
+  {
+    q: "As of 2026, how many Tiger Reserves does India have, and which is the latest addition?",
+    opts: ["54 — Veerangana Durgavati","56 — Guru Ghasidas","58 — Madhav","52 — Ranipur"],
+    correct: 2,
+    exp: "India has 58 tiger reserves; Madhav (Madhya Pradesh), notified in March 2025, is the 58th and latest. MP also has the most reserves (9)."
+  },
+  {
+    q: "The National Chambal Sanctuary, spanning UP–MP–Rajasthan, is most famous for conserving which species?",
+    opts: ["Saltwater crocodile","Gharial","One-horned rhino","Asiatic lion"],
+    correct: 1,
+    exp: "The National Chambal Sanctuary is a stronghold of the critically endangered gharial, along with the Gangetic dolphin and freshwater turtles."
+  },
+  {
+    q: "Which statement about Biosphere Reserves is correct?",
+    opts: [
+      "They are the strictest legal category under WLPA 1972",
+      "Their core zone permits regulated grazing",
+      "They have no independent legal status; protection comes from the NPs/sanctuaries inside them",
+      "Every Biosphere Reserve is automatically a UNESCO site"
+    ],
+    correct: 2,
+    exp: "A Biosphere Reserve is a conservation framework, not a legal category — its core derives legal protection from National Parks/Sanctuaries within it. India has 18 BRs; only 12 are UNESCO-listed."
+  },
+  {
+    q: "India's FIRST Biosphere Reserve and India's FIRST MARINE Biosphere Reserve are, respectively:",
+    opts: [
+      "Nilgiri and Gulf of Mannar",
+      "Sundarbans and Gulf of Kachchh",
+      "Manas and Sundarbans",
+      "Nanda Devi and Great Nicobar"
+    ],
+    correct: 0,
+    exp: "Nilgiri (1986) was India's first Biosphere Reserve; Gulf of Mannar (Tamil Nadu) was the first marine Biosphere Reserve."
+  },
+  {
+    q: "India falls within how many of the world's biodiversity hotspots, and which group lists them correctly?",
+    opts: [
+      "3 — Himalaya, Western Ghats, Indo-Burma",
+      "4 — Himalaya, Indo-Burma, Western Ghats, Sundaland (Nicobar)",
+      "2 — Western Ghats, Eastern Himalaya",
+      "4 — Himalaya, Indo-Burma, Western Ghats, Andaman Islands"
+    ],
+    correct: 1,
+    exp: "India lies in 4 hotspots. The island hotspot is Sundaland via the NICOBAR Islands — the Andaman Islands do NOT count, making option 4 a classic trap."
+  },
+  {
+    q: "Dudhwa Tiger Reserve, in UP's Terai, is notable for the reintroduction of which large mammal?",
+    opts: ["Asiatic cheetah","One-horned rhinoceros","Wild water buffalo","Indian gaur"],
+    correct: 1,
+    exp: "Dudhwa ran a successful one-horned rhino reintroduction programme; it is also a key habitat for swamp deer (barasingha)."
+  },
+  {
+    q: "Which pairing of 'first Ramsar sites of India (1981)' is correct?",
+    opts: [
+      "Chilika (Odisha) and Keoladeo (Rajasthan)",
+      "Sundarban (WB) and Loktak (Manipur)",
+      "Wular (J&K) and Harike (Punjab)",
+      "Renuka (HP) and Sambhar (Rajasthan)"
+    ],
+    correct: 0,
+    exp: "Chilika Lake (Odisha) and Keoladeo National Park (Rajasthan) were India's first two Ramsar sites, both designated in 1981."
+  }
+];
+
+const quiz = document.getElementById('quiz');
+questions.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'mcq';
+  const letters = ['A','B','C','D'];
+  card.innerHTML =
+    '<p class="q"><span class="num">Q'+(i+1)+'</span>'+item.q+'</p>'+
+    '<ul class="opts">'+item.opts.map((o,j)=>
+      '<li data-i="'+j+'"><span class="k">'+letters[j]+'</span><span>'+o+'</span></li>').join('')+'</ul>'+
+    '<button class="reveal">Reveal answer</button>'+
+    '<div class="ans"><b>Answer: '+letters[item.correct]+'.</b> '+item.exp+'</div>';
+
+  const opts = card.querySelectorAll('.opts li');
+  const ans = card.querySelector('.ans');
+  let locked = false;
+  opts.forEach(li=>{
+    li.addEventListener('click', ()=>{
+      if(locked) return;
+      locked = true;
+      const chosen = +li.dataset.i;
+      opts[item.correct].classList.add('correct');
+      if(chosen !== item.correct) li.classList.add('wrong');
+      ans.classList.add('show');
+    });
+  });
+  card.querySelector('.reveal').addEventListener('click', ()=>{
+    opts[item.correct].classList.add('correct');
+    ans.classList.add('show');
+    locked = true;
+  });
+  quiz.appendChild(card);
+});
+</script>
+</body>
+</html>
