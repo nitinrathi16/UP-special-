@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 — Environmental Laws & Policies Toolkit</title>
+<style>
+  :root{
+    --leaf:#2f6b3c;        /* deep forest green */
+    --leaf-2:#4f9d5d;      /* mid green */
+    --soil:#7a4a26;        /* earth brown */
+    --bark:#3d2b1f;        /* dark text-brown */
+    --river:#1f6f8b;       /* water blue */
+    --sky:#e9f3ee;         /* pale green wash */
+    --paper:#fcfbf6;       /* warm paper */
+    --paper-2:#f5f2e8;     /* card paper */
+    --gold:#c98a1b;        /* marigold accent */
+    --line:#d8d0bd;
+    --ok:#1f7a44;
+    --no:#b13a2e;
+    --shadow:0 2px 0 rgba(61,43,31,.08), 0 8px 22px -12px rgba(61,43,31,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+    color:var(--bark);
+    background:
+      radial-gradient(1200px 400px at 100% -5%, #eef6ef 0%, transparent 60%),
+      radial-gradient(900px 380px at -10% 0%, #f3 efe1 0%, transparent 55%),
+      var(--paper);
+    line-height:1.55;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 18px}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    background:linear-gradient(160deg,#22532e 0%, #2f6b3c 55%, #3a7c47 100%);
+    color:#f3f7f0;
+    padding:38px 0 30px;
+    border-bottom:5px solid var(--gold);
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::after{
+    content:"🌿";position:absolute;right:-10px;bottom:-26px;font-size:160px;opacity:.10;transform:rotate(-12deg);
+  }
+  .kicker{
+    display:inline-flex;gap:8px;align-items:center;
+    font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;
+    font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
+    padding:5px 12px;border-radius:999px;color:#eafdf0;
+  }
+  header.hero h1{
+    margin:14px 0 6px;font-size:clamp(28px,4.4vw,46px);line-height:1.05;font-weight:700;letter-spacing:-.01em;
+  }
+  header.hero p.sub{margin:0;max-width:640px;font-size:16px;color:#dcefe0}
+  .goalstrip{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;
+  }
+  .goalstrip .pill{
+    background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.22);
+    padding:7px 13px;border-radius:10px;font-size:13.5px;color:#eafff0;
+  }
+  .goalstrip .pill b{color:#ffe3a6}
+
+  /* ---------- NAV ---------- */
+  nav.toc{
+    position:sticky;top:0;z-index:30;
+    background:rgba(252,251,246,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.toc .row{display:flex;gap:6px;overflow-x:auto;padding:9px 0}
+  nav.toc a{
+    white-space:nowrap;text-decoration:none;color:var(--bark);
+    font-size:13px;padding:6px 11px;border-radius:8px;border:1px solid transparent;
+  }
+  nav.toc a:hover{background:var(--sky);border-color:var(--line)}
+
+  /* ---------- SECTION ---------- */
+  section{padding:34px 0 8px}
+  .sechead{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .sechead .ix{
+    font-family:ui-monospace,monospace;font-size:13px;color:var(--gold);
+    border:1px solid var(--gold);border-radius:6px;padding:2px 8px;font-weight:700;
+  }
+  .sechead h2{margin:0;font-size:clamp(21px,2.8vw,28px);color:var(--leaf);letter-spacing:-.01em}
+  .lead{color:#5a5042;max-width:760px;margin:2px 0 18px;font-size:15px}
+
+  /* ---------- ACT CARD ---------- */
+  .act{
+    background:var(--paper-2);border:1px solid var(--line);border-left:6px solid var(--leaf-2);
+    border-radius:12px;padding:18px 20px;margin:0 0 16px;box-shadow:var(--shadow);
+  }
+  .act .top{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .act .emoji{font-size:26px;line-height:1}
+  .act h3{margin:0;font-size:19px;color:var(--bark)}
+  .yeartag{
+    margin-left:auto;font-family:ui-monospace,monospace;font-weight:700;
+    background:var(--leaf);color:#fff;padding:4px 12px;border-radius:999px;font-size:14px;
+    box-shadow:0 2px 0 #1d4326;
+  }
+  .act h4{margin:15px 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--soil)}
+  .act ul{margin:0;padding-left:20px}
+  .act ul li{margin:5px 0;font-size:14.5px}
+  .act ul li b{color:var(--leaf)}
+  .amend{
+    margin-top:14px;background:#fff7e6;border:1px dashed var(--gold);border-radius:9px;padding:10px 14px;
+  }
+  .amend .lbl{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#9a6a12;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+  .amend p{margin:6px 0 0;font-size:14px;color:#6a5326}
+  .keyfact{
+    margin-top:12px;background:var(--sky);border-radius:9px;padding:9px 13px;font-size:13.5px;
+    border:1px solid #cfe3d5;
+  }
+  .keyfact b{color:var(--river)}
+
+  /* fact chips grid */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 0}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px}
+  .chip b{color:var(--leaf)}
+
+  /* ---------- TABLE ---------- */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:560px;background:var(--paper-2)}
+  th,td{padding:10px 13px;text-align:left;font-size:14px;border-bottom:1px solid var(--line)}
+  thead th{background:var(--leaf);color:#fff;font-size:13px;letter-spacing:.03em}
+  tbody tr:nth-child(even){background:#fbf8ef}
+  td b{color:var(--leaf)}
+
+  /* ---------- NGT judgment cards ---------- */
+  .judg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+  .jcard{background:var(--paper-2);border:1px solid var(--line);border-radius:11px;padding:14px;border-top:4px solid var(--river)}
+  .jcard .jy{font-family:ui-monospace,monospace;font-weight:700;color:var(--river);font-size:13px}
+  .jcard h5{margin:4px 0 6px;font-size:15px;color:var(--bark)}
+  .jcard p{margin:0;font-size:13.5px;color:#5a5042}
+  .fresh{display:inline-block;margin-left:6px;background:var(--gold);color:#fff;font-size:10.5px;padding:1px 7px;border-radius:999px;vertical-align:middle;letter-spacing:.04em}
+
+  /* ---------- QUIZ ---------- */
+  .quizbar{
+    display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+    background:linear-gradient(135deg,#22532e,#2f6b3c);color:#fff;border-radius:12px;padding:14px 18px;margin-bottom:16px;
+  }
+  .quizbar .score{font-family:ui-monospace,monospace;font-size:15px}
+  .quizbar .score b{color:#ffe3a6;font-size:20px}
+  .quizbar button{
+    background:#ffe3a6;color:#5a3d08;border:none;border-radius:9px;padding:9px 16px;font-weight:700;
+    font-family:inherit;font-size:14px;cursor:pointer;box-shadow:0 2px 0 #c98a1b;
+  }
+  .quizbar button:active{transform:translateY(1px);box-shadow:0 1px 0 #c98a1b}
+  .qmeta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .qfilter{
+    cursor:pointer;font-size:12.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+    background:#fff;color:var(--bark);user-select:none;
+  }
+  .qfilter.active{background:var(--leaf);color:#fff;border-color:var(--leaf)}
+
+  .q{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 14px;
+    box-shadow:var(--shadow);
+  }
+  .q .tag{
+    display:inline-block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+    background:var(--sky);color:var(--leaf);border:1px solid #cfe3d5;border-radius:6px;padding:2px 8px;margin-bottom:8px;font-weight:700;
+  }
+  .q .qno{font-family:ui-monospace,monospace;color:var(--gold);font-weight:700;margin-right:6px}
+  .q .stem{font-size:15.5px;font-weight:600;margin:2px 0 12px;color:var(--bark)}
+  .opts{display:grid;gap:8px}
+  .opt{
+    display:flex;gap:10px;align-items:flex-start;cursor:pointer;
+    border:1px solid var(--line);border-radius:9px;padding:9px 12px;background:#fff;font-size:14.5px;
+    transition:background .12s,border-color .12s;
+  }
+  .opt:hover{background:#f3f8f4}
+  .opt .mark{
+    flex:none;width:24px;height:24px;border-radius:6px;border:1px solid var(--line);
+    display:grid;place-items:center;font-weight:700;font-family:ui-monospace,monospace;font-size:13px;color:var(--soil);background:var(--paper)
+  }
+  .opt.correct{background:#e7f6ec;border-color:var(--ok)}
+  .opt.correct .mark{background:var(--ok);color:#fff;border-color:var(--ok)}
+  .opt.wrong{background:#fbeae7;border-color:var(--no)}
+  .opt.wrong .mark{background:var(--no);color:#fff;border-color:var(--no)}
+  .opt.locked{cursor:default}
+  .expl{
+    margin-top:11px;font-size:13.8px;background:#fff7e6;border:1px solid var(--gold);border-radius:9px;
+    padding:10px 13px;color:#6a5326;display:none;
+  }
+  .expl.show{display:block}
+  .expl b{color:#9a6a12}
+  .expl .anchor{color:var(--leaf);font-weight:700}
+
+  /* ---------- guaranteed marks ---------- */
+  .strat{
+    background:linear-gradient(160deg,#fff7e6,#fdf2da);border:1px solid var(--gold);border-radius:14px;
+    padding:24px;margin:14px 0 30px;box-shadow:var(--shadow);
+  }
+  .strat h2{margin:0 0 4px;color:var(--soil);font-size:24px;display:flex;align-items:center;gap:10px}
+  .strat .gold{color:var(--gold)}
+  .strat ol{margin:14px 0 0;padding-left:0;counter-reset:step;list-style:none}
+  .strat ol li{
+    counter-increment:step;position:relative;padding:11px 0 11px 48px;border-bottom:1px dashed #e6cf9b;font-size:14.8px;
+  }
+  .strat ol li:last-child{border-bottom:none}
+  .strat ol li::before{
+    content:counter(step);position:absolute;left:0;top:9px;width:32px;height:32px;border-radius:50%;
+    background:var(--leaf);color:#fff;display:grid;place-items:center;font-family:ui-monospace,monospace;font-weight:700;
+  }
+  .strat ol li b{color:var(--soil)}
+  .ratta{
+    margin-top:18px;background:#fff;border:2px solid var(--leaf);border-radius:11px;padding:14px 16px;
+  }
+  .ratta h4{margin:0 0 8px;color:var(--leaf);font-size:15px;display:flex;align-items:center;gap:8px}
+  .ratta .yr{display:flex;flex-wrap:wrap;gap:7px}
+  .ratta .yr span{
+    background:var(--leaf);color:#fff;border-radius:7px;padding:4px 9px;font-family:ui-monospace,monospace;font-size:12.5px
+  }
+  .ratta .yr span i{font-style:normal;color:#bfe6c8}
+
+  footer{padding:26px 0 40px;text-align:center;color:#8a7e6a;font-size:13px}
+  footer b{color:var(--leaf)}
+
+  @media (max-width:560px){
+    .yeartag{margin-left:0}
+    .act .top{align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">⚖️ UPPSC 2026 · Environmental Laws &amp; Policies</span>
+    <h1>Indian Environmental Legislation<br>&amp; Regulatory Bodies</h1>
+    <p class="sub">Depth-first revision toolkit — har Act ka year, key provision aur recent amendment. SDM banne ke liye Mains Top 10 wali tayyari. Quality over quantity. 🌳</p>
+    <div class="goalstrip">
+      <span class="pill">🎯 Target: <b>Mains Top 10 (SDM)</b></span>
+      <span class="pill">📅 Years = <b>direct marks</b></span>
+      <span class="pill">📝 <b>20 MCQs</b> + interactive quiz</span>
+      <span class="pill">🏛️ NGT recent judgments (2025–26)</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap"><div class="row">
+    <a href="#epa">EPA 1986</a>
+    <a href="#forest">Forest Laws</a>
+    <a href="#wildlife">Wildlife 1972</a>
+    <a href="#waterair">Water &amp; Air</a>
+    <a href="#bodies">CPCB/SPCB</a>
+    <a href="#ngt">NGT</a>
+    <a href="#eia">EIA &amp; CRZ</a>
+    <a href="#biodiv">Biodiversity 2002</a>
+    <a href="#up">UP Initiatives</a>
+    <a href="#timeline">Year Timeline</a>
+    <a href="#quiz">20 MCQs ↓</a>
+    <a href="#strategy">5 Marks Strategy</a>
+  </div></div>
+</nav>
+
+<div class="wrap">
+
+<!-- ============ EPA 1986 ============ -->
+<section id="epa">
+  <div class="sechead"><span class="ix">01</span><h2>Environment (Protection) Act</h2></div>
+  <p class="lead">UPPSC ka favourite — iska year (1986) 2021 aur 2022 dono prelims me poocha gaya. "Umbrella legislation" kaha jaata hai.</p>
+
+  <div class="act">
+    <div class="top">
+      <span class="emoji">🌍</span>
+      <h3>Environment (Protection) Act, 1986 — EPA</h3>
+      <span class="yeartag">1986</span>
+    </div>
+    <div class="keyfact">⚡ <b>Trigger:</b> Bhopal Gas Tragedy (Dec 1984) ke baad banaya gaya. Passed under <b>Article 253</b> (international agreements — Stockholm Conference 1972 ko enforce karne ke liye).</div>
+
+    <h4>Key Provisions</h4>
+    <ul>
+      <li><b>Umbrella Act:</b> Central Govt ko sabhi environment-related matters par direct power deta hai.</li>
+      <li><b>Section 3:</b> Centre standards set kar sakta hai, environmental authorities bana sakta hai (jaise CPCB ko direction).</li>
+      <li><b>Section 5:</b> Centre ko <b>direct power</b> — kisi industry ko band/regulate karne ke directions (closure, prohibition).</li>
+      <li><b>Section 7:</b> Prescribed standards se zyada pollutant emit/discharge karna prohibited.</li>
+      <li><b>Section 15:</b> Penalty — up to <b>5 years jail + ₹1 lakh fine</b>; continuing violation par extra.</li>
+      <li><b>Section 19:</b> Koi bhi citizen 60-day notice ke baad court me complaint kar sakta hai (citizen suit).</li>
+      <li>EIA Notification (1994, 2006) aur CRZ Notification isi Act ke under nikalti hain.</li>
+    </ul>
+
+    <div class="amend">
+      <span class="lbl">🔄 Recent Amendment</span>
+      <p><b>Jan Vishwas (Amendment of Provisions) Act, 2023</b> — minor violations ke liye jail ki jagah <b>monetary penalty (decriminalisation)</b> laaya; penalty range badh kar ₹5 lakh–₹15 crore tak; "Environmental Protection Fund" ka provision. Ease of doing business focus.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOREST LAWS ============ -->
+<section id="forest">
+  <div class="sechead"><span class="ix">02</span><h2>Forest Laws — Teen Stambh</h2></div>
+  <p class="lead">1927 → 1980 → 2006: colonial control se conservation se community rights tak ka safar. Years ratta lagao.</p>
+
+  <div class="act">
+    <div class="top"><span class="emoji">🌲</span><h3>Indian Forest Act</h3><span class="yeartag">1927</span></div>
+    <h4>Key Provisions</h4>
+    <ul>
+      <li>Colonial law — British timber/revenue control ke liye. Aaj bhi backbone.</li>
+      <li>Forests ki 3 categories: <b>Reserved Forest</b> (sabse strict), <b>Protected Forest</b>, <b>Village Forest</b>.</li>
+      <li>Reserved Forest me sab kuch prohibited jab tak permit na ho; Protected me sab allowed jab tak prohibit na ho.</li>
+      <li>Forest offences, transit of forest produce, duty on timber ka framework.</li>
+    </ul>
+  </div>
+
+  <div class="act">
+    <div class="top"><span class="emoji">🪓</span><h3>Forest (Conservation) Act</h3><span class="yeartag">1980</span></div>
+    <h4>Key Provisions</h4>
+    <ul>
+      <li>Maksad: forest land ka <b>non-forest use rokna</b> (deforestation control).</li>
+      <li>Koi bhi State forest land ko non-forest purpose (mining, dam, industry) me convert nahi kar sakta <b>without prior Central Govt approval</b>.</li>
+      <li>De-reservation of forests bhi Centre ki approval se.</li>
+      <li><b>T.N. Godavarman case (1996):</b> SC ne "forest" ka dictionary meaning maana — sabhi recorded forests par Act lागू.</li>
+    </ul>
+    <div class="amend">
+      <span class="lbl">🔄 Recent Amendment</span>
+      <p><b>Forest (Conservation) Amendment Act, 2023</b> — Act ka naya naam <b>"Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980"</b>. Preamble jhoda gaya. Strategic/security projects (100 km border ke andar), zoo, eco-tourism, safari ko clearance se chhoot. Aaya into force <b>4 Aug 2023</b>. SC me challenge pending.</p>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="top"><span class="emoji">🪶</span><h3>Forest Rights Act (Scheduled Tribes &amp; OTFD)</h3><span class="yeartag">2006</span></div>
+    <h4>Key Provisions</h4>
+    <ul>
+      <li>Pura naam: <b>Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006.</b></li>
+      <li>Forest-dwelling STs &amp; OTFDs ko <b>individual + community forest rights</b> recognise karta hai (ye "historical injustice" sudhaarne ke liye).</li>
+      <li><b>Gram Sabha</b> ko central role — rights ka determination aur consent.</li>
+      <li>Community right to <b>Minor Forest Produce (MFP)</b> — tendu, bamboo, etc.</li>
+      <li>Nodal Ministry: <b>Ministry of Tribal Affairs</b> (Forest Ministry nahi — yahi twist exam me aata hai).</li>
+    </ul>
+    <div class="keyfact">🧭 <b>Niyamgiri case (2013):</b> SC ne Gram Sabha ko Vedanta mining project par decision ka adhikaar diya — FRA + community consent ka landmark.</div>
+  </div>
+</section>
+
+<!-- ============ WILDLIFE ============ -->
+<section id="wildlife">
+  <div class="sechead"><span class="ix">03</span><h2>Wildlife (Protection) Act</h2></div>
+  <p class="lead">Schedules yaad rakho — 2022 amendment ke baad schedules ka structure badal gaya hai. Ye fresh exam material hai.</p>
+
+  <div class="act">
+    <div class="top"><span class="emoji">🐯</span><h3>Wildlife (Protection) Act</h3><span class="yeartag">1972</span></div>
+    <h4>Key Provisions</h4>
+    <ul>
+      <li>Protected Areas ka framework: <b>National Park, Wildlife Sanctuary, Conservation Reserve, Community Reserve.</b></li>
+      <li><b>National Board for Wildlife (NBWL)</b> — PM chairman; Project Tiger / Project Elephant isi se jude.</li>
+      <li><b>CITES connection:</b> WPA India ka domestic tool hai CITES (Convention on International Trade in Endangered Species, 1973) ko implement karne ke liye.</li>
+    </ul>
+
+    <h4>Schedules — Before vs After 2022</h4>
+    <div class="chips">
+      <span class="chip">⏮️ <b>Purana (6 schedules):</b> Sch I &amp; II = highest protection; Sch V = vermin; Sch VI = plants</span>
+      <span class="chip">⏭️ <b>2022 ke baad (4 schedules):</b> Sch I = highest protection; Sch II = lesser; Sch III = plants; Sch IV = CITES-listed specimens</span>
+    </div>
+
+    <div class="amend">
+      <span class="lbl">🔄 Recent Amendment</span>
+      <p><b>Wild Life (Protection) Amendment Act, 2022</b> — schedules 6 se ghata kar <b>4</b> kiye; <b>CITES</b> provisions formally add kiye (Management &amp; Scientific Authority); invasive alien species par control; State Board for Wildlife ko Standing Committee. Penalties badhaayi.</p>
+    </div>
+    <div class="keyfact">⭐ <b>Marks tip:</b> "WPA 1972 me kitne schedules ab hain?" → <b>4</b> (2022 amendment ke baad). Purana answer "6" galat ho jaayega — yahi distinguishing point.</div>
+  </div>
+</section>
+
+<!-- ============ WATER + AIR ============ -->
+<section id="waterair">
+  <div class="sechead"><span class="ix">04</span><h2>Water &amp; Air Pollution Acts</h2></div>
+  <p class="lead">Inhi do Acts se Pollution Control Boards (CPCB/SPCB) bane. Years: Water 1974, Air 1981 — sequence important.</p>
+
+  <div class="act">
+    <div class="top"><span class="emoji">💧</span><h3>Water (Prevention &amp; Control of Pollution) Act</h3><span class="yeartag">1974</span></div>
+    <ul>
+      <li>India ka <b>pehla comprehensive pollution control law</b>. Article 252 ke under banaya (States ke request par).</li>
+      <li>Isi Act ne <b>CPCB</b> (Centre) aur <b>SPCB</b> (States) banaye.</li>
+      <li>Industries ko water me effluent discharge ke liye <b>SPCB ka "consent"</b> chahiye.</li>
+      <li>Saath me <b>Water Cess Act, 1977</b> aaya (ab GST ke baad repealed).</li>
+    </ul>
+    <div class="amend">
+      <span class="lbl">🔄 Recent Amendment</span>
+      <p><b>Water (Prevention &amp; Control of Pollution) Amendment Act, 2024</b> — kuchh categories ke liye consent requirement decriminalise/rationalise; minor offences par fine (jail ki jagah); Centre ko guidelines power.</p>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="top"><span class="emoji">🌫️</span><h3>Air (Prevention &amp; Control of Pollution) Act</h3><span class="yeartag">1981</span></div>
+    <ul>
+      <li><b>Stockholm Conference 1972</b> ke decisions implement karne ke liye — Article 253.</li>
+      <li>Pehle se bane CPCB/SPCB ko hi air pollution control ke powers diye (naye board nahi).</li>
+      <li>SPCB <b>"Air Pollution Control Areas"</b> declare kar sakta hai; industries ko consent chahiye.</li>
+      <li>Noise pollution bhi (1987 amendment se) "air pollutant" me include.</li>
+    </ul>
+    <div class="keyfact">🔗 <b>Yaad rakho:</b> Water (1974) ne Boards banaye → Air (1981) ne unhe extra kaam diya → EPA (1986) ne sab par umbrella daal di.</div>
+  </div>
+</section>
+
+<!-- ============ BODIES ============ -->
+<section id="bodies">
+  <div class="sechead"><span class="ix">05</span><h2>Pollution Control Boards</h2></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Body</th><th>Estd / Under</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td><b>CPCB</b> (Central PCB)</td><td>1974 · Water Act</td><td>Standards set karna, States ko coordinate/advise, national air &amp; water quality monitoring (NAMP). MoEFCC ke under.</td></tr>
+      <tr><td><b>SPCB</b> (State PCB)</td><td>1974 · Water Act</td><td>State me consent (NOC) dena, inspection, enforcement, samples.</td></tr>
+      <tr><td><b>UPPCB</b> (UP Pollution Control Board)</td><td>1974 · HQ Lucknow</td><td>UP me consent, ganga monitoring, brick-kiln &amp; industry regulation, NCR air quality (Western UP).</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="keyfact" style="margin-top:14px">🏭 <b>UP context:</b> UPPCB Ganga ke pollution monitoring, Kanpur tanneries regulation, aur NCR (Noida-Ghaziabad-Meerut) ke air quality enforcement me central role nibhaata hai.</div>
+</section>
+
+<!-- ============ NGT ============ -->
+<section id="ngt">
+  <div class="sechead"><span class="ix">06</span><h2>National Green Tribunal (NGT)</h2></div>
+  <p class="lead">Statutory body (constitutional nahi). India teesra desh tha aisa tribunal banane wala — Australia &amp; New Zealand ke baad.</p>
+
+  <div class="act">
+    <div class="top"><span class="emoji">🏛️</span><h3>National Green Tribunal Act</h3><span class="yeartag">2010</span></div>
+    <ul>
+      <li><b>Jurisdiction:</b> 7 environmental laws se jude "substantial questions" — Water 1974, Water Cess 1977, Forest Conservation 1980, Air 1981, EPA 1986, Public Liability Insurance 1991, Biodiversity 2002. (<b>Wildlife Act 1972 aur Forest Rights Act 2006 NGT ke bahar hain</b> — common trap.)</li>
+      <li><b>Principles:</b> Polluter Pays, Precautionary Principle, Sustainable Development.</li>
+      <li><b>6 mahine</b> me case disposal ka target; CPC ke procedure se bandha nahi (natural justice).</li>
+      <li>Benches: Principal Bench <b>New Delhi</b> + Bhopal, Pune, Kolkata, Chennai.</li>
+      <li>Appeal sirf <b>Supreme Court</b> me, 90 din ke andar. 2021 me SC ne NGT ko <b>suo motu</b> power di.</li>
+    </ul>
+  </div>
+
+  <h4 style="color:var(--river);margin:6px 0 12px;font-size:15px">⚖️ Landmark + Recent Judgments</h4>
+  <div class="judg">
+    <div class="jcard"><div class="jy">2012</div><h5>POSCO Steel (Odisha)</h5><p>Environmental clearance suspend — forests &amp; livelihood protect.</p></div>
+    <div class="jcard"><div class="jy">2013</div><h5>Alaknanda Hydro (Uttarakhand)</h5><p>"Polluter Pays" direct apply — flood damage ka compensation.</p></div>
+    <div class="jcard"><div class="jy">2015</div><h5>Vardhaman Kaushik v. UOI</h5><p>Delhi-NCR me 10 saal+ purane diesel vehicles ban.</p></div>
+    <div class="jcard"><div class="jy">2017</div><h5>Almitra Patel (waste)</h5><p>Open burning of waste par total prohibition — solid waste landmark.</p></div>
+    <div class="jcard"><div class="jy">2025 <span class="fresh">RECENT</span></div><h5>Great Nicobar Project</h5><p>₹72,000 cr transhipment project ki green clearances review ke liye NGT high-powered committee.</p></div>
+    <div class="jcard"><div class="jy">May 2026 <span class="fresh">LATEST</span></div><h5>Sultanpuri Tree-Felling (Delhi)</h5><p>Illegal felling par FIR + compensatory plantation ke directions (12 May 2026).</p></div>
+  </div>
+  <div class="keyfact" style="margin-top:14px">📌 <b>Jan 2026 update:</b> SC ne Article 142 ke tahत clarify kiya — NGT ke compensation awards <b>decree ki tarah enforce</b> ho sakte hain. Parliamentary committee ne WPA &amp; FRA ko NGT jurisdiction me laane ki sifarish ki.</div>
+</section>
+
+<!-- ============ EIA + CRZ ============ -->
+<section id="eia">
+  <div class="sechead"><span class="ix">07</span><h2>EIA &amp; Coastal Regulation Zone</h2></div>
+
+  <div class="act">
+    <div class="top"><span class="emoji">📋</span><h3>Environmental Impact Assessment (EIA)</h3><span class="yeartag">1994 / 2006</span></div>
+    <ul>
+      <li>EPA 1986 ke under notification. Pehla 1994, current framework <b>EIA Notification 2006</b>.</li>
+      <li><b>Process:</b> Screening → Scoping → Public Consultation → Appraisal → Clearance.</li>
+      <li>Projects 2 categories: <b>Category A</b> (Centre — MoEFCC clears) &amp; <b>Category B</b> (State — SEIAA clears).</li>
+      <li><b>Exemptions/trap:</b> Category B2 projects ko EIA report &amp; public hearing se chhoot. Draft EIA 2020 me aur exemptions propose hue (controversial).</li>
+    </ul>
+    <div class="keyfact">⚠️ <b>SC, Noble M. Paikada v. UOI:</b> "ordinary earth" digging ke linear-project exemption ko SC ne strike down kiya — public consultation bypass nahi ho sakta.</div>
+  </div>
+
+  <div class="act">
+    <div class="top"><span class="emoji">🏖️</span><h3>Coastal Regulation Zone (CRZ) Notification</h3><span class="yeartag">1991 → 2011 → 2019</span></div>
+    <ul>
+      <li>EPA 1986 ke under. Pehla CRZ <b>1991</b>, phir <b>2011</b>, current <b>CRZ Notification 2019</b>.</li>
+      <li>Coast ko zones me baant-ta hai: <b>CRZ-I</b> (ecologically sensitive), <b>CRZ-II</b> (developed), <b>CRZ-III</b> (rural), <b>CRZ-IV</b> (water area).</li>
+      <li>2019 me tourism/development ke liye norms ease hue; <b>CZMA</b> (Coastal Zone Management Authority) enforcement.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ BIODIVERSITY ============ -->
+<section id="biodiv">
+  <div class="sechead"><span class="ix">08</span><h2>Biological Diversity Act</h2></div>
+  <div class="act">
+    <div class="top"><span class="emoji">🦋</span><h3>Biological Diversity Act</h3><span class="yeartag">2002</span></div>
+    <ul>
+      <li><b>CBD (Convention on Biological Diversity), Rio 1992</b> ko implement karne ke liye banaya.</li>
+      <li><b>Teen-star structure:</b> <b>NBA</b> (National Biodiversity Authority — Chennai), <b>SBB</b> (State Biodiversity Boards), <b>BMC</b> (Biodiversity Management Committees — local level).</li>
+      <li>Focus: <b>Access &amp; Benefit Sharing (ABS)</b> — bio-resources use se hone wale fayde ka local communities ke saath sharing.</li>
+      <li><b>People's Biodiversity Registers (PBR)</b> — BMC banaate hain.</li>
+    </ul>
+    <div class="amend">
+      <span class="lbl">🔄 Recent Amendment</span>
+      <p><b>Biological Diversity (Amendment) Act, 2023</b> — AYUSH/registered practitioners ko ABS se chhoot; offences decriminalise (jail hata kar penalty); foreign investment process simplify. "Ease of business + traditional medicine" focus.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UP ============ -->
+<section id="up">
+  <div class="sechead"><span class="ix">09</span><h2>Uttar Pradesh — Environmental Initiatives</h2></div>
+  <p class="lead">UPPSC me state-specific angle aata hai. Ye points Mains answers me edge dete hain.</p>
+  <div class="judg">
+    <div class="jcard" style="border-top-color:var(--leaf)"><div class="jy">🌳 Record</div><h5>Plantation Drives</h5><p>UP ne ek-din me sabse zyada paudhe lagaane ka record banaya — "Ped Lagao, Ped Bachao" abhiyan, har saal crores of saplings.</p></div>
+    <div class="jcard" style="border-top-color:var(--leaf)"><div class="jy">🏞️ Forest</div><h5>UP State Forest Policy</h5><p>National Forest Policy 1988 ke anukool — 33% green cover ka lakshya; agroforestry &amp; social forestry par zor.</p></div>
+    <div class="jcard" style="border-top-color:var(--river)"><div class="jy">💧 Ganga</div><h5>Namami Gange (UP stretch)</h5><p>Kanpur, Varanasi, Prayagraj me STPs; tannery relocation; Ghat safai. UPPCB monitoring.</p></div>
+    <div class="jcard" style="border-top-color:var(--gold)"><div class="jy">🌬️ Air</div><h5>NCAP Cities</h5><p>Kanpur, Lucknow, Agra, Varanasi, Noida-Ghaziabad National Clean Air Programme me non-attainment cities.</p></div>
+    <div class="jcard" style="border-top-color:var(--leaf)"><div class="jy">🐅 Wildlife</div><h5>Tiger &amp; Bird Reserves</h5><p>Dudhwa &amp; Pilibhit Tiger Reserves; Bakhira &amp; Upper Ganga (Ramsar wetlands).</p></div>
+    <div class="jcard" style="border-top-color:var(--soil)"><div class="jy">☀️ Energy</div><h5>Solar / Bundelkhand</h5><p>UP Solar Energy Policy; Bundelkhand Expressway ke saath solar push; Eco-restoration projects.</p></div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section id="timeline">
+  <div class="sechead"><span class="ix">10</span><h2>One-Glance Year Sheet</h2></div>
+  <p class="lead">Ye table ratta lagao — har row ek potential 1-marker hai. 🔁</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Year</th><th>Law / Notification</th><th>One-line hook</th></tr></thead>
+    <tbody>
+      <tr><td><b>1927</b></td><td>Indian Forest Act</td><td>Reserved/Protected/Village forests</td></tr>
+      <tr><td><b>1972</b></td><td>Wildlife (Protection) Act</td><td>Schedules; ab 4 (post-2022)</td></tr>
+      <tr><td><b>1974</b></td><td>Water Act</td><td>CPCB &amp; SPCB bane</td></tr>
+      <tr><td><b>1980</b></td><td>Forest Conservation Act</td><td>Non-forest use → Centre approval</td></tr>
+      <tr><td><b>1981</b></td><td>Air Act</td><td>Air pollution control areas</td></tr>
+      <tr><td><b>1986</b></td><td>Environment Protection Act</td><td>Umbrella; Bhopal ke baad</td></tr>
+      <tr><td><b>1991</b></td><td>CRZ (first) + Public Liability Insurance Act</td><td>Coast zones; no-fault liability</td></tr>
+      <tr><td><b>1994 / 2006</b></td><td>EIA Notification</td><td>Cat A (Centre) / Cat B (State)</td></tr>
+      <tr><td><b>2002</b></td><td>Biological Diversity Act</td><td>NBA–SBB–BMC; ABS</td></tr>
+      <tr><td><b>2006</b></td><td>Forest Rights Act</td><td>Gram Sabha; Tribal Affairs Ministry</td></tr>
+      <tr><td><b>2010</b></td><td>NGT Act</td><td>India = 3rd country; 7 laws jurisdiction</td></tr>
+      <tr><td><b>2022–24</b></td><td>WPA Amend (2022), FCA Amend (2023), BDA Amend (2023), Water Amend (2024)</td><td>Recent — high-yield</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <div class="sechead"><span class="ix">11</span><h2>20 UPPSC Environmental Law MCQs</h2></div>
+  <p class="lead">Option choose karo — turant green/red feedback + explanation. Filter se topic-wise practice karo. Har MCQ me Act + year + key provision tagged hai.</p>
+
+  <div class="quizbar">
+    <div class="score">Score: <b id="scoreNum">0</b> / <span id="scoreTot">20</span> &nbsp;·&nbsp; Attempted: <span id="attempted">0</span></div>
+    <button onclick="resetQuiz()">↻ Reset Quiz</button>
+  </div>
+
+  <div class="qmeta" id="filters">
+    <span class="qfilter active" data-f="all">All&nbsp;20</span>
+    <span class="qfilter" data-f="epa">EPA 1986 (5)</span>
+    <span class="qfilter" data-f="forest">Forest (4)</span>
+    <span class="qfilter" data-f="wild">Wildlife (4)</span>
+    <span class="qfilter" data-f="ngt">NGT (4)</span>
+    <span class="qfilter" data-f="wa">Water/Air (3)</span>
+  </div>
+
+  <div id="quizBox"></div>
+</section>
+
+<!-- ============ STRATEGY ============ -->
+<section id="strategy">
+  <div class="strat">
+    <h2>🎯 "Environmental Laws mein 5 guaranteed marks kaise loon"</h2>
+    <p style="margin:4px 0 0;color:#6a5326;font-size:15px">SDM banne ke liye — ye 5 marks aapke control me hain. Concept nahi, sirf <b>discipline</b> chahiye.</p>
+    <ol>
+      <li><b>Years ratta = direct marks.</b> Upar wali "Year Sheet" ko roz subah 2 min me dohraao. UPPSC ne EPA 1986 ka year 2021 aur 2022 dono me poocha — ye pattern hai, ittefaaq nahi.</li>
+      <li><b>"Konsa Act kis cheez se bana" link banao.</b> Water 1974 → Boards; Air 1981 → Stockholm; EPA 1986 → Bhopal; Biodiversity 2002 → CBD Rio. Cause-effect yaad rahega to confuse nahi hoge.</li>
+      <li><b>Recent amendments alag se note karo.</b> WPA schedules ab <b>4</b> (na ki 6), FCA ka naya naam, Jan Vishwas decriminalisation. Yahi se examiner "purana vs naya" trap banata hai.</li>
+      <li><b>Nodal Ministry / chairman wale traps pakdo.</b> FRA → Tribal Affairs (Forest nahi); NBWL → PM; NBA → Chennai. Ek-line factoids hi 1-markers ban-te hain.</li>
+      <li><b>NGT ki jurisdiction yaad rakho — bahar kya hai.</b> WPA 1972 &amp; FRA 2006 NGT ke 7 Acts me nahi aate. Recent judgment (Great Nicobar 2025, Sultanpuri 2026) Mains me current-affairs flavour dega.</li>
+    </ol>
+
+    <div class="ratta">
+      <h4>🔁 Daily 90-second ratta strip (bol kar dohraao)</h4>
+      <div class="yr">
+        <span>IFA <i>1927</i></span>
+        <span>Wildlife <i>1972</i></span>
+        <span>Water <i>1974</i></span>
+        <span>FCA <i>1980</i></span>
+        <span>Air <i>1981</i></span>
+        <span>EPA <i>1986</i></span>
+        <span>Biodiv <i>2002</i></span>
+        <span>FRA <i>2006</i></span>
+        <span>NGT <i>2010</i></span>
+      </div>
+      <p style="margin:12px 0 0;font-size:13.5px;color:#5a5042">Inn 9 numbers ko aankh band karke bol paao → aapke 5 marks pakke. Baaki provisions bonus hain. 💪</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  🌿 <b>UPPSC 2026 Environmental Laws Toolkit</b> · Depth over breadth · Years = marks · NGT updates till June 2026<br>
+  <span style="font-size:12px">Tip: is file ko bookmark karo, har revision din quiz dobara attempt karo.</span>
+</footer>
+
+<script>
+const QUESTIONS = [
+  // ---- EPA 1986 (5) ----
+  {cat:"epa", tag:"EPA · 1986", q:"Environment (Protection) Act kis varsh paarit hua?", opts:["1982","1984","1986","1992"], ans:2,
+   exp:"<b>1986.</b> Bhopal Gas Tragedy (1984) ke baad, Stockholm Conference ko enforce karne ke liye Article 253 ke tahत. <span class='anchor'>UPPSC 2021 &amp; 2022 dono me poocha gaya.</span>"},
+  {cat:"epa", tag:"EPA · 1986", q:"EPA 1986 ko 'Umbrella Legislation' kyun kehte hain?", opts:["Sirf air pollution cover karta hai","Centre ko sabhi environmental matters par overarching power deta hai","Sirf States par lागू hota hai","Sirf forests ke liye hai"], ans:1,
+   exp:"<b>EPA 1986</b> Centre ko sabhi environment-related matters par direct, overarching power deta hai — isi liye 'umbrella'. EIA &amp; CRZ notifications isi ke under nikalti hain."},
+  {cat:"epa", tag:"EPA · 1986", q:"EPA 1986 ke kis Section ke tahत Centre kisi industry ko band karne ka direct direction de sakta hai?", opts:["Section 3","Section 5","Section 15","Section 19"], ans:1,
+   exp:"<b>Section 5</b> — Centre ko closure/prohibition/regulation ke direct directions ka adhikaar. (Section 3 = authorities/standards, Sec 15 = penalty, Sec 19 = citizen suit.)"},
+  {cat:"epa", tag:"EPA · 1986", q:"EPA 1986 kis Bhartiya Sanvidhan ke Article ke tahत banaya gaya (international agreement enforce karne ke liye)?", opts:["Article 21","Article 48A","Article 252","Article 253"], ans:3,
+   exp:"<b>Article 253</b> — Parliament ko international agreement (Stockholm 1972) implement karne ke liye law banane ki power. (48A = DPSP, sirf direction.)"},
+  {cat:"epa", tag:"EPA · 2023 Amend", q:"2023 me kis Act ne EPA jaise environment laws me minor violations ko decriminalise (jail → penalty) kiya?", opts:["Jan Vishwas (Amendment of Provisions) Act, 2023","Forest Amendment Act 2023","NGT Amendment 2023","EIA Notification 2020"], ans:0,
+   exp:"<b>Jan Vishwas Act, 2023</b> — chhote violations par jail ki jagah monetary penalty; 'ease of doing business' focus. Penalty range badhi (₹5 lakh–₹15 crore)."},
+
+  // ---- Forest (4) ----
+  {cat:"forest", tag:"Forest · 1927", q:"Indian Forest Act 1927 me forests ki kitni shreniyaan hain?", opts:["Reserved, Protected, Village","Open, Closed, Sacred","National, State, Local","Dense, Open, Scrub"], ans:0,
+   exp:"<b>Teen:</b> Reserved Forest (sabse strict — sab prohibited jab tak permit na ho), Protected Forest, Village Forest."},
+  {cat:"forest", tag:"Forest · 1980", q:"Forest (Conservation) Act 1980 ka mukhya uddeshya kya hai?", opts:["Wildlife trade rokna","Forest land ko non-forest use me convert hone se rokna","Tribals ko rights dena","Air pollution control"], ans:1,
+   exp:"<b>FCA 1980</b> — koi State, forest land ko non-forest purpose (mining/dam/industry) me convert nahi kar sakta <b>without prior Central approval</b>. Deforestation control."},
+  {cat:"forest", tag:"Forest · 2023 Amend", q:"Forest (Conservation) Amendment Act 2023 ke baad Act ka naya naam kya hua?", opts:["Van Adhiniyam 1980","Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980","Bharatiya Van Sanrakshan Act","Forest &amp; Wildlife Act 1980"], ans:1,
+   exp:"<b>Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980.</b> Preamble jhoda gaya; security/zoo/eco-tourism ko clearance se chhoot. Into force 4 Aug 2023. SC me challenge."},
+  {cat:"forest", tag:"FRA · 2006", q:"Forest Rights Act 2006 ka nodal Ministry kaunsa hai?", opts:["Ministry of Environment, Forest &amp; Climate Change","Ministry of Tribal Affairs","Ministry of Rural Development","Ministry of Panchayati Raj"], ans:1,
+   exp:"<b>Ministry of Tribal Affairs</b> — Forest Ministry nahi! Yahi common trap hai. Gram Sabha ko central role; community right to Minor Forest Produce."},
+
+  // ---- Wildlife (4) ----
+  {cat:"wild", tag:"Wildlife · 1972", q:"Wild Life (Protection) Act kis varsh banaya gaya?", opts:["1971","1972","1974","1980"], ans:1,
+   exp:"<b>1972.</b> Protected Areas (National Park, Sanctuary, Conservation &amp; Community Reserve) ka framework; NBWL (PM chairman)."},
+  {cat:"wild", tag:"Wildlife · 2022 Amend", q:"2022 Amendment ke baad Wildlife Protection Act me ab kitne schedules hain?", opts:["6","5","4","3"], ans:2,
+   exp:"<b>4 schedules</b> (pehle 6 the). Sch I = highest protection, Sch II = lesser, Sch III = plants, Sch IV = CITES specimens. <span class='anchor'>Purana 'answer 6' ab galat — yahi distinguishing point.</span>"},
+  {cat:"wild", tag:"Wildlife · CITES", q:"WPA 1972 kis international convention ko domestically implement karta hai?", opts:["CBD (Biological Diversity)","CITES (Trade in Endangered Species)","Ramsar Convention","Bonn Convention"], ans:1,
+   exp:"<b>CITES, 1973</b> — WPA India ka tool hai endangered species ke international trade ko regulate karne ke liye. 2022 amendment ne CITES provisions formally add kiye."},
+  {cat:"wild", tag:"Wildlife · Bodies", q:"National Board for Wildlife (NBWL) ka chairman kaun hota hai?", opts:["President","Prime Minister","Environment Minister","Chief Justice"], ans:1,
+   exp:"<b>Prime Minister</b> NBWL ka chairman hai. Project Tiger / Project Elephant aur protected-area clearances isi se jude."},
+
+  // ---- NGT (4) ----
+  {cat:"ngt", tag:"NGT · 2010", q:"National Green Tribunal Act kis varsh paarit hua?", opts:["2006","2008","2010","2014"], ans:2,
+   exp:"<b>2010.</b> India aisa tribunal banane wala teesra desh (Australia &amp; NZ ke baad), aur pehla developing country. Principal Bench: New Delhi."},
+  {cat:"ngt", tag:"NGT · Jurisdiction", q:"Inme se kaunsa Act NGT ke jurisdiction (7 listed laws) ke BAHAR hai?", opts:["Water Act 1974","Air Act 1981","Wildlife Protection Act 1972","Biological Diversity Act 2002"], ans:2,
+   exp:"<b>Wildlife Protection Act 1972</b> NGT ke 7 scheduled laws me nahi aata (FRA 2006 bhi bahar). Ye sabse common UPPSC trap hai."},
+  {cat:"ngt", tag:"NGT · Recent", q:"2025 me NGT ne kis bade project ki green clearances review ke liye high-powered committee banayi?", opts:["Char Dham Road","Great Nicobar transhipment project","Mumbai Coastal Road","Ken-Betwa Link"], ans:1,
+   exp:"<b>Great Nicobar Project (2025)</b> — ₹72,000 crore transhipment project ki clearances review ke liye NGT-constituted committee. Recent &amp; high-yield."},
+  {cat:"ngt", tag:"NGT · Appeal", q:"NGT ke decision ke khilaf appeal kahan, aur kitne din me hoti hai?", opts:["High Court · 30 din","Supreme Court · 90 din","Tribunal Bench · 60 din","No appeal allowed"], ans:1,
+   exp:"<b>Supreme Court, 90 din ke andar.</b> 2021 me SC ne NGT ko suo motu power di; Jan 2026 me SC ne kaha NGT compensation awards decree ki tarah enforce honge."},
+
+  // ---- Water / Air (3) ----
+  {cat:"wa", tag:"Water · 1974", q:"India ka pehla comprehensive pollution control law kaunsa hai?", opts:["Air Act 1981","Water Act 1974","EPA 1986","Forest Act 1927"], ans:1,
+   exp:"<b>Water (Prevention &amp; Control of Pollution) Act, 1974</b> — pehla bada pollution law; isi ne CPCB &amp; SPCB banaye. Article 252 ke tahत."},
+  {cat:"wa", tag:"Air · 1981", q:"Air (Prevention &amp; Control of Pollution) Act 1981 kis sammelan ke nirnayon ko implement karne ke liye banaya gaya?", opts:["Rio Summit 1992","Stockholm Conference 1972","Kyoto 1997","Paris 2015"], ans:1,
+   exp:"<b>Stockholm Conference 1972</b> — Air Act 1981 Article 253 ke tahत us conference ke decisions implement karta hai. Naye board nahi banaye — CPCB/SPCB ko hi powers diye."},
+  {cat:"wa", tag:"Water+Air · Bodies", q:"CPCB aur SPCB ki sthaapna kis Act ke tahत hui thi?", opts:["Air Act 1981","EPA 1986","Water Act 1974","NGT Act 2010"], ans:2,
+   exp:"<b>Water Act 1974</b> ne CPCB (Centre) &amp; SPCB (States) banaye. Baad me Air Act 1981 ne inhi boards ko air pollution ke extra powers diye."}
+];
+
+let currentFilter="all";
+const box=document.getElementById('quizBox');
+const answered={}; // index -> chosen
+
+function render(){
+  box.innerHTML="";
+  QUESTIONS.forEach((item,i)=>{
+    if(currentFilter!=="all" && item.cat!==currentFilter) return;
+    const card=document.createElement('div');
+    card.className="q";
+    const letters=["A","B","C","D"];
+    let optsHtml="";
+    item.opts.forEach((o,oi)=>{
+      optsHtml+=`<div class="opt" data-q="${i}" data-o="${oi}">
+        <span class="mark">${letters[oi]}</span><span>${o}</span></div>`;
+    });
+    card.innerHTML=`
+      <span class="tag">${item.tag}</span>
+      <div class="stem"><span class="qno">Q${i+1}.</span>${item.q}</div>
+      <div class="opts">${optsHtml}</div>
+      <div class="expl" id="exp${i}">💡 ${item.exp}</div>`;
+    box.appendChild(card);
+  });
+  // re-apply answered state
+  Object.keys(answered).forEach(qi=>applyAnswered(parseInt(qi)));
+  attachHandlers();
+  updateScore();
+}
+
+function attachHandlers(){
+  document.querySelectorAll('.opt').forEach(el=>{
+    el.onclick=()=>{
+      const qi=parseInt(el.dataset.q);
+      if(answered[qi]!==undefined) return; // lock once answered
+      answered[qi]=parseInt(el.dataset.o);
+      applyAnswered(qi);
+      updateScore();
+    };
+  });
+}
+
+function applyAnswered(qi){
+  const chosen=answered[qi];
+  const correct=QUESTIONS[qi].ans;
+  document.querySelectorAll(`.opt[data-q="${qi}"]`).forEach(el=>{
+    const oi=parseInt(el.dataset.o);
+    el.classList.add('locked');
+    if(oi===correct) el.classList.add('correct');
+    if(oi===chosen && chosen!==correct) el.classList.add('wrong');
+  });
+  const exp=document.getElementById('exp'+qi);
+  if(exp) exp.classList.add('show');
+}
+
+function updateScore(){
+  let correct=0, att=0;
+  Object.keys(answered).forEach(qi=>{
+    att++;
+    if(answered[qi]===QUESTIONS[qi].ans) correct++;
+  });
+  document.getElementById('scoreNum').textContent=correct;
+  document.getElementById('attempted').textContent=att;
+}
+
+function resetQuiz(){
+  for(const k in answered) delete answered[k];
+  render();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+}
+
+document.querySelectorAll('.qfilter').forEach(f=>{
+  f.onclick=()=>{
+    document.querySelectorAll('.qfilter').forEach(x=>x.classList.remove('active'));
+    f.classList.add('active');
+    currentFilter=f.dataset.f;
+    render();
+  };
+});
+
+render();
+</script>
+</body>
+</html>
