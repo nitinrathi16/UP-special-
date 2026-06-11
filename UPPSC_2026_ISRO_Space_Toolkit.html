@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 UPPSC 2026 | ISRO & Space — Complete Toolkit</title>
+<style>
+  :root{
+    --ink:#1b2233; --ink-soft:#4a5470; --bg:#f5f8fc; --card:#ffffff;
+    --navy:#0b3d91; --saffron:#e87722; --saffron-soft:#fdf0e4;
+    --sky:#e8f1fb; --green:#1a7a4a; --green-soft:#e6f5ec;
+    --red:#c0392b; --red-soft:#fdeceb; --gold:#b8860b; --gold-soft:#fbf4e0;
+    --line:#dce4f0; --mono:'Courier New',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:Georgia,'Noto Serif',serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px 60px}
+
+  /* ── HEADER ── */
+  header{background:linear-gradient(135deg,#0b3d91 0%,#13265c 60%,#0a1838 100%);color:#fff;padding:42px 18px 38px;text-align:center;position:relative;overflow:hidden}
+  header::after{content:"🛰️";position:absolute;font-size:120px;opacity:.08;right:4%;top:8%;transform:rotate(15deg)}
+  header::before{content:"🌙";position:absolute;font-size:90px;opacity:.08;left:5%;bottom:5%}
+  .badge{display:inline-block;background:var(--saffron);color:#fff;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2.5px;padding:5px 16px;border-radius:30px;margin-bottom:14px;font-weight:bold}
+  header h1{font-size:clamp(26px,4.5vw,40px);letter-spacing:.5px;margin-bottom:8px}
+  header h1 .hl{color:#ffb96b}
+  header p{opacity:.85;font-family:Arial,sans-serif;font-size:14px;max-width:640px;margin:6px auto 0}
+  .updated{margin-top:14px;display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:4px 14px;border-radius:6px;font-family:var(--mono);font-size:12.5px}
+
+  /* ── NAV ── */
+  nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:3px solid var(--saffron);box-shadow:0 2px 10px rgba(11,61,145,.08);overflow-x:auto;white-space:nowrap}
+  nav .in{max-width:980px;margin:0 auto;display:flex;gap:2px;padding:0 10px}
+  nav a{font-family:Arial,sans-serif;font-size:13px;font-weight:bold;color:var(--navy);text-decoration:none;padding:12px 13px;border-bottom:3px solid transparent;margin-bottom:-3px}
+  nav a:hover{border-color:var(--saffron);background:var(--saffron-soft)}
+
+  /* ── SECTIONS ── */
+  section{margin-top:46px;scroll-margin-top:70px}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .sec-num{font-family:Arial,sans-serif;font-weight:900;font-size:13px;color:#fff;background:var(--navy);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .sec-head h2{font-size:clamp(21px,3vw,27px);color:var(--navy)}
+  .sec-hi{font-family:Arial,sans-serif;font-size:13.5px;color:var(--saffron);font-weight:bold;margin-left:48px;margin-bottom:16px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:16px;box-shadow:0 1px 4px rgba(20,40,90,.05)}
+  .card h3{color:var(--navy);font-size:18.5px;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+
+  /* mission strip: Name | Year | Objective | Status | Significance */
+  .mrow{display:grid;grid-template-columns:110px 1fr;gap:4px 14px;font-size:15px;margin-top:8px}
+  .mrow b{font-family:Arial,sans-serif;font-size:12px;letter-spacing:1px;color:var(--saffron);text-transform:uppercase;padding-top:3px}
+  .pill{display:inline-block;font-family:Arial,sans-serif;font-size:11.5px;font-weight:bold;padding:3px 11px;border-radius:20px;margin-left:8px;vertical-align:middle}
+  .ok{background:var(--green-soft);color:var(--green)} .warn{background:var(--gold-soft);color:var(--gold)}
+  .fail{background:var(--red-soft);color:var(--red)} .live{background:var(--sky);color:var(--navy)}
+
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin:10px 0;background:#fff}
+  th{background:var(--navy);color:#fff;font-family:Arial,sans-serif;font-size:12.5px;letter-spacing:.8px;padding:10px 12px;text-align:left}
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#f8fafd}
+  td:first-child{font-weight:bold;color:var(--navy)}
+
+  .keybox{background:var(--saffron-soft);border-left:5px solid var(--saffron);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0;font-size:15px}
+  .keybox b.t{font-family:Arial,sans-serif;font-size:12px;letter-spacing:1.5px;color:var(--saffron);display:block;margin-bottom:5px}
+  .upbox{background:var(--green-soft);border-left:5px solid var(--green);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0;font-size:15px}
+  .upbox b.t{font-family:Arial,sans-serif;font-size:12px;letter-spacing:1.5px;color:var(--green);display:block;margin-bottom:5px}
+
+  ul.f{list-style:none;margin:8px 0}
+  ul.f li{padding:5px 0 5px 26px;position:relative;font-size:15px}
+  ul.f li::before{content:"▸";color:var(--saffron);position:absolute;left:6px;font-weight:bold}
+  ul.star li::before{content:"⭐";font-size:12px;left:2px;top:8px}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+
+  /* timeline */
+  .tl{border-left:3px solid var(--navy);margin:14px 0 4px 14px;padding-left:22px}
+  .tl .ev{position:relative;padding-bottom:16px}
+  .tl .ev::before{content:"";position:absolute;left:-30px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--saffron);border:3px solid #fff;box-shadow:0 0 0 2px var(--saffron)}
+  .tl .ev .d{font-family:var(--mono);font-size:12.5px;color:var(--navy);font-weight:bold}
+
+  /* MCQ */
+  .mcq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .mcq .q{font-weight:bold;font-size:15.5px;margin-bottom:10px}
+  .mcq .q .no{color:#fff;background:var(--saffron);border-radius:6px;padding:2px 9px;font-family:Arial,sans-serif;font-size:13px;margin-right:8px}
+  .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px;font-size:14.5px;margin-bottom:10px}
+  .opts span{background:var(--sky);border-radius:8px;padding:7px 12px}
+  details{font-family:Arial,sans-serif}
+  details summary{cursor:pointer;font-size:13px;font-weight:bold;color:var(--navy);background:var(--sky);display:inline-block;padding:6px 16px;border-radius:8px;user-select:none}
+  details summary:hover{background:#d6e7f9}
+  details .ans{margin-top:10px;background:var(--green-soft);border-left:4px solid var(--green);padding:10px 14px;border-radius:0 8px 8px 0;font-size:14px;font-family:Georgia,serif}
+  details .ans b{color:var(--green)}
+
+  /* svg deco */
+  .rocketline{display:flex;justify-content:center;margin:34px 0 0}
+  footer{margin-top:55px;background:var(--navy);color:#cfe0f5;text-align:center;padding:26px 18px;font-family:Arial,sans-serif;font-size:13px}
+  footer b{color:#ffb96b}
+  @media(max-width:600px){.mrow{grid-template-columns:1fr}.mrow b{padding-top:8px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">UPPSC PCS 2026 ★ SCIENCE & TECHNOLOGY ★ GS PAPER</div>
+  <h1>🚀 ISRO & Indian Space Programme<br><span class="hl">सम्पूर्ण अपडेट — Complete Toolkit</span></h1>
+  <p>Mission-wise: Name • Launch Year • Objective • Status • Significance | Target: Top-10 Rank (SDM) — Quality over Quantity</p>
+  <div class="updated">📡 Web-verified up to: June 2026 (latest searches included)</div>
+</header>
+
+<nav><div class="in">
+  <a href="#s1">🌙 Chandrayaan</a>
+  <a href="#s2">👨‍🚀 Gaganyaan</a>
+  <a href="#s3">☀️ Aditya-L1</a>
+  <a href="#s4">🛰️ 2025–26 Launches</a>
+  <a href="#s5">🚀 PSLV vs GSLV vs LVM3</a>
+  <a href="#s6">🧭 NavIC</a>
+  <a href="#s7">🏭 Private Sector</a>
+  <a href="#s8">🛡️ UP Defence Corridor</a>
+  <a href="#s9">📝 10 MCQs</a>
+</div></nav>
+
+<div class="wrap">
+
+<!-- ════════ 1. CHANDRAYAAN ════════ -->
+<section id="s1">
+  <div class="sec-head"><div class="sec-num">01</div><h2>🌙 Chandrayaan Series — चंद्रयान शृंखला (Detailed)</h2></div>
+  <div class="sec-hi">Development → Key Facts → India's Significance</div>
+
+  <div class="card">
+    <h3>🌑 Chandrayaan-1 <span class="pill ok">COMPLETED</span></h3>
+    <div class="mrow">
+      <b>Launch</b><span>22 Oct <strong>2008</strong> | Rocket: <strong>PSLV-C11</strong> | Sriharikota (SDSC SHAR)</span>
+      <b>Objective</b><span>India's first lunar orbiter — chemical & mineralogical mapping of Moon; 100 km lunar orbit</span>
+      <b>Status</b><span>Mission ended Aug 2009 (contact lost); objectives ~95% achieved</span>
+      <b>Significance</b><span>🔑 <strong>खोज: चाँद पर पानी (H₂O / OH molecules)</strong> — Moon Impact Probe (MIP) + NASA's M3 payload ने पुष्टि की। MIP crashed near south pole — तिरंगा चाँद पर पहुँचा। India became 4th nation to reach Moon.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🌗 Chandrayaan-2 <span class="pill warn">PARTIAL SUCCESS</span></h3>
+    <div class="mrow">
+      <b>Launch</b><span>22 Jul <strong>2019</strong> | Rocket: <strong>GSLV Mk-III (now LVM3)</strong></span>
+      <b>Objective</b><span>Orbiter + Lander (<strong>Vikram</strong>) + Rover (<strong>Pragyan</strong>) — soft landing near lunar south pole</span>
+      <b>Status</b><span>❌ Vikram lander hard-landed (7 Sep 2019, last ~2.1 km); ✅ <strong>Orbiter still operational</strong> — high-resolution camera (OHRC) best-in-class, helped CH-3 site selection</span>
+      <b>Significance</b><span>Orbiter ki 7+ years life; lessons-learnt से "failure-based design" approach CH-3 में अपनाया गया।</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🌕 Chandrayaan-3 <span class="pill ok">HISTORIC SUCCESS</span></h3>
+    <div class="mrow">
+      <b>Launch</b><span>14 Jul <strong>2023</strong> | Rocket: <strong>LVM3-M4</strong> | Landing: <strong>23 Aug 2023</strong></span>
+      <b>Objective</b><span>Lander (Vikram) + Rover (Pragyan) soft landing — no orbiter (propulsion module only); payload: ChaSTE, ILSA, RAMBHA, APXS, LIBS, SHAPE</span>
+      <b>Status</b><span>✅ 100% success — 14 Earth-days surface ops; LIBS confirmed <strong>Sulphur (S)</strong> on lunar surface; ILSA recorded seismic event; later <strong>hop experiment</strong> + propulsion module returned to Earth orbit</span>
+      <b>Significance</b><span>🏆 India = <strong>1st nation to land near lunar SOUTH POLE</strong>; 4th to soft-land (after USSR, USA, China). Landing site named <strong>"Shiv Shakti Point"</strong> (Statio Shiv Shakti); 23 August = <strong>National Space Day</strong>. CH-1 crash site (2008) = "Tiranga Point".</span>
+    </div>
+    <div class="keybox"><b class="t">⭐ UPPSC FAVOURITE FACTS</b>
+      Lander total mass ≈ 1,752 kg (rover 26 kg) • Velocity at touchdown < 2 m/s • Mission cost ≈ ₹615 crore • Project Director: P. Veeramuthuvel; Mission Director: S. Mohanakumar; tab ISRO Chief: <strong>S. Somanath</strong> (अब Chairman: <strong>V. Narayanan</strong>, Jan 2025 से)
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔮 Chandrayaan-4 & 5 (LUPEX) — Future <span class="pill live">APPROVED / DESIGN PHASE</span></h3>
+    <ul class="f">
+      <li><strong>Chandrayaan-4</strong> (approved Sep 2024): lunar <strong>sample-return mission</strong> (~2027-28); 5 modules, two launches; needs <strong>in-space docking</strong> — इसीलिए SpaDeX experiment किया गया। Currently in design phase.</li>
+      <li><strong>Chandrayaan-5 / LUPEX</strong>: ISRO–<strong>JAXA (Japan)</strong> joint mission — heavy rover (~350 kg) for lunar south pole water-ice exploration.</li>
+      <li>Roadmap (Space Vision <strong>2047</strong>): Bharatiya Antariksh Station (BAS) by <strong>2035</strong>, Indian crewed Moon landing by <strong>2040</strong>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════ 2. GAGANYAAN ════════ -->
+<section id="s2">
+  <div class="sec-head"><div class="sec-num">02</div><h2>👨‍🚀 Gaganyaan — गगनयान (Human Spaceflight)</h2></div>
+  <div class="sec-hi">India's first indigenous human spaceflight programme — 2026 का सबसे hot topic</div>
+
+  <div class="card">
+    <h3>🛸 Programme Overview</h3>
+    <div class="mrow">
+      <b>Objective</b><span>3 astronauts (गगनयात्री) को <strong>~400 km Low Earth Orbit</strong> में 3-दिन भेजकर सुरक्षित वापस लाना (sea recovery)</span>
+      <b>Rocket</b><span><strong>HLVM3</strong> — Human-Rated LVM3 (with Crew Escape System)</span>
+      <b>Crew Module</b><span>Built with <strong>HAL</strong>; Environmental Control & Life Support System (ECLSS)</span>
+      <b>Status</b><span><span class="pill live">G1 UNCREWED — 2026</span> 90%+ work complete; <strong>8,000+ ground tests done</strong> (97% success rate); crewed flight (H1) targeted <strong>2027</strong></span>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>🤖 G1 Mission + Vyommitra</h3>
+      <ul class="f">
+        <li><strong>G1 (Gaganyaan-1)</strong>: पहली uncrewed test flight — पहले Dec 2025 target थी, अब <strong>2026 में slip</strong> (official: H2 2026 window; तैयारी जारी)।</li>
+        <li>Onboard: <strong>व्योममित्र (Vyommitra)</strong> — female half-humanoid robot; Hindi+English बोल सकती है; cabin pressure, temperature, radiation monitor करेगी; life-support systems simulate करेगी।</li>
+        <li>Tests: human-rated launch vehicle aerodynamics, orbital module ops, <strong>re-entry & crew-module sea recovery</strong>।</li>
+        <li>Sequence: G1 → G2 → G3 (uncrewed) → <strong>H1 crewed (2027)</strong>. Success पर India चौथा देश बनेगा (USSR/Russia, USA, China के बाद) जो खुद इंसान अंतरिक्ष में भेजे।</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎖️ The 4 Astronaut-Designates (IAF Pilots)</h3>
+      <ul class="f star">
+        <li>Group Captain <strong>Prasanth Balakrishnan Nair</strong></li>
+        <li>Group Captain <strong>Ajit Krishnan</strong></li>
+        <li>Group Captain <strong>Angad Pratap</strong> (🔶 <strong>Prayagraj, UP से</strong> — UPPSC के लिए special!)</li>
+        <li>Group Captain <strong>शुभांशु शुक्ला (Shubhanshu Shukla)</strong> (🔶 <strong>Lucknow, UP से</strong>)</li>
+      </ul>
+      <div class="upbox"><b class="t">🇮🇳 AXIOM-4 (June 2025) — UP CONNECTION</b>
+      Shubhanshu Shukla बने <strong>ISS जाने वाले पहले भारतीय</strong> (Axiom Mission-4, SpaceX Dragon "Grace"); Rakesh Sharma (1984) के बाद अंतरिक्ष जाने वाले दूसरे भारतीय। ~18-20 दिन ISS पर; microgravity experiments (incl. food/sprouting studies)। Mission Pilot role.</div>
+    </div>
+  </div>
+
+  <div class="keybox"><b class="t">⭐ 2025 SIMULATION MISSIONS (PRELIMS-WORTHY)</b>
+  <strong>Anugami</strong> (July 2025) & <strong>HOPE</strong> (Aug 2025) — दो 10-day ground-based analog simulation missions, human spaceflight व interplanetary missions की तैयारी हेतु। Crew training: मुख्यतः Astronaut Training Facility, Bengaluru (+ initial training Russia में हुई थी)।</div>
+</section>
+
+<!-- ════════ 3. ADITYA-L1 ════════ -->
+<section id="s3">
+  <div class="sec-head"><div class="sec-num">03</div><h2>☀️ Aditya-L1 — भारत का पहला सौर मिशन</h2></div>
+  <div class="sec-hi">First Indian space-based solar observatory</div>
+  <div class="card">
+    <div class="mrow">
+      <b>Launch</b><span>2 Sep <strong>2023</strong> | Rocket: <strong>PSLV-C57</strong></span>
+      <b>Orbit</b><span><strong>Halo orbit</strong> around <strong>Lagrange Point L1</strong> — पृथ्वी से ~15 lakh km (1.5 million km), Sun–Earth दूरी का ~1%; L1 से सूर्य 24×7 बिना ग्रहण दिखता है। Insertion: <strong>6 Jan 2024</strong>.</span>
+      <b>Objective</b><span>Solar corona, chromosphere, photosphere का अध्ययन; solar flares, <strong>Coronal Mass Ejections (CME)</strong>, solar wind, space weather</span>
+      <b>Payloads</b><span><strong>7 payloads</strong> — मुख्य: <strong>VELC</strong> (Visible Emission Line Coronagraph — IIA Bengaluru), <strong>SUIT</strong> (UV imaging — IUCAA Pune), ASPEX, SoLEXS, HEL1OS, PAPA, Magnetometer</span>
+      <b>Status</b><span><span class="pill ok">OPERATIONAL</span> CME observations & solar flare data देता आ रहा है (incl. major solar storm events of 2024-25)</span>
+      <b>Significance</b><span>India joined select group (NASA, ESA) with dedicated solar observatory; space-weather warning से satellites/power grids की सुरक्षा।</span>
+    </div>
+    <div class="keybox"><b class="t">⭐ EXAM TRAP</b> L1 पर satellite "stationary" नहीं — वह L1 के चारों ओर halo orbit में घूमता है। कुल Lagrange points = <strong>5</strong> (L1–L5)।</div>
+  </div>
+</section>
+
+<!-- ════════ 4. RECENT LAUNCHES 2025-26 ════════ -->
+<section id="s4">
+  <div class="sec-head"><div class="sec-num">04</div><h2>🛰️ Recent ISRO Missions 2024 → 2026 (Latest, Web-Verified)</h2></div>
+  <div class="sec-hi">Current Affairs का core — हर mission की एक line कहानी याद रखो</div>
+
+  <div class="card">
+    <h3>📅 Master Timeline</h3>
+    <div class="tl">
+      <div class="ev"><span class="d">JAN 2024</span> — <strong>XPoSat</strong> (PSLV-C58): भारत का पहला X-ray Polarimeter satellite — black holes, pulsars का अध्ययन; विश्व में NASA के IXPE के बाद दूसरा। <span class="pill ok">SUCCESS</span></div>
+      <div class="ev"><span class="d">DEC 2024 → JAN 2025</span> — <strong>SpaDeX</strong> (PSLV-C60): Space Docking Experiment — दो satellites (Chaser SDX-01 + Target SDX-02) की in-space <strong>docking 16 Jan 2025</strong> को सफल। 🏆 India = <strong>4th nation</strong> (US, Russia, China के बाद) with autonomous docking. Chandrayaan-4 व BAS के लिए अनिवार्य तकनीक। <span class="pill ok">SUCCESS</span></div>
+      <div class="ev"><span class="d">JAN 2025</span> — <strong>GSLV-F15 / NVS-02</strong>: ISRO की <strong>100th launch</strong> from Sriharikota। Rocket सफल, पर satellite का valve anomaly — final orbit में नहीं पहुँचा। <span class="pill fail">SAT ANOMALY</span></div>
+      <div class="ev"><span class="d">MAY 2025</span> — <strong>PSLV-C61 / EOS-09</strong>: third-stage में chamber-pressure drop — PSLV का दुर्लभ failure। <span class="pill fail">FAILED</span></div>
+      <div class="ev"><span class="d">JUN 2025</span> — <strong>Axiom-4</strong>: Shubhanshu Shukla ISS पहुँचे (SpaceX rocket — ISRO-supported, NASA-Axiom collaboration)। <span class="pill ok">SUCCESS</span></div>
+      <div class="ev"><span class="d">30 JUL 2025</span> — 🌟 <strong>NISAR</strong> (GSLV-F16): <strong>NASA–ISRO Synthetic Aperture Radar</strong> — विश्व का पहला <strong>dual-band (L-band NASA + S-band ISRO)</strong> radar imaging satellite; ~$1.5 bn सबसे महँगा EO satellite; पूरी पृथ्वी की सतह हर 12 दिन में map — earthquakes, glaciers, agriculture, disasters। पहली बार GSLV ने sun-synchronous orbit में launch किया। Now operational. <span class="pill ok">SUCCESS</span></div>
+      <div class="ev"><span class="d">2 NOV 2025</span> — <strong>LVM3-M5 / CMS-03 (GSAT-7R)</strong>: भारतीय धरती से launch किया गया <strong>सबसे भारी communication satellite (~4,400 kg)</strong> — Indian Navy हेतु; पहली बार <strong>C25 cryogenic engine की in-space restart</strong>। <span class="pill ok">SUCCESS</span></div>
+      <div class="ev"><span class="d">24 DEC 2025</span> — 🌟 <strong>LVM3-M6 / BlueBird Block-2 (BlueBird-6)</strong>: US कंपनी <strong>AST SpaceMobile</strong> का <strong>6,100 kg</strong> satellite — direct-to-smartphone connectivity; भारतीय धरती से launched सबसे भारी commercial satellite; ISRO की <strong>100th orbital launch</strong> (SLV-3 से अब तक); NSIL commercial mission। भारत: अब तक 34 देशों के 434 विदेशी satellites launch। <span class="pill ok">SUCCESS</span></div>
+      <div class="ev"><span class="d">12 JAN 2026</span> — <strong>PSLV-C62 / EOS-N1 "Anvesha"</strong>: DRDO-built <strong>hyperspectral imaging</strong> EO satellite + 14 co-passengers + KID re-entry capsule; third stage (PS3) के अंत में roll-rate disturbance → flight-path deviation → mission fail। PSLV का लगातार दूसरा failure; national expert committee जाँच कर रही है। <span class="pill fail">FAILED</span></div>
+      <div class="ev"><span class="d">2026 (upcoming)</span> — <strong>Gaganyaan G1</strong> (Vyommitra), <strong>TDS-01</strong> (quantum key distribution, electric propulsion demo), <strong>Oceansat-3A / EOS-10</strong>, <strong>EOS-05</strong> (strategic, GSLV), Indo-Mauritius Joint Satellite, पहला <strong>industry-built PSLV (NSIL consortium)</strong>, पहली commercial <strong>SSLV</strong> flight, GISAT-2। <span class="pill live">PLANNED</span></div>
+    </div>
+  </div>
+
+  <div class="upbox"><b class="t">🧠 MAINS ANGLE (GS-3)</b>
+  2025-26 में PSLV के back-to-back failures (C61, C62) + NVS-02 anomaly ⇒ strategic/surveillance capability पर असर व quality-control पर प्रश्न; परंतु LVM3 का perfect record, NISAR व commercial milestones ⇒ India की heavy-lift व global-partnership credibility मजबूत। संतुलित उत्तर लिखो: setbacks + achievements दोनों।</div>
+</section>
+
+<!-- ════════ 5. ROCKETS ════════ -->
+<section id="s5">
+  <div class="sec-head"><div class="sec-num">05</div><h2>🚀 PSLV vs GSLV vs LVM3 — Launch Vehicles तुलना</h2></div>
+  <div class="sec-hi">हर साल UPPSC में rocket-based एक प्रश्न लगभग पक्का</div>
+
+  <div class="card" style="overflow-x:auto">
+    <table>
+      <tr><th>Feature ⚙️</th><th>PSLV 🛰️</th><th>GSLV (Mk-II) 📡</th><th>LVM3 (पूर्व GSLV Mk-III) 🚀</th></tr>
+      <tr><td>Full Form</td><td>Polar Satellite Launch Vehicle</td><td>Geosynchronous Satellite Launch Vehicle</td><td>Launch Vehicle Mark-3</td></tr>
+      <tr><td>Stages</td><td><strong>4 stages</strong> (Solid–Liquid–Solid–Liquid)</td><td>3 stages (Solid + Liquid + <strong>Cryogenic CE-7.5</strong>)</td><td>3 stages: 2× S200 solid boosters + L110 liquid + <strong>C25 cryogenic</strong></td></tr>
+      <tr><td>Payload (LEO)</td><td>~3,800 kg</td><td>~5,000 kg</td><td>~10,000 kg (10 tonnes)</td></tr>
+      <tr><td>Payload (GTO)</td><td>~1,400 kg</td><td>~2,500 kg</td><td>~4,000–4,200 kg</td></tr>
+      <tr><td>Best For</td><td>Sun-synchronous/polar orbits — EO & remote sensing sats</td><td>GTO communication & navigation satellites</td><td>Heaviest payloads; human spaceflight (HLVM3)</td></tr>
+      <tr><td>Famous Missions</td><td>Chandrayaan-1, Mangalyaan (MOM), Aditya-L1, 104-sats record (C37, 2017)</td><td>NVS series, <strong>NISAR (GSLV-F16)</strong></td><td>Chandrayaan-2 & 3, CMS-03, BlueBird-6, OneWeb; future: <strong>Gaganyaan</strong></td></tr>
+      <tr><td>Nickname</td><td>"Workhorse of ISRO" 🐴</td><td>(पहले "naughty boy" कहा जाता था)</td><td>"Bahubali" 💪 (640 t, 43.5 m)</td></tr>
+    </table>
+    <div class="keybox"><b class="t">⭐ EXTRA ONE-LINERS</b>
+    <strong>SSLV</strong> (Small Satellite LV): ~500 kg to LEO, launch-on-demand, अब private sector को transfer हो रहा (HAL को technology transfer)। <strong>NGLV / "Soorya"</strong> (Next-Gen LV): approved, ~30 t to LEO, partially reusable — BAS-2035 व Moon-2040 के लिए। <strong>RLV "Pushpak"</strong>: Reusable Launch Vehicle — landing experiments (LEX) सफल।</div>
+  </div>
+</section>
+
+<!-- ════════ 6. NAVIC ════════ -->
+<section id="s6">
+  <div class="sec-head"><div class="sec-num">06</div><h2>🧭 NavIC — Navigation with Indian Constellation</h2></div>
+  <div class="sec-hi">देसी GPS — और इसका 2026 का संकट (Mains-worthy)</div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>📍 Core Facts</h3>
+      <ul class="f">
+        <li>पुराना नाम: <strong>IRNSS</strong> (Indian Regional Navigation Satellite System)</li>
+        <li>Constellation design: <strong>7 satellites</strong> — 3 GEO + 4 GSO (inclined geosynchronous)</li>
+        <li>Coverage: भारत + सीमा से <strong>~1,500 km</strong> तक का क्षेत्र (regional system, GPS की तरह global नहीं)</li>
+        <li>Services: <strong>SPS</strong> (Standard Positioning — civilian) + <strong>RS</strong> (Restricted — military, encrypted)</li>
+        <li>Accuracy: ~<strong>5–20 m</strong> civilian; नई <strong>NVS series</strong> में <strong>indigenous Rubidium atomic clock</strong> + <strong>L1 band</strong> (smartphones के लिए) जोड़ा गया — NVS-01 (2023) से</li>
+        <li>दुनिया के अन्य systems: GPS (US), GLONASS (Russia), Galileo (EU), BeiDou (China), QZSS (Japan)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⚠️ NavIC Crisis 2025-26 (Current Affairs)</h3>
+      <ul class="f">
+        <li><strong>NVS-02</strong> (Jan 2025, GSLV-F15 — 100th launch): satellite का valve fail — orbit raising नहीं हो सकी ⇒ unusable</li>
+        <li>कई पुराने IRNSS satellites (1A, 1C, 1D, 1E, 1G) की <strong>atomic clocks fail</strong> — constellation घटकर ~4 functional satellites</li>
+        <li>NVS-03 launch भी delay; replenishment अति-आवश्यक</li>
+        <li><strong>Mains point:</strong> नौसेना/सेना, missile guidance, fishermen alerts, transport — सब NavIC पर निर्भर; navigation sovereignty दाँव पर</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 7. PRIVATE SECTOR ════════ -->
+<section id="s7">
+  <div class="sec-head"><div class="sec-num">07</div><h2>🏭 Private Space Sector — IN-SPACe, Skyroot, Agnikul</h2></div>
+  <div class="sec-hi">Space reforms 2020 → Indian Space Policy 2023 → Unicorn 2026</div>
+
+  <div class="card">
+    <h3>🏛️ Policy Architecture</h3>
+    <ul class="f">
+      <li><strong>2020 Space Sector Reforms</strong>: निजी क्षेत्र (NGEs — Non-Governmental Entities) के लिए सेक्टर खुला</li>
+      <li><strong>IN-SPACe</strong> (Indian National Space Promotion & Authorisation Centre, HQ: Ahmedabad): private players का single-window regulator/promoter — authorisation, ISRO facilities तक access</li>
+      <li><strong>NSIL</strong> (NewSpace India Ltd, 2019): ISRO की commercial arm — PSLV/LVM3 commercial launches, satellite services</li>
+      <li><strong>Indian Space Policy 2023</strong>: roles स्पष्ट — ISRO = R&D, NSIL = commercial, IN-SPACe = regulator-promoter</li>
+      <li><strong>FDI in Space (2024)</strong>: satellites में 74–100% तक automatic route; launch vehicles में 49% automatic</li>
+      <li>💰 <strong>₹1,000 crore VC Fund</strong> (Oct 2024, IN-SPACe के अंतर्गत) + <strong>₹500 crore Technology Adoption Fund</strong> (Feb 2026)</li>
+      <li>📈 Startups: 2014 में ~1 → अब <strong>300+</strong>; funding 2025 में 2024 से <strong>84% ↑</strong>; Indian space economy target: <strong>$44 billion by 2033</strong></li>
+    </ul>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>🔥 Skyroot Aerospace (Hyderabad)</h3>
+      <ul class="f">
+        <li>Founders: <strong>Pawan Chandana & Naga Bharath Daka</strong> (ex-ISRO)</li>
+        <li><strong>Vikram-S</strong> (18 Nov 2022, "Mission Prarambh"): अंतरिक्ष पहुँचने वाला <strong>पहला भारतीय private rocket</strong> (suborbital)</li>
+        <li><strong>Vikram-I</strong>: पहला private <em>orbital</em> rocket — PM Modi ने Nov 2025 में unveil किया (Infinity Campus, Hyderabad के साथ); maiden flight 2026 target; all-carbon-fibre body, 3D-printed engines</li>
+        <li>🦄 <strong>May 2026: भारत की पहली space-tech UNICORN</strong> ($60 mn round — GIC, Sherpalo)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⚡ Agnikul Cosmos (Chennai, IIT-Madras)</h3>
+      <ul class="f">
+        <li>Founders: Srinath Ravichandran & Moin SPM</li>
+        <li><strong>Agnibaan SOrTeD</strong> (30 May 2024): suborbital flight — विश्व का पहला <strong>single-piece 3D-printed (semi-cryogenic) engine</strong> — "Agnilet"</li>
+        <li>भारत का पहला <strong>private launchpad</strong> — "Dhanush", Sriharikota में</li>
+        <li>Orbital launch target: ~2026</li>
+      </ul>
+      <div class="keybox" style="margin-bottom:0"><b class="t">⭐ अन्य नाम</b> Dhruva Space (satellites), Pixxel (hyperspectral imaging), Bellatrix (propulsion), Digantara (space situational awareness)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 8. UP DEFENCE CORRIDOR ════════ -->
+<section id="s8">
+  <div class="sec-head"><div class="sec-num">08</div><h2>🛡️ UP Defence Industrial Corridor + Space Connection</h2></div>
+  <div class="sec-hi">UPPSC का home-ground topic — UP-specific प्रश्न यहीं से आते हैं</div>
+
+  <div class="card">
+    <h3>🗺️ UPDIC — 6 Nodes (UPEIDA nodal agency)</h3>
+    <table>
+      <tr><th>Node 📍</th><th>Specialisation / Highlight</th></tr>
+      <tr><td>Lucknow</td><td>🚀 <strong>BrahMos manufacturing unit</strong> (inaugurated 2025) — BrahMos-NG यहाँ बनेगी; aerospace ecosystem</td></tr>
+      <tr><td>Kanpur</td><td><strong>Adani Defence ammunition complex</strong> (South Asia के सबसे बड़े में); ordnance legacy (Small Arms Factory)</td></tr>
+      <tr><td>Jhansi</td><td>सबसे बड़ा node क्षेत्रफल में; <strong>Bharat Dynamics Ltd (BDL)</strong> propulsion unit</td></tr>
+      <tr><td>Aligarh</td><td>छोटे हथियार, drones, defence components; पहला node जहाँ units operational हुईं</td></tr>
+      <tr><td>Agra</td><td>Defence manufacturing & logistics</td></tr>
+      <tr><td>Chitrakoot</td><td>Bundelkhand विकास; defence manufacturing</td></tr>
+    </table>
+    <ul class="f">
+      <li>घोषणा: <strong>Feb 2018</strong> (Investors' Summit, Lucknow); भारत के 2 defence corridors — UP & Tamil Nadu</li>
+      <li><strong>Space connection:</strong> corridor में aerospace components, satellite sub-systems व drone manufacturing units; IIT Kanpur — defence-space R&D hub (incubation में space-tech startups); DRDO की <strong>Defence Technology & Test Centre</strong> support</li>
+      <li>UP astronauts connection: Shubhanshu Shukla (Lucknow) + Angad Pratap (Prayagraj) — दोनों Gaganyaan crew में 🇮🇳</li>
+      <li>Mains line: "UPDIC, Make-in-India (defence) व space-sector reforms मिलकर UP को aerospace-defence manufacturing hub बना रहे हैं — रोजगार + strategic autonomy।"</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════ 9. MCQs ════════ -->
+<section id="s9">
+  <div class="sec-head"><div class="sec-num">09</div><h2>📝 10 ISRO / Space MCQs — UPPSC Pattern</h2></div>
+  <div class="sec-hi">Answer देखने के लिए हर प्रश्न के नीचे "उत्तर देखें" दबाओ</div>
+
+  <div class="mcq"><div class="q"><span class="no">Q1</span>चंद्रयान-3 का landing site "Shiv Shakti Point" किस launch vehicle से प्रक्षेपित mission से जुड़ा है?</div>
+    <div class="opts"><span>(a) PSLV-C57</span><span>(b) GSLV-F14</span><span>(c) LVM3-M4</span><span>(d) SSLV-D2</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(c) LVM3-M4</b> — Chandrayaan-3, 14 July 2023 को LVM3-M4 से launch; 23 Aug 2023 landing (अब National Space Day)। PSLV-C57 = Aditya-L1.</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q2</span>SpaDeX mission (Jan 2025) की सफलता से भारत in-space docking करने वाला कौन-सा देश बना?</div>
+    <div class="opts"><span>(a) दूसरा</span><span>(b) तीसरा</span><span>(c) चौथा</span><span>(d) पाँचवाँ</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(c) चौथा</b> — USA, Russia, China के बाद। PSLV-C60 से launch; docking 16 Jan 2025। Chandrayaan-4 व Bharatiya Antariksh Station के लिए अनिवार्य तकनीक।</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q3</span>NISAR mission के संदर्भ में कौन-सा कथन गलत है?</div>
+    <div class="opts"><span>(a) NASA–ISRO joint mission है</span><span>(b) L-band व S-band dual radar है</span><span>(c) LVM3 से launch हुआ</span><span>(d) July 2025 में launch हुआ</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(c) गलत</b> — NISAR को <b>GSLV-F16</b> से 30 July 2025 को launch किया गया (GSLV की पहली sun-synchronous orbit launch)। L-band: NASA, S-band: ISRO; Earth की सतह हर 12 दिन में map करता है।</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q4</span>"व्योममित्र (Vyommitra)" क्या है?</div>
+    <div class="opts"><span>(a) Aditya-L1 का payload</span><span>(b) Gaganyaan G1 की half-humanoid robot</span><span>(c) NavIC की atomic clock</span><span>(d) RLV का नाम</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(b)</b> — female half-humanoid robot; Gaganyaan की पहली uncrewed flight (G1) में जाएगी; cabin environment monitor व life-support simulate करेगी। RLV का नाम = Pushpak।</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q5</span>दिसंबर 2025 में LVM3-M6 द्वारा launch किया गया BlueBird Block-2 satellite किस देश/कंपनी का था?</div>
+    <div class="opts"><span>(a) UK / OneWeb</span><span>(b) USA / AST SpaceMobile</span><span>(c) France / Eutelsat</span><span>(d) Mauritius / IMJS</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(b) USA / AST SpaceMobile</b> — 6,100 kg, direct-to-smartphone connectivity; भारतीय धरती से launched सबसे भारी commercial satellite; ISRO की 100th orbital launch; NSIL का commercial mission।</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q6</span>Aditya-L1 के संबंध में सही कथन चुनिए:<br>1. यह Lagrange Point L1 के चारों ओर halo orbit में है।  2. L1 पृथ्वी से लगभग 15 लाख km दूर है।  3. इसका मुख्य coronagraph payload VELC है।</div>
+    <div class="opts"><span>(a) केवल 1, 2</span><span>(b) केवल 2, 3</span><span>(c) केवल 1, 3</span><span>(d) 1, 2 और 3</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(d) तीनों सही</b> — PSLV-C57 (2 Sep 2023); 7 payloads; CME व space weather अध्ययन।</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q7</span>NavIC के विषय में कौन-सा युग्म सही सुमेलित नहीं है?</div>
+    <div class="opts"><span>(a) Coverage — भारत + ~1500 km</span><span>(b) Constellation — 7 satellites</span><span>(c) NVS series — Caesium clock रहित, विदेशी clock ही</span><span>(d) पुराना नाम — IRNSS</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(c) गलत</b> — NVS series (NVS-01 से) में <b>स्वदेशी Rubidium atomic clock</b> व L1 band जोड़ा गया है। NVS-02 (Jan 2025) GSLV-F15 — ISRO की 100th launch — में satellite anomaly हुई।</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q8</span>जनवरी 2026 में विफल PSLV-C62 mission का प्राथमिक payload EOS-N1 ("Anvesha") किस प्रकार का satellite था?</div>
+    <div class="opts"><span>(a) Communication</span><span>(b) Hyperspectral Earth Observation (DRDO)</span><span>(c) Navigation</span><span>(d) Solar observatory</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(b)</b> — DRDO-built hyperspectral imaging satellite (strategic surveillance); PS3 (third stage) के अंत में roll-rate disturbance से mission fail; PSLV-C61 (May 2025) के बाद लगातार दूसरा failure।</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q9</span>भारत की पहली space-tech unicorn बनने वाली कंपनी व उसका पहला private suborbital rocket:</div>
+    <div class="opts"><span>(a) Agnikul — Agnibaan</span><span>(b) Skyroot — Vikram-S</span><span>(c) Dhruva — Thybolt</span><span>(d) Pixxel — Firefly</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(b) Skyroot Aerospace — Vikram-S</b> (Mission Prarambh, Nov 2022)। 2026 में $60 mn funding से पहली space unicorn; orbital rocket Vikram-I (Nov 2025 में PM द्वारा unveiled)। Agnikul की पहचान = single-piece 3D-printed engine।</div></details>
+  </div>
+
+  <div class="mcq"><div class="q"><span class="no">Q10</span>UP Defence Industrial Corridor के संदर्भ में कौन-सा युग्म सही है?</div>
+    <div class="opts"><span>(a) Lucknow — BrahMos unit</span><span>(b) Kanpur — BDL propulsion</span><span>(c) Jhansi — Adani ammunition</span><span>(d) Agra — Small Arms Factory</span></div>
+    <details><summary>✅ उत्तर देखें</summary><div class="ans"><b>(a) Lucknow — BrahMos manufacturing unit</b> (2025 में inaugurated)। सही mapping: Kanpur — Adani ammunition complex; Jhansi — BDL; कुल 6 nodes (Lucknow, Kanpur, Agra, Aligarh, Jhansi, Chitrakoot); nodal agency — UPEIDA; घोषणा Feb 2018।</div></details>
+  </div>
+
+  <div class="upbox"><b class="t">🎯 RAPID REVISION — 10 ONE-LINERS</b>
+  ① 23 Aug = National Space Day ② ISRO Chairman = V. Narayanan ③ HLVM3 = Gaganyaan rocket ④ Shubhanshu Shukla = पहला भारतीय ISS पर (Axiom-4) ⑤ NISAR = GSLV-F16, dual-band radar ⑥ CMS-03 = सबसे भारी Indian comm-sat (4,400 kg, Navy) ⑦ SpaDeX = 4th docking nation ⑧ IN-SPACe HQ = Ahmedabad ⑨ BAS = 2035, Moon crewed = 2040 ⑩ Skyroot = पहली space unicorn
+  </div>
+</section>
+
+<div class="rocketline">
+  <svg width="320" height="60" viewBox="0 0 320 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="0" y1="30" x2="120" y2="30" stroke="#dce4f0" stroke-width="2" stroke-dasharray="6 5"/>
+    <line x1="200" y1="30" x2="320" y2="30" stroke="#dce4f0" stroke-width="2" stroke-dasharray="6 5"/>
+    <g transform="translate(160,30) rotate(45)">
+      <path d="M0,-18 C6,-10 6,2 4,10 L-4,10 C-6,2 -6,-10 0,-18 Z" fill="#0b3d91"/>
+      <circle cx="0" cy="-4" r="3" fill="#e8f1fb"/>
+      <path d="M-4,6 L-9,14 L-4,11 Z" fill="#e87722"/><path d="M4,6 L9,14 L4,11 Z" fill="#e87722"/>
+      <path d="M-2,11 L0,20 L2,11 Z" fill="#ffb96b"/>
+    </g>
+  </svg>
+</div>
+
+</div>
+
+<footer>
+  <b>UPPSC PCS 2026 — Science & Technology Series</b> · ISRO & Space Module<br>
+  अगले modules: 🛡️ DRDO & Missiles · ⚛️ Nuclear Tech · 💻 Semiconductor / Quantum / AI Policy<br>
+  <span style="opacity:.7">Sources: isro.gov.in, PIB, The Hindu, Deccan Herald, ThePrint, DD News (web-verified June 2026)</span>
+</footer>
+
+</body>
+</html>
