@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 — Health Schemes Toolkit (UP Focus)</title>
+<style>
+  :root{
+    --paper:#fbfdfc;
+    --card:#ffffff;
+    --ink:#15302e;
+    --teal:#0b7285;
+    --teal-dark:#0a5564;
+    --teal-soft:#e2f3f5;
+    --saffron:#e8590c;
+    --saffron-soft:#fff0e6;
+    --green:#2b8a3e;
+    --green-soft:#e9f7ec;
+    --gold:#b08900;
+    --line:#d8e6e4;
+    --muted:#5b7470;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Segoe UI', 'Noto Sans Devanagari', Mangal, system-ui, sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:24px 18px 80px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(135deg,#0b7285 0%,#0a5564 60%,#083d48 100%);
+    color:#fff;border-radius:18px;padding:34px 30px;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;
+    border-radius:50%;background:rgba(255,255,255,.07);
+  }
+  .hero .tag{
+    display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);
+    padding:3px 14px;border-radius:999px;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;
+  }
+  .hero h1{font-size:1.9rem;margin:14px 0 6px;font-weight:800;}
+  .hero p{opacity:.92;max-width:640px;font-size:.95rem;}
+  .hero .svgmed{position:absolute;right:30px;bottom:18px;opacity:.9;}
+  .statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:22px;}
+  .stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:12px 14px;}
+  .stat b{display:block;font-size:1.25rem;}
+  .stat span{font-size:.74rem;opacity:.85;}
+
+  /* ---------- NAV ---------- */
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 8px;}
+  .toc a{
+    text-decoration:none;color:var(--teal-dark);background:var(--teal-soft);
+    border:1px solid var(--line);padding:6px 13px;border-radius:999px;font-size:.82rem;font-weight:600;
+  }
+  .toc a:hover{background:var(--teal);color:#fff;}
+
+  /* ---------- SECTIONS ---------- */
+  section{margin-top:38px;}
+  .schead{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--teal);padding-bottom:10px;margin-bottom:18px;}
+  .schead .icon{
+    width:52px;height:52px;border-radius:14px;background:var(--teal-soft);
+    display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;
+    border:1px solid var(--line);
+  }
+  .schead h2{font-size:1.3rem;color:var(--teal-dark);}
+  .schead small{display:block;color:var(--muted);font-weight:400;font-size:.8rem;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(11,114,133,.06);}
+  .card h3{font-size:.95rem;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .card ul{padding-left:20px;}
+  .card li{margin-bottom:6px;font-size:.92rem;}
+
+  .upbox{
+    background:var(--saffron-soft);border:1px solid #f5c9a8;border-left:6px solid var(--saffron);
+    border-radius:12px;padding:16px 18px;margin-bottom:14px;
+  }
+  .upbox h3{color:var(--saffron);font-size:.95rem;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .upbox ul{padding-left:20px;}
+  .upbox li{margin-bottom:6px;font-size:.92rem;}
+
+  .examtip{
+    background:var(--green-soft);border:1px dashed var(--green);border-radius:10px;
+    padding:10px 14px;font-size:.86rem;margin-bottom:8px;
+  }
+  .examtip b{color:var(--green);}
+
+  table{width:100%;border-collapse:collapse;font-size:.88rem;margin:8px 0;}
+  th{background:var(--teal);color:#fff;padding:8px 10px;text-align:left;font-size:.82rem;}
+  td{border:1px solid var(--line);padding:7px 10px;background:#fff;}
+  tr:nth-child(even) td{background:#f4fafa;}
+
+  .pill{display:inline-block;background:var(--teal-soft);color:var(--teal-dark);border-radius:999px;padding:1px 10px;font-size:.75rem;font-weight:700;margin-left:6px;}
+  .red{color:#c92a2a;font-weight:700;}
+  .grn{color:var(--green);font-weight:700;}
+
+  /* ---------- MCQ ---------- */
+  .mcq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;}
+  .mcq .qno{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;font-size:.85rem;margin-right:8px;}
+  .mcq p.q{font-weight:600;display:inline;}
+  .opts{margin:10px 0 4px 38px;font-size:.9rem;}
+  .opts div{margin-bottom:3px;}
+  details{margin-left:38px;margin-top:6px;}
+  summary{cursor:pointer;color:var(--teal-dark);font-weight:700;font-size:.85rem;list-style:none;}
+  summary::before{content:"🔑 ";}
+  details[open] summary{color:var(--saffron);}
+  .ans{background:var(--green-soft);border-left:4px solid var(--green);padding:8px 12px;border-radius:8px;font-size:.86rem;margin-top:6px;}
+  .ans b{color:var(--green);}
+
+  footer{margin-top:50px;text-align:center;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:16px;}
+  @media print{ details{display:block;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <span class="tag">UPPSC 2026 • SDM Target • Health Schemes Module</span>
+  <h1>🏥 भारत की प्रमुख स्वास्थ्य योजनाएँ — UP Focus Toolkit</h1>
+  <p>Format: Scheme → Key Features → India Status → UP Status → 20 MCQs। Data updated till <b>June 2026</b> (parliamentary replies, UP Economic Survey 2025-26, NFHS-5, SRS)।</p>
+  <div class="statgrid">
+    <div class="stat"><b>43.52 करोड़</b><span>Ayushman Cards (Feb 2026, राज्यसभा)</span></div>
+    <div class="stat"><b>5.64 करोड़</b><span>UP Ayushman Cards — देश में नंबर-1</span></div>
+    <div class="stat"><b>36,229</b><span>Empanelled Hospitals (Feb 2026)</span></div>
+    <div class="stat"><b>₹46,728 करोड़</b><span>UP Health Budget 2025-26 (6.1%)</span></div>
+  </div>
+  <svg class="svgmed" width="70" height="70" viewBox="0 0 64 64" fill="none">
+    <circle cx="32" cy="32" r="30" stroke="white" stroke-opacity=".5" stroke-width="2"/>
+    <path d="M32 14v36M22 24l10-10 10 10M27 44h10" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- ================= TOC ================= -->
+<nav class="toc">
+  <a href="#pmjay">1️⃣ PM-JAY</a>
+  <a href="#nhm">2️⃣ NHM</a>
+  <a href="#poshan">3️⃣ Poshan Abhiyan</a>
+  <a href="#jsy">4️⃣ JSY</a>
+  <a href="#indra">5️⃣ Mission Indradhanush</a>
+  <a href="#mental">6️⃣ Mental Health</a>
+  <a href="#covid">7️⃣ COVID Lessons</a>
+  <a href="#mcq">📝 20 MCQs</a>
+</nav>
+
+<!-- ================= 1. PM-JAY ================= -->
+<section id="pmjay">
+  <div class="schead">
+    <div class="icon">🛡️</div>
+    <h2>1. आयुष्मान भारत — PM-JAY<small>विश्व की सबसे बड़ी सरकार-वित्तपोषित स्वास्थ्य बीमा योजना</small></h2>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Key Features</h3>
+    <ul>
+      <li><b>Launch:</b> 23 सितम्बर 2018, <b>रांची (झारखंड)</b> से। आयुष्मान भारत के दो स्तम्भ — (i) <b>Health &amp; Wellness Centres</b> (अब <b>आयुष्मान आरोग्य मंदिर</b>, 1.75 लाख+) और (ii) <b>PM-JAY</b>।</li>
+      <li><b>Cover:</b> ₹<b>5 लाख प्रति परिवार प्रति वर्ष</b> — secondary + tertiary hospitalization, cashless &amp; paperless। परिवार के आकार/आयु/लिंग पर <span class="red">कोई सीमा नहीं</span>।</li>
+      <li><b>Eligibility:</b> SECC-2011 आधारित ~<b>12.37 करोड़ परिवार</b> (लगभग 55 करोड़ लोग — निचली 40% आबादी)। Pre-existing diseases <b>Day-1 से कवर</b>; 3 दिन pre + 15 दिन post-hospitalization खर्च शामिल।</li>
+      <li><b>Nodal Agency:</b> <b>National Health Authority (NHA)</b>। Funding pattern: केंद्र:राज्य = <b>60:40</b> (हिमालयी/NE राज्य 90:10)।</li>
+      <li><b>आयुष्मान वय वंदना (29 Oct 2024):</b> <b>70+ आयु के सभी वरिष्ठ नागरिक</b> — आय की कोई शर्त नहीं (non-means-tested); पहले से कवर परिवारों के बुजुर्गों को अतिरिक्त ₹5 लाख <b>top-up</b>।</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🇮🇳 India Status (2026)</h3>
+    <ul>
+      <li>फरवरी 28, 2026 तक <b>43.52 करोड़ आयुष्मान कार्ड</b> बन चुके हैं, जिनमें 70+ बुजुर्गों के <b>1.14 करोड़ वय वंदना कार्ड</b> शामिल हैं; <b>36,229 अस्पताल</b> empanelled — इनमें 19,483 सरकारी और 16,746 निजी अस्पताल हैं।</li>
+      <li>मई 2026 से योजना <b>सभी 36 राज्यों/UTs</b> में लागू — <b>पश्चिम बंगाल</b> 2026 में जुड़ने वाला अंतिम राज्य (ओडिशा जनवरी 2025 में, दिल्ली 2025 में जुड़े)। <span class="pill">High-probability fact</span></li>
+      <li>अप्रैल 2020 – जनवरी 2026 के बीच निजी अस्पतालों में <b>5.77 करोड़ admissions</b> (~₹1.15 लाख करोड़) authorize हुए।</li>
+      <li>चुनौती: तमिलनाडु, केरल, कर्नाटक में उपयोग दर ऊँची; जबकि UP, MP, बिहार में utilisation 15% से कम — यानी कार्ड vs वास्तविक उपयोग का अंतर (Mains point)।</li>
+    </ul>
+  </div>
+
+  <div class="upbox">
+    <h3>📍 UP Status — सबसे महत्वपूर्ण</h3>
+    <ul>
+      <li>UP देश में <b>सर्वाधिक आयुष्मान कार्ड</b> जारी करने वाला राज्य — मार्च 2026 तक ~<b>5.64 करोड़ कार्ड</b>; वय वंदना के तहत <b>~25.70 लाख</b> बुजुर्गों को कार्ड।</li>
+      <li>लक्षित ~9 करोड़ लाभार्थी; <b>87% पात्र परिवारों</b> में कम-से-कम एक सदस्य के पास कार्ड। राज्य एजेंसी: <b>SACHIS</b> (State Agency for Comprehensive Health &amp; Integrated Services), लखनऊ।</li>
+      <li><b>मुख्यमंत्री जन आरोग्य अभियान (MMJAA, 2019):</b> SECC में छूटे परिवारों को राज्य के खर्च पर ₹5 लाख का समान कवर — केंद्र की योजना से वंचित परिवार राज्य योजना से कवर। अंत्योदय कार्डधारक, निर्माण श्रमिक (BOCW), आशा/आंगनवाड़ी कार्यकर्ता आदि शामिल।</li>
+      <li>UP Economic Survey 2025-26: आयुष्मान कवरेज 5.46 करोड़ कार्ड; स्वास्थ्य बजट ₹46,728.48 करोड़ (कुल बजट का 6.1%); जनवरी 2026 में लखनऊ में <b>UP HealthTech Conclave 1.0</b> का उद्घाटन।</li>
+    </ul>
+  </div>
+  <div class="examtip">💡 <b>UPPSC Trap:</b> PM-JAY बीमा कंपनी आधारित नहीं — अधिकतर राज्य <b>Trust mode</b> में चलाते हैं (UP भी)। Premium लाभार्थी नहीं देता — पूर्णतः सरकार-वित्तपोषित।</div>
+</section>
+
+<!-- ================= 2. NHM ================= -->
+<section id="nhm">
+  <div class="schead">
+    <div class="icon">🏨</div>
+    <h2>2. राष्ट्रीय स्वास्थ्य मिशन (NHM)<small>NRHM (2005) + NUHM (2013) का छाता कार्यक्रम</small></h2>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Key Features</h3>
+    <ul>
+      <li><b>NRHM:</b> 12 अप्रैल <b>2005</b> (ग्रामीण); <b>NUHM:</b> मई <b>2013</b> (शहरी) — दोनों मिलाकर <b>NHM (2013)</b>। Centrally Sponsored Scheme (60:40)।</li>
+      <li><b>ASHA</b> (Accredited Social Health Activist) — NRHM की देन; ~10 लाख+ ASHA देशभर में, UP में सर्वाधिक (~1.6 लाख)।</li>
+      <li>घटक: RMNCH+A (अब <b>RMNCAH+N</b>), रोग नियंत्रण कार्यक्रम (TB-NTEP, मलेरिया, कुष्ठ), <b>Free Drugs &amp; Diagnostics</b>, 108/102 एम्बुलेंस, Rogi Kalyan Samiti, Untied funds।</li>
+      <li>लक्ष्य (NHP-2017 अनुरूप): MMR &lt;100, IMR ≤28, U5MR ≤23; TB उन्मूलन 2025।</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📊 India vs UP — Key Health Indicators (तालिका रटें)</h3>
+    <table>
+      <tr><th>संकेतक</th><th>भारत 🇮🇳</th><th>उत्तर प्रदेश 📍</th><th>स्रोत</th></tr>
+      <tr><td>IMR (शिशु मृत्यु दर)</td><td>28 / 1000</td><td>~38 / 1000 (उच्चतम वर्ग में)</td><td>SRS 2020</td></tr>
+      <tr><td>MMR (मातृ मृत्यु अनुपात)</td><td>97 → <b>93</b></td><td>167 → <b>~151</b> (सुधार पर अब भी अधिक)</td><td>SRS 2018-20 → 2019-21</td></tr>
+      <tr><td>TFR (कुल प्रजनन दर)</td><td><b>2.0</b> (replacement से नीचे)</td><td><b>2.35</b> (replacement से ऊपर)</td><td>NFHS-5</td></tr>
+      <tr><td>संस्थागत प्रसव</td><td>~89%</td><td><b>96.12%</b> (2024-25)</td><td>NFHS-5 / UP Eco Survey</td></tr>
+      <tr><td>पूर्ण टीकाकरण (12-23 माह)</td><td>76%</td><td>~70% (NFHS-5); 5 वर्ष तक सार्वभौमिक टीकाकरण प्राप्त (2025-26 सर्वे)</td><td>NFHS-5</td></tr>
+      <tr><td>महिलाओं में एनीमिया (15-49)</td><td>57% (बढ़ा ⬆️)</td><td>~50.4%</td><td>NFHS-5</td></tr>
+    </table>
+    <p style="font-size:.82rem;color:var(--muted);">📌 TFR में UP, बिहार, झारखंड, MP अब भी replacement level (2.1) से ऊपर; NFHS-5 में बिहार में सर्वाधिक NMR/IMR/U5MR, केरल में न्यूनतम।</p>
+  </div>
+
+  <div class="upbox">
+    <h3>📍 UP Status</h3>
+    <ul>
+      <li><b>"One District One Medical College"</b> नीति — हर जिले में मेडिकल कॉलेज का लक्ष्य; 2017 के बाद मेडिकल कॉलेजों की संख्या में तीव्र विस्तार (PPP mode सहित)।</li>
+      <li>UPPCS-2023 में पूछा गया: <b>"ग्रामीण स्वास्थ्य मिशन"</b> — UP सरकार का कार्यक्रम है (MGNREGA/केंद्रीय योजनाओं से भिन्न) — past paper trend।</li>
+      <li>102 (मातृ-शिशु) व 108 (आपातकाल) एम्बुलेंस सेवा; हेल्थ ATM, टेली-कंसल्टेशन (eSanjeevani) में UP अग्रणी राज्यों में।</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 3. POSHAN ================= -->
+<section id="poshan">
+  <div class="schead">
+    <div class="icon">🥗</div>
+    <h2>3. पोषण अभियान (POSHAN Abhiyaan)<small>National Nutrition Mission → Mission Poshan 2.0</small></h2>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Key Features</h3>
+    <ul>
+      <li><b>Launch:</b> 8 मार्च 2018, <b>झुंझुनू (राजस्थान)</b> से; मंत्रालय — <b>महिला एवं बाल विकास (MWCD)</b>। ⚠️ Health Ministry नहीं — classic trap!</li>
+      <li><b>वार्षिक लक्ष्य:</b> Stunting −2%, Under-nutrition −2%, Anaemia −3%, Low Birth Weight −2% प्रति वर्ष। लक्ष्य समूह: 0-6 वर्ष बच्चे, किशोरियाँ, गर्भवती व धात्री महिलाएँ।</li>
+      <li><b>Mission Poshan 2.0</b> (बजट 2021-22): ICDS-आंगनवाड़ी सेवाएँ + पोषण अभियान + किशोरी योजना का एकीकरण; "Saksham Anganwadi" — आधुनिक AWC।</li>
+      <li><b>Tech:</b> <b>Poshan Tracker</b> (2021) — 14 लाख आंगनवाड़ी केंद्रों व ~9 करोड़ लाभार्थियों की real-time monitoring; Facial Recognition; <b>Home Visit Scheduler (2026)</b> — गर्भवती व 0-3 वर्ष बच्चों के 23 संरचित गृह-भ्रमण।</li>
+      <li><b>जन आंदोलन:</b> पोषण माह (सितम्बर), पोषण पखवाड़ा (मार्च)। Anaemia Mukt Bharat — 6×6×6 रणनीति।</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🇮🇳 India Status — NFHS-5 (2019-21)</h3>
+    <ul>
+      <li>Stunting <b>35.5%</b> ⬇️ (38.4% से) | Wasting <b>19.3%</b> | Underweight <b>32.1%</b>।</li>
+      <li><span class="red">बिगड़ा संकेतक:</span> महिलाओं (15-49) में एनीमिया <b>57%</b> (53% से ⬆️); बच्चों (6-59 माह) में <b>67.1%</b>।</li>
+      <li>2021 में Mid-Day Meal का नया नाम — <b>PM POSHAN</b> (UPPCS-2023 में पूछा गया ✔)।</li>
+    </ul>
+  </div>
+
+  <div class="upbox">
+    <h3>📍 UP Status</h3>
+    <ul>
+      <li>NFHS-5 UP: stunting ~<b>39.7%</b> (राष्ट्रीय औसत से अधिक), underweight ~32%, बच्चों में एनीमिया ~66% — UP "high-burden" राज्य।</li>
+      <li>UP की राज्य पहल: <b>मुख्यमंत्री सुपोषण घर</b>, SAM बच्चों के लिए NRC (Nutrition Rehabilitation Centres), "संभव अभियान" (कुपोषण-मुक्त UP)।</li>
+      <li>आंगनवाड़ी केंद्रों की संख्या में UP देश में प्रथम (~1.89 लाख AWCs)।</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 4. JSY ================= -->
+<section id="jsy">
+  <div class="schead">
+    <div class="icon">🤰</div>
+    <h2>4. जननी सुरक्षा योजना (JSY) + मातृत्व पैकेज<small>संस्थागत प्रसव के लिए सशर्त नकद हस्तांतरण</small></h2>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Key Features</h3>
+    <ul>
+      <li><b>Launch:</b> 12 अप्रैल <b>2005</b> (NRHM के साथ); 100% केंद्र-वित्तपोषित, NHM के अंतर्गत safe-motherhood intervention।</li>
+      <li>राज्यों का वर्गीकरण: <b>LPS</b> (Low Performing States — UP, बिहार, MP, राजस्थान आदि) व <b>HPS</b>। <b>UP = LPS</b> → ग्रामीण ₹1,400 + ASHA ₹600; शहरी ₹1,000 + ASHA ₹400।</li>
+      <li>संबंधित पैकेज (Confusion Matrix):
+        <table>
+          <tr><th>योजना</th><th>वर्ष</th><th>क्या देती है</th></tr>
+          <tr><td>JSY</td><td>2005</td><td>संस्थागत प्रसव पर नकद प्रोत्साहन</td></tr>
+          <tr><td>JSSK</td><td>2011</td><td>प्रसव + बीमार नवजात का पूर्णतः <b>मुफ्त</b> इलाज, दवा, भोजन, परिवहन (zero expense)</td></tr>
+          <tr><td>PMSMA</td><td>2016</td><td>हर माह की <b>9 तारीख</b> को मुफ्त ANC जाँच (निजी डॉक्टर स्वयंसेवी)</td></tr>
+          <tr><td>PMMVY</td><td>2017</td><td>पहले जीवित बच्चे पर <b>₹5,000</b> (दूसरी बेटी पर ₹6,000) — MWCD</td></tr>
+          <tr><td>SUMAN</td><td>2019</td><td>सम्मानजनक, गुणवत्तापूर्ण मातृत्व सेवाओं की assured delivery</td></tr>
+          <tr><td>LaQshya</td><td>2017</td><td>Labour Room गुणवत्ता सुधार</td></tr>
+        </table>
+      </li>
+    </ul>
+  </div>
+
+  <div class="upbox">
+    <h3>📍 UP Status</h3>
+    <ul>
+      <li>JSY लाभार्थियों में UP देश में शीर्ष पर (LPS होने से सार्वभौमिक पात्रता)।</li>
+      <li>परिणाम: UP में संस्थागत प्रसव <b>96.12%</b> (2024-25); गैर-संस्थागत प्रसव घटकर 1.66 लाख।</li>
+      <li>MMR 1990s के ~490 से घटकर ~151 (SRS 2019-21) — पर राष्ट्रीय औसत (93) से अब भी काफी ऊपर ⇒ Mains में "उपलब्धि + चुनौती" दोनों लिखें।</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 5. INDRADHANUSH ================= -->
+<section id="indra">
+  <div class="schead">
+    <div class="icon">💉</div>
+    <h2>5. मिशन इंद्रधनुष + U-WIN<small>टीकाकरण का "7 रंगों" वाला मिशन</small></h2>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Key Features</h3>
+    <ul>
+      <li><b>Launch:</b> 25 दिसम्बर 2014 (सुशासन दिवस), स्वास्थ्य मंत्री जे.पी. नड्डा द्वारा; लक्ष्य — पूर्ण टीकाकरण कवरेज 90%। लक्षित समूह: <b>2 वर्ष तक के बच्चे + गर्भवती महिलाएँ</b> जो UIP से छूट गए।</li>
+      <li>शुरुआत 7 बीमारियों से (इसलिए "इंद्रधनुष"); अब UIP में <b>12 vaccine-preventable diseases</b> — डिप्थीरिया, काली खांसी, टिटनेस, पोलियो, खसरा, रूबेला, TB, हेपेटाइटिस-B, Hib, रोटावायरस, निमोनिया (PCV), जापानी एन्सेफलाइटिस (endemic जिलों में)।</li>
+      <li><b>IMI (Intensified MI) 2017 → IMI 2.0 → 3.0 → 4.0 (Feb 2022) → IMI 5.0 (2023):</b> पहली बार <b>5 वर्ष तक</b> के बच्चे शामिल; Measles-Rubella उन्मूलन फोकस; <b>U-WIN</b> पोर्टल का प्रयोग।</li>
+      <li><b>U-WIN</b> (CoWIN की तर्ज पर सार्वभौमिक टीकाकरण का डिजिटल प्लेटफॉर्म): फरवरी 2026 तक <b>11.12 करोड़ बच्चे</b> व <b>3.78 करोड़ गर्भवती महिलाएँ</b> पंजीकृत; QR-आधारित डिजिटल टीकाकरण प्रमाणपत्र।</li>
+    </ul>
+  </div>
+
+  <div class="upbox">
+    <h3>📍 UP Status</h3>
+    <ul>
+      <li>IMI के उच्च-फोकस जिलों में सर्वाधिक UP से; NFHS-4 (51%) → NFHS-5 (~70%) — पूर्ण टीकाकरण में बड़ा सुधार, श्रेय Mission Indradhanush को।</li>
+      <li>JE/AES बेल्ट (गोरखपुर-बस्ती मंडल): JE टीकाकरण + "दस्तक अभियान" — UP-specific question बनता है।</li>
+      <li>UP Economic Survey 2025-26 — 5 वर्ष तक के बच्चों का सार्वभौमिक टीकाकरण हासिल।</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 6. MENTAL HEALTH ================= -->
+<section id="mental">
+  <div class="schead">
+    <div class="icon">🧠</div>
+    <h2>6. मानसिक स्वास्थ्य नीति + Tele-MANAS<small>NMHP से Mental Healthcare Act तक</small></h2>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Key Features</h3>
+    <ul>
+      <li><b>NMHP 1982</b> → District Mental Health Programme (1996, अब ~767 जिले)। <b>National Mental Health Policy 2014</b>।</li>
+      <li><b>Mental Healthcare Act 2017:</b> मानसिक रोगी के अधिकार-आधारित कानून; <b>आत्महत्या का प्रयास अपराध-मुक्त</b> (IPC 309 का प्रभाव सीमित); Advance Directive; ECT पर प्रतिबंध-शर्तें।</li>
+      <li><b>National Tele Mental Health Programme — Tele-MANAS:</b> 10 अक्टूबर 2022 (विश्व मानसिक स्वास्थ्य दिवस) को लॉन्च; टोल-फ्री हेल्पलाइन <b>14416</b>; काउंसलिंग, psychotherapy, psychiatric consultation। Apex centre — <b>NIMHANS बेंगलुरु</b>; tech partner IIIT-Bangalore।</li>
+      <li>मार्च 2026 तक <b>53 Tele-MANAS cells</b>, ~<b>34.34 लाख कॉल</b> संभाली गईं; सेवाएँ <b>20 भाषाओं</b> में; AFMC पुणे में सशस्त्र बलों हेतु समर्पित cell; 2024 में मोबाइल ऐप लॉन्च।</li>
+      <li>NMHS 2015-16: ~10.6% वयस्कों में मानसिक विकार; treatment gap 70-92%।</li>
+    </ul>
+  </div>
+
+  <div class="upbox">
+    <h3>📍 UP Status</h3>
+    <ul>
+      <li>UP में Tele-MANAS cells क्रियाशील (लखनऊ आदि); जिला मानसिक स्वास्थ्य कार्यक्रम सभी 75 जिलों में विस्तार की दिशा में।</li>
+      <li>प्रमुख संस्थान: मानसिक चिकित्सालय <b>बरेली, वाराणसी, आगरा</b>; KGMU लखनऊ का psychiatry विभाग।</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 7. COVID LESSONS ================= -->
+<section id="covid">
+  <div class="schead">
+    <div class="icon">🦠</div>
+    <h2>7. COVID के सबक + स्वास्थ्य अवसंरचना<small>PM-ABHIM, ABDM, eSanjeevani — Mains का गोल्डन सेक्शन</small></h2>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Post-COVID Architecture</h3>
+    <ul>
+      <li><b>PM-ABHIM (अक्टूबर 2021):</b> ₹<b>64,180 करोड़</b> (2021-26) — देश की सबसे बड़ी pan-India स्वास्थ्य अवसंरचना योजना: ब्लॉक पब्लिक हेल्थ यूनिट, Critical Care Hospital Blocks, BSL-3 लैब, integrated district public health labs।</li>
+      <li><b>Ayushman Bharat Digital Mission (27 Sep 2021):</b> <b>86 करोड़+ ABHA</b> (हेल्थ अकाउंट) बने; 90 करोड़+ स्वास्थ्य रिकॉर्ड लिंक्ड; 2.5 लाख+ सुविधाएँ डिजिटल।</li>
+      <li><b>CoWIN</b> मॉडल → 220 करोड़+ डोज़; अब वही तकनीक <b>U-WIN</b> में नियमित टीकाकरण के लिए। <b>eSanjeevani</b> — विश्व का सबसे बड़ा सरकारी telemedicine प्लेटफॉर्म।</li>
+      <li>वैक्सीन आत्मनिर्भरता: <b>Covishield</b> (Serum Institute, पुणे), <b>Covaxin</b> (Bharat Biotech + ICMR-NIV), विश्व का पहला DNA वैक्सीन <b>ZyCoV-D</b>, intranasal <b>iNCOVACC</b>; <b>Vaccine Maitri</b> कूटनीति।</li>
+      <li>15वें वित्त आयोग के स्वास्थ्य अनुदान (₹70,051 करोड़, स्थानीय निकायों के माध्यम से) — संघवाद + स्वास्थ्य का लिंक।</li>
+      <li>सबक (Mains keywords): "One Health" approach, PSA ऑक्सीजन प्लांट, genomic surveillance (INSACOG), स्वास्थ्य पर सार्वजनिक व्यय GDP का 2.5% लक्ष्य (NHP-2017)।</li>
+    </ul>
+  </div>
+
+  <div class="upbox">
+    <h3>📍 UP Status</h3>
+    <ul>
+      <li>COVID के बाद हर जिले में ऑक्सीजन प्लांट, ICU/HDU बेड विस्तार; "ट्रेस-टेस्ट-ट्रीट + टीका" का UP मॉडल (निगरानी समितियाँ) — WHO ने भी सराहा।</li>
+      <li>मेडिकल कॉलेज विस्तार + UP HealthTech Conclave 1.0 (जनवरी 2026, लखनऊ) — मेडिकल कॉलेज से लेकर CHC/PHC/आरोग्य मंदिर तक मुफ्त, भेदभाव-रहित इलाज का दावा।</li>
+      <li>स्वास्थ्य बजट 2025-26: ₹46,728 करोड़ — कुल बजट का 6.1% ⇒ Mains में quote करने लायक आँकड़ा।</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= MCQs ================= -->
+<section id="mcq">
+  <div class="schead">
+    <div class="icon">📝</div>
+    <h2>20 UPPSC-Style MCQs — Health Schemes (UP Focus)<small>उत्तर देखने के लिए 🔑 पर क्लिक करें</small></h2>
+  </div>
+
+  <div class="mcq"><span class="qno">1</span><p class="q">आयुष्मान भारत PM-JAY का शुभारंभ कब और कहाँ से हुआ?</p>
+    <div class="opts"><div>(a) 15 अगस्त 2018, दिल्ली</div><div>(b) 23 सितम्बर 2018, रांची</div><div>(c) 2 अक्टूबर 2018, वाराणसी</div><div>(d) 1 अप्रैल 2018, झुंझुनू</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(b)</b> 23 सितम्बर 2018, रांची (झारखंड)। झुंझुनू = पोषण अभियान — UPPSC का प्रिय confusion pair।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">2</span><p class="q">PM-JAY के अंतर्गत प्रति परिवार वार्षिक स्वास्थ्य कवर है —</p>
+    <div class="opts"><div>(a) ₹1 लाख</div><div>(b) ₹2 लाख</div><div>(c) ₹5 लाख</div><div>(d) ₹10 लाख</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(c)</b> ₹5 लाख — secondary व tertiary hospitalization हेतु; परिवार के आकार पर कोई सीमा नहीं।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">3</span><p class="q">"आयुष्मान वय वंदना" कार्ड (अक्टूबर 2024) किसके लिए है?</p>
+    <div class="opts"><div>(a) BPL परिवारों की महिलाएँ</div><div>(b) 60+ आयु के गरीब वरिष्ठ नागरिक</div><div>(c) 70+ आयु के सभी नागरिक, आय की शर्त के बिना</div><div>(d) केवल पेंशनभोगी</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(c)</b> 70 वर्ष+ के <i>सभी</i> वरिष्ठ नागरिक — non-means-tested; पहले से कवर परिवारों के बुजुर्गों को ₹5 लाख का अतिरिक्त top-up।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">4</span><p class="q">2026 में PM-JAY में शामिल होने वाला अंतिम राज्य कौन था?</p>
+    <div class="opts"><div>(a) ओडिशा</div><div>(b) दिल्ली</div><div>(c) पश्चिम बंगाल</div><div>(d) तेलंगाना</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(c)</b> पश्चिम बंगाल (मई 2026) — अब योजना सभी 36 राज्यों/UTs में। ओडिशा जनवरी 2025 में जुड़ा था।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">5</span><p class="q">आयुष्मान कार्ड निर्माण में देश का शीर्ष राज्य है —</p>
+    <div class="opts"><div>(a) महाराष्ट्र</div><div>(b) मध्य प्रदेश</div><div>(c) बिहार</div><div>(d) उत्तर प्रदेश</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(d)</b> UP — ~5.64 करोड़ कार्ड (मार्च 2026), 87% पात्र परिवार कवर। राज्य एजेंसी: SACHIS।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">6</span><p class="q">PM-JAY की कार्यान्वयन एजेंसी (राष्ट्रीय स्तर) है —</p>
+    <div class="opts"><div>(a) ICMR</div><div>(b) National Health Authority (NHA)</div><div>(c) NITI Aayog</div><div>(d) NHSRC</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(b)</b> NHA — ABDM (डिजिटल मिशन) भी यही चलाती है।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">7</span><p class="q">मुख्यमंत्री जन आरोग्य अभियान (UP) का उद्देश्य है —</p>
+    <div class="opts"><div>(a) मुफ्त दवा वितरण</div><div>(b) SECC-2011 से छूटे परिवारों को राज्य व्यय पर ₹5 लाख कवर</div><div>(c) आशा कार्यकर्ताओं का बीमा</div><div>(d) टेलीमेडिसिन सेवा</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(b)</b> केंद्र की सूची से वंचित पात्र परिवारों को PM-JAY जैसा कवर — पूर्णतः राज्य-वित्तपोषित।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">8</span><p class="q">NRHM और NUHM के शुभारंभ वर्ष क्रमशः हैं —</p>
+    <div class="opts"><div>(a) 2005, 2013</div><div>(b) 2007, 2014</div><div>(c) 2005, 2011</div><div>(d) 2013, 2015</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(a)</b> NRHM — 12 अप्रैल 2005; NUHM — मई 2013; दोनों का छाता = NHM (2013)। ASHA NRHM की देन है।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">9</span><p class="q">SRS 2019-21 के अनुसार भारत का MMR है —</p>
+    <div class="opts"><div>(a) 103</div><div>(b) 97</div><div>(c) 93</div><div>(d) 130</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(c)</b> 93 प्रति लाख जीवित जन्म (SRS 2018-20 में 97 था)। UP का MMR ~151 — राष्ट्रीय औसत से ऊपर। SDG लक्ष्य: 70 तक (2030)।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">10</span><p class="q">NFHS-5 के अनुसार UP की TFR है —</p>
+    <div class="opts"><div>(a) 1.9</div><div>(b) 2.0</div><div>(c) 2.35</div><div>(d) 2.7</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(c)</b> 2.35 — replacement level (2.1) से ऊपर; भारत की TFR 2.0 (replacement से नीचे)।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">11</span><p class="q">पोषण अभियान किस मंत्रालय द्वारा संचालित है और कहाँ से लॉन्च हुआ?</p>
+    <div class="opts"><div>(a) स्वास्थ्य मंत्रालय, रांची</div><div>(b) महिला एवं बाल विकास मंत्रालय, झुंझुनू</div><div>(c) ग्रामीण विकास मंत्रालय, गांधीनगर</div><div>(d) आयुष मंत्रालय, हरिद्वार</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(b)</b> MWCD; 8 मार्च 2018, झुंझुनू (राजस्थान)। UPSC-2017 में भी NNM के उद्देश्य पूछे गए थे।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">12</span><p class="q">पोषण अभियान के अंतर्गत एनीमिया में वार्षिक कमी का लक्ष्य है —</p>
+    <div class="opts"><div>(a) 1%</div><div>(b) 2%</div><div>(c) 3%</div><div>(d) 5%</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(c)</b> एनीमिया −3% प्रति वर्ष; stunting, under-nutrition व low birth weight में −2% प्रति वर्ष।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">13</span><p class="q">Mid-Day Meal योजना को "PM POSHAN" नाम किस वर्ष दिया गया? (UPPCS-2023 repeat)</p>
+    <div class="opts"><div>(a) 2018</div><div>(b) 2019</div><div>(c) 2020</div><div>(d) 2021</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(d)</b> 2021 — past paper में पूछा जा चुका है; PM POSHAN ≠ POSHAN Abhiyaan (अलग योजनाएँ)।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">14</span><p class="q">JSY के अंतर्गत उत्तर प्रदेश को वर्गीकृत किया गया है —</p>
+    <div class="opts"><div>(a) High Performing State</div><div>(b) Low Performing State</div><div>(c) Special Category State</div><div>(d) Aspirational State</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(b)</b> LPS — इसलिए ग्रामीण UP में सहायता ₹1,400 (HPS से अधिक) व सार्वभौमिक पात्रता।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">15</span><p class="q">सुमेलित कीजिए: A. JSSK  B. PMSMA  C. PMMVY  D. LaQshya — 1. हर माह की 9 तारीख को ANC  2. ₹5,000 मातृत्व लाभ  3. मुफ्त प्रसव entitlements  4. लेबर रूम गुणवत्ता</p>
+    <div class="opts"><div>(a) A-3, B-1, C-2, D-4</div><div>(b) A-1, B-3, C-2, D-4</div><div>(c) A-3, B-2, C-1, D-4</div><div>(d) A-4, B-1, C-2, D-3</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(a)</b> JSSK (2011)—मुफ्त entitlements; PMSMA (2016)—9 तारीख ANC; PMMVY (2017)—₹5,000; LaQshya (2017)—लेबर रूम।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">16</span><p class="q">मिशन इंद्रधनुष के संदर्भ में कौन-सा/से कथन सही है/हैं? 1. यह 25 दिसम्बर 2014 को शुरू हुआ। 2. IMI 5.0 में 5 वर्ष तक के बच्चे शामिल किए गए। 3. यह केवल 7 बीमारियों तक सीमित है।</p>
+    <div class="opts"><div>(a) केवल 1</div><div>(b) 1 और 2</div><div>(c) 2 और 3</div><div>(d) 1, 2 और 3</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(b)</b> कथन 3 गलत — शुरुआत 7 से हुई, अब UIP में 12 vaccine-preventable diseases (JE endemic जिलों में)।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">17</span><p class="q">U-WIN पोर्टल संबंधित है —</p>
+    <div class="opts"><div>(a) COVID टीकाकरण से</div><div>(b) सार्वभौमिक (नियमित) टीकाकरण के डिजिटलीकरण से</div><div>(c) अंगदान पंजीकरण से</div><div>(d) महिला उद्यमिता से</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(b)</b> CoWIN की तकनीक पर UIP का डिजिटल प्लेटफॉर्म; फरवरी 2026 तक 11.12 करोड़ बच्चे व 3.78 करोड़ गर्भवती महिलाएँ पंजीकृत; QR-कोड प्रमाणपत्र।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">18</span><p class="q">Tele-MANAS के संदर्भ में असत्य कथन चुनिए —</p>
+    <div class="opts"><div>(a) हेल्पलाइन नंबर 14416 है</div><div>(b) इसका apex centre NIMHANS बेंगलुरु है</div><div>(c) यह 10 अक्टूबर 2022 को लॉन्च हुआ</div><div>(d) यह केवल अंग्रेजी व हिंदी में उपलब्ध है</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(d)</b> असत्य — सेवाएँ 20 भाषाओं में; मार्च 2026 तक 53 cells, ~34 लाख कॉल। (a), (b), (c) सही हैं।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">19</span><p class="q">PM-ABHIM (आयुष्मान भारत हेल्थ इन्फ्रास्ट्रक्चर मिशन) का परिव्यय (2021-26) है —</p>
+    <div class="opts"><div>(a) ₹23,123 करोड़</div><div>(b) ₹64,180 करोड़</div><div>(c) ₹89,155 करोड़</div><div>(d) ₹50,000 करोड़</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(b)</b> ₹64,180 करोड़ — ब्लॉक पब्लिक हेल्थ यूनिट, क्रिटिकल केयर ब्लॉक, BSL-3 लैब आदि; COVID का सीधा सबक।</div></details>
+  </div>
+
+  <div class="mcq"><span class="qno">20</span><p class="q">UP Economic Survey 2025-26 के अनुसार कौन-सा युग्म सही सुमेलित है?</p>
+    <div class="opts"><div>(a) स्वास्थ्य बजट — कुल बजट का 6.1%</div><div>(b) संस्थागत प्रसव — 76%</div><div>(c) आयुष्मान कार्ड — 2 करोड़</div><div>(d) स्वास्थ्य बजट — ₹89,155 करोड़</div></div>
+    <details><summary>उत्तर</summary><div class="ans"><b>(a)</b> सही — ₹46,728 करोड़ = 6.1%; संस्थागत प्रसव 96.12%; आयुष्मान कार्ड ~5.46–5.64 करोड़।</div></details>
+  </div>
+
+</section>
+
+<footer>
+  📚 UPPSC 2026 Health Schemes Toolkit • Data: NHA / राज्यसभा-लोकसभा उत्तर (Feb 2026) / UP Economic Survey 2025-26 / NFHS-5 / SRS<br>
+  ⚠️ परीक्षा से पहले PIB व UP बजट 2026-27 से आँकड़े एक बार re-verify करें — सरकारी data तेजी से update होता है।
+</footer>
+
+</div>
+</body>
+</html>
